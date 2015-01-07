@@ -195,7 +195,7 @@ psql -U postgres -d test
 To get up-to-date with the current project database, simply redirect the file to `stdin` stream
 
 ```bash
-psql -U postgres -d dbname < database.ddl
+psql -U postgres -d dbname < database.sql
 ```
 
 

@@ -18,15 +18,17 @@ The naming conventions of SQL is that all keywords are fully capitalized, and ta
 
 ### Data Definition Language
 
-The naming convention of `.ddl` files will be
+The naming convention of `.sql` files will be
 
 ```
-connextor.YYYY.MM.DD.ddl
+connextor.YYYY.MM.DD.sql
 ```
 
-Be careful not to use the tab character inside `.ddl` files. This will cause issues. Use spaces for padding.
+Be careful not to use the tab character inside `.sql` files. This will cause issues. Use spaces for padding.
 
-And we must keep all old versions of this file. Edits to this file must be saved as a new `.ddl` file. We should create delta files as well but this isn't as important during development, as it is during production.
+And we must keep all old versions of this file. Edits to this file must be saved as a new `.sql` file. We should create delta files as well but this isn't as important during development, as it is during production.
+
+EDIT: (2015.01.07) Changed suffix `.ddl` to `.sql` for better recognition on GitHub.
 
 ---
 

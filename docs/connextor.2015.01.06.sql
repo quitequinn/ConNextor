@@ -2,7 +2,7 @@
 -- PostgreSQL Data Definition Language
 -- 
 -- Import this file into database server to recreate all tables
--- psql -U postgres -d connextor < connextor.xxxx.xx.xx.ddl
+-- psql -U postgres -d connextor < connextor.xxxx.xx.xx.sql
 -- 
 -- Follow the updating procedure outlined by the styles guide
 ---------------------------------------------------------------
