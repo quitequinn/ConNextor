@@ -32,6 +32,41 @@ body {
     background-position: center;
 }
 
+.logo-and-description {
+    position: relative;
+    text-align: center;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.logo-text {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding: 0px;
+    font-family: 'Source Code Pro';
+    font-size: 48pt;
+    color: white;
+}
+
+.short-description {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding: 0px;
+    font-family: 'Allerta', sans-serif;
+    font-size: 24pt;
+    color: white;
+}
+
+.long-description {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding: 0px;
+    font-family: 'Allerta', sans-serif;
+    font-size: 20pt;
+    color: white;
+}
+
+
 .blank-middle {
     visibility: hidden;
     width: 100%;
@@ -60,6 +95,14 @@ body {
     /*background-position: center;*/
 }
 
+.light-bulb-container {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 0px;
+    margin: 0px;
+}
+
 .light-bulb {
     background-image: url("../assets/images/light%20bulb.png");
     width: 500px;
@@ -68,6 +111,62 @@ body {
     background-position: center;
     background-repeat: no-repeat;
 }
+
+.main-point-container {
+    position: relative;
+    height: 100%;
+}
+
+.main-point {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.main-point-text {
+    /*font-family: 'Allerta', sans-serif;*/
+    font-weight: bold;
+    color: black;
+    text-align: center;
+}
+
+
+
+.sub-point-container {
+    width: 100%;
+    height: 50px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 5px;
+    background-color: #a0cdf6;
+}
+
+.sub-point-text, .sub-point-icon{
+    /*font-family: 'Allerta', sans-serif;;*/
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.sub-point-icon {
+    float: left;
+    width: 40px;
+    height: 30px;
+    margin-left: 10px;
+    margin-right: 10px;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.sub-icon1 { background-image: url("../assets/images/128px%20copy/lightbulb.png"); }
+.sub-icon2 { background-image: url("../assets/images/128px%20copy/chat.png");}
+.sub-icon3 { background-image: url("../assets/images/128px%20copy/swatches.png");}
+.sub-icon4 { background-image: url("../assets/images/128px%20copy/volume.png");}
+.sub-icon5 { background-image: url("../assets/images/128px%20copy/pie-chart.png");}
+.sub-icon6 { background-image: url("../assets/images/128px%20copy/browser.png");}
+.sub-icon7 { background-image: url("../assets/images/128px%20copy/cart.png");}
+.sub-icon8 { background-image: url("../assets/images/128px%20copy/radiotower.png");}
+
 
 
 /*.col-sm-6 {*/
