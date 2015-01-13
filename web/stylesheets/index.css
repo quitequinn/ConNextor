@@ -1,15 +1,26 @@
 
 /*Fonts*/
 
-@import url(http://fonts.googleapis.com/css?family=Source+Code+Pro:400,700);
-@import url(http://fonts.googleapis.com/css?family=Allerta);
-
+/*@import url(http://fonts.googleapis.com/css?family=Source+Code+Pro:400,700);*/
+/*@import url(http://fonts.googleapis.com/css?family=Allerta);*/
+/*@import url(http://fonts.googleapis.com/css?family=Open+Sans:700,400,300);*/
+@import url(http://fonts.googleapis.com/css?family=Raleway:200,300,400,700,800);
 
 body {
     margin: 0px;
     padding: 0px;
     width: 100%;
     height: 100%;
+}
+
+#waitingDiv {
+    padding: 0px;
+    margin: 0px;
+    position: absolute;
+    z-index: 6;
+    width: 100%;
+    height: 100%;
+    background-color: white;
 }
 
 .top-container {
@@ -39,12 +50,16 @@ body {
     transform: translateY(-50%);
 }
 
+body {
+    font-family: 'Raleway', sans-serif;
+}
+
 .logo-text {
     margin-top: 0px;
     margin-bottom: 0px;
     padding: 0px;
-    font-family: 'Source Code Pro';
-    font-size: 48pt;
+    /*font-family: 'Open Sans', sans-serif;*/
+    font-size: 5em;
     color: white;
 }
 
@@ -52,8 +67,8 @@ body {
     margin-top: 0px;
     margin-bottom: 0px;
     padding: 0px;
-    font-family: 'Allerta', sans-serif;
-    font-size: 24pt;
+    /*font-family: 'Open Sans', sans-serif;*/
+    font-size: 2.1em;
     color: white;
 }
 
@@ -61,8 +76,9 @@ body {
     margin-top: 0px;
     margin-bottom: 0px;
     padding: 0px;
-    font-family: 'Allerta', sans-serif;
-    font-size: 20pt;
+    /*font-family: 'Open Sans', sans-serif;*/
+    font-weight: 200;
+    font-size: 1.63em;
     color: white;
 }
 
@@ -110,11 +126,12 @@ body {
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
+    visibility: hidden;
 }
 
 .main-point-container {
     position: relative;
-    height: 100%;
+    height: 80%;
 }
 
 .main-point {
@@ -125,18 +142,18 @@ body {
 
 .main-point-text {
     /*font-family: 'Allerta', sans-serif;*/
-    font-weight: bold;
-    color: black;
+    margin-bottom: 50px;
+    font-size: 3.6em;
+    font-weight: 200;
+    color: #444444;
     text-align: center;
 }
 
-
-
 .sub-point-container {
     width: 100%;
-    height: 50px;
-    margin-top: 5px;
-    margin-bottom: 5px;
+    height: 80px;
+    margin-top: 18px;
+    margin-bottom: 18px;
     padding: 5px;
     background-color: #a0cdf6;
 }
@@ -146,12 +163,13 @@ body {
     position: relative;
     top: 50%;
     transform: translateY(-50%);
+    font-size: 1.4em;
 }
 
 .sub-point-icon {
     float: left;
-    width: 40px;
-    height: 30px;
+    width: 60px;
+    height: 50px;
     margin-left: 10px;
     margin-right: 10px;
     background-position: center;

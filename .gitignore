@@ -8,8 +8,8 @@
 /.bundle
 
 # Ignore all JetBrains config
-/.idea
-/web/.idea
+/.idea/
+/web/.idea/
 
 # Ignore the default SQLite database.
 /db/*.sqlite3

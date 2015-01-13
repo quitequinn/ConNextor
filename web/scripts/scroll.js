@@ -6,7 +6,8 @@ $(document).ready(function(){
 
 });
 
-$(window).scroll(function() {
+$(window).scroll(function () {
+    $(".light-bulb")[0].style.visibility = "visible";
     if($(window).scrollTop() + $(window).height() > $(document).height()/2) {
         console.log("hi");
     }
