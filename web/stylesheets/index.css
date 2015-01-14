@@ -18,7 +18,7 @@ body {
     top: 50%;
     transform: translateY(-50%);
 	float:left;
-	z-index: 5; 
+	z-index: 5;
 }
 
 li {
@@ -48,6 +48,7 @@ li {
     background-image: url("../assets/images/page1.ver2.fbg.png");
     background-size: cover;
     background-position: center;
+    z-index: 6;
 }
 
 .logo-and-description {
@@ -59,6 +60,51 @@ li {
 
 body {
     font-family: 'Raleway', sans-serif;
+}
+
+.btn-upright {
+    -webkit-border-radius: 4;
+    -moz-border-radius: 4;
+    border-radius: 4px;
+    color: #90bdf6;
+    font-size: 20px;
+    padding: 5px 20px 5px 20px;
+    border: solid #90bdf6 1px;
+    text-decoration: none;
+    background: none;
+}
+
+.btn-upright:hover {
+    background: #90bdf6;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.input-upright {
+    -webkit-border-radius: 4;
+    -moz-border-radius: 4;
+    border-radius: 4px;
+    font-size: 20px;
+    padding: 5px 20px 5px 20px;
+    border: solid #90bdf6 1px;
+}
+
+.btn-inverse {
+    -webkit-border-radius: 4;
+    -moz-border-radius: 4;
+    border-radius: 4px;
+    color: #ffffff;
+    font-size: 20px;
+    padding: 5px 20px 5px 20px;
+    border: solid #ffffff 1px;
+    text-decoration: none;
+    background: none;
+}
+
+.btn-inverse:hover {
+    background: #ffffff;
+    color: #90bdf6;
+    text-decoration: none;
 }
 
 .logo-text {
@@ -99,26 +145,25 @@ body {
 .bottom-page-container {
     position: relative;
     width: 100%;
-    height: 600px;
+    height: 100%;
     background-color: white;
 }
 
 .quote-and-sign-up {
     position: relative;
     top: 50%;
-    transform: translateY(-50%);
+    transform: translateY(-50%) translateY(-50px);
 }
 
 .sign-up-container {
 
 }
 
-.footer-container {
-    height: 60px;
-}
 
 .footer {
+    position: absolute;
     padding: 20px;
+    bottom: 0px;
     width: 100%;
     height: 100px;
     background-color: #333333;

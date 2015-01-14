@@ -1,12 +1,12 @@
-var numOfSections = 5;
-var fadeTime = 1000;
-
-var lightBulbVisible = false;
-var currentSection,
+var lightBulbVisible = false,
+	currentSection,
 	currentDisplayingPicture = 0,
-	offset = 0.5;
+	offset = 0.5,
+	fadeTime = 300;
 
-
+/**
+ * With every scroll, checks the current position and the section updates.
+ */
 $(window).scroll(function () {
 	var distanceFromTop = $(window).scrollTop(),
 		windowHeight = $(window).height();
@@ -19,24 +19,35 @@ $(window).scroll(function () {
 		lightBulbVisible = true;
 	}
 
+	// note that we round the current section anyways
+	// any offset < 0.5 would cause periods of inactivity
+	// any offset > 0.5 would cause this function to be called too many times
 	if (Math.abs(currentSection - currentDisplayingPicture) > offset) {
 		changeSection(Math.round(currentSection));
 	}
-
 });
 
-function changeSection(newPicture) {
-	if (currentDisplayingPicture == newPicture) return;
-	console.log('changed to ' + newPicture);
+/**
+ * Updates all visual elements associated with the given section.
+ * This includes the time-line side pane, the picture in the bulb
+ * as well as the background change and dotted line
+ *
+ * @param newSection
+ */
+function changeSection(newSection) {
+	if (currentDisplayingPicture == newSection) return;
+	console.log('changed to ' + newSection);
 
 	//if (currentDisplayingPicture) { // is not zero
 	//	document.getElementsByClassName()
 	//}
 
-	document.getElementById("light_bulb_image").className = "light_bulb_image"+(newPicture);
+	document.getElementById("light_bulb_image").className = "light_bulb_image"+(newSection);
 	$("#light_bulb_image_container").hide().fadeIn(fadeTime);
-	$("#section"+newPicture+"text").fadeIn(fadeTime);
-	currentDisplayingPicture = newPicture;
-	
+	$("#section"+newSection+"text").fadeIn(fadeTime);
+	currentDisplayingPicture = newSection;
 }
 
+function highlightCurrentTimeLineElement(newSection) {
+
+}
