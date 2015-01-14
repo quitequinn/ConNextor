@@ -1,18 +1,30 @@
 var numOfSections = 5;
-//var adjustment = 120;
-//var section = $(document).height() / numOfSections;
-//var trackSection = 0;
-var fadeTime = 500;
-//var seen=[numOfSections];
+var fadeTime = 1000;
 
 var lightBulbVisible = false;
 var currentSection,
 	currentDisplayingPicture = 0,
 	offset = 0.5;
 
-//$(document).ready(function(){
-//	start();
-//});
+$("section1").click(function(){
+  trackSection=1;
+});
+
+$("section2").click(function(){
+  trackSection=2;
+});
+
+$("section3").click(function(){
+  trackSection=3;
+});
+
+$("section4").click(function(){
+  trackSection=4;
+});
+
+$("section5").click(function(){
+  trackSection=5;
+});
 
 $(window).scroll(function () {
 	var distanceFromTop = $(window).scrollTop(),
@@ -30,21 +42,6 @@ $(window).scroll(function () {
 		changeSection(Math.round(currentSection));
 	}
 
-   //if($(window).scrollTop() > ($(window).height())*(trackSection)-adjustment) {
-	// console.log("changed!");
-	// changeSection();
-	// trackSection+=1;
-   //}
-   //else{
-	//   if (($(window).height())*(trackSection)-$(window).scrollTop()>$(window).height()*1.5){
-	//		console.log("up!");
-	//		trackSection-=2;
-	//		if (trackSection<1){
-	//			trackSection=1;
-	//		}
-	//		changeSection();
-	//	}
-	//}
 });
 
 function changeSection(newPicture) {
@@ -57,12 +54,8 @@ function changeSection(newPicture) {
 
 	document.getElementById("light_bulb_image").className = "light_bulb_image"+(newPicture);
 	$("#light_bulb_image_container").hide().fadeIn(fadeTime);
+	$("#section"+newPicture+"text").fadeIn(fadeTime);
 	currentDisplayingPicture = newPicture;
+	
 }
 
-//function start(){
-//	for (i = 0; i < seen.length; i++) {
-//		seen[i]=false;
-//	}
-//	trackSection=1;
-//}
