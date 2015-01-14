@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d4652112-8e9f-4f8a-a8a0-27823b63c20e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/stylesheets/index.css" afterPath="$PROJECT_DIR$/stylesheets/index.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/scroll.js" afterPath="$PROJECT_DIR$/scripts/scroll.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -34,8 +32,8 @@
           <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/index.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.4159292" vertical-offset="305" max-vertical-offset="3045">
-                  <caret line="35" column="4" selection-start-line="35" selection-start-column="4" selection-end-line="35" selection-end-column="4" />
+                <state vertical-scroll-proportion="0.5840708" vertical-offset="0" max-vertical-offset="3045">
+                  <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
                   <folding>
                     <element signature="n#style#0;n#canvas#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                     <element signature="n#style#0;n#h4#0;n#div#0;n#div#0;n#div#0;n#div#1;n#section#5;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -71,8 +69,8 @@
           <file leaf-file-name="scroll.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/scripts/scroll.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.2740864" vertical-offset="0" max-vertical-offset="1155">
-                  <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+                <state vertical-scroll-proportion="-0.5199336" vertical-offset="553" max-vertical-offset="1155">
+                  <caret line="16" column="48" selection-start-line="16" selection-start-column="48" selection-end-line="16" selection-end-column="48" />
                   <folding />
                 </state>
               </provider>
@@ -90,8 +88,8 @@
       <list>
         <option value="$PROJECT_DIR$/scripts/outpost.js" />
         <option value="$PROJECT_DIR$/stylesheets/index.css" />
-        <option value="$PROJECT_DIR$/scripts/scroll.js" />
         <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/scripts/scroll.js" />
       </list>
     </option>
   </component>
@@ -437,22 +435,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/scroll.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2740864" vertical-offset="0" max-vertical-offset="1155">
-          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4159292" vertical-offset="305" max-vertical-offset="3045">
-          <caret line="35" column="4" selection-start-line="35" selection-start-column="4" selection-end-line="35" selection-end-column="4" />
+        <state vertical-scroll-proportion="0.5840708" vertical-offset="0" max-vertical-offset="3045">
+          <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
           <folding>
             <element signature="n#style#0;n#canvas#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#h4#0;n#div#0;n#div#0;n#div#0;n#div#1;n#section#5;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/scroll.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.5199336" vertical-offset="553" max-vertical-offset="1155">
+          <caret line="16" column="48" selection-start-line="16" selection-start-column="48" selection-end-line="16" selection-end-column="48" />
+          <folding />
         </state>
       </provider>
     </entry>

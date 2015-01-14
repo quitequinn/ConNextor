@@ -57,8 +57,8 @@ function drawLine(startX,startY,endX,endY){
  *
  * @param newSection
  */
-function changeSection(newPicture) {
-	if (currentDisplayingPicture == newPicture) return;
+function changeSection(newSection) {
+	if (currentDisplayingPicture == newSection) return;
 	//console.log('changed to ' + newPicture);
 
 	document.getElementById("light_bulb_image").className = "light_bulb_image"+(newSection);
