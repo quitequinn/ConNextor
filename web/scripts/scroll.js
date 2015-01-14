@@ -6,25 +6,6 @@ var currentSection,
 	currentDisplayingPicture = 0,
 	offset = 0.5;
 
-$("section1").click(function(){
-  trackSection=1;
-});
-
-$("section2").click(function(){
-  trackSection=2;
-});
-
-$("section3").click(function(){
-  trackSection=3;
-});
-
-$("section4").click(function(){
-  trackSection=4;
-});
-
-$("section5").click(function(){
-  trackSection=5;
-});
 
 $(window).scroll(function () {
 	var distanceFromTop = $(window).scrollTop(),
