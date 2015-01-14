@@ -17,6 +17,7 @@
 
     <!--stylesheets-->
     <script type="text/javascript" src="scripts/scroll.js"></script>
+    <script type="text/javascript" src="scripts/outpost.js"></script>
 
 </head>
 <body>
@@ -137,30 +138,45 @@
     </div>
 
     <div class="bottom-page-container">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-8 col-sm-offset-2">
-                    <blockquote>
-                        <p>No matter where you are from,</p>
-                        <p>what you are passionate about,</p>
-                        <p>in ConNextor,</p>
-                        <p>you can always find someone as special as you.</p>
-                        <footer>Elva Yang | ConNextor CEO</footer>
-                    </blockquote>
-                </div>
-            </div>
-        </div>
-
-        <div class="sign-up-container">
+        <div class="quote-and-sign-up">
             <div class="container">
                 <div class="row">
-                    <div class=""
+                    <div class="col-sm-8 col-sm-offset-2">
+                        <blockquote>
+                            <p>No matter where you are from,</p>
+                            <p>what you are passionate about,</p>
+                            <p>in ConNextor,</p>
+                            <p>you can always find someone as special as you.</p>
+                            <footer>Elva Yang | ConNextor CEO</footer>
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sign-up-container">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-4 col-sm-offset-2" >
+                            <h3>Stay tuned!</h3>
+                            <input id="emailInput" type="text" placeholder="Enter your email" size="30"/>
+                            <button onclick="javascript:postEmailToServer()">Submit</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
 
-        <div class="footer">
-
+    <div class="footer">
+        <div class="container" >
+            <div class="row">
+                <div class="col-sm-5">
+                    <h4 style="color:white">The ConNextor Team</h4>
+                </div>
+                <div class="col-sm-3 col-sm-offset-4">
+                    <a href="mailto:elva@connextor.co?Subject=Hi, I want to learn more about your project!" target="_blank"><h4>Contact Us</h4></a>
+                </div>
+            </div>
         </div>
     </div>
 
