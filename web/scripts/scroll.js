@@ -5,9 +5,21 @@ var lightBulbVisible = false,
 	fadeTime = 300;
 
 	
-var canvas = document.getElementById('myCanvas');
-var context = canvas.getContext('2d');	
-$(document).ready(function(){
+var canvas, context;
+$(document).ready(function () {
+    canvas = document.getElementById('myCanvas');
+    context = canvas.getContext('2d');
+
+    $('#stay-tuned').on('click', function () {
+        var scrollPoint = $('#register').offset().top;
+        $('body,html').animate({scrollTop: scrollPoint}, 400);
+        return false;
+    });
+
+    document.forms['invitation'].onsubmit = function () {
+        postEmailToServer(document.forms['invitation'].email.value);
+        return false;
+    }
 });
 
 /**

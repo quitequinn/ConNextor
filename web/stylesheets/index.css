@@ -11,14 +11,28 @@ body {
     padding: 0px;
     width: 100%;
     height: 100%;
+    font-family: 'Raleway', sans-serif;
+}
+
+.vertical-center {
+    top: 50%;
+    transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
 }
 
 .timeline{
 	position: fixed;
-    top: 50%;
-    transform: translateY(-50%);
+    /*top: 50%;*/
 	float:left;
 	z-index: 5;
+    /*transform: translateY(-50%);*/
+    /*-moz-transform: translateY(-50%);*/
+    /*-webkit-transform: translateY(-50%);*/
+    /*-ms-transform: translateY(-50%);*/
+    /*-o-transform: translateY(-50%);*/
 }
 
 li {
@@ -55,12 +69,13 @@ li {
 .logo-and-description {
     position: relative;
     text-align: center;
-    top: 50%;
-    transform: translateY(-50%);
-}
+    /*top: 50%;*/
 
-body {
-    font-family: 'Raleway', sans-serif;
+    /*transform: translateY(-50%);*/
+    /*-moz-transform: translateY(-50%);*/
+    /*-webkit-transform: translateY(-50%);*/
+    /*-ms-transform: translateY(-50%);*/
+    /*-o-transform: translateY(-50%);*/
 }
 
 .btn-upright {
@@ -147,6 +162,7 @@ body {
     position: relative;
     width: 100%;
     height: 100%;
+    min-height: 400px;
     background-color: white;
 }
 
@@ -154,6 +170,10 @@ body {
     position: relative;
     top: 50%;
     transform: translateY(-50%) translateY(-50px);
+    -moz-transform: translateY(-50%) translateY(-50px);
+    -webkit-transform: translateY(-50%) translateY(-50px);
+    -ms-transform: translateY(-50%) translateY(-50px);
+    -o-transform: translateY(-50%) translateY(-50px);
 }
 
 .sign-up-container {
@@ -193,10 +213,14 @@ body {
 
 .light-bulb-container {
     position: fixed;
-    top: 50%;
-    transform: translateY(-50%);
+    /*top: 50%;*/
     padding: 0px;
     margin: 0px;
+    /*transform: translateY(-50%);*/
+    /*-moz-transform: translateY(-50%);*/
+    /*-webkit-transform: translateY(-50%);*/
+    /*-ms-transform: translateY(-50%);*/
+    /*-o-transform: translateY(-50%);*/
 }
 
 .light-bulb {
@@ -209,11 +233,14 @@ body {
     visibility: hidden;
 }
 
+#light_bulb_image {
+}
+
 .light_bulb_image1{
 	background-image: url("../assets/images/01icon.png");
-    width: 250px;
-    height: 250px;
-	margin-left:130px;
+    width: 200px;
+    height: 200px;
+	margin-left:155px;
 	margin-bottom: 100px;
 	background-position: center;
     background-size: contain;
@@ -221,37 +248,37 @@ body {
 }
 
 .light_bulb_image2{
-	width: 250px;
-    height: 250px;
-	margin-left:130px;
+	width: 200px;
+    height: 200px;
+	margin-left:155px;
 	margin-bottom: 100px;
 	background-position: center;
 	background-image: url("../assets/images/02icon.png");
 	background-size: cover;
 }
 .light_bulb_image3{
-	width: 220px;
-    height: 220px;
-	margin-left:130px;
+	width: 176px;
+    height: 176px;
+	margin-left:156px;
 	margin-bottom: 100px;
 	background-position: center;
 	background-image: url("../assets/images/03icon.png");
 	background-size: cover;
 }
 .light_bulb_image4{
-	width: 250px;
-    height: 290px;
-	margin-left:150px;
-	margin-bottom: 100px;
+	width: 200px;
+    height: 232px;
+	margin-left:175px;
+	margin-bottom: 90px;
 	background-position: center;
 	background-image: url("../assets/images/04icon.png");
 	background-size: cover;
 }
 .light_bulb_image5{
-	width: 210px;
-    height: 210px;
-	margin-left:130px;
-	margin-bottom: 100px;
+	width: 168px;
+    height: 168px;
+	margin-left:156px;
+	margin-bottom: 110px;
 	background-position: center;
 	background-image: url("../assets/images/05icon.png");
 	background-size: cover;
@@ -260,12 +287,17 @@ body {
 .main-point-container {
     position: relative;
     height: 100%;
+    min-height: 600px;
 }
 
 .main-point {
     position: relative;
-    top: 50%;
-    transform: translateY(-50%);
+    /*top: 50%;*/
+    /*transform: translateY(-50%);*/
+    /*-moz-transform: translateY(-50%);*/
+    /*-webkit-transform: translateY(-50%);*/
+    /*-ms-transform: translateY(-50%);*/
+    /*-o-transform: translateY(-50%);*/
 }
 
 .main-point-text {
@@ -289,9 +321,13 @@ body {
 .sub-point-text, .sub-point-icon{
     /*font-family: 'Allerta', sans-serif;;*/
     position: relative;
-    top: 50%;
-    transform: translateY(-50%);
+    /*top: 50%;*/
     font-size: 1.4em;
+    /*transform: translateY(-50%);*/
+    /*-moz-transform: translateY(-50%);*/
+    /*-webkit-transform: translateY(-50%);*/
+    /*-ms-transform: translateY(-50%);*/
+    /*-o-transform: translateY(-50%);*/
 }
 
 .sub-point-icon {
