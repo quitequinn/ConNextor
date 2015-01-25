@@ -237,7 +237,7 @@ li {
 }
 
 .light_bulb_image1{
-	background-image: url("../assets/images/01icon.png");
+	background-image: url("../assets/images/icons/info-page/01icon.png");
     width: 200px;
     height: 200px;
 	margin-left:155px;
@@ -253,7 +253,7 @@ li {
 	margin-left:155px;
 	margin-bottom: 100px;
 	background-position: center;
-	background-image: url("../assets/images/02icon.png");
+	background-image: url("../assets/images/icons/info-page/02icon.png");
 	background-size: cover;
 }
 .light_bulb_image3{
@@ -262,7 +262,7 @@ li {
 	margin-left:156px;
 	margin-bottom: 100px;
 	background-position: center;
-	background-image: url("../assets/images/03icon.png");
+	background-image: url("../assets/images/icons/info-page/03icon.png");
 	background-size: cover;
 }
 .light_bulb_image4{
@@ -271,7 +271,7 @@ li {
 	margin-left:175px;
 	margin-bottom: 90px;
 	background-position: center;
-	background-image: url("../assets/images/04icon.png");
+	background-image: url("../assets/images/icons/info-page/04icon.png");
 	background-size: cover;
 }
 .light_bulb_image5{
@@ -280,14 +280,14 @@ li {
 	margin-left:156px;
 	margin-bottom: 110px;
 	background-position: center;
-	background-image: url("../assets/images/05icon.png");
+	background-image: url("../assets/images/icons/info-page/05icon.png");
 	background-size: cover;
 }
 
 .main-point-container {
     position: relative;
     height: 100%;
-    min-height: 600px;
+    /*min-height: 600px;*/
 }
 
 .main-point {
