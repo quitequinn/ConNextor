@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   before_save :encrypt_password
   
   validates_confirmation_of :password
-  validates_presence_of :password, :on => :create
+  validates_presence_of :password, :on => :create, if: '!oauth_token.present?'
   validates_presence_of :email
   validates_uniqueness_of :email
   
@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
     if user == nil
       user = find_by_username(email) #looks for username
     end
-    if user && user.password_hash == BCrypt::Engine.hash_secret(password, user.password_salt)
+    if user && user.password_salt && user.password_hash == BCrypt::Engine.hash_secret(password, user.password_salt)
       user
     else
       nil
@@ -28,7 +28,7 @@ class User < ActiveRecord::Base
   end
 
   def self.omniauth(auth)
-    if find_by_email(auth.info.email) && !find_by_provider_and_uid(auth.provider,auth.uid)
+    if User.find_by_email(auth.info.email) || User.find_by_provider_and_uid(auth.provider,auth.uid)
        user = find_by_email(auth.info.email)
        User.update( user.id, 
                     :provider => auth.provider,
