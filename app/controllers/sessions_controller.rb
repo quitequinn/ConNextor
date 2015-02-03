@@ -13,8 +13,18 @@ class SessionsController < ApplicationController
     end
   end
 
+  def omniauthcreate
+    user = User.omniauth(env['omniauth.auth'])
+    log_in user
+    redirect_to root_url
+  end
+
   def destroy
     session[:user_id] = nil
     redirect_to root_url, :notice => "Logged out!"
+  end
+
+  def user_params
+    params.require(:user).permit(:provider, :uid, :name, :oauth_token, :oauth_expires_at)
   end
 end

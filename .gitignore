@@ -26,6 +26,7 @@
 # Ignore database.yml
 /config/database.yml
 
+/config/local_env.yml
 
 # Ignore all images except those used by the app
 
