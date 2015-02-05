@@ -340,6 +340,35 @@ li {
     background-size: contain;
     background-repeat: no-repeat;
 }
+
+.display-inline-block {
+    display: inline-block;
+}
+
+.overflow-hidden {
+    overflow: hidden;
+}
+
+.float-right {
+    position: relative;
+    float: right;
+}
+
+.float-left {
+    position: relative;
+    float: left;
+}
+
+.footer-text {
+    width: 120px;
+    display: inline-block;
+}
+
+.offset-4 {
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .sub-icon1 { background-image: url("../assets/images/128px%20copy/lightbulb.png"); }
 .sub-icon2 { background-image: url("../assets/images/128px%20copy/chat.png");}
 .sub-icon3 { background-image: url("../assets/images/128px%20copy/swatches.png");}
