@@ -136,19 +136,36 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-7 col-md-offset-2" >
-                            <h3>Request an invitation</h3>
-                            <form name="invitation">
+                            <h3 id="form-title" alt="Thank you for registering">Request an invitation</h3>
+                            <form name="invitation" class="form-horizontal">
                                 <!--Name: -->
-                                <input id="nameInput" name="name" class="input-upright" type="text" placeholder="Enter your name" size="30"/>
-                                <!--<br />-->
-                                <!--Email: <input id="emailInput" name="email" class="input-upright" type="text" placeholder="Enter your email" size="30"/><br />-->
-                                <!--<select id="interestInput" name="interest">-->
-                                    <!--<option value="software" label="Software Development"></option>-->
-                                    <!--<option value="hardware" label="Hardware Development"></option>-->
-                                    <!--<option value="film" label="Film and Photography"></option>-->
-                                    <!--<option value="design" label="Digital and Visual Design"></option>-->
-                                    <!--<option value="other" label="Other (please specify)"></option>-->
-                                <!--</select><br />-->
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Name</label>
+                                    <div class="col-sm-9">
+                                        <input id="nameInput" name="name" class="form-control border-change" type="text" placeholder="Full Name" size="30"/>
+                                    </div>
+                                </div>
+                                <!--Email: -->
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Email</label>
+                                    <div class="col-sm-9">
+                                        <input id="emailInput" name="email" class="form-control border-change" type="text" placeholder="Email Address" size="30"/>
+                                    </div>
+                                </div>
+                                <!--input id="emailInput" name="email" class="form-control input-upright" type="text" placeholder="Email Address" size="30"-->
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Interest</label>
+                                    <div class="col-sm-9">
+                                        <select id="interestInput" class="form-control border-change" name="interest">
+                                            <option value="software" label="Software Development"></option>
+                                            <option value="hardware" label="Hardware Development"></option>
+                                            <option value="film" label="Film and Photography"></option>
+                                            <option value="design" label="Digital and Visual Design"></option>
+                                            <option value="other" label="Other"></option>
+                                        </select>
+                                        <input id="altInterestInput" name="altinterest" class="form-control border-change" type="text" placeholder="Please Specify" size="30" />
+                                    </div>
+                                </div>
                                 <input type="submit" class="btn-upright" />
                             </form>
                         </div>

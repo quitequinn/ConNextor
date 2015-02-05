@@ -16,10 +16,29 @@ $(document).ready(function () {
         return false;
     });
 
-    document.forms['invitation'].onsubmit = function () {
-        postEmailToServer(document.forms['invitation'].email.value);
+    document.forms['invitation'].onsubmit = function post() {
+        var name = document.forms['invitation'].name.value,
+            email = document.forms['invitation'].email.value,
+            interest = document.forms['invitation'].interest.value,
+            altinterest = document.forms['invitation'].altinterest.value;
+        var title = document.getElementById('form-title');
+
+        postEmailToServer(name, email, interest, altinterest);
+        $('form[name="invitation"]').fadeOut();
+        swapWithAltText(title);
         return false;
-    }
+    };
+
+    $('#altInterestInput').hide();
+
+    $('#interestInput').change(function(){
+        if($('#interestInput').val() == 'other'){
+            $('#altInterestInput').show();
+        } else {
+            $('#altInterestInput').hide();
+        }
+    });
+
 });
 
 /**
@@ -81,4 +100,8 @@ function changeSection(newSection) {
 
 function highlightCurrentTimeLineElement(newSection) {
 
+}
+
+function swapWithAltText(element) {
+    element.innerHTML = element.getAttribute('alt');
 }
