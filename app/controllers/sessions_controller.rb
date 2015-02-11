@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
       log_in user
       redirect_to root_url
     else
-      flash.now.alert = "Invalid email or password"
+      flash[:success] = "Invalid login"
       render "new"
     end
   end
@@ -21,7 +21,8 @@ class SessionsController < ApplicationController
 
   def destroy
     session[:user_id] = nil
-    redirect_to root_url, :notice => "Logged out!"
+    flash[:success] = "Logged out!"
+    redirect_to root_url
   end
 
   def user_params
