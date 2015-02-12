@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
 
   attr_accessor :password
-  before_save :encrypt_password
+  before_save :downcase_email, :encrypt_password
   
   validates_confirmation_of :password
   validates_presence_of :password, :on => :create, if: '!oauth_token.present?'
@@ -46,6 +46,10 @@ class User < ActiveRecord::Base
         user.save
       end
     end
+  end
+
+  def downcase_email
+    self.email = email.downcase
   end
 
   # Returns a random token.

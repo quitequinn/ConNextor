@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  # get 'projects/new'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
   get 'auth/:provider/callback', to: 'sessions#omniauthcreate'
@@ -9,6 +11,7 @@ Rails.application.routes.draw do
   resources :users
   resources :sessions
   resources :password_resets
+  resources :projects
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
 
