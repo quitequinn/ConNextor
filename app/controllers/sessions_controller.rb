@@ -1,12 +1,19 @@
 class SessionsController < ApplicationController
+  before_action :check_signed_in, except: :destroy
+
   def new
   end
 
   def create
     user = User.authenticate(params[:email], params[:password])
     if user
-      log_in user
-      redirect_to root_url
+      if params[:remember_me]
+        flash.now.alert = "Remember me!"
+        sign_in user
+      else
+        session_create user
+      end
+      redirect_to root_url, :notice => "Logged in!"
     else
       flash[:success] = "Invalid login"
       render "new"
@@ -15,17 +22,26 @@ class SessionsController < ApplicationController
 
   def omniauthcreate
     user = User.omniauth(env['omniauth.auth'])
-    log_in user
+    session_create user
     redirect_to root_url
   end
 
   def destroy
-    session[:user_id] = nil
-    flash[:success] = "Logged out!"
+    sign_out
+    session_destroy
+    flash[:success] = "Signed out successfully!"
     redirect_to root_url
   end
 
-  def user_params
-    params.require(:user).permit(:provider, :uid, :name, :oauth_token, :oauth_expires_at)
-  end
+  private
+    def check_signed_in
+      if logged_in?
+        flash.now.alert = "Already signed in"
+        redirect_to rool_url
+      end
+    end
+
+  #def user_params
+    #params.require(:user).permit(:provider, :uid, :name, :oauth_token, :oauth_expires_at)
+  #end
 end
