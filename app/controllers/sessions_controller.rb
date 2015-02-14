@@ -15,7 +15,7 @@ class SessionsController < ApplicationController
       end
       redirect_to root_url, :notice => "Logged in!"
     else
-      flash.now.alert = "Invalid email or password"
+      flash[:success] = "Invalid login"
       render "new"
     end
   end
@@ -29,7 +29,8 @@ class SessionsController < ApplicationController
   def destroy
     sign_out
     session_destroy
-    redirect_to root_url, :notice => "Signed out successfully!"
+    flash[:success] = "Signed out successfully!"
+    redirect_to root_url
   end
 
   private

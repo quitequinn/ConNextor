@@ -1,3 +1,4 @@
+<% provide(:title, "Log in") %>
 <h1>Log in</h1>
 
 <%= form_tag sessions_path do %>
@@ -17,5 +18,6 @@
   </div>
 
   <p class="button"><%= submit_tag "Log in" %></p>
+  <p>New user? <%= link_to "Sign up now!", sign_up_path %></p>
 <% end %>
 

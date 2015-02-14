@@ -1,7 +1,8 @@
 class User < ActiveRecord::Base
 
+  has_many :projects
   attr_accessor :password
-  before_save :encrypt_password  
+  before_save :downcase_email, :encrypt_password
   validates_confirmation_of :password
   validates_presence_of :password, :on => :create, if: '!oauth_token.present?'
   validates_presence_of :email
@@ -48,6 +49,10 @@ class User < ActiveRecord::Base
     end
   end
 
+  def downcase_email
+    self.email = email.downcase
+  end
+  
   def generate_remember_token(column)
     begin
       self[column] = SecureRandom.urlsafe_base64
