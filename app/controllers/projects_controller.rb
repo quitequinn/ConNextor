@@ -10,6 +10,8 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.json
   def show
+    @user_logged_in = logged_in?
+    # @current_user = current_user
   end
 
   # GET /projects/new

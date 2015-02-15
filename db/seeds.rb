@@ -23,9 +23,9 @@ UserToProject.destroy_all
                password_confirmation: password)
 end
 
-UserToProject.create(name: "Ownership")
-UserToProject.create(name: "Core Memebership")
-UserToProject.create(name: "Contribution")
-UserToProject.create(name: "Follow")
-UserToProject.create(name: "Like")
+ProjectUserClass.create(name: "Ownership")
+ProjectUserClass.create(name: "Core Memebership")
+ProjectUserClass.create(name: "Contribution")
+ProjectUserClass.create(name: "Follow")
+ProjectUserClass.create(name: "Like")
 

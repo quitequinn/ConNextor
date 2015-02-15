@@ -17,3 +17,10 @@
 
 <%= link_to 'Edit', edit_project_path(@project) %> |
 <%= link_to 'Back', projects_path %>
+
+<br />
+
+<% if @user_logged_in %>
+<%= button_to 'Follow', user_to_projects_path(project_id: @project, method: 'Follow') %>
+<%= button_to 'Like', user_to_projects_path(project_id: @project, method: 'Like') %>
+<% end %>
