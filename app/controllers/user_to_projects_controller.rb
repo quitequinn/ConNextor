@@ -24,20 +24,15 @@ class UserToProjectsController < ApplicationController
   # POST /user_to_projects
   # POST /user_to_projects.json
   def create
-    @user = current_user
-    # logger.error "Got User: #{@user.id}"
-    project = Project.find(params[:project_id])
-    # logger.error "Got Project: #{project.id}"
-    project_user_class = ProjectUserClass.find_by_name params[:method]
-    # logger.error "Got Project User Class: #{project_user_class.id}"
+    user_id = current_user_id # might be nil
+    project = Project.find(params[:project_id]) # might throw exception
+    project_user_class = ProjectUserClass.find_by_name params[:method] # might also throw exception
 
-    # @user_to_project = UserToProject.new(user_to_project_params)
-    @user_to_project = @user.user_to_projects.build(project: project, project_user_class: project_user_class)
-    # logger.error "Built User To Project: #{@user_to_project.id}"
+    @user_to_project = UserToProject.new(user_id: user_id, project_id: project.id, project_user_class: project_user_class)
 
     respond_to do |format|
       if @user_to_project.save
-        format.html { redirect_to @user_to_project.project, notice: 'Project followed' }
+        format.html { redirect_to @user_to_project.project, notice: 'New Entry for User Project Relationship' }
         format.json { render :show, status: :created, location: @user_to_project }
       else
         format.html { render :new }
@@ -48,10 +43,10 @@ class UserToProjectsController < ApplicationController
 
   # PATCH/PUT /user_to_projects/1
   # PATCH/PUT /user_to_projects/1.json
-  def update
+  def update # need more work
     respond_to do |format|
       if @user_to_project.update(user_to_project_params)
-        format.html { redirect_to @user_to_project, notice: 'User to project was successfully updated.' }
+        format.html { redirect_to @user_to_project.project, notice: 'User Class updated.' }
         format.json { render :show, status: :ok, location: @user_to_project }
       else
         format.html { render :edit }

@@ -37,6 +37,10 @@ module SessionsHelper
     end
   end
 
+  def current_user_id
+    session[:user_id]
+  end
+
   # Redirects to stored location (or to the default).
   def redirect_back_or(default)
     redirect_to(session[:forwarding_url] || default)  #This evaluates to session[:forwarding_url] unless it’s nil, in which case it evaluates to the given default URL.

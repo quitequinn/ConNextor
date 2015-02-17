@@ -10,8 +10,8 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.json
   def show
-    @user_logged_in = logged_in?
-    # @current_user = current_user
+
+
   end
 
   # GET /projects/new
@@ -67,6 +67,12 @@ class ProjectsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_project
       @project = Project.find(params[:id])
+
+      @user_logged_in = logged_in?
+      if @user_logged_in
+        @current_user = current_user
+        @user_project_follow = UserProjectFollow.find_by user: @current_user, project: @project
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -26,6 +26,6 @@ end
 ProjectUserClass.create(name: "Ownership")
 ProjectUserClass.create(name: "Core Memebership")
 ProjectUserClass.create(name: "Contribution")
-ProjectUserClass.create(name: "Follow")
-ProjectUserClass.create(name: "Like")
+# ProjectUserClass.create(name: "Follow")
+# ProjectUserClass.create(name: "Like")
 

@@ -21,6 +21,9 @@
 <br />
 
 <% if @user_logged_in %>
-<%= button_to 'Follow', user_to_projects_path(project_id: @project, method: 'Follow') %>
-<%= button_to 'Like', user_to_projects_path(project_id: @project, method: 'Like') %>
+    <% unless @user_project_follow %>
+        <%= button_to 'Follow', user_project_follows_path(project_id: @project) %>
+    <% else %>
+        <%= button_to 'Unfollow', @user_project_follow, method: 'delete' %>
+    <% end %>
 <% end %>

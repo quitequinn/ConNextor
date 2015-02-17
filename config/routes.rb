@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :user_project_follows
+
   resources :user_to_projects
 
   resources :project_user_classes
