@@ -20,6 +20,8 @@
 
 <br />
 
+User To Project: <%= @project_user_class.name %>
+
 <% if @user_logged_in %>
     <% unless @user_project_follow %>
         <%= button_to 'Follow', user_project_follows_path(project_id: @project) %>

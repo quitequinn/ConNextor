@@ -57,12 +57,6 @@ class UserProjectFollowsController < ApplicationController
   # DELETE /user_project_follows/1
   # DELETE /user_project_follows/1.json
   def destroy
-    # user_id = current_user_id # might be nil
-    # project = Project.find(params[:project_id]) # might throw exception
-    # @user_project_follow = UserProjectFollow.find_by user_id: user_id, project_id: project.id # might be nil
-
-    # project = Project.find @user_project_follow.project_id
-
     @user_project_follow.destroy
     respond_to do |format|
       format.html { redirect_to @user_project_follow.project, notice: 'Project unfollowed' }
