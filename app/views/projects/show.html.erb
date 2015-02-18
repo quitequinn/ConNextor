@@ -29,3 +29,8 @@ User To Project: <%= @project_user_class.name %>
         <%= button_to 'Unfollow', @user_project_follow, method: 'delete' %>
     <% end %>
 <% end %>
+
+<h3>Users</h3>
+<ul>
+  <%= render(@project.user_to_projects) %>
+</ul>
