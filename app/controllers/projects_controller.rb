@@ -28,7 +28,7 @@ class ProjectsController < ApplicationController
     @project = Project.new(project_params)
 
     user_id = current_user_id # might be nil
-    project_user_class = ProjectUserClass.find_by_name 'Ownership' # might also throw exception
+    project_user_class = UserToProject.user_classes['owner']
 
     @user_to_project = UserToProject.new(user_id: user_id, project_id: @project.id, project_user_class: project_user_class)
     @user_to_project.save
@@ -88,9 +88,6 @@ class ProjectsController < ApplicationController
 
         # user_to_project
         @user_to_project = UserToProject.find_by user: @current_user, project: @project
-
-        # project_user_class
-        @project_user_class = ProjectUserClass.find @user_to_project.project_user_class
       end
     end
 

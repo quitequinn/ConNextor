@@ -5,8 +5,6 @@ Rails.application.routes.draw do
 
   resources :user_to_projects
 
-  resources :project_user_classes
-
   # get 'projects/new'
 
   # The priority is based upon order of creation: first created -> highest priority.
