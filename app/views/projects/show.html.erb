@@ -20,7 +20,7 @@
 
 <br />
 
-User To Project: <%= @user_to_project.project_user_class %>
+User To Project: <%= @user_to_project ? @user_to_project.project_user_class : 'unrelated' %>
 
 <% if @user_logged_in %>
     <% unless @user_project_follow %>
@@ -34,6 +34,6 @@ User To Project: <%= @user_to_project.project_user_class %>
 <ul>
   <%= render(@project.user_to_projects) %>
 </ul>
-<% if @user_logged_in and @user_to_project.project_user_class == UserToProject.user_classes['owner'] %>
+<% if @user_logged_in and !@user_to_project.nil? and @user_to_project.project_user_class == UserToProject.user_classes['owner'] %>
     <%= link_to 'Manage Users', user_to_projects_path(project: @project) %>
 <% end %>
