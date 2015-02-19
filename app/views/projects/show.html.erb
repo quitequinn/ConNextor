@@ -26,7 +26,7 @@ User To Project: <%= @user_to_project.project_user_class %>
     <% unless @user_project_follow %>
         <%= button_to 'Follow', user_project_follows_path(project_id: @project) %>
     <% else %>
-        <%= button_to 'Unfollow', @user_project_follow, method: 'delete' %>
+        <%= button_to 'Unfollow', @user_project_follow, method: :delete %>
     <% end %>
 <% end %>
 
@@ -34,3 +34,6 @@ User To Project: <%= @user_to_project.project_user_class %>
 <ul>
   <%= render(@project.user_to_projects) %>
 </ul>
+<% if @user_logged_in and @user_to_project.project_user_class == UserToProject.user_classes['owner'] %>
+    <%= link_to 'Manage Users', user_to_projects_path(project: @project) %>
+<% end %>

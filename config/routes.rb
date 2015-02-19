@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'project_user/index'
 
   resources :user_project_follows
 

@@ -4,7 +4,17 @@ class UserToProjectsController < ApplicationController
   # GET /user_to_projects
   # GET /user_to_projects.json
   def index
-    @user_to_projects = UserToProject.all
+    set_user_project_env
+    # Security Clearance
+    # logger.error "#{@user_to_project.project_user_class}"
+    # logger.error "#{@user_to_project.project_user_class == UserToProject.user_classes['owner']}"
+    if @user_to_project.project_user_class == UserToProject.user_classes['owner']
+      logger.error "project: #{@project.class}"
+      @user_to_projects = @project.user_to_projects
+      @project.user_to_projects.each do |user_to_project|
+        logger.error "#{user_to_project}"
+      end
+    end
   end
 
   # GET /user_to_projects/1
@@ -67,6 +77,19 @@ class UserToProjectsController < ApplicationController
   end
 
   private
+    def set_user_project_env
+      @user_logged_in = logged_in?
+      if @user_logged_in
+        @current_user = current_user
+
+        # project
+        @project = Project.find params[:project] # might throw exception
+
+        # user_to_project
+        @user_to_project = UserToProject.find_by user: @current_user, project: @project
+      end
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_user_to_project
       @user_to_project = UserToProject.find(params[:id])
