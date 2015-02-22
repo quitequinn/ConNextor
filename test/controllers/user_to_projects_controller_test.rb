@@ -18,7 +18,7 @@ class UserToProjectsControllerTest < ActionController::TestCase
 
   test "should create user_to_project" do
     assert_difference('UserToProject.count') do
-      post :create, user_to_project: { project_id: @user_to_project.project_id, project_user_class_id: @user_to_project.project_user_class_id, user_id: @user_to_project.user_id }
+      post :create, user_to_project: { project_id: @user_to_project.project_id, project_user_class: @user_to_project.project_user_class, user_id: @user_to_project.user_id }
     end
 
     assert_redirected_to user_to_project_path(assigns(:user_to_project))
@@ -35,7 +35,7 @@ class UserToProjectsControllerTest < ActionController::TestCase
   end
 
   test "should update user_to_project" do
-    patch :update, id: @user_to_project, user_to_project: { project_id: @user_to_project.project_id, project_user_class_id: @user_to_project.project_user_class_id, user_id: @user_to_project.user_id }
+    patch :update, id: @user_to_project, user_to_project: { project_id: @user_to_project.project_id, project_user_class: @user_to_project.project_user_class, user_id: @user_to_project.user_id }
     assert_redirected_to user_to_project_path(assigns(:user_to_project))
   end
 

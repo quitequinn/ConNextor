@@ -3,9 +3,9 @@
 one:
   user_id: 1
   project_id: 1
-  project_user_class_id: 1
+  project_user_class: 1
 
 two:
   user_id: 1
   project_id: 1
-  project_user_class_id: 1
+  project_user_class: 1
