@@ -6,14 +6,8 @@ class UserToProjectsController < ApplicationController
   def index
     set_user_project_env
     # Security Clearance
-    # logger.error "#{@user_to_project.project_user_class}"
-    # logger.error "#{@user_to_project.project_user_class == UserToProject.user_classes['owner']}"
-    if @user_to_project.project_user_class == UserToProject.user_classes['owner']
-      logger.error "project: #{@project.class}"
+    if @user_to_project and @is_owner
       @user_to_projects = @project.user_to_projects
-      @project.user_to_projects.each do |user_to_project|
-        logger.error "#{user_to_project}"
-      end
     end
   end
 
@@ -34,12 +28,13 @@ class UserToProjectsController < ApplicationController
   # POST /user_to_projects
   # POST /user_to_projects.json
   def create
-    user_id = current_user_id # might be nil
-    project = Project.find(params[:project_id]) # might throw exception
-    project_user_class = UserToProject.user_classes[params[:method]]
+    # user_id = current_user_id # might be nil
+    # project = Project.find(params[:project_id]) # might throw exception
+    # project_user_class = UserToProject.user_classes[params[:method]]
 
 
-    @user_to_project = UserToProject.new(user_id: user_id, project_id: project.id, project_user_class: project_user_class)
+    # @user_to_project = UserToProject.new(user_id: user_id, project_id: project.id, project_user_class: project_user_class)
+    @user_to_project = UserToProject.new(user_to_project_params)
 
     respond_to do |format|
       if @user_to_project.save
@@ -77,26 +72,15 @@ class UserToProjectsController < ApplicationController
   end
 
   private
-    def set_user_project_env
-      @user_logged_in = logged_in?
-      if @user_logged_in
-        @current_user = current_user
 
-        # project
-        @project = Project.find params[:project] # might throw exception
+  # Use callbacks to share common setup or constraints between actions.
+  def set_user_to_project
+    @user_to_project = UserToProject.find(params[:id])
+  end
 
-        # user_to_project
-        @user_to_project = UserToProject.find_by user: @current_user, project: @project
-      end
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def user_to_project_params
+    params.require(:user_to_project).permit(:user_id, :project_id, :project_user_class)
+  end
 
-    # Use callbacks to share common setup or constraints between actions.
-    def set_user_to_project
-      @user_to_project = UserToProject.find(params[:id])
-    end
-
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def user_to_project_params
-      params.require(:user_to_project).permit(:user_id, :project_id, :project_user_class_id)
-    end
 end

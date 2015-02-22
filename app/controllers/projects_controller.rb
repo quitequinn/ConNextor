@@ -1,6 +1,7 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
   before_action :set_user_project_env, only: [:show, :edit, :update, :destroy]
+  before_action :set_user_project_follow, only: [:show, :edit, :update, :destroy]
 
   # GET /projects
   # GET /projects.json
@@ -28,7 +29,7 @@ class ProjectsController < ApplicationController
     @project = Project.new(project_params)
 
     user_id = current_user_id # might be nil
-    project_user_class = UserToProject.user_classes['owner']
+    project_user_class = ProjectUserClass::OWNER
 
     @user_to_project = UserToProject.new(user_id: user_id, project_id: @project.id, project_user_class: project_user_class)
     @user_to_project.save
@@ -73,26 +74,23 @@ class ProjectsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_project
+  # Use callbacks to share common setup or constraints between actions.
+  def set_project
+    begin
       @project = Project.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      logger.error "Attempted access to invalid project #{params[:id]}"
+      redirect_to projects_url, notice: 'Invalid project, please try again.'
     end
+  end
 
-    def set_user_project_env
-      @user_logged_in = logged_in?
-      if @user_logged_in
-        @current_user = current_user
+  def set_user_project_follow
+    # user_project_follow
+    @user_project_follow = UserProjectFollow.find_by user: @current_user, project: @project
+  end
 
-        # user_project_follow
-        @user_project_follow = UserProjectFollow.find_by user: @current_user, project: @project
-
-        # user_to_project
-        @user_to_project = UserToProject.find_by user: @current_user, project: @project
-      end
-    end
-
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def project_params
-      params.require(:project).permit(:title, :short_description, :long_description)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def project_params
+    params.require(:project).permit(:title, :short_description, :long_description)
+  end
 end

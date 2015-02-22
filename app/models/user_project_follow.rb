@@ -3,5 +3,5 @@ class UserProjectFollow < ActiveRecord::Base
   belongs_to :project
 
   validates :user, :project, presence: true
-  validates_uniqueness_of :user_id, scope: :project_id
+  validates_uniqueness_of :project_id, scope: :user_id
 end
