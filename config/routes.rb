@@ -1,4 +1,17 @@
 Rails.application.routes.draw do
+
+  resources :user_to_project_tasks
+
+  resources :project_tasks
+
+  resources :project_to_tags
+
+  resources :project_tags
+
+  resources :user_project_follows
+
+  resources :user_to_projects
+
   # get 'projects/new'
 
   # The priority is based upon order of creation: first created -> highest priority.

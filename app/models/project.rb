@@ -1,7 +1,9 @@
 class Project < ActiveRecord::Base
 
-  validates_presence_of :name
-  validates_uniqueness_of :name
+  has_many :user_to_projects, dependent: :destroy
+  has_many :user_project_follows, dependent: :destroy
+  has_many :project_to_tags, dependent: :destroy
+  has_many :project_tasks, dependent: :destroy
 
-  
+  validates :title, :short_description, presence: true
 end

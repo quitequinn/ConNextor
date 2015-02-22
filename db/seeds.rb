@@ -5,6 +5,8 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+User.destroy_all
+UserToProject.destroy_all
 
 300.times do |n|
   name  = Faker::Name.name.split(' ')
@@ -20,3 +22,4 @@
                password:              password,
                password_confirmation: password)
 end
+

@@ -1,0 +1,50 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @project.title %>
+</p>
+
+<p>
+  <strong>Short description:</strong>
+  <%= @project.short_description %>
+</p>
+
+<p>
+  <strong>Long description:</strong>
+  <%= @project.long_description %>
+</p>
+
+<%= link_to 'Edit', edit_project_path(@project) %> |
+<%= link_to 'Back', projects_path %>
+
+<br />
+
+User To Project: <%= @user_to_project ? @user_to_project.project_user_class : 'unrelated' %>
+
+<% if @user_logged_in %>
+    <% unless @user_project_follow %>
+        <%= button_to 'Follow', user_project_follows_path(project_id: @project) %>
+    <% else %>
+        <%= button_to 'Unfollow', @user_project_follow, method: :delete %>
+    <% end %>
+<% end %>
+
+<h3>Users</h3>
+<ul>
+  <%= render @project.user_to_projects %>
+</ul>
+
+<h3>Tags</h3>
+<%= render @project.project_to_tags %>
+
+<h3>Tasks</h3>
+<ul>
+  <%= render @project.project_tasks %>
+</ul>
+
+<% if @user_to_project and @is_owner %>
+    <%= link_to 'Manage Users', user_to_projects_path(project: @project) %>
+    <%= link_to 'Manage Tags', project_to_tags_path(project: @project) %>
+    <%= link_to 'Manage Tasks', project_tasks_path(project: @project) %>
+<% end %>

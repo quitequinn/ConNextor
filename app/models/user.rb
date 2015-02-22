@@ -1,5 +1,9 @@
 class User < ActiveRecord::Base
 
+  has_many :user_to_projects, dependent: :destroy
+  has_many :user_project_follows, dependent: :destroy
+  has_many :project_tasks
+
   attr_accessor :password
   before_save :downcase_email, :encrypt_password
   validates_confirmation_of :password
