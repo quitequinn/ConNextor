@@ -6,7 +6,7 @@ body {
   padding: 0px;
   font-family: omnes-regular; }
 
-h3 {
+h2 {
   font-weight: 600; }
 
 .banner {
@@ -50,8 +50,8 @@ h3 {
 
 .about {
   text-align: center;
-  height: 400px;
-  padding-top: 130px; }
+  height: 300px;
+  padding-top: 100px; }
   .about p {
     font-size: 20px; }
 
@@ -69,11 +69,11 @@ h3 {
   visibility: hidden; }
 
 .section-txt {
-  padding-top: 180px;
-  padding-bottom: 180px;
+  padding-top: 120px;
+  padding-bottom: 120px;
   text-align: center; }
   .section-txt p {
-    font-size: 16px;
+    font-size: 30px;
     color: #888888; }
 
 .section1 .section-img {
@@ -89,7 +89,7 @@ h3 {
   background-image: url("../assets/images/landing-page/section4.png"); }
 
 .section5 .section-img {
-  background-image: url("../assets/images/.wallpapers/wall1.jpg"); }
+  background-image: url("../assets/images/landing-page/wall1.jpg"); }
 
 .stay-tuned {
   height: 180px;
@@ -102,6 +102,9 @@ h3 {
   height: 80px;
   background-color: #EFC94C;
   padding-top: 35px; }
+
+.copyright-txt, .contact-us {
+  font-size: 20px; }
 
 .float-left {
   display: inline-block;

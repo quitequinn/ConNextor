@@ -5,7 +5,7 @@ $white-color:        #FFFFFF;
 $font-family:        omnes-regular;
 $font-size-misc:     20px;
 $font-size-text:     20px;
-$font-size-subtext:  16px;
+$font-size-subtext:  30px;
 $font-size-banner:   30px;
 $font-size-main:     40px;
 $font-weight-misc:   600;
@@ -29,7 +29,7 @@ body {
   font-family: $font-family;
 }
 
-h3 {
+h2 {
   font-weight: $font-weight-text;
 }
 
@@ -87,8 +87,8 @@ h3 {
 
 .about {
   text-align: center;
-  height: 400px;
-  padding-top: 130px;
+  height: 300px;
+  padding-top: 100px;
   p {
     font-size: $font-size-text;
   }
@@ -110,8 +110,8 @@ h3 {
 }
 
 .section-txt {
-  padding-top: 180px;
-  padding-bottom: 180px;
+  padding-top: 120px;
+  padding-bottom: 120px;
   text-align: center;
   p {
     font-size: $font-size-subtext;
@@ -136,7 +136,7 @@ h3 {
 }
 
 .section5 .section-img {
-  background-image: url("../assets/images/.wallpapers/wall1.jpg");
+  background-image: url("../assets/images/landing-page/wall1.jpg");
 }
 
 .stay-tuned {
@@ -152,6 +152,10 @@ h3 {
   height: 80px;
   background-color: $primary-color;
   padding-top: 35px;
+}
+
+.copyright-txt, .contact-us {
+  font-size: $font-size-text;
 }
 
 
