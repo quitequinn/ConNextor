@@ -1,6 +1,18 @@
+@font-face {
+   font-family: importedFont;
+   src: url("../fonts/omnes-regular.otf") format("opentype");
+}
+
+@font-face {
+   font-family: importedFont;
+   src: url("../fonts/omnes-regular.otf") format("opentype");
+   font-weight: bold;
+}
+
 body {
     margin: 0px;
     padding: 0px;
+    font-family: importedFont;
 }
 
 .main {
@@ -42,3 +54,4 @@ body {
 .section4 .section-img {
     background-image: url("../assets/images/.wallpapers/wall4.jpg");
 }
+
