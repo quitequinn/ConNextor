@@ -1,0 +1,1 @@
+zip -r web.zip assets/images/* libs scripts stylesheets index.html team.html
