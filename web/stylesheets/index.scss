@@ -5,7 +5,7 @@ $white-color:        #FFFFFF;
 $font-family:        omnes-regular;
 $font-size-misc:     20px;
 $font-size-text:     20px;
-$font-size-subtext:  30px;
+$font-size-section:  30px;
 $font-size-banner:   30px;
 $font-size-main:     40px;
 $font-weight-misc:   600;
@@ -95,9 +95,9 @@ h2 {
 }
 
 .sections {
-  padding-top: 20px;
-  padding-bottom: 20px;
-  border-top: solid 1px $secondary-bg-color;
+  padding-top: 50px;
+  padding-bottom: 50px;
+//  border-top: solid 1px $secondary-bg-color;
 }
 
 .section-img {
@@ -114,7 +114,7 @@ h2 {
   padding-bottom: 120px;
   text-align: center;
   p {
-    font-size: $font-size-subtext;
+    font-size: $font-size-section;
     color: $secondary-color;
   }
 }
@@ -136,7 +136,12 @@ h2 {
 }
 
 .section5 .section-img {
-  background-image: url("../assets/images/landing-page/wall1.jpg");
+  background-image: url("../assets/images/landing-page/section5.png");
+  background-size: cover !important;
+}
+
+.section5 .section-txt p {
+  color: $white-color !important;
 }
 
 .stay-tuned {
@@ -151,7 +156,7 @@ h2 {
 .footer {
   height: 80px;
   background-color: $primary-color;
-  padding-top: 35px;
+  padding-top: 30px;
 }
 
 .copyright-txt, .contact-us {

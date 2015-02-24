@@ -56,9 +56,8 @@ h2 {
     font-size: 20px; }
 
 .sections {
-  padding-top: 20px;
-  padding-bottom: 20px;
-  border-top: solid 1px #EAEAEA; }
+  padding-top: 50px;
+  padding-bottom: 50px; }
 
 .section-img {
   background-position: center;
@@ -89,7 +88,11 @@ h2 {
   background-image: url("../assets/images/landing-page/section4.png"); }
 
 .section5 .section-img {
-  background-image: url("../assets/images/landing-page/wall1.jpg"); }
+  background-image: url("../assets/images/landing-page/section5.png");
+  background-size: cover !important; }
+
+.section5 .section-txt p {
+  color: #FFFFFF !important; }
 
 .stay-tuned {
   height: 180px;
@@ -101,7 +104,7 @@ h2 {
 .footer {
   height: 80px;
   background-color: #EFC94C;
-  padding-top: 35px; }
+  padding-top: 30px; }
 
 .copyright-txt, .contact-us {
   font-size: 20px; }
