@@ -13,6 +13,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 
     <script type="text/javascript" src="scripts/scroll.js"></script>
+    <script type="text/javascript" src="scripts/outpost.js"></script>
 
 </head>
 
@@ -78,9 +79,13 @@
 </div>
 <div class="stay-tuned" id="invite">
     <div class="container">
-        <h2>Request An Invitation</h2>
-        <h5>Once you are ready to surprise the world</h5>
-
+        <h2 id="form-title" alt="Thanks! We'll keep you posted">Request an Invitation</h2>
+        <h5 id="form-subtext">Once you are ready and surprise the world</h5>
+        <form class="form-inline" name="invitation">
+            <input name="name" id="name-input" type="text" class="input-upright" placeholder="Full Name" />
+            <input name="email" id="email-input" type="text" class="input-upright" placeholder="Email Address" />
+            <button type="submit" class="btn-inverse invite-submit">Submit</button>
+        </form>
     </div>
 </div>
 

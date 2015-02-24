@@ -6,18 +6,19 @@ $(document).ready(function () {
         return false;
     });
 
-    //document.forms['invitation'].onsubmit = function post() {
-    //    var name = document.forms['invitation'].name.value,
-    //        email = document.forms['invitation'].email.value,
-    //        interest = document.forms['invitation'].interest.value,
-    //        altinterest = document.forms['invitation'].altinterest.value;
-    //    var title = document.getElementById('form-title');
-    //
-    //    postEmailToServer(name, email, interest, altinterest);
-    //    $('form[name="invitation"]').fadeOut();
-    //    swapWithAltText(title);
-    //    return false;
-    //};
+    document.forms['invitation'].onsubmit = function post() {
+        var name = document.forms['invitation'].name.value,
+            email = document.forms['invitation'].email.value;
+            //interest = document.forms['invitation'].interest.value,
+            //altinterest = document.forms['invitation'].altinterest.value;
+        var title = document.getElementById('form-title');
+
+        postEmailToServer(name, email, null, null);
+        $('form[name="invitation"]').fadeOut();
+        $('#form-subtext').fadeOut();
+        swapWithAltText(title);
+        return false;
+    };
 
     //$('#altInterestInput').hide();
     //
@@ -31,9 +32,9 @@ $(document).ready(function () {
 
 });
 
-//function swapWithAltText(element) {
-//    element.innerHTML = element.getAttribute('alt');
-//}
+function swapWithAltText(element) {
+    element.innerHTML = element.getAttribute('alt');
+}
 
 var triggerPad = 150;
 
@@ -42,8 +43,8 @@ $(window).scroll(function () {
     var viewPortSize = $(window).height();
     $('.fade-in').each(function (i) {
         if (distFromTop >= $(this).offset().top - viewPortSize + triggerPad) {
-            $(this).css('visibility', 'visible').hide().fadeIn();
             $(this).removeClass('fade-in');
+            $(this).css('visibility', 'visible').hide().fadeIn();
         }
     })
 

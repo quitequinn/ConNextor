@@ -145,11 +145,19 @@ h2 {
 }
 
 .stay-tuned {
-  height: 180px;
-  background-color: $secondary-bg-color;
+  height: auto;
+  background-color: $white-color;
   text-align: center;
+  padding-top: 50px;
+  padding-bottom: 50px;
   h5 {
     color: $secondary-color;
+  }
+
+  .invite-submit {
+    margin: 5px 5px 5px 5px;
+    background: $primary-color;
+    border: solid $primary-color 1px !important;
   }
 }
 
@@ -161,6 +169,7 @@ h2 {
 
 .copyright-txt, .contact-us {
   font-size: $font-size-text;
+  color: $white-color;
 }
 
 
@@ -179,7 +188,7 @@ h2 {
 }
 
 .input-upright {
-  font-size: 20px;
+  font-size: $font-size-misc;
   padding: 5px 20px 5px 20px;
   border: solid $primary-color 1px;
   margin: 5px 5px 5px 5px;

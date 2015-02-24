@@ -95,11 +95,17 @@ h2 {
   color: #FFFFFF !important; }
 
 .stay-tuned {
-  height: 180px;
-  background-color: #EAEAEA;
-  text-align: center; }
+  height: auto;
+  background-color: #FFFFFF;
+  text-align: center;
+  padding-top: 50px;
+  padding-bottom: 50px; }
   .stay-tuned h5 {
     color: #888888; }
+  .stay-tuned .invite-submit {
+    margin: 5px 5px 5px 5px;
+    background: #EFC94C;
+    border: solid #EFC94C 1px !important; }
 
 .footer {
   height: 80px;
@@ -107,7 +113,8 @@ h2 {
   padding-top: 30px; }
 
 .copyright-txt, .contact-us {
-  font-size: 20px; }
+  font-size: 20px;
+  color: #FFFFFF; }
 
 .float-left {
   display: inline-block;
