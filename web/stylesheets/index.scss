@@ -106,10 +106,12 @@ h3 {
   background-repeat: no-repeat;
   min-height: 400px;
   height: auto;
+  visibility: hidden;
 }
 
 .section-txt {
   padding-top: 180px;
+  padding-bottom: 180px;
   text-align: center;
   p {
     font-size: $font-size-subtext;
