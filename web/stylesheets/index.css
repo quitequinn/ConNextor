@@ -6,8 +6,12 @@ body {
   padding: 0px;
   font-family: omnes-regular; }
 
-h2 {
-  font-weight: 600; }
+.loading-screen {
+  background-color: #EFC94C;
+  z-index: 3; }
+  .loading-screen .loading-container, .loading-screen .loading-vector {
+    width: 64px;
+    height: 64px; }
 
 .banner {
   height: 56px; }
@@ -45,15 +49,18 @@ h2 {
       color: #EFC94C; }
   .main .stay-tuned-button {
     margin-top: 35px;
-    background: none;
     font-weight: 600; }
 
 .about {
   text-align: center;
-  height: 300px;
+  height: auto;
   padding-top: 100px; }
   .about p {
-    font-size: 20px; }
+    font-size: 26px; }
+
+.separator {
+  margin-top: 100px;
+  margin-bottom: 75px; }
 
 .sections {
   padding-top: 50px;
@@ -68,12 +75,12 @@ h2 {
   visibility: hidden; }
 
 .section-txt {
-  padding-top: 120px;
-  padding-bottom: 120px;
+  padding-top: 130px;
+  padding-bottom: 110px;
   text-align: center; }
   .section-txt p {
     font-size: 30px;
-    color: #888888; }
+    color: #000000; }
 
 .section1 .section-img {
   background-image: url("../assets/images/landing-page/section1.png"); }
@@ -100,12 +107,21 @@ h2 {
   text-align: center;
   padding-top: 50px;
   padding-bottom: 50px; }
+  .stay-tuned p.form-title {
+    font-size: 35px; }
   .stay-tuned h5 {
-    color: #888888; }
+    color: #888888;
+    margin-bottom: 40px; }
   .stay-tuned .invite-submit {
     margin: 5px 5px 5px 5px;
     background: #EFC94C;
     border: solid #EFC94C 1px !important; }
+  .stay-tuned .quote {
+    margin-top: 100px; }
+    .stay-tuned .quote blockquote p {
+      font-size: 30px; }
+    .stay-tuned .quote blockquote footer {
+      font-size: 20px; }
 
 .footer {
   height: 80px;
@@ -129,21 +145,38 @@ h2 {
 .input-upright {
   font-size: 20px;
   padding: 5px 20px 5px 20px;
-  border: solid #EFC94C 1px;
+  border: solid #BBBBBB 1px;
   margin: 5px 5px 5px 5px; }
 
+.select-upright {
+  vertical-align: 1px;
+  font-size: 20px;
+  padding: 5px 20px 5px 20px;
+  border: solid #BBBBBB 1px;
+  margin: 5px 5px 5px 5px;
+  width: 255px;
+  height: 40px;
+  color: #000000;
+  background: none; }
+  .select-upright option {
+    font-size: 20px; }
+
+.input-upright:focus, .select-upright:focus {
+  box-shadow: 0 0 5px #EFC94C;
+  border: solid #EFC94C 1px; }
+
 .btn-upright {
-  color: #EFC94C;
+  color: #FFFFFF;
   font-size: 20px;
   padding: 5px 20px 5px 20px;
   border: solid #EFC94C 1px;
   text-decoration: none;
-  background: none;
+  background: #EFC94C;
   margin: 5px 5px 5px 5px; }
 
 .btn-upright:hover {
-  background: #EFC94C;
-  color: #FFFFFF;
+  color: #EFC94C;
+  background: none;
   text-decoration: none; }
 
 .btn-inverse {
@@ -163,5 +196,22 @@ h2 {
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   border-radius: 4px; }
+
+.block-center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto; }
+
+.outer-centering {
+  display: table;
+  position: fixed;
+  height: 100%;
+  width: 100%; }
+  .outer-centering .middle-centering {
+    display: table-cell;
+    vertical-align: middle; }
+    .outer-centering .middle-centering .inner-centering {
+      margin-left: auto;
+      margin-right: auto; }
 
 /*# sourceMappingURL=index.css.map */

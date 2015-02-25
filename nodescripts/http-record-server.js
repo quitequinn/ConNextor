@@ -11,8 +11,9 @@ var server = http.createServer(function (request, response) {
 	var email = url.parse(request.url, true).query.email;
 	var interest = url.parse(request.url, true).query.interest;
 	var altinterest = url.parse(request.url, true).query.altinterest;
+	var source = url.parse(request.url, true).query.source;
 	if (email != null) {
-		console.log(name + "," + email + "," + interest + "," + altinterest);
+		console.log(name + "," + email + "," + interest + "," + altinterest + "," + source);
 		response.end('true');
 	}
 

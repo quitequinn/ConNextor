@@ -1,43 +1,41 @@
 
 $(document).ready(function () {
+    // Loading screen fadeout
+    $('.loading-screen').fadeOut();
+
+    // Add event listener when
     $('.scroll-to-invite').on('click', function () {
         var scrollPoint = $('#invite').offset().top;
         $('body,html').animate({scrollTop: scrollPoint}, 400);
         return false;
     });
 
+    // Form submit listener
     document.forms['invitation'].onsubmit = function post() {
         var name = document.forms['invitation'].name.value,
-            email = document.forms['invitation'].email.value;
+            email = document.forms['invitation'].email.value,
             //interest = document.forms['invitation'].interest.value,
             //altinterest = document.forms['invitation'].altinterest.value;
+            source = document.forms['invitation'].source.value;
+
         var title = document.getElementById('form-title');
 
-        postEmailToServer(name, email, null, null);
+        postEmailToServer(name, email, null, null, source);
         $('form[name="invitation"]').fadeOut();
         $('#form-subtext').fadeOut();
         swapWithAltText(title);
         return false;
     };
-
-    //$('#altInterestInput').hide();
-    //
-    //$('#interestInput').change(function(){
-    //    if($('#interestInput').val() == 'other'){
-    //        $('#altInterestInput').show();
-    //    } else {
-    //        $('#altInterestInput').hide();
-    //    }
-    //});
-
 });
 
+// Swaps an element's innerHTML with the value of its alt attribute
 function swapWithAltText(element) {
     element.innerHTML = element.getAttribute('alt');
 }
 
 var triggerPad = 150;
 
+// Fades in elements when they are first seen
 $(window).scroll(function () {
     var distFromTop = $(window).scrollTop();
     var viewPortSize = $(window).height();
@@ -46,15 +44,5 @@ $(window).scroll(function () {
             $(this).removeClass('fade-in');
             $(this).css('visibility', 'visible').hide().fadeIn();
         }
-    })
-
-    //var topDivHeight = $(".topdiv").height();
-    //var viewPortSize = $(window).height();
-    //
-    //var triggerHeight = (topDivHeight - viewPortSize) + triggerAt;
-    //
-    //if ($(window).scrollTop() >= triggerHeight) {
-    //    $('.fadethisdiv').css('visibility', 'visible').hide().fadeIn();
-    //    $(this).off('scroll');
-    //}
+    });
 });
