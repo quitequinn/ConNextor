@@ -31,6 +31,7 @@ $(document).ready(function () {
     $('form[name="invitation"] select[name="source"]').change(function(){
         if(this.value == 'friend'){
             $('form[name="invitation"] input[name="source-alt"]').prop('disabled', true);
+            $('form[name="invitation"] input[name="source-alt"]').val('');
         } else {
             $('form[name="invitation"] input[name="source-alt"]').prop('disabled', false);
             if (this.value == 'other') {
