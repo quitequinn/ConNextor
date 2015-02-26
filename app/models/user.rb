@@ -37,8 +37,11 @@ class User < ActiveRecord::Base
        User.update( user.id, 
                     :provider => auth.provider,
                     :uid => auth.uid,
-                    :oauth_token => auth.credentials.token, 
-                    :oauth_expires_at => Time.at(auth.credentials.expires_at) )
+                    :oauth_token => auth.credentials.token )
+       
+       if auth.credentials.expires_at != nil
+         User.update( :oauth_expires_at => Time.at(auth.credentials.expires_at) )
+       end
     else
       where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
         user.email = auth.info.email
@@ -46,7 +49,9 @@ class User < ActiveRecord::Base
         user.uid = auth.uid
         user.name = auth.info.name
         user.oauth_token = auth.credentials.token
-        user.oauth_expires_at = Time.at(auth.credentials.expires_at)
+        if auth.credentials.expires_at != nil
+          user.oauth_expires_at = Time.at(auth.credentials.expires_at)
+        end
         user.save
       end
     end

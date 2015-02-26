@@ -24,7 +24,9 @@ gem 'bcrypt'        , '~> 3.1.7'
 # Use faker to generate random users
 gem 'faker',                   '1.4.2'
 
+gem 'omniauth-twitter'
 gem 'omniauth-facebook'
+gem 'omniauth-linkedin'
 
 # Use bootstrap to make fronted development easier
 gem 'bootstrap-will_paginate'
