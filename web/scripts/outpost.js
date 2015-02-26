@@ -1,6 +1,6 @@
-function postEmailToServer(name, emailAddress, interest, altinterest, source) {
+function postEmailToServer(name, emailAddress, interest, altinterest, source, altsource) {
     //var emailAddress = document.getElementById("emailInput").value;
-    console.log("Called postEmailToServer: " + name + ", " + emailAddress + ", " + interest + ", " + altinterest + "," + source);
+    console.log("Called postEmailToServer: " + name + ", " + emailAddress + ", " + interest + ", " + altinterest + "," + source + "," + altsource);
 
     // do get
     $.get("http://135.0.25.246:2999", {
@@ -8,7 +8,8 @@ function postEmailToServer(name, emailAddress, interest, altinterest, source) {
         email: emailAddress,
         interest: interest,
         altinterest: altinterest,
-        source: source
+        source: source,
+        altsource: altsource
     }, function (data, status) {
         if (status !== 'success') {
             alert("Connection Refused, Please try again.");
@@ -21,10 +22,3 @@ function postEmailToServer(name, emailAddress, interest, altinterest, source) {
         }
     });
 }
-
-
-//$(".input-upright").keyup(function (e) {
-//    if (e.keyCode == 13) {
-//        postEmailToServer()
-//    }
-//});

@@ -16,16 +16,30 @@ $(document).ready(function () {
             email = document.forms['invitation'].email.value,
             //interest = document.forms['invitation'].interest.value,
             //altinterest = document.forms['invitation'].altinterest.value;
-            source = document.forms['invitation'].source.value;
+            source = document.forms['invitation'].source.value,
+            altsource = document.forms['invitation']['source-alt'].value;
 
         var title = document.getElementById('form-title');
 
-        postEmailToServer(name, email, null, null, source);
+        postEmailToServer(name, email, null, null, source, altsource);
         $('form[name="invitation"]').fadeOut();
         $('#form-subtext').fadeOut();
         swapWithAltText(title);
         return false;
     };
+
+    $('form[name="invitation"] select[name="source"]').change(function(){
+        if(this.value == 'friend'){
+            $('form[name="invitation"] input[name="source-alt"]').prop('disabled', true);
+        } else {
+            $('form[name="invitation"] input[name="source-alt"]').prop('disabled', false);
+            if (this.value == 'other') {
+                document.forms['invitation']['source-alt'].placeholder = "Please Specify";
+            } else {
+                document.forms['invitation']['source-alt'].placeholder = "Which " + this.value + "?";
+            }
+        }
+    });
 });
 
 // Swaps an element's innerHTML with the value of its alt attribute

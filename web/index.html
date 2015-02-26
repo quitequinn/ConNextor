@@ -97,19 +97,25 @@
         <p id="form-title" class="form-title" alt="Thanks! We'll keep you posted">Request an Invitation</p>
         <h5 id="form-subtext">And get ready to surprise the world</h5>
         <form class="form-inline form-group" name="invitation">
-            <input name="name" type="text" class="input-upright" placeholder="Full Name" />
-            <input name="email" type="text" class="input-upright" placeholder="Email Address" />
-            <select name="source" class="select-upright">
-                <option value="placeholder" selected disabled>Where you heard us</option>
-                <option value="conference">Conference</option>
-                <option value="incubator">Incubator</option>
-                <option value="university">University</option>
-                <option value="society">Club and Society</option>
-                <option value="friend">Friend Referral</option>
-                <option value="other">Other</option>
-            </select>
-            <br />
-            <button type="submit" class="btn-inverse invite-submit">Submit</button>
+            <div class="row">
+                <input name="name" type="text" class="input-upright" placeholder="Full Name" />
+                <input name="email" type="text" class="input-upright" placeholder="Email Address" />
+            </div>
+            <div class="row">
+                <select name="source" class="select-upright">
+                    <option value="placeholder" selected disabled>Where you heard us</option>
+                    <option value="conference">Conference</option>
+                    <option value="incubator">Incubator</option>
+                    <option value="university">University</option>
+                    <option value="society">Club or Society</option>
+                    <option value="friend">Friend Referral</option>
+                    <option value="other">Other</option>
+                </select>
+                <input name="source-alt" class="input-upright" placeholder="Please Specify" />
+            </div>
+            <div class="row">
+                <button type="submit" class="btn-inverse invite-submit">Submit</button>
+            </div>
         </form>
         <div class="row quote">
             <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
