@@ -1,218 +1,138 @@
-<!DOCTYPE html>
+<!DOCTPE html>
 <html>
 <head>
+    <title>ConNextor: Connect the next generation of innovators.</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no" />
     <meta charset="UTF-8" />
-    <meta name="description" content="Information page for ConNextor." />
-    <meta name="author" content="The ConNextor Team" />
-    <link rel="shortcut icon" type="image/png" href="http://eg.com/favicon.png"/>
-    <title> ConNextor: Connect the Next Generation of Innovators</title>
 
-    <!--libs-->
-    <link rel="stylesheet" href="libs/bootstrap/3.2.0/css/bootstrap.min.css" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-    <script src="libs/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <!--Bootstrap-->
+    <!--<link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" />-->
+    <link href="libraries/bootstrap.3.0.0.min.css" rel="stylesheet" />
 
-    <!--stylesheets-->
-    <link rel="stylesheet" type="text/css" href="stylesheets/index.css">
+    <!--jQuery-->
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>-->
+    <script src="libraries/jquery.1.7.2.min.js"></script>
 
-    <!--scripts-->
+    <!--Custom Styles and Scripts-->
+    <link href="stylesheets/index.css" rel="stylesheet" />
     <script type="text/javascript" src="scripts/scroll.js"></script>
     <script type="text/javascript" src="scripts/outpost.js"></script>
-    <script type="text/javascript" src="scripts/google-analytics.js"></script>
-
 </head>
-<body>
 
-<div class="top-container">
-    <div class="top-background">
-        <div class="logo-and-description vertical-center">
-            <p class="logo-text">Con<b>Nextor</b></p>
-            <p class="short-description">Connect the Next Generation of Innovators</p>
-            <p class="long-description">A passionate community that builds dreams</p>
-            <br />
-            <button id="stay-tuned" class="btn-inverse">Stay tuned</button>
+<body>
+<div class="loading-screen outer-centering">
+    <div class="middle-centering">
+        <div class="inner-centering loading-container">
+            <img class="loading-vector" src="assets/vectors/loading-bubbles.svg" />
         </div>
     </div>
-
-	<canvas id="myCanvas" style="position:fixed;background-repeat: no-repeat;margin-top:500px;" width="1000" height="1000"></canvas>
-
-    <section id="section1" class="main-point-container">
-        <div class="container main-point vertical-center">
-            <div class="row">
-                <div class="col-md-5 col-md-offset-6">
-                    <h2 class="main-point-text">Get Started</h2>
-                    <div class="sub-point-container">
-                        <div class="sub-point-icon vertical-center sub-icon1"></div>
-                        <div class="sub-point-text vertical-center">Get inspired from the community</div>
-                    </div>
-                    <div class="sub-point-container">
-                        <div class="sub-point-icon vertical-center sub-icon2"></div>
-                        <div class="sub-point-text vertical-center">Receive feedback about your idea</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="section2" class="main-point-container">
-        <div class="container main-point vertical-center">
-            <div class="row">
-                <div class="col-md-5 col-md-offset-6">
-                    <h2 class="main-point-text">Team Up</h2>
-                    <div class="sub-point-container">
-                        <div class="sub-point-icon vertical-center sub-icon3"></div>
-                        <div class="sub-point-text vertical-center">Find others who share the same passions</div>
-                    </div>
-                    <div class="sub-point-container">
-                        <div class="sub-point-icon vertical-center sub-icon4"></div>
-                        <div class="sub-point-text vertical-center">Band diverse skills and experiences</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="section3" class="main-point-container">
-        <div class="container main-point vertical-center">
-            <div class="row">
-                <div class="col-md-5 col-md-offset-6">
-                    <h2 class="main-point-text">Put to Action</h2>
-                    <div class="sub-point-container">
-                        <div class="sub-point-icon vertical-center sub-icon5"></div>
-                        <div class="sub-point-text vertical-center">Crowdsource for expertise and track contributions</div>
-                    </div>
-                    <div class="sub-point-container">
-                        <div class="sub-point-icon vertical-center sub-icon6"></div>
-                        <div class="sub-point-text vertical-center">Build up comprehensive portfolios with contributions</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="section4" class="main-point-container">
-        <div class="container main-point vertical-center">
-            <div class="row">
-                <div class="col-md-5 col-md-offset-6">
-                    <h2 class="main-point-text">Gain Support</h2>
-                    <div class="sub-point-container">
-                        <div class="sub-point-icon vertical-center sub-icon7"></div>
-                        <div class="sub-point-text vertical-center">Get resources from ConNextor partners</div>
-                    </div>
-                    <div class="sub-point-container">
-                        <div class="sub-point-icon vertical-center sub-icon8"></div>
-                        <div class="sub-point-text vertical-center">Gain exposure and funding</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="section5" class="main-point-container">
-        <div class="container main-point vertical-center">
-            <div class="row">
-                <div class="col-md-5 col-md-offset-6">
-                    <h2 class="main-point-text">Surprise the World</h2>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="register" class="bottom-page-container">
-        <div class="quote-and-sign-up">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-8 col-md-offset-2">
-                        <blockquote>
-                            <p>No matter where you are from,</p>
-                            <p>what you are passionate about,</p>
-                            <p>in ConNextor,</p>
-                            <p>you can always find someone as special as you.</p>
-                        </blockquote>
-                    </div>
-                </div>
-            </div>
-
-            <div class="sign-up-container">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-7 col-md-offset-2" >
-                            <h3 id="form-title" alt="Thank you for registering">Request an invitation</h3>
-                            <form name="invitation" class="form-horizontal">
-                                <!--Name: -->
-                                <div class="form-group">
-                                    <label class="col-sm-3 control-label">Name</label>
-                                    <div class="col-sm-9">
-                                        <input id="nameInput" name="name" class="form-control border-change" type="text" placeholder="Full Name" size="30"/>
-                                    </div>
-                                </div>
-                                <!--Email: -->
-                                <div class="form-group">
-                                    <label class="col-sm-3 control-label">Email</label>
-                                    <div class="col-sm-9">
-                                        <input id="emailInput" name="email" class="form-control border-change" type="text" placeholder="Email Address" size="30"/>
-                                    </div>
-                                </div>
-                                <!--input id="emailInput" name="email" class="form-control input-upright" type="text" placeholder="Email Address" size="30"-->
-                                <div class="form-group">
-                                    <label class="col-sm-3 control-label">Interest</label>
-                                    <div class="col-sm-9">
-                                        <select id="interestInput" class="form-control border-change" name="interest">
-                                            <option value="software" label="Software Development"></option>
-                                            <option value="hardware" label="Hardware Development"></option>
-                                            <option value="film" label="Film and Photography"></option>
-                                            <option value="design" label="Digital and Visual Design"></option>
-                                            <option value="other" label="Other"></option>
-                                        </select>
-                                        <input id="altInterestInput" name="altinterest" class="form-control border-change" type="text" placeholder="Please Specify" size="30" />
-                                    </div>
-                                </div>
-                                <input type="submit" class="btn-upright" />
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="footer">
-            <div class="container" >
-                <div class="row float-right">
-                    <div class="footer-text">
-                        <a href="mailto:elva@connextor.co?Subject=Hi, I want to learn more about your project!" target="_blank"><h4 style="color:white">Contact Us</h4></a>
-                    </div>
-                    <div class="footer-text">
-                        <a href="team.html"><h4 style="color:white">Join the Team</h4></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 </div>
 
-<div class="bottom-container">
-    <nav class="timeline vertical-center visible-lg-block">
-        <ul>
-            <a href="#section1"><li id="section1text" hidden="true"><span>Get inspired</span></li></a>
-            <a href="#section2"><li id="section2text" hidden="true"><span>Team up</span></li></a>
-            <a href="#section3"><li id="section3text" hidden="true"><span>Put to Action</span></li></a>
-            <a href="#section4"><li id="section4text" hidden="true"><span>Gain Support</span></li></a>
-            <a href="#section5"><li id="section5text" hidden="true"><span>Surprise the World</span></li></a>
-        </ul>
-    </nav>
-    <div class="bottom-background">
+<div class="container">
+    <div class="banner">
+        <div class="logo-img float-left"></div>
+        <div class="float-left logo-txt">
+            <span>ConNextor</span>
+        </div>
+        <button class="sign-up-button btn-inverse float-right scroll-to-invite">Sign up</button>
+    </div>
+</div>
+<div class="main-container main-img">
+    <div class="main">
+        <p class="main-txt">
+            Connect the Next Generation of Innovators<span class="alt-theme"></span>
+        </p>
+        <button class="stay-tuned-button btn-upright border-rounded scroll-to-invite">Stay Tuned</button>
+    </div>
+</div>
+<div class="container">
+    <div class="row about">
+        <div class="col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
+            <p>A community that unites young talents to work on potentially world-changing projects and advancing their career with real life experiences.</p>
+        </div>
+    </div>
+    <div class="row separator">
+        <div class="logo-img block-center"></div>
+    </div>
+    <div class="row sections section1">
+        <div class="col-sm-6 col-md-7 col-lg-8 section-img fade-in"></div>
+        <div class="col-sm-6 col-md-5 col-lg-4 section-txt">
+            <p>Find peers with the same passion yet diverse skill sets</p>
+        </div>
+    </div>
+    <div class="row sections section2">
+        <div class="col-sm-6 col-sm-push-6 col-md-7 col-md-push-5 col-lg-8 col-lg-push-4 section-img fade-in"></div>
+        <div class="col-sm-6 col-sm-pull-6 col-md-5 col-md-pull-7 col-lg-4 col-lg-pull-8 section-txt">
+            <p>Get inspired by top innovators and follow the coolest projects and people</p>
+        </div>
+    </div>
+    <div class="row sections section3">
+        <div class="col-sm-6 col-md-7 col-lg-8 section-img fade-in"></div>
+        <div class="col-sm-6 col-md-5 col-lg-4 section-txt">
+            <p>Advance your career by making an impact innovating things that you care about</p>
+        </div>
+    </div>
+    <div class="row sections section4">
+        <div class="col-sm-6 col-sm-push-6 col-md-7 col-md-push-5 col-lg-8 col-lg-push-4 section-img fade-in"></div>
+        <div class="col-sm-6 col-sm-pull-6 col-md-5 col-md-pull-7 col-lg-4 col-lg-pull-8 section-txt">
+            <p>Build a powerful profile with your unique personality and concrete experiences</p>
+        </div>
+    </div>
+</div>
+<div class="section5">
+    <div class="section-img fade-in">
         <div class="container">
             <div class="row">
-                <div class="col-md-4 col-md-offset-1 light-bulb-container vertical-center">
-                    <div class="light-bulb"></div>
-                    <div id="light_bulb_image_container" class="light-bulb-container vertical-center">
-                        <div id="light_bulb_image"></div>
-                    </div>
+                <div class="col-md-8 col-md-offset-2 section-txt">
+                    <!--col-lg-6 col-lg-offset-3-->
+                    <p>GET HELP FROM INDUSTRY EXPERTS AND SHARE YOUR WORK WITH THE MOST INFLUENTIAL COMPANIES</p>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<div class="stay-tuned" id="invite">
+    <div class="container">
+        <p id="form-title" class="form-title" alt="Thanks! We'll keep you posted">Request an Invitation</p>
+        <h5 id="form-subtext">And get ready to surprise the world</h5>
+        <form class="form-inline form-group" name="invitation">
+            <div class="row">
+                <input name="name" type="text" class="input-upright" placeholder="Full Name" />
+                <input name="email" type="text" class="input-upright" placeholder="Email Address" />
+            </div>
+            <div class="row">
+                <select name="source" class="select-upright">
+                    <option value="placeholder" selected disabled>Where you heard of us</option>
+                    <option value="conference">Conference</option>
+                    <option value="incubator">Incubator</option>
+                    <option value="university">University</option>
+                    <option value="society">Club or Society</option>
+                    <option value="friend">Friend Referral</option>
+                    <option value="other">Other</option>
+                </select>
+                <input name="source-alt" class="input-upright" placeholder="Please Specify" />
+            </div>
+            <div class="row">
+                <button type="submit" class="btn-inverse invite-submit">Submit</button>
+            </div>
+        </form>
+        <div class="row quote">
+            <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+                <blockquote>
+                    <p>"Education is the process in which we discover that learning adds quality to our lives. Learning must be experienced."</p>
+                    <footer>by William Glasser</footer>
+                </blockquote>
+            </div>
+        </div>
+    </div>
+</div>
 
+<div class="footer">
+    <div class="container">
+        <span class="copyright-txt float-left">&copy 2014 ConNextor. All rights reserved</span>
+        <a href="mailto:elva@connextor.co?Subject=Hi, I want to learn more about your project!" target="_blank"><span class="contact-us float-right">Contact us</span></a>
+    </div>
+</div>
 </body>
 </html>

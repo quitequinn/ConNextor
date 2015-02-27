@@ -1,13 +1,15 @@
-function postEmailToServer(name, emailAddress, interest, altinterest) {
+function postEmailToServer(name, emailAddress, interest, altinterest, source, altsource) {
     //var emailAddress = document.getElementById("emailInput").value;
-    console.log("Called postEmailToServer: " + name + ", " + emailAddress + ", " + interest + ", " + altinterest);
+    console.log("Called postEmailToServer: " + name + ", " + emailAddress + ", " + interest + ", " + altinterest + "," + source + "," + altsource);
 
     // do get
     $.get("http://135.0.25.246:2999", {
         name: name,
         email: emailAddress,
         interest: interest,
-        altinterest: altinterest
+        altinterest: altinterest,
+        source: source,
+        altsource: altsource
     }, function (data, status) {
         if (status !== 'success') {
             alert("Connection Refused, Please try again.");
@@ -20,10 +22,3 @@ function postEmailToServer(name, emailAddress, interest, altinterest) {
         }
     });
 }
-
-
-//$(".input-upright").keyup(function (e) {
-//    if (e.keyCode == 13) {
-//        postEmailToServer()
-//    }
-//});
