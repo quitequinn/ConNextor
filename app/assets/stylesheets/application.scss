@@ -39,7 +39,7 @@ body {
   background-color: $primary-color;
   z-index: 3;
 
-  .loading-container .loading-vector {
+  .loading-container, .loading-vector {
     width: 64px;
     height: 64px;
   }
