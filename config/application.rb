@@ -29,6 +29,9 @@ module Myapp
         ENV[key.to_s] = value
       end if File.exists?(env_file)
     end
+
+    config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
+    # config.assets.paths << Rails.root.join('app', 'assets', 'vectors')
     
   end
 end

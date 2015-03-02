@@ -1,8 +1,5 @@
 
 $(document).ready(function () {
-    // Loading screen fadeout
-    $('.loading-screen').fadeOut();
-
     // Add event listener when
     $('.scroll-to-invite').on('click', function () {
         var scrollPoint = $('#invite').offset().top;
@@ -14,8 +11,8 @@ $(document).ready(function () {
     document.forms['invitation'].onsubmit = function post() {
         var name = document.forms['invitation'].name.value,
             email = document.forms['invitation'].email.value,
-            //interest = document.forms['invitation'].interest.value,
-            //altinterest = document.forms['invitation'].altinterest.value;
+        //interest = document.forms['invitation'].interest.value,
+        //altinterest = document.forms['invitation'].altinterest.value;
             source = document.forms['invitation'].source.value,
             altsource = document.forms['invitation']['source-alt'].value;
 
@@ -54,6 +51,8 @@ var triggerPad = 150;
 $(window).scroll(function () {
     var distFromTop = $(window).scrollTop();
     var viewPortSize = $(window).height();
+    //console.log("distFromTop: " + distFromTop + ", "
+                //+ "viewPortSize: " + viewPortSize);
     $('.fade-in').each(function (i) {
         if (distFromTop >= $(this).offset().top - viewPortSize + triggerPad) {
             $(this).removeClass('fade-in');

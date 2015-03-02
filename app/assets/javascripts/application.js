@@ -13,4 +13,11 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require bootstrap-sprockets
 //= require_tree .
+
+
+window.onload = function () {
+    // Loading screen fadeout
+    $('.loading-screen').fadeOut();
+}

@@ -29,6 +29,7 @@ gem 'omniauth-facebook'
 # Use bootstrap to make fronted development easier
 gem 'bootstrap-will_paginate'
 gem 'bootstrap-sass'
+gem 'autoprefixer-rails'
 
 # Use Unicorn as the app server
 #gem 'unicorn'

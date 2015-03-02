@@ -1,0 +1,183 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+@import "scss_constants";
+
+@font-face {
+  font-family: omnes-regular;
+  src: font_url("omnes-regular.otf") format("opentype");
+}
+
+
+body {
+  margin: 0px;
+  padding: 0px;
+  font-family: $font-family;
+  //  background-color: #808080;
+}
+.container {
+  //  background-color: white;
+}
+
+.loading-screen {
+  background-color: $primary-color;
+  z-index: 3;
+
+  .loading-container .loading-vector {
+    width: 64px;
+    height: 64px;
+  }
+}
+
+.logo-img {
+  background-image: image_url("logo_03.png");
+  background-size: cover;
+  width: 56px;
+  height: 56px;
+}
+
+.logo-txt {
+  padding: 10px 15px 4px 15px;
+  font-size: $font-size-banner;
+  font-weight: bold;
+}
+
+
+.banner {
+  height: 56px;
+
+  .sign-up-button {
+    margin-top: 8px;
+    margin-bottom: 8px;
+    background: $primary-color;
+  }
+}
+
+.footer {
+  height: 80px;
+  background-color: $primary-color;
+  padding-top: 30px;
+}
+
+.copyright-txt, .contact-us {
+  font-size: $font-size-text;
+  color: white;
+}
+
+// dynamic classes
+
+.float-left {
+  display: inline-block;
+  position: relative;
+  float: left;
+}
+
+.float-right {
+  display: inline-block;
+  position: relative;
+  float: right;
+}
+
+.input-upright {
+  font-size: $font-size-misc;
+  padding: 5px 20px 5px 20px;
+  border: solid $secondary-fg-color 1px;
+  margin: 5px 5px 5px 5px;
+}
+
+.select-upright {
+  vertical-align: 1px;
+  font-size: $font-size-misc;
+  padding: 5px 20px 5px 20px;
+  border: solid $secondary-fg-color 1px;
+  margin: 5px 5px 5px 5px;
+  width: 255px;
+  height: 40px;
+  color: black;
+  background: none;
+  option {
+    font-size: $font-size-misc;
+  }
+}
+
+.input-upright:focus, .select-upright:focus {
+  box-shadow: 0 0 5px $primary-color;
+  border: solid $primary-color 1px;
+}
+
+.btn-upright {
+  color: white;
+  font-size: $font-size-misc;
+  padding: 5px 20px 5px 20px;
+  border: solid $primary-color 1px;
+  text-decoration: none;
+  background: $primary-color;
+  margin: 5px 5px 5px 5px;
+}
+
+.btn-upright:hover {
+  color: $primary-color;
+  background: none;
+  text-decoration: none;
+}
+
+.btn-inverse {
+  color: white;
+  font-size: $font-size-misc;
+  padding: 5px 20px 5px 20px;
+  border: solid white 1px;
+  text-decoration: none;
+}
+
+.btn-inverse:hover {
+  //  background: $white-color;
+  background: none;
+  color: $primary-color;
+  border: solid $primary-color 1px;
+  text-decoration: none;
+}
+
+.border-rounded {
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+}
+
+.block-center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.outer-centering {
+  display: table;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+
+  .middle-centering {
+    display: table-cell;
+    vertical-align: middle;
+
+    .inner-centering {
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+}
