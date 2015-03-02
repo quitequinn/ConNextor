@@ -21,9 +21,55 @@ class SessionsController < ApplicationController
   end
 
   def omniauthcreate
-    user = User.omniauth(env['omniauth.auth'])
-    session_create user
-    redirect_to root_url
+    auth = env['omniauth.auth']
+    @identity = Identity.find_with_omniauth(auth)
+    @identity = Identity.create_with_omniauth(auth) if @identity.nil?
+
+    if logged_in?
+      if @identity.user == current_user
+        # Identity is already associated with this user
+        redirect_to root_url, notice: "Already logged in with omniauth"
+      else
+        # Identity is not associated with the current_user
+        @old_user = @identity.user
+        if @old_user
+          #current_user.posts << @old_user.posts
+          #current_user.galleries << @old_user.galleries
+          #current_user.favorites << @old_user.favorites
+        end
+        @identity.user = current_user
+        @identity.save()
+        @old_user.destroy if @old_user && @old_user.identities.blank?
+        redirect_to root_url, notice: "Account was successfully linked"
+      end
+    else
+      if @identity.user
+        # Identity has a user associated with it
+        session_create @identity.user
+        redirect_to root_url
+      else
+        # No user associated with the identity so create a new one
+        # If user has registered and then logins with fb
+        user = User.find_by_email(auth.info.email)
+        if user
+          session_create user
+          @identity.user = user
+          @identity.save()
+          if user.password_hash
+            redirect_to root_url, notice: "Successful login!"
+          else
+            redirect_to new_user_path, notice: "Sorry you need to register for an account"
+          end
+        else # if user logs in with provider but is not registered
+          user = User.create_with_omniauth(auth)
+          session_create user
+          @identity.user = user
+          @identity.save()
+          redirect_to new_user_path, notice: "Sorry you need to register for an account"
+        end
+        
+      end
+    end
   end
 
   def destroy

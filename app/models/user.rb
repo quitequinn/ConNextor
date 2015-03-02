@@ -3,20 +3,17 @@ class User < ActiveRecord::Base
   has_many :user_to_projects, dependent: :destroy
   has_many :user_project_follows, dependent: :destroy
   has_many :project_tasks
+  has_many :identities
 
   attr_accessor :password
   before_save :downcase_email, :encrypt_password
   validates_confirmation_of :password
-  validates_presence_of :password, :on => :create, if: '!oauth_token.present?'
   validates_presence_of :email
-  validates_uniqueness_of :email
+  validates_uniqueness_of :email, :on => :create
   before_create { generate_remember_token(:remember_token) }
   
   def self.authenticate(email, password)
     user = find_by_email(email)
-    #if user == nil
-      #user = find_by_username(email) #looks for username
-    #end
     if user && user.password_salt && user.password_hash == BCrypt::Engine.hash_secret(password, user.password_salt)
       user
     else
@@ -31,30 +28,18 @@ class User < ActiveRecord::Base
     end
   end
 
-  def self.omniauth(auth)
-    if User.find_by_email(auth.info.email) || User.find_by_provider_and_uid(auth.provider,auth.uid)
-       user = find_by_email(auth.info.email)
-       User.update( user.id, 
-                    :provider => auth.provider,
-                    :uid => auth.uid,
-                    :oauth_token => auth.credentials.token )
-       
-       if auth.credentials.expires_at != nil
-         User.update( :oauth_expires_at => Time.at(auth.credentials.expires_at) )
-       end
-    else
-      where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-        user.email = auth.info.email
-        user.provider = auth.provider 
-        user.uid = auth.uid
-        user.name = auth.info.name
-        user.oauth_token = auth.credentials.token
-        if auth.credentials.expires_at != nil
-          user.oauth_expires_at = Time.at(auth.credentials.expires_at)
-        end
-        user.save
-      end
-    end
+  def self.create_with_omniauth(auth)
+    create(
+        :email => auth.info.email,
+        :name =>  auth.info.name,
+        :username =>  auth.info.nickname,
+        :first_name =>  auth.info.first_name,
+        :last_name =>  auth.info.last_name,
+        :location =>  auth.info.location,
+        :image =>  auth.info.image,
+        :description => auth.info.description,
+        :phone => auth.info.phone
+        )
   end
 
   def downcase_email

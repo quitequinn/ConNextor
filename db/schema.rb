@@ -11,10 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150220234115) do
+ActiveRecord::Schema.define(version: 20150302014459) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "identities", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "oauth_token"
+    t.datetime "oauth_expires_at"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  add_index "identities", ["user_id"], name: "index_identities_on_user_id", using: :btree
 
   create_table "project_tags", force: :cascade do |t|
     t.string   "name"
@@ -82,12 +94,12 @@ ActiveRecord::Schema.define(version: 20150220234115) do
     t.string   "auth_token"
     t.string   "password_reset_token"
     t.datetime "password_reset_sent_at"
-    t.string   "provider"
-    t.string   "uid"
     t.string   "name"
-    t.string   "oauth_token"
-    t.datetime "oauth_expires_at"
     t.string   "remember_token"
+    t.string   "location"
+    t.string   "image"
+    t.string   "description"
+    t.string   "phone"
   end
 
 end
