@@ -119,12 +119,23 @@
     .quote {
       margin-top: 100px;
       blockquote {
+        border: none;
+        quotes: '\201C' '\201D' '\2018' '\2019';
         p {
+          display: inline;
           font-size: $font-size-section;
         }
         footer {
           font-size: $font-size-text;
         }
+      }
+      blockquote:before {
+        color: #ccc;
+        content: open-quote;
+        font-size: 4 * $font-size-section;
+        line-height: 0.1 * $font-size-section;
+        margin-right: 0.25 * $font-size-section;
+        vertical-align: -0.4 * $font-size-section;
       }
     }
   }
