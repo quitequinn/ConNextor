@@ -205,7 +205,6 @@ DEPENDENCIES
   bootstrap-sass
   bootstrap-will_paginate
   byebug
-  coffee-rails (~> 4.1.0)
   execjs
   faker (= 1.4.2)
   jbuilder (~> 2.0)

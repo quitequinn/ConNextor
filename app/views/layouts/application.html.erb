@@ -8,13 +8,16 @@
 </head>
 
 <body>
-<div class="loading-screen outer-centering">
+<!--Loading screen-->
+<div class="outer-centering loading-screen">
   <div class="middle-centering">
     <div class="inner-centering loading-container">
       <img class="loading-vector" src="<%= image_path 'loading-bubbles.svg' %>" />
     </div>
   </div>
 </div>
+
+<!--Top banner-->
 <div class="container">
   <div class="banner">
     <div class="logo-img float-left"></div>
@@ -25,10 +28,12 @@
   </div>
 </div>
 
+<!--Template-->
 <div class="<%= controller.controller_name %>">
   <%= yield %>
 </div>
 
+<!--Bottom footer-->
 <div class="footer">
   <div class="container">
     <span class="copyright-txt float-left">&copy 2014 ConNextor. All rights reserved</span>

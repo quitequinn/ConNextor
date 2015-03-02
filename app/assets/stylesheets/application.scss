@@ -38,6 +38,7 @@ body {
 .loading-screen {
   background-color: $primary-color;
   z-index: 3;
+  position: fixed;
 
   .loading-container, .loading-vector {
     width: 64px;
@@ -65,7 +66,6 @@ body {
   .sign-up-button {
     margin-top: 8px;
     margin-bottom: 8px;
-    background: $primary-color;
   }
 }
 
@@ -94,23 +94,24 @@ body {
   float: right;
 }
 
-.input-upright {
+.input-base {
   font-size: $font-size-misc;
   padding: 5px 20px 5px 20px;
-  border: solid $secondary-fg-color 1px;
   margin: 5px 5px 5px 5px;
+  border: solid $secondary-fg-color 1px;
+  width: 255px;
+  height: 40px;
+  background: none;
+  color: black;
+}
+
+.input-upright {
+  @extend .input-base;
 }
 
 .select-upright {
+  @extend .input-base;
   vertical-align: 1px;
-  font-size: $font-size-misc;
-  padding: 5px 20px 5px 20px;
-  border: solid $secondary-fg-color 1px;
-  margin: 5px 5px 5px 5px;
-  width: 255px;
-  height: 40px;
-  color: black;
-  background: none;
   option {
     font-size: $font-size-misc;
   }
@@ -121,36 +122,37 @@ body {
   border: solid $primary-color 1px;
 }
 
-.btn-upright {
-  color: white;
-  font-size: $font-size-misc;
-  padding: 5px 20px 5px 20px;
-  border: solid $primary-color 1px;
-  text-decoration: none;
-  background: $primary-color;
-  margin: 5px 5px 5px 5px;
+.input-warning-glow {
+  box-shadow: 0 0 5px $warning-color !important;
+  border: solid $warning-color 1px !important;
 }
 
-.btn-upright:hover {
-  color: $primary-color;
+.btn-base {
+  border: solid $primary-color 1px;
+  font-size: $font-size-misc;
+  padding: 5px 20px 5px 20px;
+  @include transition-all-ease(300ms);
+}
+
+.btn-upright {
+  @extend .btn-base;
   background: none;
-  text-decoration: none;
+  color: $primary-color;
+}
+.btn-upright:hover {
+  background: $primary-color;
+  color: white;
 }
 
 .btn-inverse {
+  @extend .btn-base;
+  background: $primary-color;
   color: white;
-  font-size: $font-size-misc;
-  padding: 5px 20px 5px 20px;
-  border: solid white 1px;
-  text-decoration: none;
 }
-
 .btn-inverse:hover {
-  //  background: $white-color;
-  background: none;
-  color: $primary-color;
-  border: solid $primary-color 1px;
-  text-decoration: none;
+  background: $primary-color-light;
+  color: white;
+  border-color: $primary-color-light;
 }
 
 .border-rounded {
@@ -167,7 +169,6 @@ body {
 
 .outer-centering {
   display: table;
-  position: absolute;
   height: 100%;
   width: 100%;
 

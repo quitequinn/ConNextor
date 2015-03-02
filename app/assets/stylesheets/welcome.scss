@@ -109,12 +109,11 @@
     h5 {
       color: $secondary-color;
       margin-bottom: 40px;
+      font-size: $font-size-text;
     }
 
     .invite-submit {
       margin: 5px 5px 5px 5px;
-      background: $primary-color;
-      border: solid $primary-color 1px !important;
     }
 
     .quote {

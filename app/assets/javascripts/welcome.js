@@ -11,14 +11,32 @@ $(document).ready(function () {
     document.forms['invitation'].onsubmit = function post() {
         var name = document.forms['invitation'].name.value,
             email = document.forms['invitation'].email.value,
-        //interest = document.forms['invitation'].interest.value,
-        //altinterest = document.forms['invitation'].altinterest.value;
+            //interest = document.forms['invitation'].interest.value,
+            //altinterest = document.forms['invitation'].altinterest.value;
             source = document.forms['invitation'].source.value,
             altsource = document.forms['invitation']['source-alt'].value;
 
-        var title = document.getElementById('form-title');
+        // validation
+        var invalid = false;
+        $('form[name="invitation"] input[name="name"]').removeClass("input-warning-glow");
+        $('form[name="invitation"] input[name="email"]').removeClass("input-warning-glow");
+        if (name == null
+            || name === "") {
+            invalid = true;
+            $('form[name="invitation"] input[name="name"]').addClass("input-warning-glow");
+        }
+        if (email == null
+            || email === ""
+            || !email.contains("@")
+            || !email.contains(".")
+            || email.contains(" ")) {
+            invalid = true;
+            $('form[name="invitation"] input[name="email"]').addClass("input-warning-glow");
+        }
+        if (invalid) return false;
 
-        postEmailToServer(name, email, null, null, source, altsource);
+        var title = document.getElementById('form-title');
+        postEmailToServer(name, email, "", "", source, altsource);
         $('form[name="invitation"]').fadeOut();
         $('#form-subtext').fadeOut();
         swapWithAltText(title);
