@@ -21,9 +21,9 @@ class SessionsController < ApplicationController
   end
 
   def omniauthcreate
-    auth = env['omniauth.auth']
-    @identity = Identity.find_with_omniauth(auth)
-    @identity = Identity.create_with_omniauth(auth) if @identity.nil?
+    @auth = env['omniauth.auth']
+    @identity = Identity.find_with_omniauth(@auth)
+    @identity = Identity.create_with_omniauth(@auth) if @identity.nil?
 
     if logged_in?
       if @identity.user == current_user
@@ -50,26 +50,34 @@ class SessionsController < ApplicationController
       else
         # No user associated with the identity so create a new one
         # If user has registered and then logins with fb
-        user = User.find_by_email(auth.info.email)
+        user = User.find_by_email(@auth.info.email)
         if user
           session_create user
           @identity.user = user
           @identity.save()
-          if user.password_hash
-            redirect_to root_url, notice: "Successful login!"
-          else
-            redirect_to new_user_path, notice: "Sorry you need to register for an account"
+          redirect_to root_url, notice: "Successful login!"
           end
         else # if user logs in with provider but is not registered
-          user = User.create_with_omniauth(auth)
-          session_create user
-          @identity.user = user
-          @identity.save()
-          redirect_to new_user_path, notice: "Sorry you need to register for an account"
+          #user = User.create_with_omniauth(auth)
+          #session_create user
+          #@identity.user = user
+          #@identity.save()
+          redirect_to additional_info_path, notice: "Sorry you need to register for an account"
         end
         
       end
     end
+  end
+
+  def newAdditionalInfo
+    @user=User.new
+  end
+
+  def createAdditionalInfo
+    @user = User.create_with_omniauth(@auth)
+    session_create user
+    @identity.user = user
+    @identity.save()
   end
 
   def destroy
@@ -80,6 +88,10 @@ class SessionsController < ApplicationController
   end
 
   private
+    def user_params
+      params.require(:user).permit(:first_name, :last_name, :username, :email, :password, :password_confirmation)
+    end
+
     def check_signed_in
       if logged_in?
         flash.now.alert = "Already signed in"

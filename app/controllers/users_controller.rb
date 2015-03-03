@@ -3,39 +3,35 @@ class UsersController < ApplicationController
   before_action :correct_user,   only: [:edit, :update]
 
   def new
-    if current_user
-      @user = current_user
-    else
-      @user = User.new
-    end
+    #if current_user
+      #@user = current_user
+    #else
+    @user = User.new
+    #end
   end
 
   def create
-    if current_user
-      if current_user.update_attributes(user_params)
-        flash[:success] = "Profile sucessfully created!!"
+    # if current_user
+    #   if current_user.update_attributes(user_params)
+    #     flash[:success] = "Profile sucessfully created!!"
+    #     redirect_to root_url
+    #   else
+    #     render 'new'
+    #   end
+    # else
+      @user = User.new(user_params)
+      #if @user.password.present?
+      if @user.save
+        flash[:success] = "Signed up!"
         redirect_to root_url
       else
         render 'new'
       end
-    else
-      @user = User.new(user_params)
-      if @user.password.present?
-        if @user.save
-          flash[:success] = "Signed up!"
-          redirect_to root_url
-        else
-          render 'new'
-        end
-      else
-        flash[:success] = "Need to enter password"
-        render 'new'
-      end
+      # else
+      #   flash[:success] = "Need to enter password"
+      #   render 'new'
+      # end
     end
-  end
-
-  def newAdditionalInfo
-    @user = User.find(params[:id])
   end
 
   def index
