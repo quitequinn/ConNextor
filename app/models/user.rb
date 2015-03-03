@@ -29,9 +29,8 @@ class User < ActiveRecord::Base
     end
   end
 
-  def self.create_with_omniauth(auth)
+  def self.update_with_omniauth(auth)
     create(
-        :email => auth.info.email,
         :name =>  auth.info.name,
         :username =>  auth.info.nickname,
         :first_name =>  auth.info.first_name,

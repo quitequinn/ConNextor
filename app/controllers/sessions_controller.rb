@@ -56,7 +56,7 @@ class SessionsController < ApplicationController
           @identity.user = user
           @identity.save()
           redirect_to root_url, notice: "Successful login!"
-          end
+          #end
         else # if user logs in with provider but is not registered
           #user = User.create_with_omniauth(auth)
           #session_create user
@@ -74,10 +74,20 @@ class SessionsController < ApplicationController
   end
 
   def createAdditionalInfo
-    @user = User.create_with_omniauth(@auth)
-    session_create user
-    @identity.user = user
-    @identity.save()
+    @user = User.new(user_params)
+    @user = @user.update_with_omniauth(@auth)
+    session_create @user
+    if @identity
+      @identity.user = @user
+      @identity.save()
+    end
+
+    if @user.save
+      flash[:success] = "Successful sign up!"
+      redirect_to root_url
+    else
+      render 'newAdditionalInfo'
+    end
   end
 
   def destroy
