@@ -137,6 +137,16 @@
         margin-right: 0.25 * $font-size-section;
         vertical-align: -0.4 * $font-size-section;
       }
+      blockquote:after {
+        color: #ccc;
+        content: close-quote;
+        position: relative;
+        float: right;
+        font-size: 4 * $font-size-section;
+        line-height: 0.1 * $font-size-section;
+        margin-right: 0.25 * $font-size-section;
+        vertical-align: -0.4 * $font-size-section;
+      }
     }
   }
 }
