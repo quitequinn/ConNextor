@@ -1,8 +1,5 @@
 
 $(document).ready(function () {
-    // Loading screen fadeout
-    $('.loading-screen').fadeOut();
-
     // Add event listener when
     $('.scroll-to-invite').on('click', function () {
         var scrollPoint = $('#invite').offset().top;
@@ -19,9 +16,27 @@ $(document).ready(function () {
             source = document.forms['invitation'].source.value,
             altsource = document.forms['invitation']['source-alt'].value;
 
-        var title = document.getElementById('form-title');
+        // validation
+        var invalid = false;
+        $('form[name="invitation"] input[name="name"]').removeClass("input-warning-glow");
+        $('form[name="invitation"] input[name="email"]').removeClass("input-warning-glow");
+        if (name == null
+            || name === "") {
+            invalid = true;
+            $('form[name="invitation"] input[name="name"]').addClass("input-warning-glow");
+        }
+        if (email == null
+            || email === ""
+            || !email.contains("@")
+            || !email.contains(".")
+            || email.contains(" ")) {
+            invalid = true;
+            $('form[name="invitation"] input[name="email"]').addClass("input-warning-glow");
+        }
+        if (invalid) return false;
 
-        postEmailToServer(name, email, null, null, source, altsource);
+        var title = document.getElementById('form-title');
+        postEmailToServer(name, email, "", "", source, altsource);
         $('form[name="invitation"]').fadeOut();
         $('#form-subtext').fadeOut();
         swapWithAltText(title);
@@ -54,6 +69,8 @@ var triggerPad = 150;
 $(window).scroll(function () {
     var distFromTop = $(window).scrollTop();
     var viewPortSize = $(window).height();
+    //console.log("distFromTop: " + distFromTop + ", "
+                //+ "viewPortSize: " + viewPortSize);
     $('.fade-in').each(function (i) {
         if (distFromTop >= $(this).offset().top - viewPortSize + triggerPad) {
             $(this).removeClass('fade-in');
