@@ -22,7 +22,7 @@ gem 'sdoc'          , '~> 0.4.0', group: :doc
 # Use ActiveModel has_secure_password
 gem 'bcrypt'        , '~> 3.1.7'
 # Use faker to generate random users
-gem 'faker',                   '1.4.2'
+gem 'faker'
 
 gem 'omniauth-facebook'
 
