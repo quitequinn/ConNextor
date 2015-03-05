@@ -5,9 +5,9 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-User.destroy_all
 UserToProject.destroy_all
 UserProjectFollow.destroy_all
+User.destroy_all
 Project.destroy_all
 
 def anyEmpty(*stuff)
@@ -69,27 +69,23 @@ def generate_random_sequence( seq_size=0 )
 end
 
 
-tot_users = 100
-tot_projects = 30
+tot_users = 500
+tot_projects = 100
 
-# Creates 1000 random users
-for n in 0..tot_users-1
+# Creates tot_users random users
+for n in 1..tot_users
   created_user = seed_user( Faker::Name.name, "user-#{n+1}", "user-#{n+1}@connextor.co" )
-  # Creates a project for the first 300 users
-  if n < tot_projects
-    created_project = seed_project( Faker::App.name, Faker::Company.catch_phrase, Faker::Lorem.sentence(7) )
+  # Creates a project for the first tot_projects users
+  if n <= tot_projects
+    created_project = seed_project( Faker::App.name, Faker::Company.catch_phrase, Faker::Lorem.sentence(25) )
     seed_relationship(created_user.id, created_project.id)
   end
 end
 
 # Creates random follows from users to projects
-userList = generate_random_sequence( 1000 )
-for i in 0..tot_users-1 do
-  if userList[i]==0
-    next
-  end
-  projectList = generate_random_sequence( 300 )
-  for j in 0..tot_projects-1 do
+for i in 1..tot_users do
+  projectList = generate_random_sequence( tot_projects )
+  for j in 1..tot_projects do
     if projectList[j]==1
       seed_follow( i, j )
     end
