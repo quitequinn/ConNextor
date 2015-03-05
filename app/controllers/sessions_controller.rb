@@ -21,9 +21,9 @@ class SessionsController < ApplicationController
   end
 
   def omniauthcreate
-    @auth = env['omniauth.auth']
-    @identity = Identity.find_with_omniauth(@auth)
-    @identity = Identity.create_with_omniauth(@auth) if @identity.nil?
+    auth = env['omniauth.auth']
+    @identity = Identity.find_with_omniauth(auth)
+    @identity = Identity.create_with_omniauth(auth) if @identity.nil?
 
     if logged_in?
       if @identity.user == current_user
@@ -45,48 +45,28 @@ class SessionsController < ApplicationController
     else
       if @identity.user
         # Identity has a user associated with it
+        if auth.provider == "twitter" && @identity.user.location == nil
+          @identity.user.update_with_omniauth(auth)
+        end
         session_create @identity.user
         redirect_to root_url
       else
         # No user associated with the identity so create a new one
-        # If user has registered and then logins with fb
-        user = User.find_by_email(@auth.info.email)
+        # If user has registered and then logs in with provider
+        user = User.find_by_email(auth.info.email)
         if user
+          user.update_with_omniauth(auth)
           session_create user
           @identity.user = user
           @identity.save()
           redirect_to root_url, notice: "Successful login!"
-          #end
         else # if user logs in with provider but is not registered
-          #user = User.create_with_omniauth(auth)
-          #session_create user
-          #@identity.user = user
-          #@identity.save()
-          redirect_to additional_info_path, notice: "Sorry you need to register for an account"
-        end
-        
+          if auth.provider == "twitter"
+            session[:identity_id] = @identity.id
+          end
+          redirect_to new_user_path, notice: "Sorry you need to first register for an account"
+        end     
       end
-    end
-  end
-
-  def newAdditionalInfo
-    @user=User.new
-  end
-
-  def createAdditionalInfo
-    @user = User.new(user_params)
-    @user = @user.update_with_omniauth(@auth)
-    session_create @user
-    if @identity
-      @identity.user = @user
-      @identity.save()
-    end
-
-    if @user.save
-      flash[:success] = "Successful sign up!"
-      redirect_to root_url
-    else
-      render 'newAdditionalInfo'
     end
   end
 
@@ -108,8 +88,4 @@ class SessionsController < ApplicationController
         redirect_to rool_url
       end
     end
-
-  #def user_params
-    #params.require(:user).permit(:provider, :uid, :name, :oauth_token, :oauth_expires_at)
-  #end
 end
