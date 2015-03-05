@@ -78,10 +78,6 @@ class SessionsController < ApplicationController
   end
 
   private
-    def user_params
-      params.require(:user).permit(:first_name, :last_name, :username, :email, :password, :password_confirmation)
-    end
-
     def check_signed_in
       if logged_in?
         flash.now.alert = "Already signed in"
