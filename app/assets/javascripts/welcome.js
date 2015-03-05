@@ -1,4 +1,10 @@
 
+// Fade out loading screen when page is loaded
+function fadeOutLoadingScreen() {
+    // Loading screen fadeout
+    $('.loading-screen').fadeOut();
+}
+
 // Add event listener when buttons are clicked
 function scrollToInvitation() {
     var scrollPoint = $('#invite').offset().top;

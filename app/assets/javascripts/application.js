@@ -17,7 +17,4 @@
 //= require_tree .
 
 
-window.onload = function () {
-    // Loading screen fadeout
-    $('.loading-screen').fadeOut();
-}
+

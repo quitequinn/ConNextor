@@ -1,6 +1,4 @@
 function postEmailToServer(name, emailAddress, interest, altinterest, source, altsource) {
-
-
     //var emailAddress = document.getElementById("emailInput").value;
     console.log("Called postEmailToServer: " + name + ", " + emailAddress + ", " + interest + ", " + altinterest + "," + source + "," + altsource);
 

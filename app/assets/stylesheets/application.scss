@@ -35,17 +35,6 @@ body {
   //  background-color: white;
 }
 
-.loading-screen {
-  background-color: $primary-color;
-  z-index: 3;
-  position: fixed;
-
-  .loading-container, .loading-vector {
-    width: 64px;
-    height: 64px;
-  }
-}
-
 .logo-img {
   background-image: image_url("logo_03.png");
   background-size: cover;

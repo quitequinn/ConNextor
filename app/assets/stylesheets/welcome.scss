@@ -5,6 +5,19 @@
 @import "scss_constants";
 
 .welcome {
+
+  .loading-screen {
+    background-color: $primary-color;
+    z-index: 3;
+    position: fixed;
+    top: 0;
+
+    .loading-container, .loading-vector {
+      width: 64px;
+      height: 64px;
+    }
+  }
+
   .main-container.main-img {
     background: image_url("landing-page/main.png") center no-repeat;
     background-size: cover;
@@ -16,6 +29,7 @@
     text-align: center;
 
     .main-txt {
+      padding: 0px 20px 0px 20px;
       font-size: $font-size-main;
       font-weight: $font-weight-main;
       color: white;
