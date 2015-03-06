@@ -1,3 +1,166 @@
 // Place all the styles related to the welcome controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import "scss_constants";
+
+.welcome {
+
+  .loading-screen {
+    background-color: $primary-color;
+    z-index: 3;
+    position: fixed;
+    top: 0;
+
+    .loading-container, .loading-vector {
+      width: 64px;
+      height: 64px;
+    }
+  }
+
+  .main-container.main-img {
+    background: image_url("landing-page/main.png") center no-repeat;
+    background-size: cover;
+    min-height: 619px;
+    padding-top: 200px;
+  }
+
+  .main {
+    text-align: center;
+
+    .main-txt {
+      padding: 0px 20px 0px 20px;
+      font-size: $font-size-main;
+      font-weight: $font-weight-main;
+      color: white;
+
+      .alt-theme {
+        color: $primary-color;
+      }
+    }
+
+    .stay-tuned-button {
+      margin-top: 35px;
+      //    background: none;
+      font-weight: $font-weight-misc;
+    }
+  }
+
+  .about {
+    text-align: center;
+    height: auto;
+    padding-top: 100px;
+    p {
+      font-size: $font-size-about;
+    }
+  }
+
+  .separator {
+    margin-top: 100px;
+    margin-bottom: 75px;
+  }
+
+  .sections {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    //  border-top: solid 1px $secondary-bg-color;
+  }
+
+  .section-img {
+    background: center no-repeat;
+    background-size: contain;
+    min-height: 400px;
+    height: auto;
+    visibility: hidden;
+  }
+
+  .section-txt {
+    padding-top: 130px;
+    padding-bottom: 110px;
+    text-align: center;
+    p {
+      font-size: $font-size-section;
+      color: black;
+    }
+  }
+
+  .section1 .section-img {
+    background-image: image_url("landing-page/section1.png");
+  }
+
+  .section2 .section-img {
+    background-image: image_url("landing-page/section2.png");
+  }
+
+  .section3 .section-img {
+    background-image: image_url("landing-page/section3.png");
+  }
+
+  .section4 .section-img {
+    background-image: image_url("landing-page/section4.png");
+  }
+
+  .section5 .section-img {
+    background-image: image_url("landing-page/section5.png");
+    background-size: cover !important;
+  }
+
+  .section5 .section-txt p {
+    color: white !important;
+  }
+
+  .stay-tuned {
+    height: auto;
+    background: white;
+    text-align: center;
+    padding-top: 50px;
+    padding-bottom: 50px;
+
+    p.form-title {
+      font-size: $font-size-heading;
+    }
+
+    h5 {
+      color: $secondary-color;
+      margin-bottom: 40px;
+      font-size: $font-size-text;
+    }
+
+    .invite-submit {
+      margin: 5px 5px 5px 5px;
+    }
+
+    .quote {
+      margin-top: 100px;
+      blockquote {
+        border: none;
+        quotes: '\201C' '\201D' '\2018' '\2019';
+        p {
+          display: inline;
+          font-size: $font-size-section;
+        }
+        footer {
+          font-size: $font-size-text;
+        }
+      }
+      blockquote:before {
+        color: #ccc;
+        content: open-quote;
+        font-size: 4 * $font-size-section;
+        line-height: 0.1 * $font-size-section;
+        margin-right: 0.25 * $font-size-section;
+        vertical-align: -0.4 * $font-size-section;
+      }
+      blockquote:after {
+        color: #ccc;
+        content: close-quote;
+        position: relative;
+        float: right;
+        font-size: 4 * $font-size-section;
+        line-height: 0.1 * $font-size-section;
+        margin-right: 0.25 * $font-size-section;
+        vertical-align: -0.4 * $font-size-section;
+      }
+    }
+  }
+}

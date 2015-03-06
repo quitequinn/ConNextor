@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'control_panel/home'
+
   resources :user_to_project_tasks
 
   resources :project_tasks
