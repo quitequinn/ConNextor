@@ -74,7 +74,7 @@ tot_projects = 100
 
 # Creates tot_users random users
 for n in 1..tot_users
-  created_user = seed_user( Faker::Name.name, "user-#{n+1}", "user-#{n+1}@connextor.co" )
+  created_user = seed_user( Faker::Name.name, "user-#{n}", "foobar" )
   # Creates a project for the first tot_projects users
   if n <= tot_projects
     created_project = seed_project( Faker::App.name, Faker::Company.catch_phrase, Faker::Lorem.sentence(25) )
