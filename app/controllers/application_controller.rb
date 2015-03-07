@@ -4,13 +4,35 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   include SessionsHelper
 
-  #helper_method :current_user
+  helper_method :current_user, :current_user?, :logged_in?, :current_user_id
 
-  #private
+  private
 
-  #def current_user
-    #@current_user ||= User.find(session[:user_id]) if session[:user_id]
-  #end
+  def current_user
+    if session[:user_id]
+      @current_user ||= User.find_by(id: session[:user_id])
+    elsif cookies[:remember_token]
+      @current_user ||= User.find_by_remember_token(cookies[:remember_token])
+    end
+  end
+
+  def logged_in?
+    !current_user.nil?
+  end
+
+  # Returns true if the given user is the current user.
+  def current_user?(user)
+    user == current_user
+  end
+
+  def current_user=(user)
+    @current_user = user
+    session[:user_id] = user.nil? ? nil : user.id
+  end
+
+  def current_user_id
+    session[:user_id]
+  end
 
   private
 
