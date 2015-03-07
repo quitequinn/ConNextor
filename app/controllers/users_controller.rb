@@ -15,7 +15,8 @@ class UsersController < ApplicationController
         identity.save()
         session[:identity_id] = nil
       end
-      flash[:success] = "Signed up!"
+      @user.send_email_confirmation
+      flash[:success] = "Signed up! Check your email for verification"
       redirect_to root_url
     else
       render 'new'
@@ -28,6 +29,18 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
+  end
+
+  def confirmed(user_id, code)
+    user = User.find(user_id)
+    if user
+      if code == user.confirm_code
+        user.confirmed = true
+        user.save()
+        session_create user
+      end
+    end
+    redirect_to root_url
   end
 
   def update

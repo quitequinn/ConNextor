@@ -52,7 +52,7 @@ group :development, :test do
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   gem 'therubyracer'
   # Opens emails in the browser for easier testing
-  # gem "letter_opener"
+  gem "letter_opener"
 end
 
 group :production do

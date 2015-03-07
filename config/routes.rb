@@ -19,11 +19,10 @@ Rails.application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
   get 'auth/:provider/callback', to: 'sessions#omniauthcreate'
-  get "log_out" => "sessions#destroy", :as => "log_out"
-  get "log_in" => "sessions#new", :as => "log_in"
-  get "sign_up" => "users#new", :as => "sign_up"
-  # get "additional_info" => "sessions#newAdditionalInfo", :as => "additional_info"
-  # post "additional_info" => "sessions#createAdditionalInfo", :as => "create_additional_info"
+  get 'log_out', to: 'sessions#destroy', :as => 'log_out'
+  get 'log_in', to: 'sessions#new', :as => 'log_in'
+  get 'sign_up', to: 'users#new', :as => 'sign_up'
+  post 'users/:id/confirm/:code', to: 'users#confirmed', :as => 'confirmed'
   root 'welcome#index'
   resources :users
   resources :sessions

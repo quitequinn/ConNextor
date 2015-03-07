@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: "localhost:3000"
+  default from: "kylewu52@gmail.com"
   layout 'mailer'
 end

@@ -7,11 +7,11 @@
     Welcome, <%= @user.name %>
     <p>
       You have successfully signed up.
-      your username is: <%= @user.email %>.<br/>
+      your username is: <%= @user.username %>.<br/>
     </p>
     <p>
-      To login to the site, just follow this link: <%= link_to 'confirm', account_confirmation_url(token: @user.password_reset_token) %>
+      To login to the site, just follow this link to confirm your account: <%= link_to 'Confirm account', confirmed_path(id: @user.id, code: @user.confirm_code) %>
     </p>
-    <p>Thanks for joining and have a great day!</p>
+    <p>Thanks for joining ConNextor and have a great day!</p>
   </body>
 </html>

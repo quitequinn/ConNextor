@@ -7,13 +7,13 @@ class SessionsController < ApplicationController
   def create
     user = User.authenticate(params[:email], params[:password])
     if user
-      if params[:remember_me]
-        flash.now.alert = "Remember me!"
-        sign_in user
-      else
+      if user.confirmed
         session_create user
+        redirect_to root_url, :notice => "Logged in!"
+      else
+        flash[:success] = "Need to confirm email first"
+        render "new"
       end
-      redirect_to root_url, :notice => "Logged in!"
     else
       flash[:success] = "Invalid login"
       render "new"
@@ -45,11 +45,16 @@ class SessionsController < ApplicationController
     else
       if @identity.user
         # Identity has a user associated with it
-        if auth.provider == "twitter" && @identity.user.location == nil
-          @identity.user.update_with_omniauth(auth)
+        if @identity.user.confirmed
+          if auth.provider == "twitter" && @identity.user.location == nil
+            @identity.user.update_with_omniauth(auth)
+          end
+          session_create @identity.user
+          redirect_to root_url
+        else
+          flash[:success] = "Need to confirm email first"
+          render "new"
         end
-        session_create @identity.user
-        redirect_to root_url
       else
         # No user associated with the identity so create a new one
         # If user has registered and then logs in with provider

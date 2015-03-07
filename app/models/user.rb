@@ -11,7 +11,6 @@ class User < ActiveRecord::Base
   validates_presence_of :password
   validates_presence_of :email, :on => :create
   validates_uniqueness_of :email, :on => :create
-  before_create { generate_remember_token(:remember_token) }
   
   def self.authenticate(email, password)
     user = find_by_email(email)
@@ -45,22 +44,21 @@ class User < ActiveRecord::Base
   def downcase_email
     self.email = email.downcase
   end
-  
-  def generate_remember_token(column)
-    begin
-      self[column] = SecureRandom.urlsafe_base64
-    end while User.exists?(column => self[column])
-  end
 
   # Returns a random token.
-  def User.new_token
+  def new_token
     SecureRandom.urlsafe_base64
   end
 
   def send_password_reset
-    self.update_column(:password_reset_token, SecureRandom.urlsafe_base64)
+    self.update_column(:password_reset_token, new_token)
     self.update_column(:password_reset_sent_at, Time.zone.now)
     UserMailer.send_password_reset_mail(self).deliver
+  end
+
+  def send_email_confirmation
+    self.update_column(:confirm_code, new_token)
+    UserMailer.send_confirmation_mail(self).deliver
   end
 
 end

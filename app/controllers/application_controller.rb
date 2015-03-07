@@ -4,15 +4,13 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   include SessionsHelper
 
-  helper_method :current_user, :current_user?, :logged_in?, :current_user_id
+  helper_method :current_user, :current_user?, :logged_in?, :current_user_id, :confirmed?
 
   private
 
   def current_user
     if session[:user_id]
       @current_user ||= User.find_by(id: session[:user_id])
-    elsif cookies[:remember_token]
-      @current_user ||= User.find_by_remember_token(cookies[:remember_token])
     end
   end
 
@@ -32,6 +30,10 @@ class ApplicationController < ActionController::Base
 
   def current_user_id
     session[:user_id]
+  end
+
+  def confirmed?(user)
+    user.confirmed
   end
 
   private
