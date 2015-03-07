@@ -31,13 +31,14 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
-  def confirmed(user_id, code)
-    user = User.find(user_id)
+  def confirmed(id, code)
+    user = User.find(id)
     if user
       if code == user.confirm_code
         user.confirmed = true
         user.save()
         session_create user
+        flash[:success] = "You have been verified!"
       end
     end
     redirect_to root_url

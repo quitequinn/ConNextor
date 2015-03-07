@@ -33,7 +33,7 @@ class ApplicationController < ActionController::Base
   end
 
   def confirmed?(user)
-    user.confirmed
+    user.confirmed == true
   end
 
   private

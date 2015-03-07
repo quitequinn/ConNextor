@@ -45,7 +45,7 @@ class SessionsController < ApplicationController
     else
       if @identity.user
         # Identity has a user associated with it
-        if @identity.user.confirmed
+        if @identity.user.confirmed == true
           if auth.provider == "twitter" && @identity.user.location == nil
             @identity.user.update_with_omniauth(auth)
           end

@@ -10,8 +10,8 @@
       your username is: <%= @user.username %>.<br/>
     </p>
     <p>
-      To login to the site, just follow this link to confirm your account: <%= link_to 'Confirm account', confirmed_path(id: @user.id, code: @user.confirm_code) %>
+      To login to the site, just follow this link to confirm your account: <%= link_to 'Confirm account', { :controller=> :users, :action=> :confirmed, id: @user.id, code: @user.confirm_code }, :method => :post %>
     </p>
-    <p>Thanks for joining ConNextor and have a great day!</p>
+    <p>Welcome to ConNextor!</p>
   </body>
 </html>

@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   get 'log_out', to: 'sessions#destroy', :as => 'log_out'
   get 'log_in', to: 'sessions#new', :as => 'log_in'
   get 'sign_up', to: 'users#new', :as => 'sign_up'
-  post 'users/:id/confirm/:code', to: 'users#confirmed', :as => 'confirmed'
+  post '/users/:id/confirm/:code' => 'users#confirmed', :as => 'confirmed'
   root 'welcome#index'
   resources :users
   resources :sessions
