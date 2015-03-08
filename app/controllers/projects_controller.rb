@@ -8,7 +8,7 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
-    @projects = Project.order( sort_column_string + ' ' + sort_direction_string )
+    @projects = Project.search(params[:search]).order( sort_column_string + ' ' + sort_direction_string ).paginate(:per_page => 30, :page => params[:page])
   end
 
   # GET /projects/1
