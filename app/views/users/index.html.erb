@@ -4,12 +4,12 @@
 <%= will_paginate @allusers %>
 
 <ul class="users">
-    <%= render @allusers %>
-    <%-# This uses _users.html.erb somehow %>
-    <%-# Apparently rails looks up for a partial called _user.html.erb %>
-    <%-# @allusers.each do |user| %>
-    <%-#= render user %>
-    <%-# end %>
+  <%= render @allusers %>
+  <%-# This uses _users.html.erb somehow %>
+  <%-# Apparently rails looks up for a partial called _user.html.erb %>
+  <%-# @allusers.each do |user| %>
+  <%-#= render user %>
+  <%-# end %>
 </ul>
 
 <%= will_paginate @allusers %>
