@@ -58,12 +58,11 @@ group :development, :test do
   gem 'therubyracer'
   # Opens emails in the browser for easier testing
   # gem "letter_opener"
-  gem 'ruby-debug-ide'
+  # gem 'ruby-debug-ide'
 end
 
 group :production do
   gem 'rails_12factor'
   gem 'unicorn'
 end
-
 
