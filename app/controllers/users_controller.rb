@@ -9,17 +9,26 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      if session[:identity_id]
+        identity = Identity.find(session[:identity_id])
+        identity.user = @user
+        identity.save()
+        session[:identity_id] = nil
+      end
       flash[:success] = "Signed up!"
       redirect_to root_url
     else
-      render "new"
+      render 'new'
     end
   end
 
   def index
-    @allusers = User.paginate(page: params[:page])
+    @allusers = User.search(params[:search]).paginate(page: params[:page])
   end
 
+  def edit
+    @user = User.find(params[:id])
+  end
 
   def update
     @user = User.find(params[:id])

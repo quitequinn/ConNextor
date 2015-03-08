@@ -2,11 +2,13 @@ class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
   before_action :set_user_project_env, only: [:show, :edit, :update, :destroy]
   before_action :set_user_project_follow, only: [:show, :edit, :update, :destroy]
+  helper_method :sort_column_string, :sort_direction_string
+  # ^ declares both methods as helpers
 
   # GET /projects
   # GET /projects.json
   def index
-    @projects = Project.all
+    @projects = Project.search(params[:search]).order( sort_column_string + ' ' + sort_direction_string ).paginate(:per_page => 30, :page => params[:page])
   end
 
   # GET /projects/1
@@ -92,5 +94,13 @@ class ProjectsController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def project_params
     params.require(:project).permit(:title, :short_description, :long_description)
+  end
+
+  def sort_column_string
+    Project.column_names.include?(params[:sort]) ? params[:sort] : "title"
+  end
+  
+  def sort_direction_string
+    (params[:direction]=="asc" || params[:direction]=="desc")? params[:direction]  : "asc"
   end
 end
