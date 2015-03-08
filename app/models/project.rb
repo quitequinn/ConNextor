@@ -10,7 +10,7 @@ class Project < ActiveRecord::Base
     if search
       where('title LIKE ?', "%#{search}%")
     else
-      scoped
+      where(nil)
     end
   end
 end
