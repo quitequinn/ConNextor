@@ -11,6 +11,14 @@ class User < ActiveRecord::Base
   validates_presence_of :email
   validates_uniqueness_of :email
   before_create { generate_remember_token(:remember_token) }
+
+  def self.search(search)
+    if search
+      where('first_name LIKE ? OR last_name LIKE ?', "%#{search}%", "%#{search}%")
+    else
+      self
+    end
+  end
   
   def self.authenticate(email, password)
     user = find_by_email(email)
