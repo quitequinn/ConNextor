@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
   has_many :user_project_follows, dependent: :destroy
   has_many :project_tasks
   has_many :identities
+  has_many :interests, through: :user_to_interests
+  has_many :skills, through: :user_to_skills
 
   attr_accessor :password
   attr_writer :current_step
