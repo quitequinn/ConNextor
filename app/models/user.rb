@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   has_many :identities
 
   attr_accessor :password
+  attr_writer :current_step
   before_save :downcase_email, :encrypt_password
   validates_confirmation_of :password
   validates_presence_of :password
@@ -70,6 +71,34 @@ class User < ActiveRecord::Base
     self.update_column(:password_reset_sent_at, Time.zone.now)
     UserMailer.send_password_reset_mail(self).deliver
   end
+
+  ##########Registration############
+
+  def current_step
+    @current_step || steps.first
+  end
+  
+  def steps
+    %w[first second fourth]
+  end
+
+  def next_step
+    self.current_step = steps[steps.index(current_step)+1]
+  end
+
+  def previous_step
+    self.current_step = steps[steps.index(current_step)-1]
+  end
+
+  def first_step?
+    current_step == steps.first
+  end
+
+  def last_step?
+    current_step == steps.last
+  end
+
+  ######################################
 
 end
 
