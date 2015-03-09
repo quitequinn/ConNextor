@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   has_many :identities
   has_many :interests, through: :user_to_interests
   has_many :skills, through: :user_to_skills
+  accepts_nested_attributes_for :skills,:interests
 
   attr_accessor :password
   attr_writer :current_step
@@ -81,6 +82,7 @@ class User < ActiveRecord::Base
   end
   
   def steps
+    #%w[first second third fourth] 
     %w[first second fourth]
   end
 
