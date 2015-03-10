@@ -11,11 +11,13 @@ class UsersController < ApplicationController
     session[:user_params].deep_merge!(user_params) if user_params
     @user = User.new(session[:user_params])
     @user.current_step = session[:reg_step]
+    @skills = Skill.all
+    @interests = Interest.all
+    
     if params[:back_button]
       @user.previous_step
     elsif @user.last_step?
       if @user.save
-        session[:reg_step] = session[:user_params] = nil
         if session[:identity_id]
           identity = Identity.find(session[:identity_id])
           identity.user = @user
@@ -23,6 +25,7 @@ class UsersController < ApplicationController
           session[:identity_id] = nil
         end
         flash[:success] = "Signed up!"
+        session[:reg_step] = session[:user_params] = nil
         redirect_to root_url and return
       else
         render 'new' and return
@@ -60,7 +63,19 @@ class UsersController < ApplicationController
 
   private
     def user_params
-      params.require(:user).permit(:first_name, :last_name, :username, :school,:school_email,:location,:industry, :email, :password, :password_confirmation)
+      params.require(:user).permit(
+        :first_name, 
+        :last_name, 
+        :username, 
+        :school,
+        :school_email,
+        :location,
+        :industry,
+        :email, 
+        :password, 
+        :password_confirmation,
+        :skill_ids=>[],
+        :interest_ids=>[] )
     end
 
     # Confirms a logged-in user.

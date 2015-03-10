@@ -1,11 +1,17 @@
 <h2> Third step </h2>
 
-<p>
-  <%= f.label :skills %><br />
-  <%= f.text_field :skills %>
-</p>
+<h3> Skills </h3>
+<div>
+  <%= hidden_field_tag "user[skill_ids][]", nil %>
+  <% @skills.each do |a_value| %>
+    <p> <%=a_value.name %> <%= f.check_box("skill_ids", { :multiple => true }, a_value.id, nil) %> </p>
+  <% end %>
+</div>
 
-<p>
-  <%= f.label :interests %><br />
-  <%= f.text_field :interests %>
-</p>
+<h3> Interests </h3>
+<div>
+  <%= hidden_field_tag "user[interest_ids][]", nil %>
+  <% @interests.each do |a_value| %>
+   <p> <%=a_value.name %> <%= f.check_box("interest_ids", { :multiple => true }, a_value.id, nil) %> </p>
+  <% end %>
+</div>

@@ -4,9 +4,10 @@ class User < ActiveRecord::Base
   has_many :user_project_follows, dependent: :destroy
   has_many :project_tasks
   has_many :identities
+  has_many :user_to_interests
+  has_many :user_to_skills
   has_many :interests, through: :user_to_interests
   has_many :skills, through: :user_to_skills
-  accepts_nested_attributes_for :skills,:interests
 
   attr_accessor :password
   attr_writer :current_step
@@ -82,8 +83,8 @@ class User < ActiveRecord::Base
   end
   
   def steps
-    #%w[first second third fourth] 
-    %w[first second fourth]
+    %w[first second third fourth] 
+    #%w[first second fourth]
   end
 
   def next_step
