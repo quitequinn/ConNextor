@@ -10,6 +10,7 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
+ *= require font-faces
  *= require_tree .
  *= require_self
  */
@@ -19,33 +20,15 @@
 
 @import "scss_constants";
 
-@font-face {
-  font-family: omnes-regular;
-  src: font_url("omnes-regular.otf") format("opentype");
-}
-
 
 body {
   margin: 0px;
-  padding: 0px;
+  padding: 50px 0 0 0;
   font-family: $font-family;
   //  background-color: #808080;
 }
 .container {
   //  background-color: white;
-}
-
-.logo-img {
-  background-image: image_url("logo_03.png");
-  background-size: cover;
-  width: 56px;
-  height: 56px;
-}
-
-.logo-txt {
-  padding: 10px 15px 4px 15px;
-  font-size: $font-size-banner;
-  font-weight: bold;
 }
 
 
@@ -56,6 +39,34 @@ body {
     margin-top: 8px;
     margin-bottom: 8px;
   }
+}
+
+.logo-img-background {
+  background-image: image_url("logo_03.png");
+  background-size: cover;
+  width: 57px;
+  height: 54px;
+}
+
+.navbar-default {
+  background: white;
+  height: 57px;
+}
+
+.logo-img {
+  width: 57px;
+  height: 54px;
+}
+
+.logo-img-navbar-container {
+  padding: 0 0 0 0 !important;
+}
+
+.logo-txt {
+//  display: inline-block;
+  padding: 22px 15px 4px 15px !important;
+  font-size: $font-size-banner;
+  font-weight: bold;
 }
 
 .footer {

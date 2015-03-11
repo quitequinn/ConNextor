@@ -1,10 +1,4 @@
 
-// Fade out loading screen when page is loaded
-function fadeOutLoadingScreen() {
-    // Loading screen fadeout
-    $('.loading-screen').fadeOut();
-}
-
 // Add event listener when buttons are clicked
 function scrollToInvitation() {
     var scrollPoint = $('#invite').offset().top;
@@ -15,11 +9,11 @@ function scrollToInvitation() {
 // Form submit listener
 function postInviteToRemote(inviteForm) {
     var name = inviteForm.name.value,
-        email = inviteForm.email.value,
+        email = inviteForm.email.value;
     //interest = inviteForm.interest.value,
     //altinterest = inviteForm.altinterest.value;
-        source = inviteForm.source.value,
-        altsource = inviteForm['source-alt'].value;
+    //    source = inviteForm.source.value,
+    //    altsource = inviteForm['source-alt'].value;
 
     // validation
     var invalid = false;
@@ -41,7 +35,7 @@ function postInviteToRemote(inviteForm) {
     if (invalid) return false;
 
     var title = document.getElementById('form-title');
-    postEmailToServer(name, email, "", "", source, altsource);
+    postEmailToServer(name, email, "", "", "", "");
     $('form[name="invitation"]').fadeOut();
     $('#form-subtext').fadeOut();
     swapWithAltText(title);
