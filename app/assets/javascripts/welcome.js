@@ -35,10 +35,11 @@ function postInviteToRemote(inviteForm) {
     if (invalid) return false;
 
     var title = document.getElementById('form-title');
-    postEmailToServer(name, email, "", "", "", "");
-    $('form[name="invitation"]').fadeOut();
-    $('#form-subtext').fadeOut();
-    swapWithAltText(title);
+    postEmailToServer(name, email, "", "", "", "", function () {
+        $('form[name="invitation"]').fadeOut();
+        $('#form-subtext').fadeOut();
+        swapWithAltText(title);
+    });
     return false;
 }
 

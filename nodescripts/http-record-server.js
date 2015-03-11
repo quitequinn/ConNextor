@@ -20,6 +20,7 @@ var server = http.createServer(function (request, response) {
 					altinterest + "," + 
 					source + "," + 
 					altsource);
+        response.writeHead(200, {'Content-Type': 'text/plain', 'Access-Control-Allow-Origin': '*'});
 		response.end('true');
 	}
 
