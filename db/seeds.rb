@@ -53,6 +53,20 @@ def seed_relationship(user_id=nil, project_id=nil)
   UserToProject.create!(user_id: user_id, project_id: project_id, project_user_class: ProjectUserClass::OWNER)
 end
 
+def seed_skill(name=nil)
+  if anyEmpty(name)
+    return nil
+  end
+  Skill.create!(name: name)
+end
+
+def seed_interest(name=nil)
+  if anyEmpty(name)
+    return nil
+  end
+  Interest.create!(name: name)
+end
+
 def seed_follow(user_id=nil, project_id=nil)
   if anyEmpty(user_id, project_id)
     return nil
@@ -69,25 +83,16 @@ def generate_random_sequence( seq_size=0 )
 end
 
 
-tot_users = 500
-tot_projects = 100
+seed_skill('frontend')
+seed_skill('backend')
+seed_skill('design')
+seed_skill('logic')
+seed_skill('management')
+seed_skill('business')
 
-# Creates tot_users random users
-for n in 1..tot_users
-  created_user = seed_user( Faker::Name.name, "user-#{n}", "foobar" )
-  # Creates a project for the first tot_projects users
-  if n <= tot_projects
-    created_project = seed_project( Faker::App.name, Faker::Company.catch_phrase, Faker::Lorem.sentence(25) )
-    seed_relationship(created_user.id, created_project.id)
-  end
-end
-
-# Creates random follows from users to projects
-for i in 1..tot_users do
-  projectList = generate_random_sequence( tot_projects )
-  for j in 1..tot_projects do
-    if projectList[j]==1
-      seed_follow( i, j )
-    end
-  end
-end
+seed_interest('frontend')
+seed_interest('backend')
+seed_interest('design')
+seed_interest('logic')
+seed_interest('management')
+seed_interest('business')

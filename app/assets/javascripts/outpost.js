@@ -1,4 +1,4 @@
-function postEmailToServer(name, emailAddress, interest, altinterest, source, altsource) {
+function postEmailToServer(name, emailAddress, interest, altinterest, source, altsource, callback) {
     //var emailAddress = document.getElementById("emailInput").value;
     console.log("Called postEmailToServer: " + name + ", " + emailAddress + ", " + interest + ", " + altinterest + "," + source + "," + altsource);
 
@@ -14,7 +14,7 @@ function postEmailToServer(name, emailAddress, interest, altinterest, source, al
         if (status !== 'success') {
             alert("Connection Refused, Please try again.");
         } else if (data === 'true') {
-            alert("Email saved");
+            callback();
             // exit sequence
         } else if (data === 'false') {
             alert("Email failed to save");
