@@ -14,16 +14,16 @@
  *= require_tree .
  *= require_self
  */
+@import "scss_constants";
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-@import "scss_constants";
 
 
 body {
   margin: 0px;
-  padding: 50px 0 0 0;
+  padding: $navbar-height 0 0 0;
   font-family: $font-family;
   //  background-color: #808080;
 }
@@ -31,14 +31,8 @@ body {
   //  background-color: white;
 }
 
-
-.banner {
-  height: 56px;
-
-  .sign-up-button {
-    margin-top: 8px;
-    margin-bottom: 8px;
-  }
+.sign-up-button {
+  margin: 8px 15px 8px 0;
 }
 
 .logo-img-background {
@@ -49,8 +43,7 @@ body {
 }
 
 .navbar-default {
-  background: white;
-  height: 57px;
+//  background: white;
 }
 
 .logo-img {
@@ -65,8 +58,9 @@ body {
 .logo-txt {
 //  display: inline-block;
   padding: 22px 15px 4px 15px !important;
+  margin-right: 15px;
   font-size: $font-size-banner;
-  font-weight: bold;
+  font-weight: $font-weight-banner;
 }
 
 .footer {
