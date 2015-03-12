@@ -6,7 +6,8 @@
         $('.scroll-to-invite').on('click', scrollToInvitation);
 //        $('form[name="invitation"] select[name="source"]').change(changeFormAlternativeField);
     });
-    document.body.onload = fadeOutLoadingScreen;
+    window.onload = fadeOutLoadingScreen;
+    document.addEventListener('page:load', fadeOutLoadingScreen);
 </script>
 
 <!--Loading screen-->

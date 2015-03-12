@@ -1,13 +1,13 @@
-<% provide(:title, "Sign Up") %>
+<% provide(:title, 'Sign Up') %>
 
 <h1>Sign up</h1>
 
-<%= form_for :user, url: users_path do |f| %>
+<%= form_for :user, url: users_path  do |f| %>
   <% if @user.errors.any? %>
     <div class="error_messages">
       <h2>Form is invalid</h2>
       <ul>
-        <% for message in @user.errors.full_messages %>
+        <% @user.errors.full_messages.each do |message| %>
           <li><%= message %></li>
         <% end %>
       </ul>
@@ -15,8 +15,8 @@
   <% end %>
   <%= render "#{@user.current_step}_step", :f => f %>
   
-  <p class="button"><%= f.submit "Continue", name: "finish" %></p>
-  <p class="button"><%= f.submit "Back", name: "back_button" unless @user.first_step? %></p>
+  <p class="button"><%= f.submit 'Continue', name: 'finish' %></p>
+  <p class="button"><%= f.submit 'Back', name: 'back_button' unless @user.first_step? %></p>
 <% end %>
 
 

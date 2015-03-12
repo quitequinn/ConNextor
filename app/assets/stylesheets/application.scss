@@ -19,7 +19,11 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-
+html.turbolinks-progress-bar::before {
+  background-color: $primary-color !important;
+  height: 2px !important;
+  z-index: 1032 !important;
+}
 
 body {
   margin: 0px;

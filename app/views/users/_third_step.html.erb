@@ -11,6 +11,7 @@
 <h3> Interests </h3>
 <div>
   <%= hidden_field_tag "user[interest_ids][]", nil %>
+  <%= f.hidden_field "interest_ids", {multiple: true} %>
   <% @interests.each do |a_value| %>
    <p> <%=a_value.name %> <%= f.check_box("interest_ids", { :multiple => true }, a_value.id, nil) %> </p>
   <% end %>
