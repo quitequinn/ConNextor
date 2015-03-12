@@ -24,15 +24,22 @@ html.turbolinks-progress-bar::before {
   height: 2px !important;
   z-index: 1032 !important;
 }
-
+html, body {
+  height: 100%;
+}
 body {
   margin: 0px;
-  padding: $navbar-height 0 0 0;
+
   font-family: $font-family;
   //  background-color: #808080;
 }
-.container {
-  //  background-color: white;
+
+
+#content-wrap {
+  min-height: 100%;
+  height: auto !important;
+  //  height: 100%;
+  margin: 0 auto (0-$footer-height);
 }
 
 .sign-up-button {
@@ -67,10 +74,14 @@ body {
   font-weight: $font-weight-banner;
 }
 
+.template-wrap {
+  padding: $navbar-height 0 $footer-height 0;
+}
+
 .footer {
-  height: 80px;
+  height: $footer-height;
   background-color: $primary-color;
-  padding-top: 30px;
+  padding-top: $footer-padding;
 }
 
 .copyright-txt, .contact-us {

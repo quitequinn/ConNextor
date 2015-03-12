@@ -18,7 +18,8 @@ $font-weight-main:      500;
 $font-weight-banner:    600;
 $navbar-height:         57px;
 $navbar-default-bg:     white;
-
+$footer-height:         80px;
+$footer-padding:        ($footer-height - $font-size-text)/2;
 
 @mixin transition-all-ease($time) {
   -webkit-transition: all $time ease;

@@ -12,6 +12,7 @@
 
 <body>
 
+<div id="content-wrap">
 
 <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container">
@@ -81,8 +82,10 @@
 
 
 <!--Template-->
-<div class="<%= controller.controller_name %>">
+<div class="template-wrap <%= controller.controller_name %>">
   <%= yield %>
+</div>
+
 </div>
 
 <!--Bottom footer-->
