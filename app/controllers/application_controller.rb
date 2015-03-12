@@ -37,8 +37,7 @@ class ApplicationController < ActionController::Base
   private
 
   def set_user_project_env
-    @user_logged_in = logged_in?
-    if @user_logged_in
+    if logged_in?
       @current_user = current_user
 
       # project
