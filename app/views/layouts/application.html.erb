@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no" />
@@ -12,39 +13,41 @@
 
 <body>
 
+<!--Wraps everything but the footer. This makes the footer sticky-->
 <div id="content-wrap">
 
-<nav class="navbar navbar-default navbar-fixed-top">
-  <div class="container">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
+  <!--Navigation bar-->
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
 
-      <% if logged_in? %>
-          <!--Expansion button-->
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-      <% end %>
-      <!--Branding (logo)-->
-      <a class="navbar-brand logo-img-navbar-container" href="/">
-        <%= image_tag 'logo_03.png', class: 'logo-img' %>
-      </a>
-      <a class="navbar-brand logo-txt" href="/">
-        ConNextor
-      </a>
-    </div>
+        <% if logged_in? %>
+            <!--Expansion button-->
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+        <% end %>
+        <!--Branding (logo)-->
+        <a class="navbar-brand logo-img-navbar-container" href="/">
+          <%= image_tag 'logo_03.png', class: 'logo-img' %>
+        </a>
+        <a class="navbar-brand logo-txt" href="/">
+          ConNextor
+        </a>
+      </div>
 
-    <!--Links for navigation-->
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <!--Links for navigation-->
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
-      <% if logged_in? %>
-          <!--Navigation-->
+        <% if logged_in? %>
+          <!--Links-->
           <ul class="nav navbar-nav">
-            <!--<li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>-->
+          <!--<li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>-->
             <li><%= link_to 'Projects', projects_path %></li>
             <li><%= link_to 'Innovators', users_path %></li>
             <li><a href="#">Forum</a></li>
@@ -73,18 +76,19 @@
               </ul>
             </li>
           </ul>
-      <% else %>
-          <button type="button" class="sign-up-button btn-inverse navbar-right scroll-to-invite">Sign up or login</button>
-      <% end %>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
+        <% else %>
+          <!--Sign Up and Login buttons-->
+          <button type="button" class="sign-up-button btn-inverse navbar-right scroll-to-invite">Sign Up</button>
+        <% end %>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
 
 
-<!--Template-->
-<div class="template-wrap <%= controller.controller_name %>">
-  <%= yield %>
-</div>
+  <!--Template-->
+  <div class="template-wrap <%= controller.controller_name %>">
+    <%= yield %>
+  </div>
 
 </div>
 
