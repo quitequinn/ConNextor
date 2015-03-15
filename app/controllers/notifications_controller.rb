@@ -4,7 +4,7 @@ class NotificationsController < ApplicationController
   # GET /notifications
   # GET /notifications.json
   def index
-    @notifications = Notification.all
+    @notifications = Notification.where(receiver_id: current_user_id);
   end
 
   # GET /notifications/1
@@ -15,10 +15,6 @@ class NotificationsController < ApplicationController
   # GET /notifications/new
   def new
     @notification = Notification.new
-  end
-
-  # GET /notifications/1/edit
-  def edit
   end
 
   # POST /notifications

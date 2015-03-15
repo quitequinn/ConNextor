@@ -1,4 +1,4 @@
-<%= form_for(@position) do |f| %>
+<%= form_for (@position), :url => url_for(:controller => 'positions', :action => 'create') do |f| %>
   <% if @position.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@position.errors.count, "error") %> prohibited this position from being saved:</h2>
@@ -10,14 +10,12 @@
       </ul>
     </div>
   <% end %>
-
+  <div class="field">
+    <%= f.hidden_field :project_id, value: params[:project_id] %>
+  </div>
   <div class="field">
     <%= f.label :description %><br>
     <%= f.text_field :description %>
-  </div>
-  <div class="field">
-    <%= f.label :projects_id %><br>
-    <%= f.text_field :projects_id %>
   </div>
   <div class="actions">
     <%= f.submit %>

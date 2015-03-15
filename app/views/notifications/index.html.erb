@@ -20,14 +20,16 @@
         <td><%= notification.sender_id %></td>
         <td><%= notification.message %></td>
         <td><%= notification.link %></td>
-        <td><%= link_to 'Show', notification %></td>
-        <td><%= link_to 'Edit', edit_notification_path(notification) %></td>
-        <td><%= link_to 'Destroy', notification, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', user_notification_path( current_user_id, notification.id ) %></td>
+        <% if notification.project_id %>
+          <td> <%= button_to 'Accept', project_accept_project_path( user_id: notification.sender_id, 
+                                                                    project_id: notification.project_id, 
+                                                                    position_id: notification.position_id,
+                                                                    link: notification.link) %> 
+          </td>
+        <% end %>
+        <td><%= link_to 'Destroy', user_notification_path( current_user_id, notification.id ), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Notification', new_notification_path %>

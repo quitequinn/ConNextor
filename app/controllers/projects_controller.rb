@@ -12,6 +12,7 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.json
   def show
+    @positions = @project.positions
   end
 
   # GET /projects/new
@@ -21,6 +22,44 @@ class ProjectsController < ApplicationController
 
   # GET /projects/1/edit
   def edit
+  end
+
+  def join_request
+    sender_id = join_request_params[:user_id]
+    project_id = join_request_params[:project_id]
+    position_id = join_request_params[:position_id]
+    project_owner = UserToProject.find_by_project_id_and_project_user_class(project_id,ProjectUserClass::OWNER)
+    Notification.create(receiver_id: project_owner.user_id, 
+                        sender_id: sender_id,
+                        project_id: project_id,
+                        position_id: position_id,
+                        message: "Hi, I would like to join your project", 
+                        link: "/users/#{sender_id}")
+
+    javascript = "alert('There is a person who wants to join your project');"
+    PrivatePub.publish_to("/inbox/#{project_owner.user_id}",javascript)
+    redirect_to Project.find(project_id)
+  end
+
+  def accept_request
+    user_id = accept_request_params[:user_id]
+    project_id = accept_request_params[:project_id]
+    position_id = accept_request_params[:position_id]
+    link = accept_request_params[:link]
+    @project = Project.find(project_id)
+    UserToProject.create( user_id: user_id, 
+                          project_id: project_id, 
+                          project_user_class: ProjectUserClass::CORE_MEMBER )
+
+    Position.update(position_id, filled: true)
+    Notification.create(receiver_id: user_id, 
+                        sender_id: current_user_id, 
+                        message: "You have enjoyed a project", 
+                        link: "/projects/#{project_id}")
+
+    javascript = "alert('You have successfully joined #{@project.id}');"
+    PrivatePub.publish_to("/inbox/#{user_id}",javascript)
+    redirect_to Project.find(project_id)
   end
 
   # POST /projects
@@ -93,4 +132,13 @@ class ProjectsController < ApplicationController
   def project_params
     params.require(:project).permit(:title, :short_description, :long_description)
   end
+
+  def join_request_params
+    params.permit(:user_id, :project_id, :position_id)
+  end
+
+  def accept_request_params
+    params.permit(:user_id, :project_id, :position_id, :link)
+  end
+
 end

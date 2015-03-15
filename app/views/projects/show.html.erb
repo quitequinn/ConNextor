@@ -22,13 +22,23 @@
 
 User To Project: <%= @user_to_project ? @user_to_project.project_user_class : 'unrelated' %>
 
-<% if @user_logged_in %>
-    <% unless @user_project_follow %>
-        <%= button_to 'Follow', user_project_follows_path(project_id: @project) %>
-    <% else %>
-        <%= button_to 'Unfollow', @user_project_follow, method: :delete %>
-    <% end %>
+<br />
+
+<% if @user_to_project and @is_owner %>
+    <%= link_to 'Manage Users', user_to_projects_path(project: @project) %>
+    <%= link_to 'Manage Tags', project_to_tags_path(project: @project) %>
+    <%= link_to 'Manage Tasks', project_tasks_path(project: @project) %>
 <% end %>
+
+<br />
+
+<% unless @user_project_follow %>
+    <%= button_to 'Follow', user_project_follows_path(project_id: @project) %>
+<% else %>
+    <%= button_to 'Unfollow', @user_project_follow, method: :delete %>
+<% end %>
+
+<br />
 
 <h3>Users</h3>
 <ul>
@@ -43,8 +53,23 @@ User To Project: <%= @user_to_project ? @user_to_project.project_user_class : 'u
   <%= render @project.project_tasks %>
 </ul>
 
-<% if @user_to_project and @is_owner %>
-    <%= link_to 'Manage Users', user_to_projects_path(project: @project) %>
-    <%= link_to 'Manage Tags', project_to_tags_path(project: @project) %>
-    <%= link_to 'Manage Tasks', project_tasks_path(project: @project) %>
-<% end %>
+<h3>Needs</h3>
+<div> 
+  <% if @is_owner %>
+    <p><%= link_to "Create position", new_project_position_path(@project.id), :locals=>{:position => Position.new} %></p>
+  <% end %>
+</div>
+
+<table>
+  <tbody>
+    <% @positions.each do |position| %>
+      <tr>
+        <td><%= position.description %></td>
+        <td><%= link_to 'Show', project_position_path(params[:id],position) %></td>
+        <td><%= link_to 'Edit', edit_project_position_path(params[:id],position) %></td>
+        <td><%= link_to 'Destroy', project_position_path(params[:id],position), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+

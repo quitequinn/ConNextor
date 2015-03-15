@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-  resources :notifications
-
   get 'control_panel/home'
 
   resources :user_to_project_tasks
@@ -24,14 +22,16 @@ Rails.application.routes.draw do
   get "log_out" => "sessions#destroy", :as => "log_out"
   get "log_in" => "sessions#new", :as => "log_in"
   get "sign_up" => "users#new", :as => "sign_up"
-  # get "additional_info" => "sessions#newAdditionalInfo", :as => "additional_info"
-  # post "additional_info" => "sessions#createAdditionalInfo", :as => "create_additional_info"
   root 'welcome#index'
-  resources :users
+  resources :users do
+    resources :notifications
+  end
   resources :sessions
   resources :password_resets
   resources :projects do
     resources :positions
+    post "join_project" => "projects#join_request", :as => "join_project"
+    post "accept_project" => "projects#accept_request", :as => "accept_project"
   end
   # You can have the root of your site routed with "root"
   # root 'welcome#index'

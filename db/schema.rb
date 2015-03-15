@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150302014459) do
+ActiveRecord::Schema.define(version: 20150315193418) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,33 @@ ActiveRecord::Schema.define(version: 20150302014459) do
   end
 
   add_index "identities", ["user_id"], name: "index_identities_on_user_id", using: :btree
+
+  create_table "interests", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.integer  "receiver_id"
+    t.integer  "sender_id"
+    t.string   "message"
+    t.string   "link"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "project_id"
+    t.integer  "position_id"
+  end
+
+  create_table "positions", force: :cascade do |t|
+    t.string   "description"
+    t.integer  "project_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.boolean  "filled"
+  end
+
+  add_index "positions", ["project_id"], name: "index_positions_on_project_id", using: :btree
 
   create_table "project_tags", force: :cascade do |t|
     t.string   "name"
@@ -59,12 +86,28 @@ ActiveRecord::Schema.define(version: 20150302014459) do
     t.datetime "updated_at",        null: false
   end
 
+  create_table "skills", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "user_project_follows", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "project_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "user_to_interests", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "interest_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "user_to_interests", ["interest_id"], name: "index_user_to_interests_on_interest_id", using: :btree
+  add_index "user_to_interests", ["user_id"], name: "index_user_to_interests_on_user_id", using: :btree
 
   create_table "user_to_project_tasks", force: :cascade do |t|
     t.integer  "user_id"
@@ -81,6 +124,16 @@ ActiveRecord::Schema.define(version: 20150302014459) do
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
   end
+
+  create_table "user_to_skills", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "skill_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "user_to_skills", ["skill_id"], name: "index_user_to_skills_on_skill_id", using: :btree
+  add_index "user_to_skills", ["user_id"], name: "index_user_to_skills_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "username"
@@ -100,6 +153,16 @@ ActiveRecord::Schema.define(version: 20150302014459) do
     t.string   "image"
     t.string   "description"
     t.string   "phone"
+    t.boolean  "confirmed"
+    t.string   "confirm_code"
+    t.string   "school"
+    t.string   "school_email"
+    t.string   "industry"
   end
 
+  add_foreign_key "positions", "projects"
+  add_foreign_key "user_to_interests", "interests"
+  add_foreign_key "user_to_interests", "users"
+  add_foreign_key "user_to_skills", "skills"
+  add_foreign_key "user_to_skills", "users"
 end

@@ -10,6 +10,7 @@ class PositionsController < ApplicationController
   # GET /positions/1
   # GET /positions/1.json
   def show
+    @filled = @position.filled
   end
 
   # GET /positions/new
@@ -28,7 +29,7 @@ class PositionsController < ApplicationController
 
     respond_to do |format|
       if @position.save
-        format.html { redirect_to @position, notice: 'Position was successfully created.' }
+        format.html { redirect_to project_path(params[:project_id]), notice: 'Position was successfully created.' }
         format.json { render :show, status: :created, location: @position }
       else
         format.html { render :new }
@@ -42,7 +43,7 @@ class PositionsController < ApplicationController
   def update
     respond_to do |format|
       if @position.update(position_params)
-        format.html { redirect_to @position, notice: 'Position was successfully updated.' }
+        format.html { redirect_to project_path(params[:project_id]), notice: 'Position was successfully updated.' }
         format.json { render :show, status: :ok, location: @position }
       else
         format.html { render :edit }
@@ -56,7 +57,7 @@ class PositionsController < ApplicationController
   def destroy
     @position.destroy
     respond_to do |format|
-      format.html { redirect_to positions_url, notice: 'Position was successfully destroyed.' }
+      format.html { redirect_to project_path(params[:project_id]), notice: 'Position was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -69,6 +70,6 @@ class PositionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def position_params
-      params.require(:position).permit(:description, :projects_id)
+      params.require(:position).permit(:description, :project_id)
     end
 end
