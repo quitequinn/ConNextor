@@ -22,6 +22,8 @@ Rails.application.routes.draw do
 
   resources :user_to_projects
 
+  resources :asana
+
   # get 'projects/new'
 
   # The priority is based upon order of creation: first created -> highest priority.

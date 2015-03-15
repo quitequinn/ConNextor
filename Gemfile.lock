@@ -30,6 +30,10 @@ GEM
       activemodel (= 4.2.0)
       activesupport (= 4.2.0)
       arel (~> 6.0)
+    activeresource (4.0.0)
+      activemodel (~> 4.0)
+      activesupport (~> 4.0)
+      rails-observers (~> 0.1.1)
     activesupport (4.2.0)
       i18n (~> 0.7)
       json (~> 1.7, >= 1.7.7)
@@ -37,6 +41,8 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     arel (6.0.0)
+    asana (0.0.6)
+      activeresource (>= 3.2.3)
     autoprefixer-rails (5.1.7)
       execjs
       json
@@ -168,6 +174,8 @@ GEM
       rails-deprecated_sanitizer (>= 1.0.1)
     rails-html-sanitizer (1.0.1)
       loofah (~> 2.0)
+    rails-observers (0.1.2)
+      activemodel (~> 4.0)
     rails_12factor (0.0.3)
       rails_serve_static_assets
       rails_stdout_logging
@@ -235,6 +243,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  asana
   autoprefixer-rails
   bcrypt (~> 3.1.7)
   better_errors

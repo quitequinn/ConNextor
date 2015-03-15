@@ -132,8 +132,6 @@ ActiveRecord::Schema.define(version: 20150308215254) do
     t.string   "image"
     t.string   "description"
     t.string   "phone"
-    t.boolean  "confirmed"
-    t.string   "confirm_code"
     t.string   "school"
     t.string   "school_email"
     t.string   "industry"
