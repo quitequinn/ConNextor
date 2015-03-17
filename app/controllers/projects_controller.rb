@@ -1,6 +1,5 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
-  before_action :set_user_project_env, only: [:show, :edit, :update, :destroy]
   before_action :set_user_project_follow, only: [:show, :edit, :update, :destroy]
 
   # GET /projects
@@ -13,6 +12,12 @@ class ProjectsController < ApplicationController
   # GET /projects/1.json
   def show
     @positions = @project.positions
+    @user_to_project = UserToProject.find_by user: current_user, project: @project
+    if @user_to_project
+      @is_owner = @user_to_project.project_user_class == ProjectUserClass::OWNER
+      @is_core_member = @user_to_project.project_user_class == ProjectUserClass::CORE_MEMBER
+      @is_contributor = @user_to_project.project_user_class == ProjectUserClass::CONTRIBUTOR
+    end
   end
 
   # GET /projects/new

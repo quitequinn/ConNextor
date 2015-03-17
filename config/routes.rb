@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  resources :requests
+
+  resources :activities
+
   get 'control_panel/home'
 
   resources :user_to_project_tasks
@@ -22,7 +26,7 @@ Rails.application.routes.draw do
   get "log_out" => "sessions#destroy", :as => "log_out"
   get "log_in" => "sessions#new", :as => "log_in"
   get "sign_up" => "users#new", :as => "sign_up"
-  root 'welcome#index'
+  root 'control_panel/home'
   resources :users do
     resources :notifications
   end

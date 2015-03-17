@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Receiver:</strong>
+  <%= @request.receiver_id %>
+</p>
+
+<p>
+  <strong>Sender:</strong>
+  <%= @request.sender_id %>
+</p>
+
+<p>
+  <strong>Request type:</strong>
+  <%= @request.request_type %>
+</p>
+
+<p>
+  <strong>Request type:</strong>
+  <%= @request.request_type_id %>
+</p>
+
+<p>
+  <strong>Message:</strong>
+  <%= @request.message %>
+</p>
+
+<p>
+  <strong>Link:</strong>
+  <%= @request.link %>
+</p>
+
+<%= link_to 'Edit', edit_request_path(@request) %> |
+<%= link_to 'Back', requests_path %>

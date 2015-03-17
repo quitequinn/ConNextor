@@ -34,17 +34,6 @@ ActiveRecord::Schema.define(version: 20150315193418) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "notifications", force: :cascade do |t|
-    t.integer  "receiver_id"
-    t.integer  "sender_id"
-    t.string   "message"
-    t.string   "link"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.integer  "project_id"
-    t.integer  "position_id"
-  end
-
   create_table "positions", force: :cascade do |t|
     t.string   "description"
     t.integer  "project_id"
