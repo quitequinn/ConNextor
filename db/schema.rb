@@ -11,10 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150315193418) do
+ActiveRecord::Schema.define(version: 20150317035718) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "activities", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "activity_type"
+    t.integer  "source_id"
+    t.integer  "parent_id"
+    t.string   "parent_type"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "activities", ["user_id"], name: "index_activities_on_user_id", using: :btree
 
   create_table "identities", force: :cascade do |t|
     t.integer  "user_id"
@@ -33,6 +45,18 @@ ActiveRecord::Schema.define(version: 20150315193418) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "notifications", force: :cascade do |t|
+    t.integer "user_id"
+    t.string  "notification_type"
+    t.integer "actor_id"
+    t.string  "message"
+    t.string  "link"
+    t.string  "verb"
+    t.boolean "isRead"
+  end
+
+  add_index "notifications", ["user_id"], name: "index_notifications_on_user_id", using: :btree
 
   create_table "positions", force: :cascade do |t|
     t.string   "description"
@@ -73,6 +97,17 @@ ActiveRecord::Schema.define(version: 20150315193418) do
     t.string   "long_description"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
+  end
+
+  create_table "requests", force: :cascade do |t|
+    t.integer  "receiver_id"
+    t.integer  "sender_id"
+    t.string   "request_type"
+    t.integer  "request_type_id"
+    t.string   "message"
+    t.string   "link"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "skills", force: :cascade do |t|

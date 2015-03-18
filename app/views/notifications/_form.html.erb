@@ -12,12 +12,12 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :receiver_id %><br>
-    <%= f.number_field :receiver_id %>
+    <%= f.label :user_id %><br>
+    <%= f.number_field :user_id %>
   </div>
   <div class="field">
-    <%= f.label :sender_id %><br>
-    <%= f.number_field :sender_id %>
+    <%= f.label :actor_id %><br>
+    <%= f.number_field :actor_id %>
   </div>
   <div class="field">
     <%= f.label :message %><br>
@@ -26,6 +26,14 @@
   <div class="field">
     <%= f.label :link %><br>
     <%= f.text_field :link %>
+  </div>
+  <div class="field">
+    <%= f.label :notification_type %><br>
+    <%= f.text_field :notification_type %>
+  </div>
+  <div class="field">
+    <%= f.label :verb %><br>
+    <%= f.text_field :verb %>
   </div>
   <div class="actions">
     <%= f.submit %>

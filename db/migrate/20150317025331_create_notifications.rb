@@ -9,6 +9,5 @@ class CreateNotifications < ActiveRecord::Migration
       t.string :verb
       t.boolean :isRead
     end
-    add_foreign_key :notifications, :users
   end
 end

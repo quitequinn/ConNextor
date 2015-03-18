@@ -4,7 +4,7 @@ class NotificationsController < ApplicationController
   # GET /notifications
   # GET /notifications.json
   def index
-    @notifications = Notification.where(receiver_id: current_user_id);
+    @notifications = current_user.notifications
   end
 
   # GET /notifications/1
@@ -65,6 +65,6 @@ class NotificationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def notification_params
-      params.require(:notification).permit(:receiver_id, :sender_id, :message, :link)
+      params.require(:notification).permit(:user_id, :notification_type, :actor_id, :message, :link, :verb)
     end
 end

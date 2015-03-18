@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-  resources :requests
-
   resources :activities
 
   get 'control_panel/home'
@@ -26,17 +24,18 @@ Rails.application.routes.draw do
   get "log_out" => "sessions#destroy", :as => "log_out"
   get "log_in" => "sessions#new", :as => "log_in"
   get "sign_up" => "users#new", :as => "sign_up"
-  root 'control_panel/home'
+  root 'control_panel#home'
   resources :users do
     resources :notifications
+    resources :requests
   end
   resources :sessions
   resources :password_resets
   resources :projects do
     resources :positions
     post "join_project" => "projects#join_request", :as => "join_project"
-    post "accept_project" => "projects#accept_request", :as => "accept_project"
   end
+  post "accept_project" => "projects#accept_request", :as => "accept_project"
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
 

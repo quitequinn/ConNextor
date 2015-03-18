@@ -6,9 +6,7 @@ class CreateActivities < ActiveRecord::Migration
       t.integer :source_id
       t.integer :parent_id
       t.string :parent_type
-
       t.timestamps null: false
     end
-    add_foreign_key :activities, :users
   end
 end

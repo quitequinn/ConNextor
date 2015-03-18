@@ -7,7 +7,6 @@ class CreateRequests < ActiveRecord::Migration
       t.integer :request_type_id
       t.string :message
       t.string :link
-
       t.timestamps null: false
     end
   end

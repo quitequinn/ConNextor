@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
   has_many :user_project_follows, dependent: :destroy
   has_many :project_tasks
   has_many :identities
+  has_many :notifications
+  has_many :activities
 
   attr_accessor :password
   before_save :downcase_email, :encrypt_password
