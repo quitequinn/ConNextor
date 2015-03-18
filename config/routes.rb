@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  resources :project_comments
+
+  resources :project_posts
+
   resources :activities
 
   get 'control_panel/home'
