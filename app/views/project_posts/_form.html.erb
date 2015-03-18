@@ -1,4 +1,4 @@
-<%= form_for(@project_post) do |f| %>
+<%= form_for (@project_post), :url => url_for(:controller => 'project_posts', :action => 'create') do |f| %>
   <% if @project_post.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@project_post.errors.count, "error") %> prohibited this project_post from being saved:</h2>
@@ -12,12 +12,10 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :user_id %><br>
-    <%= f.text_field :user_id %>
+    <%= f.hidden_field :project_id, value: params[:project_id] %>
   </div>
   <div class="field">
-    <%= f.label :project_id %><br>
-    <%= f.text_field :project_id %>
+    <%= f.hidden_field :user_id, value: current_user_id %>
   </div>
   <div class="field">
     <%= f.label :text %><br>

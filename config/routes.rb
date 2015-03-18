@@ -1,9 +1,5 @@
 Rails.application.routes.draw do
 
-  resources :project_comments
-
-  resources :project_posts
-
   resources :activities
 
   get 'control_panel/home'
@@ -37,6 +33,9 @@ Rails.application.routes.draw do
   resources :password_resets
   resources :projects do
     resources :positions
+    resources :project_posts do
+      resources :project_comments
+    end
     post "join_project" => "projects#join_request", :as => "join_project"
   end
   post "accept_project" => "projects#accept_request", :as => "accept_project"

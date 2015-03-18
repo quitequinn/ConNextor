@@ -11,6 +11,7 @@ class PositionsController < ApplicationController
   # GET /positions/1.json
   def show
     @filled = @position.filled
+    
   end
 
   # GET /positions/new
@@ -70,6 +71,6 @@ class PositionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def position_params
-      params.require(:position).permit(:description, :project_id)
+      params.require(:position).permit(:description, :project_id, :position_type, :user_id)
     end
 end

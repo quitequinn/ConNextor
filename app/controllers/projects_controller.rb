@@ -12,6 +12,7 @@ class ProjectsController < ApplicationController
   # GET /projects/1.json
   def show
     @positions = @project.positions
+    @posts = @project.project_posts
     @user_to_project = UserToProject.find_by user: current_user, project: @project
     if @user_to_project
       @is_owner = @user_to_project.project_user_class == ProjectUserClass::OWNER
@@ -49,14 +50,15 @@ class ProjectsController < ApplicationController
   def accept_request
     user_id = accept_request_params[:user_id]
     position_id = accept_request_params[:position_id]
-    project_id = Position.find(position_id).project_id
+    position = Position.find(position_id)
+    project_id = position.project_id
     link = accept_request_params[:link]
     @project = Project.find(project_id)
     UserToProject.create( user_id: user_id, 
                           project_id: project_id, 
-                          project_user_class: ProjectUserClass::CORE_MEMBER )
+                          project_user_class: position.position_type )
 
-    Position.update(position_id, filled: true)
+    Position.update(position_id, filled: true, user_id: user_id)
     Notification.create( user_id: user_id, 
                          actor_id: current_user_id,
                          verb: 'joined project',

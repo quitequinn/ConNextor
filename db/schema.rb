@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150317035718) do
+ActiveRecord::Schema.define(version: 20150318065712) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,12 +61,37 @@ ActiveRecord::Schema.define(version: 20150317035718) do
   create_table "positions", force: :cascade do |t|
     t.string   "description"
     t.integer  "project_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
     t.boolean  "filled"
+    t.string   "position_type"
+    t.integer  "user_id"
   end
 
   add_index "positions", ["project_id"], name: "index_positions_on_project_id", using: :btree
+  add_index "positions", ["user_id"], name: "index_positions_on_user_id", using: :btree
+
+  create_table "project_comments", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "project_post_id"
+    t.string   "text"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "project_comments", ["project_post_id"], name: "index_project_comments_on_project_post_id", using: :btree
+  add_index "project_comments", ["user_id"], name: "index_project_comments_on_user_id", using: :btree
+
+  create_table "project_posts", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "project_id"
+    t.string   "text"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "project_posts", ["project_id"], name: "index_project_posts_on_project_id", using: :btree
+  add_index "project_posts", ["user_id"], name: "index_project_posts_on_user_id", using: :btree
 
   create_table "project_tags", force: :cascade do |t|
     t.string   "name"
@@ -185,6 +210,11 @@ ActiveRecord::Schema.define(version: 20150317035718) do
   end
 
   add_foreign_key "positions", "projects"
+  add_foreign_key "positions", "users"
+  add_foreign_key "project_comments", "project_posts"
+  add_foreign_key "project_comments", "users"
+  add_foreign_key "project_posts", "projects"
+  add_foreign_key "project_posts", "users"
   add_foreign_key "user_to_interests", "interests"
   add_foreign_key "user_to_interests", "users"
   add_foreign_key "user_to_skills", "skills"

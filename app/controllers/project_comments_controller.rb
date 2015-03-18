@@ -28,7 +28,7 @@ class ProjectCommentsController < ApplicationController
 
     respond_to do |format|
       if @project_comment.save
-        format.html { redirect_to @project_comment, notice: 'Project comment was successfully created.' }
+        format.html { redirect_to project_path(params[:project_id]), notice: 'Project comment was successfully created.' }
         format.json { render :show, status: :created, location: @project_comment }
       else
         format.html { render :new }
@@ -56,7 +56,7 @@ class ProjectCommentsController < ApplicationController
   def destroy
     @project_comment.destroy
     respond_to do |format|
-      format.html { redirect_to project_comments_url, notice: 'Project comment was successfully destroyed.' }
+      format.html { redirect_to project_path(params[:project_id]), notice: 'Project comment was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -69,6 +69,6 @@ class ProjectCommentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_comment_params
-      params.require(:project_comment).permit(:user_id, :ProjectPost_id, :text)
+      params.require(:project_comment).permit(:user_id, :project_post_id, :text)
     end
 end

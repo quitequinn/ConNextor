@@ -28,7 +28,7 @@ class ProjectPostsController < ApplicationController
 
     respond_to do |format|
       if @project_post.save
-        format.html { redirect_to @project_post, notice: 'Project post was successfully created.' }
+        format.html { redirect_to project_path(params[:project_id]), notice: 'Project post was successfully created.' }
         format.json { render :show, status: :created, location: @project_post }
       else
         format.html { render :new }
@@ -56,7 +56,7 @@ class ProjectPostsController < ApplicationController
   def destroy
     @project_post.destroy
     respond_to do |format|
-      format.html { redirect_to project_posts_url, notice: 'Project post was successfully destroyed.' }
+      format.html { redirect_to project_path(params[:project_id]), notice: 'Project post was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
