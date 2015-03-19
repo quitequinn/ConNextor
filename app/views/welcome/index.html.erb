@@ -4,9 +4,9 @@
     $(window).scroll(fadeInSectionImages);
     $(document).ready(function () {
         $('.scroll-to-invite').on('click', scrollToInvitation);
-        $('form[name="invitation"] select[name="source"]').change(changeFormAlternativeField);
+//        $('form[name="invitation"] select[name="source"]').change(changeFormAlternativeField);
     });
-    window.onload = fadeOutLoadingScreen;
+    document.body.onload = fadeOutLoadingScreen;
 </script>
 
 <!--Loading screen-->
@@ -35,8 +35,9 @@
       <p>A community that unites young talents to work on potentially world-changing projects and advancing their career with real life experiences.</p>
     </div>
   </div>
+
   <div class="row separator">
-    <div class="logo-img block-center"></div>
+    <div class="logo-img-background block-center"></div>
   </div>
 
   <!--Sections-->
@@ -54,7 +55,7 @@
   </div>
   <div class="row sections section3">
     <div class="col-sm-6 col-sm-push-6 col-md-5 col-md-push-7 col-lg-4 col-lg-push-8 section-txt">
-      <p>Advance your career by making an impact innovating things that you care about</p>
+      <p>Advance your career by making an impact on things that you care about</p>
     </div>
     <div class="col-sm-6 col-sm-pull-6 col-md-7 col-md-pull-5 col-lg-8 col-lg-pull-4 section-img fade-in"></div>
   </div>
@@ -90,18 +91,18 @@
         <input name="name" type="text" class="input-upright" placeholder="Full Name" />
         <input name="email" type="text" class="input-upright" placeholder="Email Address" />
       </div>
-      <div class="row">
-        <select name="source" class="select-upright">
-          <option value="placeholder" selected disabled>Where you heard of us</option>
-          <option value="conference">Conference</option>
-          <option value="incubator">Incubator</option>
-          <option value="university">University</option>
-          <option value="society">Club or Society</option>
-          <option value="friend">Friend Referral</option>
-          <option value="other">Other</option>
-        </select>
-        <input name="source-alt" class="input-upright" placeholder="Please Specify" />
-      </div>
+      <!--<div class="row">-->
+        <!--<select name="source" class="select-upright">-->
+          <!--<option value="placeholder" selected disabled>Where you heard of us</option>-->
+          <!--<option value="conference">Conference</option>-->
+          <!--<option value="incubator">Incubator</option>-->
+          <!--<option value="university">University</option>-->
+          <!--<option value="society">Club or Society</option>-->
+          <!--<option value="friend">Friend Referral</option>-->
+          <!--<option value="other">Other</option>-->
+        <!--</select>-->
+        <!--<input name="source-alt" class="input-upright" placeholder="Please Specify" />-->
+      <!--</div>-->
       <div class="row">
         <button type="submit" class="btn-inverse invite-submit">Submit</button>
       </div>

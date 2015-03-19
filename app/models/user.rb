@@ -4,18 +4,31 @@ class User < ActiveRecord::Base
   has_many :user_project_follows, dependent: :destroy
   has_many :project_tasks
   has_many :identities
+  has_many :user_to_interests
+  has_many :user_to_skills
+  has_many :interests, through: :user_to_interests
+  has_many :skills, through: :user_to_skills
   has_many :notifications
   has_many :activities
   has_many :project_posts
   has_many :project_comments
 
   attr_accessor :password
+  attr_writer :current_step
   before_save :downcase_email, :encrypt_password
   validates_confirmation_of :password
   validates_presence_of :password
   validates_presence_of :email, :on => :create
   validates_uniqueness_of :email, :on => :create
   before_create { generate_remember_token(:remember_token) }
+
+  def self.search(search)
+    if search
+      where('first_name LIKE ? OR last_name LIKE ?', "%#{search}%", "%#{search}%")
+    else
+      self
+    end
+  end
   
   def self.authenticate(email, password)
     user = find_by_email(email)
@@ -66,6 +79,35 @@ class User < ActiveRecord::Base
     self.update_column(:password_reset_sent_at, Time.zone.now)
     UserMailer.send_password_reset_mail(self).deliver
   end
+
+  ##########Registration############
+
+  def current_step
+    @current_step || steps.first
+  end
+  
+  def steps
+    %w[first second third fourth] 
+    #%w[first second fourth]
+  end
+
+  def next_step
+    self.current_step = steps[steps.index(current_step)+1]
+  end
+
+  def previous_step
+    self.current_step = steps[steps.index(current_step)-1]
+  end
+
+  def first_step?
+    current_step == steps.first
+  end
+
+  def last_step?
+    current_step == steps.last
+  end
+
+  ######################################
 
 end
 

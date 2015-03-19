@@ -4,7 +4,7 @@ $secondary-color:       #888888;
 $secondary-fg-color:    #BBBBBB;
 $secondary-bg-color:    #EAEAEA;
 $warning-color:         #f98152;
-$font-family:           omnes-regular;
+$font-family:           omnes;
 $font-size-misc:        20px;
 $font-size-text:        20px;
 $font-size-about:       26px;
@@ -12,9 +12,13 @@ $font-size-section:     30px;
 $font-size-banner:      30px;
 $font-size-heading:     35px;
 $font-size-main:        40px;
-$font-weight-misc:      600;
-$font-weight-text:      500;
-$font-weight-main:      700;
+$font-weight-misc:      500;
+$font-weight-text:      400;
+$font-weight-main:      500;
+$font-weight-banner:    600;
+$navbar-height:         57px;
+$navbar-default-bg:     white;
+
 
 @mixin transition-all-ease($time) {
   -webkit-transition: all $time ease;

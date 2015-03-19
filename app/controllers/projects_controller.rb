@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-  before_action :set_project, only: [:show, :edit, :update, :destroy]
+  before_action :set_project, only: [:show, :edit, :update, :destroy] 
   before_action :set_user_project_follow, only: [:show, :edit, :update, :destroy]
 
   # GET /projects

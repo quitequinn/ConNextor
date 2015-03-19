@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+ruby '2.1.5'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails'         , '4.2.0'
@@ -7,6 +8,7 @@ gem 'rails'         , '4.2.0'
 gem 'pg'
 # Use SCSS for stylesheets
 gem 'sass-rails'    , '~> 5.0'
+gem 'compass-rails'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier'      , '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
@@ -44,6 +46,9 @@ gem 'thin'
 # gem 'capistrano-rails', group: :development
 
 group :development, :test do
+  gem 'better_errors' # better errors pages (https://github.com/charliesome/better_errors)
+  gem 'binding_of_caller' # console for better errors
+
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
 
@@ -57,11 +62,11 @@ group :development, :test do
   gem 'therubyracer'
   # Opens emails in the browser for easier testing
   # gem "letter_opener"
+  # gem 'ruby-debug-ide'
 end
 
 group :production do
   gem 'rails_12factor'
   gem 'unicorn'
 end
-
 

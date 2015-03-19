@@ -14,8 +14,13 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap-sprockets
+//= require undefined_prototypes
 //= require private_pub
 //= require_tree .
 
-
-
+// Fade out loading screen when page is loaded
+function fadeOutLoadingScreen() {
+    //console.log('why not?');
+    // Loading screen fadeout
+    $('.loading-screen').fadeOut();
+}

@@ -3,27 +3,43 @@ class UsersController < ApplicationController
   before_action :correct_user,   only: [:edit, :update]
 
   def new
+    session[:user_params] ||= {}
     @user = User.new
   end
 
   def create
-    @user = User.new(user_params)
-    if @user.save
-      if session[:identity_id]
-        identity = Identity.find(session[:identity_id])
-        identity.user = @user
-        identity.save()
-        session[:identity_id] = nil
+    session[:user_params].deep_merge!(user_params) if user_params
+    @user = User.new(session[:user_params])
+    @user.current_step = session[:reg_step]
+    @skills = Skill.all
+    @interests = Interest.all
+    
+    if params[:back_button]
+      @user.previous_step
+    elsif @user.last_step?
+      if @user.save
+        if session[:identity_id]
+          identity = Identity.find(session[:identity_id])
+          identity.user = @user
+          identity.save()
+          session[:identity_id] = nil
+        end
+        flash[:success] = "Signed up!"
+        session[:reg_step] = session[:user_params] = nil
+        redirect_to root_url and return
+      else
+        render 'new' and return
       end
-      flash[:success] = "Signed up!"
-      redirect_to root_url
     else
-      render 'new'
+      @user.next_step
     end
+    session[:reg_step] = @user.current_step
+    render 'new'
+
   end
 
   def index
-    @allusers = User.paginate(page: params[:page])
+    @allusers = User.search(params[:search]).paginate(page: params[:page])
   end
 
   def edit
@@ -47,7 +63,19 @@ class UsersController < ApplicationController
 
   private
     def user_params
-      params.require(:user).permit(:first_name, :last_name, :username, :email, :password, :password_confirmation)
+      params.require(:user).permit(
+        :first_name, 
+        :last_name, 
+        :username, 
+        :school,
+        :school_email,
+        :location,
+        :industry,
+        :email, 
+        :password, 
+        :password_confirmation,
+        :skill_ids=>[],
+        :interest_ids=>[] )
     end
 
     # Confirms a logged-in user.
