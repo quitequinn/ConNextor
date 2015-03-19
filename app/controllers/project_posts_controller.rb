@@ -28,6 +28,29 @@ class ProjectPostsController < ApplicationController
 
     respond_to do |format|
       if @project_post.save
+        project = @project_post.project
+        userToProjects = UserToProject.where(project_id: project.id)
+        javascript = "alert('#{current_user.email} has posted in #{project.title}');"
+
+        userToProjects.each do |userToProject|
+          Notification.create( user_id: userToProject.user_id, 
+                               actor_id: current_user_id,
+                               verb: 'posted on project',
+                               notification_type: 'ProjectPost',
+                               message: '#{current_user.email} has posted in #{project.title}', 
+                               link: '/projects/#{project.id}',
+                               isRead: false )
+          
+          PrivatePub.publish_to("/inbox/#{userToProject.user_id}",javascript)
+        end
+      
+        Activity.create( user_id: current_user_id,
+                         activity_type: 'post',
+                         source_id: @project_post.id,
+                         parent_id: project.id,
+                         parent_type: 'project')
+
+
         format.html { redirect_to project_path(params[:project_id]), notice: 'Project post was successfully created.' }
         format.json { render :show, status: :created, location: @project_post }
       else

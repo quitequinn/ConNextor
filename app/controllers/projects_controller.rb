@@ -13,6 +13,8 @@ class ProjectsController < ApplicationController
   def show
     @positions = @project.positions
     @posts = @project.project_posts
+    @activities = Activity.where( parent_id: @project.id)
+
     @user_to_project = UserToProject.find_by user: current_user, project: @project
     if @user_to_project
       @is_owner = @user_to_project.project_user_class == ProjectUserClass::OWNER
