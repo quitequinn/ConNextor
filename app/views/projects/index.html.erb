@@ -13,17 +13,7 @@
   </p>
 <% end %>
 
-<%= will_paginate @products %>
-
 <table class="pretty">
-  <tr>
-    <!-- sortable is a function that gives a togglable link for sorting or sorting in reverse -->
-    <!-- It can be found in helpers -->
-    <th><%= table_sort "title" %></th>
-    <th><%= table_sort "short_description" %></th>
-    <th><%= table_sort "long_description" %></th>
-    <!-- <th colspan="3"></th>  --> 
-  </tr>
 
   <% @projects.each do |project| %>
     <tr>
@@ -36,9 +26,6 @@
     </tr>
   <% end %>
 </table>
-
-
-<%= will_paginate @products %>
 
 
 
