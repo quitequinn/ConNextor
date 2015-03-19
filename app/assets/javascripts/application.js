@@ -15,6 +15,7 @@
 //= require turbolinks
 //= require bootstrap-sprockets
 //= require undefined_prototypes
+//= require private_pub
 //= require_tree .
 
 // Fade out loading screen when page is loaded

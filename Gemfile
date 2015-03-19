@@ -35,6 +35,10 @@ gem 'bootstrap-will_paginate'
 gem 'bootstrap-sass'
 gem 'autoprefixer-rails'
 
+# Used for notifications and real-time updates
+gem 'private_pub'
+gem 'thin'
+
 # Use Unicorn as the app server
 #gem 'unicorn'
 

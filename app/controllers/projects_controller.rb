@@ -1,19 +1,26 @@
 class ProjectsController < ApplicationController
-  before_action :set_project, only: [:show, :edit, :update, :destroy]
-  before_action :set_user_project_env, only: [:show, :edit, :update, :destroy]
+  before_action :set_project, only: [:show, :edit, :update, :destroy] 
   before_action :set_user_project_follow, only: [:show, :edit, :update, :destroy]
-  helper_method :sort_column_string, :sort_direction_string
-  # ^ declares both methods as helpers
 
   # GET /projects
   # GET /projects.json
   def index
-    @projects = Project.search(params[:search]).order( sort_column_string + ' ' + sort_direction_string ).paginate(:per_page => 30, :page => params[:page])
+    @projects = Project.all
   end
 
   # GET /projects/1
   # GET /projects/1.json
   def show
+    @positions = @project.positions
+    @posts = @project.project_posts
+    @activities = Activity.where( parent_id: @project.id)
+
+    @user_to_project = UserToProject.find_by user: current_user, project: @project
+    if @user_to_project
+      @is_owner = @user_to_project.project_user_class == ProjectUserClass::OWNER
+      @is_core_member = @user_to_project.project_user_class == ProjectUserClass::CORE_MEMBER
+      @is_contributor = @user_to_project.project_user_class == ProjectUserClass::CONTRIBUTOR
+    end
   end
 
   # GET /projects/new
@@ -23,6 +30,48 @@ class ProjectsController < ApplicationController
 
   # GET /projects/1/edit
   def edit
+  end
+
+  def join_request
+    sender_id = join_request_params[:user_id]
+    project_id = join_request_params[:project_id]
+    position_id = join_request_params[:position_id]
+    project_owner = UserToProject.find_by_project_id_and_project_user_class(project_id,ProjectUserClass::OWNER)
+    Request.create( receiver_id: project_owner.user_id, 
+                    sender_id: sender_id,
+                    request_type: 'project_position',
+                    request_type_id: position_id,
+                    message: "Hi, I would like to join your project", 
+                    link: "/users/#{sender_id}")
+
+    javascript = "alert('There is a person who wants to join your project');"
+    PrivatePub.publish_to("/inbox/#{project_owner.user_id}",javascript)
+    redirect_to Project.find(project_id)
+  end
+
+  def accept_request
+    user_id = accept_request_params[:user_id]
+    position_id = accept_request_params[:position_id]
+    position = Position.find(position_id)
+    project_id = position.project_id
+    link = accept_request_params[:link]
+    @project = Project.find(project_id)
+    UserToProject.create( user_id: user_id, 
+                          project_id: project_id, 
+                          project_user_class: position.position_type )
+
+    Position.update(position_id, filled: true, user_id: user_id)
+    Notification.create( user_id: user_id, 
+                         actor_id: current_user_id,
+                         verb: 'joined project',
+                         notification_type: 'ProjectPosition',
+                         message: "You have enjoyed a project", 
+                         link: "/projects/#{project_id}",
+                         isRead: false )
+
+    javascript = "alert('You have successfully joined #{@project.id}');"
+    PrivatePub.publish_to("/inbox/#{user_id}",javascript)
+    redirect_to Project.find(project_id)
   end
 
   # POST /projects
@@ -96,11 +145,12 @@ class ProjectsController < ApplicationController
     params.require(:project).permit(:title, :short_description, :long_description)
   end
 
-  def sort_column_string
-    Project.column_names.include?(params[:sort]) ? params[:sort] : "title"
+  def join_request_params
+    params.permit(:user_id, :project_id, :position_id)
   end
-  
-  def sort_direction_string
-    (params[:direction]=="asc" || params[:direction]=="desc")? params[:direction]  : "asc"
+
+  def accept_request_params
+    params.permit(:user_id, :position_id, :link)
   end
+
 end

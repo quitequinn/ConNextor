@@ -1,0 +1,27 @@
+<%= form_for (@project_comment), :url => url_for(:controller => 'project_comments', :action => 'create') do |f| %>
+  <% if @project_comment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@project_comment.errors.count, "error") %> prohibited this project_comment from being saved:</h2>
+
+      <ul>
+      <% @project_comment.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.hidden_field :user_id, value: current_user_id %>
+  </div>
+  <div class="field">
+    <%= f.hidden_field :project_post_id, value: params[:project_post_id] %>
+  </div>
+  <div class="field">
+    <%= f.label :text %><br>
+    <%= f.text_field :text %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

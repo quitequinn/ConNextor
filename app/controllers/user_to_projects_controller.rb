@@ -28,12 +28,6 @@ class UserToProjectsController < ApplicationController
   # POST /user_to_projects
   # POST /user_to_projects.json
   def create
-    # user_id = current_user_id # might be nil
-    # project = Project.find(params[:project_id]) # might throw exception
-    # project_user_class = UserToProject.user_classes[params[:method]]
-
-
-    # @user_to_project = UserToProject.new(user_id: user_id, project_id: project.id, project_user_class: project_user_class)
     @user_to_project = UserToProject.new(user_to_project_params)
 
     respond_to do |format|

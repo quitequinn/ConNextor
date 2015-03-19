@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @position.description %>
+</p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @position.position_type %>
+</p>
+
+<% if @filled %>
+  <p>This position is filled</p>
+<% else %>
+  <p>This position is unfilled</p>
+<%end%>
+
+<% if !@filled %>
+  <%= button_to 'Apply', project_join_project_path(user_id: current_user_id, project_id: params[:project_id], position_id: params[:id]) %>
+<% end %>
+
+<% if @is_owner %>
+  <%= link_to 'Edit', edit_project_position_path(params[:project_id],@position) %>
+<% end %>

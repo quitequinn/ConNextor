@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :activities
+
   resources :user_to_interests
 
   resources :user_to_skills
@@ -30,13 +32,21 @@ Rails.application.routes.draw do
   get "log_out" => "sessions#destroy", :as => "log_out"
   get "log_in" => "sessions#new", :as => "log_in"
   get "sign_up" => "users#new", :as => "sign_up"
-  # get "additional_info" => "sessions#newAdditionalInfo", :as => "additional_info"
-  # post "additional_info" => "sessions#createAdditionalInfo", :as => "create_additional_info"
   root 'welcome#index'
-  resources :users
+  resources :users do
+    resources :notifications
+    resources :requests
+  end
   resources :sessions
   resources :password_resets
-  resources :projects
+  resources :projects do
+    resources :positions
+    resources :project_posts do
+      resources :project_comments
+    end
+    post "join_project" => "projects#join_request", :as => "join_project"
+  end
+  post "accept_project" => "projects#accept_request", :as => "accept_project"
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
 

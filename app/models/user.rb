@@ -8,6 +8,10 @@ class User < ActiveRecord::Base
   has_many :user_to_skills
   has_many :interests, through: :user_to_interests
   has_many :skills, through: :user_to_skills
+  has_many :notifications
+  has_many :activities
+  has_many :project_posts
+  has_many :project_comments
 
   attr_accessor :password
   attr_writer :current_step
