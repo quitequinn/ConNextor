@@ -1,9 +1,9 @@
 <% provide(:title, 'Sign Up') %>
 
 <div class="container">
-  <h3>Welcome to ConNextor!</h3>
+  <h2>Welcome to ConNextor!</h2>
 
-  <%= form_for :user, url: users_path  do |f| %>
+  <%= form_for :user, url: users_path, html: {class: 'form-horizontal'} do |f| %>
       <% if @user.errors.any? %>
           <div class="error_messages">
             <h2>Form is invalid</h2>
@@ -14,13 +14,23 @@
             </ul>
           </div>
       <% end %>
-      <%= render "#{@user.current_step}_step", :f => f %>
 
-      <p class="button"><%= f.submit 'Continue', name: 'finish' %></p>
-      <p class="button"><%= f.submit 'Back', name: 'back_button' unless @user.first_step? %></p>
+      <%= render 'users/form_username_email', f: f %>
+
+      <%= render 'users/form_first_last_name', f: f %>
+
+      <% if @identity and @user.profile %>
+          <%= f.hidden_field :identity_id, value: @identity.id %>
+          <%= f.hidden_field :profile_id, value: @user.profile.id %>
+      <% else %>
+          <%= render 'users/form_password', f: f %>
+      <% end %>
+
+
+      <div class="form-group">
+        <div class="col-md-offset-3 col-md-6">
+          <%= f.submit 'Submit', name: 'finish', class: 'btn-upright' %>
+        </div>
+      </div>
   <% end %>
 </div>
-
-
-
-

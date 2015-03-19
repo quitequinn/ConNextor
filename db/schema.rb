@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150308215254) do
+ActiveRecord::Schema.define(version: 20150319003920) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,17 @@ ActiveRecord::Schema.define(version: 20150308215254) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "profiles", force: :cascade do |t|
+    t.string   "location"
+    t.string   "school"
+    t.string   "short_bio"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.string   "facebook_url"
+    t.string   "twitter_url"
+    t.string   "linkedin_url"
   end
 
   create_table "project_tags", force: :cascade do |t|
@@ -116,8 +127,6 @@ ActiveRecord::Schema.define(version: 20150308215254) do
 
   create_table "users", force: :cascade do |t|
     t.string   "username"
-    t.string   "first_name"
-    t.string   "last_name"
     t.string   "email"
     t.string   "password_hash"
     t.string   "password_salt"
@@ -126,17 +135,12 @@ ActiveRecord::Schema.define(version: 20150308215254) do
     t.string   "auth_token"
     t.string   "password_reset_token"
     t.datetime "password_reset_sent_at"
-    t.string   "name"
     t.string   "remember_token"
-    t.string   "location"
     t.string   "image"
-    t.string   "description"
-    t.string   "phone"
-    t.boolean  "confirmed"
-    t.string   "confirm_code"
-    t.string   "school"
-    t.string   "school_email"
-    t.string   "industry"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.integer  "profile_id"
+    t.boolean  "password_login"
   end
 
   add_foreign_key "user_to_interests", "interests"

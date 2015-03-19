@@ -1,0 +1,8 @@
+<div class="container">
+  <div class="form-group">
+    <%= f.hidden_field 'interest_ids', {multiple: true} %>
+    <% @interests.each do |a_value| %>
+        <div class="col-sm-2"> <%= f.check_box('interest_ids', {multiple: true, class: 'input-checkbox check-interests'}, a_value.id, nil) %> <%=a_value.name %> </div>
+    <% end %>
+  </div>
+</div>

@@ -24,6 +24,7 @@ html.turbolinks-progress-bar::before {
   height: 2px !important;
   z-index: 1032 !important;
 }
+
 html, body {
   height: 100%;
 }
@@ -103,15 +104,28 @@ body {
   float: right;
 }
 
-.input-base {
+.form-part-title {
+  font-size: $font-size-section;
+}
+
+.form-element-base {
   font-size: $font-size-misc;
   padding: 5px 20px 5px 20px;
   margin: 5px 5px 5px 5px;
-  border: solid $secondary-fg-color 1px;
-  width: 255px;
-  height: 40px;
   background: none;
+  height: 40px;
   color: black;
+}
+
+.input-label {
+  @extend .form-element-base;
+  font-weight: $font-weight-misc;
+}
+
+.input-base {
+  @extend .form-element-base;
+  min-width: 255px;
+  border: solid $secondary-fg-color 1px;
 }
 
 .input-upright {
@@ -164,10 +178,8 @@ body {
   border-color: $primary-color-light;
 }
 
-.border-rounded {
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  border-radius: 4px;
+.btn-border-rounded {
+  @include border-rounded(4px);
 }
 
 .block-center {

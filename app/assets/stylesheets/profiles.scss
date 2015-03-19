@@ -1,0 +1,25 @@
+// Place all the styles related to the profiles controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import "scss_constants";
+
+.profiles {
+  .cover-photo {
+    height: 300px;
+    background: image_url("cat-image.jpg") center;
+    background-size: cover;
+
+    .profile-header {
+      padding-top: 150px;
+
+      .profile-photo {
+        max-height: 150px;
+        max-width: 150px;
+        border: 5px solid white;
+        @include border-rounded(15px);
+        background: white;
+      }
+    }
+  }
+}
