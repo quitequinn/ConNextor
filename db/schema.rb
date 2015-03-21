@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150318065712) do
+ActiveRecord::Schema.define(version: 20150320054943) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,27 @@ ActiveRecord::Schema.define(version: 20150318065712) do
   end
 
   add_index "activities", ["user_id"], name: "index_activities_on_user_id", using: :btree
+
+  create_table "asana_identities", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "access_token"
+    t.string   "refresh_token"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "asana_identities", ["user_id"], name: "index_asana_identities_on_user_id", using: :btree
+
+  create_table "asana_projects", force: :cascade do |t|
+    t.integer  "project_id"
+    t.integer  "asana_project_id"
+    t.string   "workspace_id"
+    t.integer  "asana_user_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  add_index "asana_projects", ["project_id"], name: "index_asana_projects_on_project_id", using: :btree
 
   create_table "identities", force: :cascade do |t|
     t.integer  "user_id"

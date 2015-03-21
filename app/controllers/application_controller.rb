@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   include SessionsHelper
   include UserToProjectsHelper
+  include AsanaHelper
 
   helper_method :current_user, :current_user?, :logged_in?, :current_user_id
 

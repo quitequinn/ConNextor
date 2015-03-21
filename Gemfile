@@ -29,6 +29,7 @@ gem 'faker'
 gem 'omniauth-twitter'
 gem 'omniauth-facebook'
 gem 'omniauth-linkedin'
+gem 'omniauth-asana'
 
 # Use bootstrap to make fronted development easier
 gem 'bootstrap-will_paginate'

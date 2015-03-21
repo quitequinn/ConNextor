@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  project_id: 
+  asana_project_id: 1
+  workspace_id: MyString
+  asana_user_id: 1
+
+two:
+  project_id: 
+  asana_project_id: 1
+  workspace_id: MyString
+  asana_user_id: 1
