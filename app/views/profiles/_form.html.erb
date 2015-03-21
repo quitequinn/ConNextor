@@ -27,6 +27,20 @@
     <%= f.label :short_bio %><br>
     <%= f.text_field :short_bio %>
   </div>
+
+    <div class="form-group">
+      <%= f.label :school, {class: 'col-md-2 control-label input-label'} %>
+      <div class="col-md-6">
+        <%= f.text_field :school, {class: 'input-upright'} %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :location, {class: 'col-md-2 control-label input-label'} %>
+      <div class="col-md-6">
+        <%= f.text_field :location, {class: 'input-upright'} %>
+      </div>
+    </div>
   <div class="actions">
     <%= f.submit %>
   </div>

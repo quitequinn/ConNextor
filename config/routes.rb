@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
 
+  resources :profile_contacts
+
+  resources :profile_experiences
+
+  resources :profile_introductions
+
   resources :profiles
 
   resources :user_to_interests

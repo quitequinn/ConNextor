@@ -1,8 +1,18 @@
 <p class="profile-name">
   <%= @profile.user.first_name %> <%= @profile.user.last_name %>
+</p>
+
+<p class="profile-short-bio">
+  <%= @profile.short_bio %>
   <% if @user_is_owner_of_profile %>
-      <a href="#"><span class="glyphicon glyphicon-edit edit-icon"></span></a>
+      <a href="#"><span class="glyphicon glyphicon-edit edit-icon hidden-xs"></span></a>
   <% end %>
 </p>
-<p class="profile-short-bio"><%= @profile.short_bio %></p>
-<p class="profile-location"><span class="glyphicon glyphicon-map-marker"></span><%= @profile.location %></p>
+
+<p class="profile-location">
+  <span class="glyphicon glyphicon-map-marker hidden-xs"></span>
+  <%= @profile.location %>
+  <% if @user_is_owner_of_profile %>
+      <a href="#"><span class="glyphicon glyphicon-edit edit-icon hidden-xs"></span></a>
+  <% end %>
+</p>

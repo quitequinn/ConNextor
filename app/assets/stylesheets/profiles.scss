@@ -29,11 +29,13 @@ $tabs-offset:           20px;
         background: white;
         display:block;
         margin:auto;
-        z-index: 30;
       }
 
       .header-container {
         padding-top: $cover-photo-height - $profile-photo-height + $tabs-offset;
+        .info-container {
+          color: white;
+        }
       }
 
       .beside-profile-photo {
@@ -42,7 +44,6 @@ $tabs-offset:           20px;
     }
 
     .info-container {
-      color: white;
       .profile-name {
         padding-top: 3px;
         font-size: $font-size-header;
@@ -55,6 +56,9 @@ $tabs-offset:           20px;
           margin-right: 12px;
         }
       }
+      .edit-icon {
+        margin-left: 12px;
+      }
     }
 
     .profile-tabs {
@@ -63,5 +67,9 @@ $tabs-offset:           20px;
         margin-top: - $tabs-offset;
       }
     }
+  }
+
+  .introductions-container {
+
   }
 }
