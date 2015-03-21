@@ -10,7 +10,9 @@ class ProfilesController < ApplicationController
   # GET /profiles/1
   # GET /profiles/1.json
   def show
-    @user_is_owner_of_profile = @profile == current_user.profile
+    if current_user and @profile
+      @user_is_owner_of_profile = @profile == current_user.profile
+    end
   end
 
   # GET /profiles/new

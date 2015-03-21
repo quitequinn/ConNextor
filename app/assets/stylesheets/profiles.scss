@@ -4,21 +4,63 @@
 
 @import "scss_constants";
 
-.profiles {
-  .cover-photo {
-    height: 300px;
-    background: image_url("cat-image.jpg") center;
-    background-size: cover;
+$cover-photo-height:    200px;
+$profile-photo-height:  160px;
+$profile-photo-width:   160px;
+$profile-photo-border:  2px;
+$tabs-height:           40px;
+$tabs-offset:           20px;
 
-    .profile-header {
-      padding-top: 150px;
+.profiles {
+
+  .header {
+    .cover-photo {
+      height: $cover-photo-height;
+//      background-image: image_url("cat-image.jpg");
+      background-position: center;
+      background-size: cover;
 
       .profile-photo {
-        max-height: 150px;
-        max-width: 150px;
-        border: 5px solid white;
-        @include border-rounded(15px);
+        height: $profile-photo-height;
+        width: $profile-photo-width;
+        object-fit: cover;
+        border: $profile-photo-border solid white;
+        @include border-rounded(10px);
         background: white;
+        display:block;
+        margin:auto;
+        z-index: 30;
+      }
+
+      .header-container {
+        padding-top: $cover-photo-height - $profile-photo-height + $tabs-offset;
+      }
+
+      .beside-profile-photo {
+        max-height: $profile-photo-height - $tabs-offset;
+      }
+    }
+
+    .info-container {
+      color: white;
+      .profile-name {
+        padding-top: 3px;
+        font-size: $font-size-header;
+      }
+      .profile-short-bio {
+        font-size: $font-size-subheader;
+      }
+      .profile-location {
+        .glyphicon-map-marker {
+          margin-right: 12px;
+        }
+      }
+    }
+
+    .profile-tabs {
+      height: $tabs-height;
+      .tabs-columns {
+        margin-top: - $tabs-offset;
       }
     }
   }

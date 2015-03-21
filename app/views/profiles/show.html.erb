@@ -1,27 +1,41 @@
-<p id="notice"><%= notice %></p>
-
-<div class="cover-photo">
-  <div class="container profile-header">
-    <div class="col-md-offset-1 col-md-2">
-      <%= image_tag 'team/david-resized.png', class: 'profile-photo' %>
+<div class="header">
+  <div class="cover-photo" style="background-image: url(<%= image_path('cats/abstract-background.jpg') %>)">
+    <div class="container header-container">
+      <div class="col-sm-3 profile-photo-container">
+        <%= image_tag 'cats/cat-profile.jpg', class: 'profile-photo' %>
+      </div>
+      <div class="col-sm-9 hidden-xs info-container beside-profile-photo">
+        <%= render 'profile_header_info' %>
+      </div>
     </div>
+  </div>
+  <div class="container profile-tabs">
+    <div class="col-sm-offset-3 col-sm-9 hidden-xs tabs-columns">
+      <ul class="nav nav-tabs">
+        <li role="presentation" class="active"><a href="#">link1</a></li>
+        <li role="presentation"><a href="#">link2</a></li>
+        <li role="presentation"><a href="#">link3</a></li>
+        <li role="presentation"><a href="#">link4</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="">
+
   </div>
 </div>
 
-<p>
-  <strong>Location:</strong>
-  <%= @profile.location %>
-</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-9" role="main">
+      <p>Marfa mumblecore bicycle rights yr farm-to-table readymade Wes Anderson, authentic meggings gentrify American Apparel forage mixtape dreamcatcher. Actually single-origin coffee chambray, Etsy brunch Marfa shabby chic biodiesel Odd Future Shoreditch artisan occupy Wes Anderson. Lo-fi fap drinking vinegar, YOLO 8-bit Bushwick kogi banjo leggings food truck. Seitan YOLO blog, slow-carb selvage PBR&B try-hard Etsy. Retro quinoa banjo Neutra PBR, Vice taxidermy kitsch Godard. Slow-carb 8-bit tote bag quinoa small batch, Kickstarter literally VHS mixtape cliche Tumblr heirloom fap scenester. Skateboard XOXO locavore meh.</p>
+      <p>Paleo four dollar toast health goth flexitarian Thundercats. Brooklyn chia cliche put a bird on it migas forage. Gastropub mixtape kogi organic. Plaid hoodie +1 meditation, DIY Pinterest four loko try-hard PBR pork belly lumbersexual deep v organic Brooklyn. Yr selvage cred, art party small batch artisan sartorial forage. Hoodie bespoke salvia, roof party kogi cray paleo four dollar toast direct trade mustache cardigan meditation polaroid food truck Neutra. Plaid Godard umami semiotics cronut, biodiesel swag.</p>
+      <p>Twee brunch 3 wolf moon Neutra readymade. Kickstarter you probably haven't heard of them +1 PBR pour-over, Shoreditch pug iPhone. Shabby chic street art Echo Park squid, YOLO XOXO Marfa Banksy tote bag irony banh mi cornhole. Letterpress four dollar toast Marfa banh mi selvage. Deep v tattooed Pinterest fanny pack viral Helvetica, beard banh mi listicle yr Truffaut. Austin bicycle rights post-ironic, fingerstache pickled vegan art party lumbersexual cray. Ugh food truck lo-fi biodiesel cardigan.</p>
+    </div>
+    <div class="col-md-3 hidden-xs hidden-sm" role="complementary">
+      <p>Helvetica pickled try-hard, skateboard Thundercats hashtag McSweeney's lumbersexual jean shorts squid. Mlkshk DIY flannel street art readymade farm-to-table, Vice jean shorts. Semiotics DIY keytar, tofu Etsy locavore pickled pug meh quinoa. Heirloom sriracha bitters pickled small batch. Tousled mumblecore messenger bag wolf art party typewriter keffiyeh banh mi irony lo-fi. Meggings literally mumblecore kogi cray cold-pressed wayfarers. Williamsburg craft beer taxidermy, pop-up you probably haven't heard of them PBR iPhone American Apparel meditation selvage.</p>
+    </div>
+  </div>
 
-<p>
-  <strong>School:</strong>
-  <%= @profile.school %>
-</p>
+  <%= link_to 'Back', profiles_path %>
 
-<p>
-  <strong>Short bio:</strong>
-  <%= @profile.short_bio %>
-</p>
-
-<%= link_to 'Edit', edit_profile_path(@profile) %> |
-<%= link_to 'Back', profiles_path %>
+</div>

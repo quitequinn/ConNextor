@@ -1,0 +1,8 @@
+<p class="profile-name">
+  <%= @profile.user.first_name %> <%= @profile.user.last_name %>
+  <% if @user_is_owner_of_profile %>
+      <a href="#"><span class="glyphicon glyphicon-edit edit-icon"></span></a>
+  <% end %>
+</p>
+<p class="profile-short-bio"><%= @profile.short_bio %></p>
+<p class="profile-location"><span class="glyphicon glyphicon-map-marker"></span><%= @profile.location %></p>
