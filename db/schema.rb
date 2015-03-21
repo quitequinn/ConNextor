@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150320054943) do
+ActiveRecord::Schema.define(version: 20150321195724) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,8 @@ ActiveRecord::Schema.define(version: 20150320054943) do
     t.string   "refresh_token"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.string   "provider"
+    t.string   "uid"
   end
 
   add_index "asana_identities", ["user_id"], name: "index_asana_identities_on_user_id", using: :btree
@@ -42,9 +44,10 @@ ActiveRecord::Schema.define(version: 20150320054943) do
     t.integer  "project_id"
     t.integer  "asana_project_id"
     t.string   "workspace_id"
-    t.integer  "asana_user_id"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.integer  "asana_user_id",    limit: 8
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.integer  "user_id"
   end
 
   add_index "asana_projects", ["project_id"], name: "index_asana_projects_on_project_id", using: :btree

@@ -6,6 +6,8 @@ Rails.application.routes.draw do
 
   get 'asana/show'
 
+  post "asana_integrate" => "asana#integrate", :as => "asana_integrate"
+
   resources :activities
 
   resources :user_to_interests
