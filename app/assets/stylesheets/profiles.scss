@@ -40,6 +40,12 @@ $tabs-offset:           20px;
 
       .beside-profile-photo {
         max-height: $profile-photo-height - $tabs-offset;
+        .edit-icon {
+          color: white;
+        }
+        .edit-icon:hover {
+          color: $primary-color;
+        }
       }
     }
 
@@ -58,6 +64,7 @@ $tabs-offset:           20px;
       }
       .edit-icon {
         margin-left: 12px;
+
       }
     }
 
@@ -69,7 +76,4 @@ $tabs-offset:           20px;
     }
   }
 
-  .introductions-container {
-
-  }
 }

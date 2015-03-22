@@ -1,0 +1,6 @@
+<div class="element-introduction">
+  <%= form_for profile_introduction, remote: true do |f| %>
+    <%= f.text_area :body, placeholder: 'Foo bar...' %>
+    <%= f.submit %>
+  <% end %>
+</div>

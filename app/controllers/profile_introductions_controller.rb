@@ -1,5 +1,6 @@
+
 class ProfileIntroductionsController < ApplicationController
-  before_action :set_profile_introduction, only: [:show, :edit, :update, :destroy]
+  before_action :set_profile_introduction, only: [:show, :swap, :edit, :update, :destroy]
 
   # GET /profile_introductions
   # GET /profile_introductions.json
@@ -21,14 +22,24 @@ class ProfileIntroductionsController < ApplicationController
   def edit
   end
 
+  # AJAX purposes only.
+  # GET /profile_introduction/swap/1
+  def swap
+    respond_to do |format|
+      format.js
+    end
+  end
+
   # POST /profile_introductions
   # POST /profile_introductions.json
   def create
     @profile_introduction = ProfileIntroduction.new(profile_introduction_params)
-
+    @profile = @profile_introduction.profile
+    @user_is_owner_of_profile = @profile == current_user.profile
     respond_to do |format|
       if @profile_introduction.save
         format.html { redirect_to @profile_introduction, notice: 'Profile introduction was successfully created.' }
+        format.js
         format.json { render :show, status: :created, location: @profile_introduction }
       else
         format.html { render :new }
@@ -40,9 +51,12 @@ class ProfileIntroductionsController < ApplicationController
   # PATCH/PUT /profile_introductions/1
   # PATCH/PUT /profile_introductions/1.json
   def update
+    @profile = @profile_introduction.profile
+    @user_is_owner_of_profile = @profile == current_user.profile
     respond_to do |format|
       if @profile_introduction.update(profile_introduction_params)
         format.html { redirect_to @profile_introduction, notice: 'Profile introduction was successfully updated.' }
+        format.js
         format.json { render :show, status: :ok, location: @profile_introduction }
       else
         format.html { render :edit }

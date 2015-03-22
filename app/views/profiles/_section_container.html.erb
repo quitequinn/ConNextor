@@ -1,0 +1,18 @@
+<%
+   section_dashed = section_title.downcase.gsub ' ', '-'
+   section_upper = section_title.upcase
+
+   if elements and elements.any?
+%>
+
+    <div id="<%= section_dashed %>" class="section-container">
+      <p class="section-title hidden-xs"><%= section_upper %></p>
+      <p class="section-title text-center visible-xs-block"><%= section_upper %></p>
+      <% elements.each do |element| %>
+        <div id="<%= "#{section_dashed}-#{element.id}" %>">
+          <%= render element %>
+        </div>
+      <% end %>
+    </div>
+
+<% end %>

@@ -46,7 +46,7 @@ class ProfilesController < ApplicationController
   # PATCH/PUT /profiles/1.json
   def update
     unless current_user.profile == @profile
-      redirect_to @user, notice: 'permissions not right'
+      redirect_to current_user.profile, notice: 'permissions not right'
     end
 
     respond_to do |format|

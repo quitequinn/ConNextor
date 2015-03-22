@@ -1,5 +1,9 @@
 class Profile < ActiveRecord::Base
   has_one :user
+  has_one :profile_introduction
+  has_many :profile_experiences
+  has_many :profile_contacts
+
   accepts_nested_attributes_for :user
 
   ##########Registration############

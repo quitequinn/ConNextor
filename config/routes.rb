@@ -6,6 +6,8 @@ Rails.application.routes.draw do
 
   resources :profile_introductions
 
+  get 'profile_introduction/swap/:id', to: 'profile_introductions#swap'
+
   resources :profiles
 
   resources :user_to_interests
