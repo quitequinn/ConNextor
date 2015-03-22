@@ -1,0 +1,69 @@
+// Place all the styles related to the profiles controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import "scss_constants";
+
+.profiles {
+  border: 50px solid;
+  border-color: white;
+
+  .form-group{
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+  }
+  a{
+    margin-left: auto;
+    margin-right: auto;
+    margin: 0 auto;
+  }
+  p{
+    font-size: 20px;
+    font-weight: 500;
+  }
+
+  .input-upright{
+    border: 0px solid;
+    background: white;
+  }
+  .input-checkbox{
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  .col-md-4{
+    border-radius: 20px;
+    border: 10px solid;
+    border-color: $primary-color-light;
+    background-color: white; 
+  }
+  .check-box-area{
+    border-radius: 25px;
+    background-color:  $primary-color-light;
+    border: 25px solid; 
+    border-color: $primary-color-light;
+  }
+
+  .textinput-area{
+    background-color: $primary-color-light;
+    border-radius: 45px;
+    border: 20px solid; 
+    border-color: white;
+    margin-top: 60px;
+  }
+  .inner-box-textinput{
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
+  .main-section{
+    margin-bottom: 30px;
+  }
+  .skip{
+    text-align: center;
+    margin-left: 60px;
+  }
+  .submit{
+    margin-bottom: 5px;
+  }
+}

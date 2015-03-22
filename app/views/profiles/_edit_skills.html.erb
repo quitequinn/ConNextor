@@ -1,8 +1,7 @@
-<div class="container">
+
   <div class="form-group">
     <%= f.hidden_field 'skill_ids', {multiple: true} %>
     <% @skills.each do |a_value| %>
-      <div class="col-sm-2"> <%= f.check_box('skill_ids', {multiple: true, class: 'input-checkbox check-skills'}, a_value.id, nil) %> <%=a_value.name %> </div>
+      <div class="col-md-4"> <%= f.check_box('skill_ids', {multiple: true, class: 'input-checkbox check-skills'}, a_value.id, nil) %> <%=a_value.name %> </div>
     <% end %>
   </div>
-</div>
