@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :user_follows
+
   resources :activities
 
   resources :user_to_interests
