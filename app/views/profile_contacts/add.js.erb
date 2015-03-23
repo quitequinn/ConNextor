@@ -1,4 +1,4 @@
-var existing = document.getElementById('contacts-new');
+var existing = document.getElementById('contact-new');
 if (existing == null) {
     document.getElementById('contacts-body')
             .insertAdjacentHTML('beforeend', '<%= j render 'new_profile_contact', profile_contact: @profile_contact %>');
