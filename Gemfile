@@ -39,6 +39,9 @@ gem 'autoprefixer-rails'
 gem 'private_pub'
 gem 'thin'
 
+# Used for locations
+gem 'carmen'
+
 # Use Unicorn as the app server
 #gem 'unicorn'
 

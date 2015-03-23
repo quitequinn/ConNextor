@@ -8,6 +8,14 @@
 UserToProject.destroy_all
 UserProjectFollow.destroy_all
 User.destroy_all
+Skill.destroy_all
+Interest.destroy_all
+ProjectComment.destroy_all
+ProjectPost.destroy_all
+ProjectPost.destroy_all
+ProjectToTag.destroy_all
+ProjectTag.destroy_all
+# This v is causing problems with a standard seed, no idea why. it says a column doesnt exist, tried to delete everything but nothing happened.
 Project.destroy_all
 
 def anyEmpty(*stuff)
@@ -82,6 +90,39 @@ def generate_random_sequence( seq_size=0 )
   return res
 end
 
+def seed_users_projects( tot_users=0, tot_projects=0 )
+  # Creates tot_users random users
+  # tot_projects = [ tot_users, tot_projects ].min
+  first_user_id = 0
+  first_project_id = 0
+  
+  for n in 1..tot_users
+    created_user = seed_user( Faker::Name.name, "user-#{n}", "foobar" )
+    if n==1
+      first_user_id = created_user.id
+    end
+    # Creates a project for the first tot_projects users
+    if n <= tot_projects
+      created_project = seed_project( Faker::App.name, Faker::Company.catch_phrase, Faker::Lorem.sentence(25) )
+      seed_relationship(created_user.id, created_project.id)
+      if n==1
+         first_project_id = created_project.id
+      end
+    end
+  end
+
+  # Creates random follows from users to projects
+  for i in 1..tot_users do
+    projectList = generate_random_sequence( tot_projects )
+    for j in 1..tot_projects do
+      if projectList[j]==1
+        seed_follow( i + first_user_id - 1, j + first_project_id - 1 )
+      end
+    end
+  end
+
+  return 1
+end
 
 seed_skill('frontend')
 seed_skill('backend')
@@ -96,3 +137,5 @@ seed_interest('design')
 seed_interest('logic')
 seed_interest('management')
 seed_interest('business')
+
+seed_users_projects( 200, 70 ) 
