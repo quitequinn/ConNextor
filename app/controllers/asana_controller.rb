@@ -27,7 +27,7 @@ class AsanaController < ApplicationController
     auth = env['omniauth.auth']
     @asanaIdentity = AsanaIdentity.find_with_omniauth(auth)
     @asanaIdentity = AsanaIdentity.create_with_omniauth(auth, current_user_id) if @asanaIdentity.nil?
-
+    # get new token using refresh token if current token as expired
     redirect_to :action => 'show'
   end
 

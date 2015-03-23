@@ -3,18 +3,10 @@
 <%= form_for :asanaProject, url: asana_integrate_path do |f| %>
   <%= f.hidden_field :asana_user_id, :value => @asana_user_id%>
   <h2> Choose your Asana Workspace </h2>
-  <select name="workspace_id">
-      <% @workspaces['data'].each do |workspace| %>
-          <option value="<%= workspace['id'] %>"><%= workspace['name'] %></option>
-      <% end %>
-  </select>
-
+  <%= f.select :workspace_id, @workspaces['data'].collect{ |u| [ u['name'], u['id'] ] } %>
+ 
   <h2> Choose your current project </h2>
-  <select name="project_id">
-      <% @projects.each do |project| %>
-          <option value="<%= project.id %>"><%= project.title %></option>
-      <% end %>
-  </select>
+  <%= f.select :project_id, @projects.collect{ |u| [u.title, u.id] } %>
     
   <p class="button"><%= f.submit "Integrate" %></p>
 <% end %>
