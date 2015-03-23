@@ -28,14 +28,26 @@
   <div class="row">
     <div class="col-md-9" role="main">
       <%= render 'section_container', section_title: 'introduction', elements: [@profile.profile_introduction] %>
+      <%= render 'section_container', section_title: 'experiences', elements: @profile.profile_experiences %>
+      <%= render 'section_container', section_title: 'contacts', elements: @profile.profile_contacts %>
     </div>
     <div class="col-md-3 hidden-xs hidden-sm" role="complementary">
       <ul>
-        <li><a href="#introduction">Introduction</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#experiences">Experiences</a></li>
-        <li><a href="#contacts">Contacts</a></li>
+        <% if [@profile.profile_introduction] and [@profile.profile_introduction].any? %>
+            <li><a href="#introduction">Introduction</a></li>
+        <% end %>
+        <% if nil %>
+            <li><a href="#projects">Projects</a></li>
+        <% end %>
+        <% if nil %>
+            <li><a href="#skills">Skills</a></li>
+        <% end %>
+        <% if @profile.profile_experiences and @profile.profile_experiences.any? %>
+            <li><a href="#experiences">Experiences</a></li>
+        <% end %>
+        <% if @profile.profile_contacts and @profile.profile_contacts.any? %>
+            <li><a href="#contacts">Contacts</a></li>
+        <% end %>
       </ul>
     </div>
   </div>

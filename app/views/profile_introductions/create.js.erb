@@ -1,0 +1,9 @@
+var existing = document.getElementById('introduction-new');
+existing.parentNode.removeChild(existing);
+
+document.getElementById('introduction-body')
+        .insertAdjacentHTML('beforeend', '<div id="<%= "introduction-#{@profile_introduction.id}" %>"><%= j render @profile_introduction %></div>');
+
+
+var addLink = document.getElementById('introduction-add-link');
+addLink.parentNode.removeChild(addLink);

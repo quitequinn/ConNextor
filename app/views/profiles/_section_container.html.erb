@@ -1,18 +1,42 @@
 <%
+   section_underscore = section_title.downcase.gsub ' ', '_'
    section_dashed = section_title.downcase.gsub ' ', '-'
    section_upper = section_title.upcase
 
-   if elements and elements.any?
+   # elements will either be [] or [nil] or [*element]
+   # it is never nil.
+   # logger.error "#{elements}"
+   # logger.error "#{elements.any?}"
+   # logger.error "#{elements.nil?}"
+   # logger.error "#{elements.length}"
+   # logger.error 'hi sup'
+
+   def can_add_arbitrary(section_name)
+     section_name != 'introduction'
+   end
+
+   if elements.any? or @user_is_owner_of_profile
 %>
 
     <div id="<%= section_dashed %>" class="section-container">
-      <p class="section-title hidden-xs"><%= section_upper %></p>
+      <p id="<%= "#{section_dashed}-title" %>" class="section-title hidden-xs">
+        <%= section_upper %>
+        <% if @user_is_owner_of_profile and (can_add_arbitrary section_underscore or !elements.any?) %>
+            <%= link_to "/profile_#{section_underscore}/add/#{@profile.id}", remote: true, id: "#{section_dashed}-add-link" do %>
+                <span class="glyphicon glyphicon-plus add-icon"></span>
+            <% end %>
+        <% end %>
+      </p>
       <p class="section-title text-center visible-xs-block"><%= section_upper %></p>
-      <% elements.each do |element| %>
-        <div id="<%= "#{section_dashed}-#{element.id}" %>">
-          <%= render element %>
-        </div>
-      <% end %>
+      <div id="<%= "#{section_dashed}-body" %>" class="section-body">
+          <% if elements.any? %>
+              <% elements.each do |element| %>
+                  <div id="<%= "#{section_dashed}-#{element.id}" %>">
+                    <%= render element %>
+                  </div>
+              <% end %>
+          <% end %>
+      </div>
     </div>
 
 <% end %>
