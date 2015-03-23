@@ -1,0 +1,91 @@
+// Place all the styles related to the profiles controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import "scss_constants";
+
+.profiles {
+  padding-top: 150px;
+  border-top: 40px solid;
+  border-right:30px solid; 
+  border-left:30px solid;
+  border-color: white;
+
+  .form-group{
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+  }
+  a{
+    margin-left: auto;
+    margin-right: auto;
+    margin: 0 auto;
+  }
+  p{
+    font-size: 20px;
+    font-weight: 500;
+  }
+
+  .input-upright{
+    border: 0px solid;
+    background: white;
+  }
+  .input-checkbox{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-right: 3px;
+  }
+  .check-box-element{
+    padding-top: 5px;
+    border-radius: 20px;
+    border: 10px solid;
+    border-color: $primary-color-light;
+    background-color: white; 
+  }
+  .check-box-element:hover{
+      background-color: $secondary-bg-color;
+  }
+  .check-box-element:active{
+      background-color: $primary-color;
+  }
+  
+
+
+  input[type=checkbox]:checked ~ .check-box-element {
+  background-color: red;
+}
+
+  .check-box-area{
+    border-radius: 35px;
+    background-color:  $primary-color-light;
+    border: 10px solid; 
+    border-color: white;
+    padding-right: 40px;
+    padding-left: 40px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+
+  .textinput-area{
+    background-color: $primary-color-light;
+    border-radius: 35px;
+    border: 10px solid; 
+    border-color: white;
+    margin-top: 60px;
+  }
+  .inner-box-textinput{
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
+  .main-section{
+    margin-bottom: 30px;
+  }
+  .skip{
+    text-align: center;
+    margin-left: 60px;
+  }
+  .submit{
+    margin-bottom: 5px;
+  }
+}
