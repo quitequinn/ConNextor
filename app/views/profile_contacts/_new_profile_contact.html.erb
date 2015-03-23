@@ -1,0 +1,9 @@
+<div class="element-contact" id="contact-new">
+  <%= form_for profile_contact, remote: true do |f| %>
+      <%= f.hidden_field :profile_id %>
+      <%= f.text_field :contact_type, placeholder: 'Type', class: 'experience-edit-text input-upright' %>
+      <%= f.text_field :name, placeholder: 'Name', class: 'contact-edit-text input-upright' %>
+      <%= f.text_field :link, placeholder: 'Link', class: 'contact-edit-text input-upright' %><br />
+      <%= f.submit %>
+  <% end %>
+</div>

@@ -97,6 +97,6 @@ class ProfileContactsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def profile_contact_params
-    params.require(:profile_contact).permit(:profile_id, :type, :name, :link)
+    params.require(:profile_contact).permit(:profile_id, :contact_type, :name, :link)
   end
 end
