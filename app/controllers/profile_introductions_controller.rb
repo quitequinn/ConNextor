@@ -1,4 +1,3 @@
-
 class ProfileIntroductionsController < ApplicationController
   before_action :set_profile_introduction, only: [:show, :swap, :edit, :update, :destroy]
 
@@ -31,7 +30,7 @@ class ProfileIntroductionsController < ApplicationController
     end
   end
 
-  # GET /profile_introduction/add
+  # GET /profile_introduction/add/:profile_id
   def add
     @profile_introduction = ProfileIntroduction.new(profile_id: params[:profile_id])
     return unless check_permission

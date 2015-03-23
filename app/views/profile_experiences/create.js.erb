@@ -1,0 +1,5 @@
+var existing = document.getElementById('experiences-new');
+existing.parentNode.removeChild(existing);
+
+document.getElementById('experiences-body')
+        .insertAdjacentHTML('beforeend', '<div id="<%= "introduction-#{@profile_experience.id}" %>"><%= j render @profile_experience %></div>');
