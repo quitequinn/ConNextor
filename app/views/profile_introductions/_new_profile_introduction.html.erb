@@ -1,7 +1,7 @@
-<div id="introduction-new" class="element-introduction">
+<div class="element-introduction" id="introduction-new">
   <%= form_for profile_introduction, remote: true do |f| %>
       <%= f.hidden_field :profile_id %>
-      <%= f.text_area :body, placeholder: 'In a few sentences, summarize yourself.' %>
+      <%= f.text_area :body, class: 'introduction-edit-textarea', placeholder: 'In a few sentences, summarize yourself.' %>
       <%= f.submit %>
   <% end %>
 </div>

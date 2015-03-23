@@ -1,5 +1,5 @@
 class ProfileExperiencesController < ApplicationController
-  before_action :set_profile_experience, only: [:show, :edit, :update, :destroy]
+  before_action :set_profile_experience, only: [:show, :swap, :edit, :update, :destroy]
 
   # # GET /profile_experiences
   # # GET /profile_experiences.json

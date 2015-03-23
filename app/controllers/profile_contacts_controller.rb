@@ -1,5 +1,5 @@
 class ProfileContactsController < ApplicationController
-  before_action :set_profile_contact, only: [:show, :edit, :update, :destroy]
+  before_action :set_profile_contact, only: [:show, :swap, :edit, :update, :destroy]
 
   # # GET /profile_contacts
   # # GET /profile_contacts.json

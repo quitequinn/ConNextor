@@ -1,10 +1,18 @@
 <div class="element-experience">
-  <p class="experience-body">
-    <%= profile_introduction.body %>
-    <% if @user_is_owner_of_profile %>
-        <%= link_to "/profile_introduction/swap/#{profile_introduction.id}", remote: true, class: '' do %>
-            <span class="glyphicon glyphicon-edit edit-icon hidden-xs"></span>
-        <% end %>
-    <% end %>
-  </p>
+  <div class="experience-body">
+    <p class="experience-title">
+      <%= profile_experience.name %>, <%= profile_experience.position %>
+      <% if @user_is_owner_of_profile %>
+          <%= link_to "/profile_experience/swap/#{profile_experience.id}", remote: true, class: '' do %>
+              <span class="glyphicon glyphicon-edit edit-icon hidden-xs"></span>
+          <% end %>
+      <% end %>
+    </p>
+
+    <p class="experience-subtitle">
+      <%= profile_experience.from_date %> - <%= profile_experience.to_date %>
+    </p>
+
+    <p class="experience-description"><%= profile_experience.description %></p>
+  </div>
 </div>

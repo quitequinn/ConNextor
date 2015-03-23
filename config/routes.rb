@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
 
   resources :profile_contacts
-  get 'profile_contacts/swap/:id', to: 'profile_contacts#swap'
+  get 'profile_contact/swap/:id', to: 'profile_contacts#swap'
   get 'profile_contacts/add/:profile_id', to: 'profile_contacts#add'
 
   resources :profile_experiences
-  get 'profile_experiences/swap/:id', to: 'profile_experiences#swap'
+  get 'profile_experience/swap/:id', to: 'profile_experiences#swap'
   get 'profile_experiences/add/:profile_id', to: 'profile_experiences#add'
 
   resources :profile_introductions
