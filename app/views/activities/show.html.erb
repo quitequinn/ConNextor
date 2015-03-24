@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @activity.user %>
+</p>
+
+<p>
+  <strong>Activity type:</strong>
+  <%= @activity.activity_type %>
+</p>
+
+<p>
+  <strong>Source:</strong>
+  <%= @activity.source_id %>
+</p>
+
+<p>
+  <strong>Parent:</strong>
+  <%= @activity.parent_id %>
+</p>
+
+<p>
+  <strong>Parent type:</strong>
+  <%= @activity.parent_type %>
+</p>
+
+<%= link_to 'Edit', edit_activity_path(@activity) %> |
+<%= link_to 'Back', activities_path %>

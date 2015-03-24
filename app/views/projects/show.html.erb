@@ -22,15 +22,25 @@
 
 User To Project: <%= @user_to_project ? @user_to_project.project_user_class : 'unrelated' %>
 
-<% if @user_logged_in %>
-    <% unless @user_project_follow %>
-        <%= button_to 'Follow', user_project_follows_path(project_id: @project) %>
-    <% else %>
-        <%= button_to 'Unfollow', @user_project_follow, method: :delete %>
-    <% end %>
+<br />
+
+<% if @user_to_project and @is_owner %>
+    <%= link_to 'Manage Users', user_to_projects_path(project: @project) %>
+    <%= link_to 'Manage Tags', project_to_tags_path(project: @project) %>
+    <%= link_to 'Manage Tasks', project_tasks_path(project: @project) %>
 <% end %>
 
-<h3>Users</h3>
+<br />
+
+<% unless @user_project_follow %>
+    <%= button_to 'Follow', user_project_follows_path(project_id: @project) %>
+<% else %>
+    <%= button_to 'Unfollow', @user_project_follow, method: :delete %>
+<% end %>
+
+<br />
+
+<h3>Members</h3>
 <ul>
   <%= render @project.user_to_projects %>
 </ul>
@@ -43,8 +53,65 @@ User To Project: <%= @user_to_project ? @user_to_project.project_user_class : 'u
   <%= render @project.project_tasks %>
 </ul>
 
-<% if @user_to_project and @is_owner %>
-    <%= link_to 'Manage Users', user_to_projects_path(project: @project) %>
-    <%= link_to 'Manage Tags', project_to_tags_path(project: @project) %>
-    <%= link_to 'Manage Tasks', project_tasks_path(project: @project) %>
-<% end %>
+<h3>General</h3>
+<div> 
+  <table>
+    <tbody>
+      <% @activities.each do |activity| %>
+        <tr>
+          <td><%= activity.user_id %></td>
+          <td><%= activity.activity_type %></td>
+          <td><%= link_to 'Destroy', activity, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<h3>Discussion</h3>
+<p><%= link_to "Create post", new_project_project_post_path(@project.id), :locals=>{:project_posts => ProjectPost.new} %></p>
+<div> 
+  <table>
+    <tbody>
+      <% @posts.each do |post| %>
+        <tr>
+          <td><%= post.user_id %></td>
+          <td><%= post.text %></td>
+          <td><%= link_to 'Edit', edit_project_project_post_path(@project.id,post) %></td>
+          <td><%= link_to 'Destroy', project_project_post_path(@project.id,post), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= link_to "Create comment", new_project_project_post_project_comment_path(@project.id,post.id), :locals=>{:project_comments => ProjectComment.new} %></td>
+          <% if post.project_comments %>       
+            <% post.project_comments.each do |comment| %>
+              <td><%= comment.user_id %></td>
+              <td><%= comment.text %></td>
+              <td><%= link_to 'Edit', edit_project_project_post_project_comment_path(@project.id,post.id,comment) %></td>
+              <td><%= link_to 'Destroy', project_project_post_project_comment_path(@project.id,post.id,comment), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <% end %>     
+        <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<h3>Needs</h3>
+<div> 
+  <% if @is_owner %>
+    <p><%= link_to "Create position", new_project_position_path(@project.id), :locals=>{:position => Position.new} %></p>
+  <% end %>
+</div>
+
+<table>
+  <tbody>
+    <% @positions.each do |position| %>
+      <tr>
+        <td><%= position.description %></td>
+        <td><%= position.position_type %></td>
+        <td><%= link_to 'Show', project_position_path(@project.id,position) %></td>
+        <td><%= link_to 'Edit', edit_project_position_path(@project.id,position) %></td>
+        <td><%= link_to 'Destroy', project_position_path(@project.id,position), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
