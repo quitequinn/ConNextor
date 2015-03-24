@@ -10,11 +10,10 @@ $checkbox-checked:      red;
 
   .main-section {
     margin-bottom: 30px;
-    padding-top: 150px;
     border-top: 40px solid;
     border-right: 30px solid;
     border-left: 30px solid;
-    border-color: white;
+    border-color:$secondary-bg-color;
   }
 
   .form-group-extra-properties-this-is-semantically-a-disaster-but-please-dont-override-bootstrap-classes {
@@ -47,8 +46,7 @@ $checkbox-checked:      red;
 
   .check-box-element {
     padding-top: 5px;
-    border-radius: 20px;
-    border: 10px solid $primary-color-light;
+    border: 5px solid $primary-color-light;
     background-color: white;
   }
 
@@ -65,17 +63,15 @@ $checkbox-checked:      red;
   }
 
   .check-box-area {
-    border-radius: 35px;
+    
     background-color: $primary-color-light;
-    border: 10px solid white;
     padding: 30px 40px 30px 40px;
+    border-right: 2px solid;
   }
 
   .textinput-area {
     background-color: $primary-color-light;
-    border-radius: 35px;
-    border: 10px solid white;
-    margin-top: 60px;
+    border-right: 2px solid;
   }
 
   .inner-box-textinput {
@@ -90,5 +86,10 @@ $checkbox-checked:      red;
 
   .submit {
     margin-bottom: 5px;
+  }
+  .side-description{
+  
+    background-color: $primary-color-light;
+
   }
 }

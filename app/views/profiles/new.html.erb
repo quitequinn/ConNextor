@@ -15,19 +15,28 @@
       <% end %>
 
       <div class="row main-section">
-        <div class="col-md-6 textinput-area">
+        <div class="col-md-8 textinput-area">
          <%= render 'edit_geographic', f: f %>
         </div>
+        <div class="col-md-4 side-description">
+          <p>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.</p>
+        </div>
+
+      </div>
 
 
       <!--User Fields-->
-        <div class="col-md-6 check-box-area">
+      <div class="row main-section">
+        <div class="col-md-8 check-box-area">
           <%= fields_for @profile.user do |user_fields| %>
               <p class="form-subheading">Interests:</p>
               <%= render 'edit_interests', f: user_fields %>
               <p class="form-subheading">Skills:</p>
               <%= render 'edit_skills', f: user_fields %>
           <% end %>
+        </div>
+        <div class="col-md-4 side-description">
+          <p>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.</p>
         </div>
       </div>
 
