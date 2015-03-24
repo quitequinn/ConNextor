@@ -1,6 +1,5 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy] 
-  before_action :set_user_project_follow, only: [:show, :edit, :update, :destroy]
 
   # GET /projects
   # GET /projects.json
@@ -14,6 +13,7 @@ class ProjectsController < ApplicationController
     @positions = @project.positions
     @posts = @project.project_posts
     @activities = Activity.where( parent_id: @project.id)
+    @user_project_follow = getUserProjectFollow(current_user_id, @project.id)
 
     @user_to_project = UserToProject.find_by user: current_user, project: @project
     if @user_to_project
@@ -133,11 +133,6 @@ class ProjectsController < ApplicationController
       logger.error "Attempted access to invalid project #{params[:id]}"
       redirect_to projects_url, notice: 'Invalid project, please try again.'
     end
-  end
-
-  def set_user_project_follow
-    # user_project_follow
-    @user_project_follow = UserProjectFollow.find_by user: @current_user, project: @project
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

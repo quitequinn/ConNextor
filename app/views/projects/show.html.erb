@@ -33,9 +33,11 @@ User To Project: <%= @user_to_project ? @user_to_project.project_user_class : 'u
 <br />
 
 <% unless @user_project_follow %>
-    <%= button_to 'Follow', user_project_follows_path(project_id: @project) %>
+    <%= button_to 'Follow', user_project_follows_path(project_id: @project), id: 'project_follow_button', remote: true %>
+    <%= button_to 'Unfollow', user_project_follows_path(getUserProjectFollow(current_user_id, @project.id)), method: :delete, id: 'project_unfollow_button', remote: true, :style => "display: none" %>
 <% else %>
-    <%= button_to 'Unfollow', @user_project_follow, method: :delete %>
+    <%= button_to 'Unfollow', user_project_follows_path(getUserProjectFollow(current_user_id, @project.id)), method: :delete, id: 'project_unfollow_button', remote: true %>
+    <%= button_to 'Follow', user_project_follows_path(project_id: @project), id: 'project_follow_button', remote: true, :style => "display: none"%>
 <% end %>
 
 <br />

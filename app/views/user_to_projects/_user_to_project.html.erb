@@ -1,4 +1,11 @@
 <li>
   <%= user_to_project.user.email %>,
   <%= user_to_project.project_user_class %>
+  <% unless isFollowingUser( current_user_id, user_to_project.user_id ) %>
+    <%= button_to 'Follow', user_follows_path(follower_id: current_user_id, followee_id: user_to_project.user_id ), id: "user_follow_button#{user_to_project.user_id}", remote: true %>
+    <%= button_to 'Unfollow', user_follows_path(getFollowingUser( user_to_project.user_id, current_user_id )), method: :delete, id: "user_unfollow_button#{user_to_project.user_id}", remote: true %>
+  <% else %>
+    <%= button_to 'Follow', user_follows_path(follower_id: current_user_id, followee_id: user_to_project.user_id ), id: "user_follow_button#{user_to_project.user_id}", remote: true %>
+      <%= button_to 'Unfollow', user_follows_path((getFollowingUser( user_to_project.user_id, current_user_id )), method: :delete, id: "user_unfollow_button#{user_to_project.user_id}", remote: true %>
+  <% end %>
 </li>

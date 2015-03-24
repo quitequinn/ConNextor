@@ -29,6 +29,7 @@ class UserFollowsController < ApplicationController
     respond_to do |format|
       if @user_follow.save
         format.html { redirect_to @user_follow, notice: 'User follow was successfully created.' }
+        format.js
         format.json { render :show, status: :created, location: @user_follow }
       else
         format.html { render :new }
@@ -57,6 +58,7 @@ class UserFollowsController < ApplicationController
     @user_follow.destroy
     respond_to do |format|
       format.html { redirect_to user_follows_url, notice: 'User follow was successfully destroyed.' }
+      format.js
       format.json { head :no_content }
     end
   end
@@ -69,6 +71,6 @@ class UserFollowsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_follow_params
-      params.require(:user_follow).permit(:follower_id, :followee_id)
+      params.permit(:follower_id, :followee_id)
     end
 end

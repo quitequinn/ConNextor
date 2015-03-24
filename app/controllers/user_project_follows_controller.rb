@@ -32,6 +32,7 @@ class UserProjectFollowsController < ApplicationController
     respond_to do |format|
       if @user_project_follow.save
         format.html { redirect_to @user_project_follow.project, notice: 'You are now following this project.' }
+        format.js
         format.json { render :show, status: :created, location: @user_project_follow }
       else
         format.html { render :new }
@@ -59,7 +60,8 @@ class UserProjectFollowsController < ApplicationController
   def destroy
     @user_project_follow.destroy
     respond_to do |format|
-      format.html { redirect_to @user_project_follow.project, notice: 'Project unfollowed' }
+      format.html { redirect_to project, notice: 'Project unfollowed' }
+      format.js
       format.json { head :no_content }
     end
   end
