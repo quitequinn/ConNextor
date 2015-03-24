@@ -27,6 +27,7 @@ html.turbolinks-progress-bar::before {
 
 html, body {
   height: 100%;
+  background: $secondary-bg-color;
 }
 body {
   margin: 0px;
@@ -108,10 +109,14 @@ body {
   font-size: $font-size-section;
 }
 
+.form-element-margin-basis {
+  margin: 5px 5px 5px 5px;
+}
+
 .form-element-base {
   font-size: $font-size-misc;
   padding: 5px 20px 5px 20px;
-  margin: 5px 5px 5px 5px;
+  @extend .form-element-margin-basis;
   background: none;
   height: 40px;
   color: black;
@@ -180,6 +185,10 @@ body {
 
 .btn-border-rounded {
   @include border-rounded(4px);
+}
+
+.btn-element-margin-match {
+  @extend .form-element-margin-basis;
 }
 
 .block-center {

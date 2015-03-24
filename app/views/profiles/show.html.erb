@@ -9,7 +9,7 @@
       </div>
     </div>
   </div>
-  <div class="container profile-tabs">
+  <div class="container-fluid profile-tabs">
     <!--<div class="col-sm-offset-3 col-sm-9 hidden-xs tabs-columns">-->
       <!--<ul class="nav nav-tabs">-->
         <!--<li role="presentation" class="active"><a href="#">link1</a></li>-->
@@ -26,7 +26,7 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-md-9" role="main">
+    <div class="col-md-9 sections-column" role="main">
       <%= render 'section_container', section_title: 'introduction', elements: [@profile.profile_introduction] %>
       <%= render 'section_container', section_title: 'experiences', elements: @profile.profile_experiences %>
       <%= render 'section_container', section_title: 'contacts', elements: @profile.profile_contacts %>

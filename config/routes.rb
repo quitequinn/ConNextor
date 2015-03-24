@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   get 'profile_introduction/add/:profile_id', to: 'profile_introductions#add'
 
   resources :profiles
+  # get 'profiles/:id/initialize', to: 'profiles#initialize', as: 'initialize_profile'
 
   resources :user_to_interests
 

@@ -5,6 +5,9 @@
 @import "scss_constants";
 
 .welcome {
+  > .container {
+    background-color: white;
+  }
 
   .loading-screen {
     background-color: $primary-color;
@@ -111,10 +114,13 @@
 
   .stay-tuned {
     height: auto;
-    background: white;
     text-align: center;
-    padding-top: 50px;
-    padding-bottom: 50px;
+
+    > .container {
+      padding-top: 50px;
+      padding-bottom: 50px;
+      background: white;
+    }
 
     p.form-title {
       font-size: $font-size-heading;

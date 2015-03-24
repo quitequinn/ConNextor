@@ -72,7 +72,7 @@ class UsersController < ApplicationController
         # Confirm Email here, don't login.
         sign_in @user
 
-        format.html { redirect_to new_profile_path(@user.profile), notice: 'Just need you to create your profile.' }
+        format.html { redirect_to new_profile_path(@user.profile.id), notice: 'Just need you to create your profile.' }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }

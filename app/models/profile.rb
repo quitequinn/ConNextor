@@ -1,8 +1,8 @@
 class Profile < ActiveRecord::Base
   has_one :user
   has_one :profile_introduction
-  has_many :profile_experiences
-  has_many :profile_contacts
+  has_many :profile_experiences, -> { order(created_at: :asc) }
+  has_many :profile_contacts, -> { order(created_at: :asc) }
 
   accepts_nested_attributes_for :user
 
