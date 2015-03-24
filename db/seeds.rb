@@ -138,4 +138,4 @@ seed_interest('logic')
 seed_interest('management')
 seed_interest('business')
 
-seed_users_projects( 200, 70 ) 
+seed_users_projects( 200, 70 )       
