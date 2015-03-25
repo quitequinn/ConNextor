@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150323024745) do
+ActiveRecord::Schema.define(version: 20150323105812) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,30 +27,6 @@ ActiveRecord::Schema.define(version: 20150323024745) do
   end
 
   add_index "activities", ["user_id"], name: "index_activities_on_user_id", using: :btree
-
-  create_table "asana_identities", force: :cascade do |t|
-    t.integer  "user_id"
-    t.string   "access_token"
-    t.string   "refresh_token"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-    t.string   "provider"
-    t.string   "uid"
-  end
-
-  add_index "asana_identities", ["user_id"], name: "index_asana_identities_on_user_id", using: :btree
-
-  create_table "asana_projects", force: :cascade do |t|
-    t.integer  "project_id"
-    t.integer  "asana_project_id"
-    t.string   "workspace_id"
-    t.integer  "asana_user_id",    limit: 8
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-    t.integer  "user_id"
-  end
-
-  add_index "asana_projects", ["project_id"], name: "index_asana_projects_on_project_id", using: :btree
 
   create_table "identities", force: :cascade do |t|
     t.integer  "user_id"
@@ -94,6 +70,44 @@ ActiveRecord::Schema.define(version: 20150323024745) do
 
   add_index "positions", ["project_id"], name: "index_positions_on_project_id", using: :btree
   add_index "positions", ["user_id"], name: "index_positions_on_user_id", using: :btree
+
+  create_table "profile_contacts", force: :cascade do |t|
+    t.integer  "profile_id"
+    t.string   "contact_type"
+    t.string   "name"
+    t.string   "link"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  create_table "profile_experiences", force: :cascade do |t|
+    t.integer  "profile_id"
+    t.string   "name"
+    t.string   "position"
+    t.string   "from_date"
+    t.string   "to_date"
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "profile_introductions", force: :cascade do |t|
+    t.integer  "profile_id"
+    t.string   "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "profiles", force: :cascade do |t|
+    t.string   "location"
+    t.string   "school"
+    t.string   "short_bio"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.string   "facebook_url"
+    t.string   "twitter_url"
+    t.string   "linkedin_url"
+  end
 
   create_table "project_comments", force: :cascade do |t|
     t.integer  "user_id"
@@ -227,17 +241,10 @@ ActiveRecord::Schema.define(version: 20150323024745) do
     t.string   "auth_token"
     t.string   "password_reset_token"
     t.datetime "password_reset_sent_at"
-    t.string   "name"
     t.string   "remember_token"
-    t.string   "location"
     t.string   "image"
-    t.string   "description"
-    t.string   "phone"
-    t.boolean  "confirmed"
-    t.string   "confirm_code"
-    t.string   "school"
-    t.string   "school_email"
-    t.string   "industry"
+    t.integer  "profile_id"
+    t.boolean  "password_login"
   end
 
   add_foreign_key "positions", "projects"
