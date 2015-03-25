@@ -6,7 +6,8 @@
         $('.scroll-to-invite').on('click', scrollToInvitation);
 //        $('form[name="invitation"] select[name="source"]').change(changeFormAlternativeField);
     });
-    document.body.onload = fadeOutLoadingScreen;
+    window.onload = fadeOutLoadingScreen;
+    document.addEventListener('page:load', fadeOutLoadingScreen);
 </script>
 
 <!--Loading screen-->
@@ -24,7 +25,7 @@
     <p class="main-txt">
       Connect the Next Generation of Innovators<span class="alt-theme"></span>
     </p>
-    <button class="stay-tuned-button btn-upright border-rounded scroll-to-invite">Stay Tuned</button>
+    <button class="stay-tuned-button btn-upright btn-border-rounded scroll-to-invite">Stay Tuned</button>
   </div>
 </div>
 

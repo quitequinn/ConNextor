@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no" />
@@ -13,51 +14,41 @@
 <body>
 <%= subscribe_to "/inbox/#{current_user_id}" %>
 
-<!--Top banner-->
-<!--<div class="container">-->
-<!--<div class="banner">-->
-  <!--<div class="logo-img float-left"></div>-->
-  <!--<div class="float-left logo-txt">-->
-    <!--<span>ConNextor</span>-->
-  <!--</div>-->
-  <!--<% if logged_in? %>-->
+<!--Wraps everything but the footer. This makes the footer sticky-->
+<div id="content-wrap">
 
-  <!--<% else %>-->
-    <!--<button class="sign-up-button btn-inverse float-right scroll-to-invite">Sign up or login</button>-->
-  <!--<% end %>-->
-<!--</div>-->
-<!--</div>-->
+  <!--Navigation bar-->
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
 
-<nav class="navbar navbar-default navbar-fixed-top">
-  <div class="container">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
+        <% if logged_in? %>
+            <!--Expansion button-->
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+        <% end %>
+        <!--Branding (logo)-->
+        <a class="navbar-brand logo-img-navbar-container" href="/">
+          <%= image_tag 'logo_03.png', class: 'logo-img' %>
+        </a>
+        <a class="navbar-brand logo-txt" href="/">
+          ConNextor
+        </a>
+      </div>
 
-      <% if logged_in? %>
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-      <% end %>
-      <!--Branding (logo)-->
-      <a class="navbar-brand logo-img-navbar-container" href="/">
-        <%= image_tag 'logo_03.png', class: 'logo-img' %>
-      </a>
-      <a class="navbar-brand logo-txt" href="/">
-        ConNextor
-      </a>
-    </div>
+      <!--Links for navigation-->
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
-    <!--Links for navigation-->
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-
-      <% if logged_in? %>
-          <!--Navigation-->
+        <% if logged_in? %>
+          <!--Links-->
           <ul class="nav navbar-nav">
-            <!--<li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>-->
+          <!--<li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>-->
             <li><%= link_to 'Projects', projects_path %></li>
             <li><%= link_to 'Innovators', users_path %></li>
             <li><a href="#">Forum</a></li>
@@ -73,30 +64,35 @@
 
           <!--Tools-->
           <ul class="nav navbar-nav navbar-right">
-            <li><%= link_to 'Create', new_project_path %></li>
-            <li><a href="#">Search</a></li>
-            <li><a href="#">Notifications</a></li>
-            <li><a href="#">Chat</a></li>
+            <li><%= link_to 'C', new_project_path %></li>
+            <li><a href="#">S</a></li>
+            <li><a href="#">N</a></li>
+            <li><a href="#">C</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><%= current_user.first_name %> <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
-                <li><%= link_to 'My profile', user_path(current_user) %></li>
+                <li><%= link_to 'My profile', profile_path(current_user.profile) %></li>
                 <li><%= link_to 'Settings', edit_user_path(current_user) %></li>
                 <li><%= link_to 'Log out', log_out_path %></li>
               </ul>
             </li>
           </ul>
-      <% else %>
-          <button type="button" class="sign-up-button btn-inverse navbar-right scroll-to-invite">Sign up or login</button>
-      <% end %>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
+        <% elsif controller_name == 'users' and action_name == 'new' %>
+
+        <% else %>
+          <!--Sign Up and Login buttons-->
+          <button type="button" class="sign-up-button btn-inverse navbar-right scroll-to-invite">Sign Up</button>
+        <% end %>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
 
 
-<!--Template-->
-<div class="<%= controller.controller_name %>">
-  <%= yield %>
+  <!--Template-->
+  <div class="template-wrap <%= controller.controller_name %>">
+    <%= yield %>
+  </div>
+
 </div>
 
 <!--Bottom footer-->

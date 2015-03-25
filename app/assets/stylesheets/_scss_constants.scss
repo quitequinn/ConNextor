@@ -1,28 +1,67 @@
+// Colors
 $primary-color:         #EFC94C;
 $primary-color-light:   #F2DC95;
 $secondary-color:       #888888;
 $secondary-fg-color:    #BBBBBB;
 $secondary-bg-color:    #EAEAEA;
 $warning-color:         #f98152;
+$active-text-color:     #000000;
+$inactive-text-color:   #ababab;
+$subtext-color:         #888888;
+
+// Fonts
 $font-family:           omnes;
+$font-family-base:      omnes; // For Bootstrap
+$font-size-base:        16px;
+//$line-height-base:      20px;
+//$link-color:            $primary-color;
+$font-size-extra-small: 11px;
+$font-size-small:       14px;
+$font-size-submedium:   16px;
+$font-size-medium:      18px;
 $font-size-misc:        20px;
 $font-size-text:        20px;
+$font-size-header:      24px;
+$font-size-subheader:   16px;
 $font-size-about:       26px;
 $font-size-section:     30px;
 $font-size-banner:      30px;
 $font-size-heading:     35px;
 $font-size-main:        40px;
+$font-size-icon:        14px;
 $font-weight-misc:      500;
 $font-weight-text:      400;
 $font-weight-main:      500;
+$font-weight-subtitle:  600;
 $font-weight-banner:    600;
+
+// Elements on application.html.erb
 $navbar-height:         57px;
 $navbar-default-bg:     white;
-
+$footer-height:         80px;
+$footer-padding:        ($footer-height - $font-size-text)/2;
 
 @mixin transition-all-ease($time) {
   -webkit-transition: all $time ease;
   -moz-transition: all $time ease;
   -o-transition: all $time ease;
   transition: all $time ease;
+}
+
+@mixin border-rounded($radius) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  border-radius: $radius;
+}
+
+@mixin box-shadow($top, $left, $blur, $color, $inset: false) {
+  @if $inset {
+    -webkit-box-shadow:inset $top $left $blur $color;
+    -moz-box-shadow:inset $top $left $blur $color;
+    box-shadow:inset $top $left $blur $color;
+  } @else {
+    -webkit-box-shadow: $top $left $blur $color;
+    -moz-box-shadow: $top $left $blur $color;
+    box-shadow: $top $left $blur $color;
+  }
 }

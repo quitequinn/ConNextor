@@ -1,0 +1,7 @@
+<div class="element-introduction" id="introduction-new">
+  <%= form_for profile_introduction, remote: true do |f| %>
+      <%= f.hidden_field :profile_id %>
+      <%= render 'form_fields', f: f %>
+      <%= f.submit class: 'btn-inverse btn-element-margin-match' %>
+  <% end %>
+</div>

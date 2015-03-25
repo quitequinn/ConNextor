@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  profile_id: 1
+  name: MyString
+  position: MyString
+  from_date: MyString
+  to_date: MyString
+  description: MyString
+
+two:
+  profile_id: 1
+  name: MyString
+  position: MyString
+  from_date: MyString
+  to_date: MyString
+  description: MyString

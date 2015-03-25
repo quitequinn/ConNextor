@@ -70,8 +70,6 @@ var triggerPad = 150;
 function fadeInSectionImages() {
     var distFromTop = $(window).scrollTop();
     var viewPortSize = $(window).height();
-    //console.log("distFromTop: " + distFromTop + ", "
-                //+ "viewPortSize: " + viewPortSize);
     $('.fade-in').each(function (i) {
         if (distFromTop >= $(this).offset().top - viewPortSize + triggerPad) {
             $(this).removeClass('fade-in');

@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
   include UserToProjectsHelper
   include ProjectsHelper
   include UsersHelper
+  include ProfilesHelper
 
   helper_method :current_user, :current_user?, :logged_in?, :current_user_id
 

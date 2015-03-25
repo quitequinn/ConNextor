@@ -10,7 +10,7 @@ UserProjectFollow.destroy_all
 User.destroy_all
 Project.destroy_all
 
-def anyEmpty(*stuff)
+def any_empty(*stuff)
   for s in stuff
     if s==nil or s == ""
       return true
@@ -20,7 +20,7 @@ def anyEmpty(*stuff)
 end
 
 def seed_user(name=nil,username=nil,password=nil)
-  if anyEmpty(name,username,password)
+  if any_empty(name,username,password)
     return nil
   end
   name = name.split(' ')
@@ -37,7 +37,7 @@ end
 
 
 def seed_project(project_title=nil,project_short_description=nil,project_long_description=nil)
-  if anyEmpty(project_title,project_long_description,project_long_description)
+  if any_empty(project_title,project_long_description,project_long_description)
     return nil
   end
   Project.create!(title:             project_title,
@@ -47,28 +47,28 @@ end
 
 
 def seed_relationship(user_id=nil, project_id=nil)
-  if anyEmpty(user_id,project_id)
+  if any_empty(user_id,project_id)
     return nil
   end
   UserToProject.create!(user_id: user_id, project_id: project_id, project_user_class: ProjectUserClass::OWNER)
 end
 
 def seed_skill(name=nil)
-  if anyEmpty(name)
+  if any_empty(name)
     return nil
   end
   Skill.create!(name: name)
 end
 
 def seed_interest(name=nil)
-  if anyEmpty(name)
+  if any_empty(name)
     return nil
   end
   Interest.create!(name: name)
 end
 
 def seed_follow(user_id=nil, project_id=nil)
-  if anyEmpty(user_id, project_id)
+  if any_empty(user_id, project_id)
     return nil
   end
   UserProjectFollow.create!( user_id: user_id, project_id: project_id )

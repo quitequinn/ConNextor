@@ -14,8 +14,8 @@
   <tbody>
     <% @user_to_interests.each do |user_to_interest| %>
       <tr>
-        <td><%= user_to_interest.user %></td>
-        <td><%= user_to_interest.interest %></td>
+        <td><%= user_to_interest.user.first_name %></td>
+        <td><%= user_to_interest.interest.name %></td>
         <td><%= link_to 'Show', user_to_interest %></td>
         <td><%= link_to 'Edit', edit_user_to_interest_path(user_to_interest) %></td>
         <td><%= link_to 'Destroy', user_to_interest, method: :delete, data: { confirm: 'Are you sure?' } %></td>

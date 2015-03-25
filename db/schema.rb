@@ -11,22 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20150323105812) do
+=======
+ActiveRecord::Schema.define(version: 20150308215254) do
+>>>>>>> master
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "activities", force: :cascade do |t|
-    t.integer  "user_id"
-    t.string   "activity_type"
-    t.integer  "source_id"
-    t.integer  "parent_id"
-    t.string   "parent_type"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-  end
-
-  add_index "activities", ["user_id"], name: "index_activities_on_user_id", using: :btree
 
   create_table "identities", force: :cascade do |t|
     t.integer  "user_id"
@@ -46,20 +38,23 @@ ActiveRecord::Schema.define(version: 20150323105812) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "notifications", force: :cascade do |t|
-    t.integer "user_id"
-    t.string  "notification_type"
-    t.integer "actor_id"
-    t.string  "message"
-    t.string  "link"
-    t.string  "verb"
-    t.boolean "isRead"
+  create_table "profile_contacts", force: :cascade do |t|
+    t.integer  "profile_id"
+    t.string   "contact_type"
+    t.string   "name"
+    t.string   "link"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
-  add_index "notifications", ["user_id"], name: "index_notifications_on_user_id", using: :btree
-
-  create_table "positions", force: :cascade do |t|
+  create_table "profile_experiences", force: :cascade do |t|
+    t.integer  "profile_id"
+    t.string   "name"
+    t.string   "position"
+    t.string   "from_date"
+    t.string   "to_date"
     t.string   "description"
+<<<<<<< HEAD
     t.integer  "project_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
@@ -115,21 +110,29 @@ ActiveRecord::Schema.define(version: 20150323105812) do
     t.string   "text"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+=======
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+>>>>>>> master
   end
 
-  add_index "project_comments", ["project_post_id"], name: "index_project_comments_on_project_post_id", using: :btree
-  add_index "project_comments", ["user_id"], name: "index_project_comments_on_user_id", using: :btree
-
-  create_table "project_posts", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "project_id"
-    t.string   "text"
+  create_table "profile_introductions", force: :cascade do |t|
+    t.integer  "profile_id"
+    t.string   "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_index "project_posts", ["project_id"], name: "index_project_posts_on_project_id", using: :btree
-  add_index "project_posts", ["user_id"], name: "index_project_posts_on_user_id", using: :btree
+  create_table "profiles", force: :cascade do |t|
+    t.string   "location"
+    t.string   "school"
+    t.string   "short_bio"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.string   "facebook_url"
+    t.string   "twitter_url"
+    t.string   "linkedin_url"
+  end
 
   create_table "project_tags", force: :cascade do |t|
     t.string   "name"
@@ -247,12 +250,6 @@ ActiveRecord::Schema.define(version: 20150323105812) do
     t.boolean  "password_login"
   end
 
-  add_foreign_key "positions", "projects"
-  add_foreign_key "positions", "users"
-  add_foreign_key "project_comments", "project_posts"
-  add_foreign_key "project_comments", "users"
-  add_foreign_key "project_posts", "projects"
-  add_foreign_key "project_posts", "users"
   add_foreign_key "user_to_interests", "interests"
   add_foreign_key "user_to_interests", "users"
   add_foreign_key "user_to_skills", "skills"

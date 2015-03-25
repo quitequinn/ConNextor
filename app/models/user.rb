@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
 
+  belongs_to :profile
+
   has_many :user_to_projects, dependent: :destroy
   has_many :user_project_follows, dependent: :destroy
   has_many :project_tasks
@@ -15,12 +17,38 @@ class User < ActiveRecord::Base
 
   attr_accessor :password
   attr_writer :current_step
-  before_save :downcase_email, :encrypt_password
-  validates_confirmation_of :password
-  validates_presence_of :password
-  validates_presence_of :email, :on => :create
-  validates_uniqueness_of :email, :on => :create
+  before_save :downcase_email, :encrypt_password, :downcase_username
+  validates_length_of :first_name, maximum: 30
+  validates_length_of :last_name, maximum: 30
+  validates_presence_of :email
+  validates_uniqueness_of :email
+  validates_presence_of :username
+  validates_uniqueness_of :username
+  validates_format_of :username, with: /\A[a-z0-9]+[-a-z0-9]*[a-z0-9]+\z/i,
+                      message: 'Only alphanumeric characters and dashes, '
+
+  with_options if: :password_login_is_enabled do |password_login_user|
+    password_login_user.validates_presence_of :password_hash, on: :save
+    password_login_user.validates_presence_of :password, on: :create
+  end
+
+  with_options if: :password_is_present do |password_login_user|
+    password_login_user.validates_presence_of :password_confirmation
+    password_login_user.validates_confirmation_of :password
+    password_login_user.validates_length_of :password, minimum: 8
+  end
+
+
+  validates_presence_of :first_name, :last_name
   before_create { generate_remember_token(:remember_token) }
+
+  def password_login_is_enabled
+    self.password_login?
+  end
+
+  def password_is_present
+    self.password and not self.password.empty?
+  end
 
   def self.search(search)
     if search
@@ -32,7 +60,7 @@ class User < ActiveRecord::Base
   
   def self.authenticate(email, password)
     user = find_by_email(email)
-    if user && user.password_salt && user.password_hash == BCrypt::Engine.hash_secret(password, user.password_salt)
+    if user and user.password_login and user.password_salt and user.password_hash == BCrypt::Engine.hash_secret(password, user.password_salt)
       user
     else
       nil
@@ -47,20 +75,68 @@ class User < ActiveRecord::Base
   end
 
   def update_with_omniauth(auth)
-    self.update_columns(
-        :name =>  auth.info.name,
-        :username =>  auth.info.nickname,
-        :first_name =>  auth.info.first_name,
-        :last_name =>  auth.info.last_name,
-        :location =>  auth.info.location,
-        :image =>  auth.info.image,
-        :description => auth.info.description,
-        :phone => auth.info.phone
-        )
+
+    unless self.profile
+      self.profile = Profile.new
+    end
+
+    logger.error self.profile
+
+    case auth.provider
+      when 'facebook'
+        self.first_name = auth.info.first_name unless self.first_name
+        self.last_name = auth.info.last_name unless self.last_name
+        self.username = auth.info.nickname unless self.username
+        self.email = auth.info.email unless self.email
+        self.image = auth.info.image unless self.image
+
+        self.profile.location = auth.info.location unless self.profile.location
+        # self.profile.short_bio = auth.info.description unless self.profile.short_bio
+
+        self.profile.facebook_url = auth.info.urls.Facebook
+      when 'twitter'
+        name_array = auth.info.name.gsub(/\s+/m, ' ').strip.split(' ')
+
+        self.first_name = name_array.first unless self.first_name
+        self.last_name = name_array.last unless self.last_name
+        self.username = auth.info.nickname unless self.username
+        # self.email = auth.info.email unless self.email
+        self.image = auth.info.image unless self.image
+
+        self.profile.location = auth.info.location unless self.profile.location
+        self.profile.short_bio = auth.info.description unless self.profile.short_bio
+
+        self.profile.twitter_url = auth.info.urls.Twitter
+      when 'linkedin'
+        self.first_name = auth.info.first_name unless self.first_name
+        self.last_name = auth.info.last_name unless self.last_name
+        self.username = auth.info.nickname unless self.username
+        self.email = auth.info.email unless self.email
+        self.image = auth.info.image unless self.image
+
+        self.profile.location = auth.info.location unless self.profile.location
+        self.profile.short_bio = auth.info.description unless self.profile.short_bio
+
+        self.profile.linkedin_url = auth.info.urls.public_profile
+      # add more here
+    end
+
+    logger.error self.profile.location
+    logger.error self.profile.short_bio
+    logger.error self.profile.twitter_url
+    self.profile = Profile.create(self.profile.attributes)
+    logger.error self.profile.id
+    # self.profile.save # shouldn't have errors
+
   end
+
 
   def downcase_email
     self.email = email.downcase
+  end
+
+  def downcase_username
+    self.username = username.downcase
   end
   
   def generate_remember_token(column)
@@ -80,34 +156,55 @@ class User < ActiveRecord::Base
     UserMailer.send_password_reset_mail(self).deliver
   end
 
-  ##########Registration############
-
-  def current_step
-    @current_step || steps.first
-  end
-  
-  def steps
-    %w[first second third fourth] 
-    #%w[first second fourth]
-  end
-
-  def next_step
-    self.current_step = steps[steps.index(current_step)+1]
+  def create_skills(skill_ids)
+    if skill_ids
+      unless skill_ids.length == 1
+        skill_ids.shift
+        skills = Skill.find skill_ids
+        skills.each do |skill|
+          UserToSkill.create user: self, skill: skill
+        end
+      end
+    end
   end
 
-  def previous_step
-    self.current_step = steps[steps.index(current_step)-1]
+  def create_interests(interest_ids)
+    if interest_ids
+      unless interest_ids.length == 1
+        interest_ids.shift
+        interests = Interest.find interest_ids
+        interests.each do |interest|
+          UserToInterest.create user: self, interest: interest
+        end
+      end
+    end
   end
 
-  def first_step?
-    current_step == steps.first
-  end
+  private
 
-  def last_step?
-    current_step == steps.last
-  end
-
-  ######################################
+  # def password_and_password_login
+  #   if password_login
+  #     if password.blank?
+  #       errors.add :password, 'Enter a password'
+  #     elsif password != password_confirmation
+  #
+  #     end
+  #   end
+  # end
+  #
+  # def password_passes
+  #   if self.password_login
+  #     validates_presence_of :password_hash, :password_salt
+  #   end
+  #
+  #   if self.password
+  #     validates_presence_of :password_confirmation
+  #     validates_confirmation_of :password
+  #     validates_length_of :password, minimum: 8
+  #     validates_exclusion_of :password, in: [record.username, record.first_name],
+  #                            message: 'should not be the same as your username or first name'
+  #   end
+  # end
 
 end
 

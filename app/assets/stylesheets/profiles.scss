@@ -1,0 +1,158 @@
+// Place all the styles related to the profiles controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import "scss_constants";
+
+$shadow-color:          gray;
+
+$cover-photo-height:    200px;
+$profile-photo-height:  160px;
+$profile-photo-width:   160px;
+$profile-photo-border:  2px;
+$tabs-height:           40px;
+$tabs-offset:           20px;
+
+.profiles {
+//  > .container {
+//    background-color: white;
+//  }
+
+  .header {
+    .cover-photo {
+      height: $cover-photo-height;
+//      background-image: image_url("cat-image.jpg");
+      background-position: center;
+      background-size: cover;
+
+      .profile-photo {
+        height: $profile-photo-height;
+        width: $profile-photo-width;
+        object-fit: cover;
+        border: $profile-photo-border solid white;
+        @include border-rounded(10px);
+        background: white;
+        display:block;
+        margin:auto;
+        @include box-shadow(0, 3px, 5px, $shadow-color);
+      }
+
+      .header-container {
+        padding-top: $cover-photo-height - $profile-photo-height + $tabs-offset;
+        .info-container {
+          color: white;
+        }
+      }
+
+      .beside-profile-photo {
+        max-height: $profile-photo-height - $tabs-offset;
+        .edit-icon {
+          color: white;
+        }
+        .edit-icon:hover {
+          color: $primary-color;
+        }
+      }
+    }
+
+    .info-container {
+      .profile-name {
+        padding-top: 3px;
+        font-size: $font-size-header;
+      }
+      .profile-short-bio {
+        font-size: $font-size-subheader;
+      }
+      .profile-location {
+        .glyphicon-map-marker {
+          margin-right: 12px;
+        }
+      }
+      .edit-icon {
+        margin-left: 12px;
+      }
+    }
+
+    .profile-tabs {
+      height: $tabs-height;
+      background: white;
+      .tabs-columns {
+        margin-top: - $tabs-offset;
+      }
+    }
+  }
+
+  .sections-column {
+//    Add overall sections styling
+
+    .section-container {
+      margin: 10px 0 10px 0;
+      border: solid $secondary-fg-color 1px;
+      padding: 13px 20px 20px 20px;
+      background: white;
+
+      .section-title {
+        color: $primary-color;
+        font-size: $font-size-medium;
+        font-weight: $font-weight-subtitle;
+        border-bottom: solid $secondary-bg-color 1px;
+      }
+
+      .section-body {
+        padding: 10px 10px 10px;
+
+        .element-base {
+          padding: 10px 4px 10px;
+          color: black;
+        }
+        .textarea-base {
+          width: 100%;
+          height: 200px;
+        }
+
+        .element-introduction {
+          .introduction-body {
+            @extend .element-base;
+            font-weight: $font-weight-text;
+          }
+          .introduction-edit-textarea {
+            @extend .textarea-base;
+          }
+        }
+
+        .element-experience {
+          .experience-body {
+            @extend .element-base;
+            .experience-title {
+              font-size: $font-size-medium;
+              font-weight: $font-weight-main;
+              margin-bottom: 0;
+            }
+            .experience-subtitle {
+              font-size: $font-size-submedium;
+              font-weight: $font-weight-main;
+              padding-left: 10px;
+            }
+            .experience-description {
+              font-weight: $font-weight-text;
+            }
+          }
+          .experience-edit-textarea {
+            @extend .textarea-base;
+          }
+        }
+
+
+
+      }
+    }
+  }
+
+  // dynamic
+  .edit-icon, .add-icon {
+    font-size: $font-size-icon;
+    margin: 0 5px 0;
+  }
+
+
+}
