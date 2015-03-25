@@ -1,1 +1,1 @@
-$('#project_follow_button').replaceWith("<%= escape_javascript(render :partial => 'follow' )%>");
+$('#project_follow_button').replaceWith("<%= escape_javascript(render 'projects/follow', user_project_follow: UserProjectFollow.new )%>");

@@ -14,7 +14,7 @@ $image-height:          $block-height / 2;
     overflow: hidden;
 
     .project-photo-container {
-      .profile-photo{
+      .project-photo{
         object-fit: cover;
         height: $image-height;
       }

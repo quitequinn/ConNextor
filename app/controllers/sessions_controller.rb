@@ -7,12 +7,7 @@ class SessionsController < ApplicationController
   def create
     user = User.authenticate(params[:email], params[:password])
     if user
-      if params[:remember_me]
-        flash.now.alert = "Remember me!"
-        sign_in user
-      else
-        session_create user
-      end
+      session_create user     
       redirect_to root_url, :notice => "Logged in!"
     else
       flash[:success] = "Invalid login"

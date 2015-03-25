@@ -13,7 +13,7 @@ class ProjectsController < ApplicationController
     @positions = @project.positions
     @posts = @project.project_posts
     @activities = Activity.where( parent_id: @project.id)
-    @user_project_follow = getUserProjectFollow(current_user_id, @project.id)
+    @user_project_follow = UserProjectFollow.find_by_user_id_and_project_id(current_user_id, @project.id)
 
     @user_to_project = UserToProject.find_by user: current_user, project: @project
     if @user_to_project
@@ -78,17 +78,11 @@ class ProjectsController < ApplicationController
   # POST /projects.json
   def create
     @project = Project.new(project_params)
-
-    user_id = current_user_id # might be nil
-    project_user_class = ProjectUserClass::OWNER
-
-    @user_to_project = UserToProject.new(user_id: user_id, project_id: @project.id, project_user_class: project_user_class)
-    @user_to_project.save
-
     respond_to do |format|
-      if @project.save
-        # add ownership for current_user
-        @user_to_project = UserToProject.new(user_id: user_id, project_id: @project.id, project_user_class: project_user_class)
+      if @project.save 
+         @user_to_project = UserToProject.new( user_id: current_user_id, 
+                                               project_id: @project.id, 
+                                               project_user_class: ProjectUserClass::OWNER)
         if @user_to_project.save
           format.html { redirect_to @project, notice: 'Project was successfully created.' }
           format.json { render :show, status: :created, location: @project }

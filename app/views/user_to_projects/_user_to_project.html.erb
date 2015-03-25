@@ -1,9 +1,12 @@
+<%
+  @user_follow = UserFollow.find_by_follower_id_and_followee_id(current_user_id, user_to_project.user.id)
+%>
 <li>
   <%= user_to_project.user.email %>,
   <%= user_to_project.project_user_class %>
-  <% unless isFollowingUser( current_user_id, user_to_project.user_id ) %>
-    <%= button_to 'Follow', user_follows_path(follower_id: current_user_id, followee_id: user_to_project.user_id ), id: "#user_follow_button#{user_to_project.user_id}", remote: true %>
+  <% unless @user_follow %>
+    <%= render :partial => 'user_to_projects/follow', :locals =>{user_follow: UserFollow.new, followee_id: user_to_project.user.id } %>
   <% else %>
-      <%= button_to 'Unfollow', isFollowingUser( user_to_project.user_id, current_user_id ), method: :delete, id: "#user_unfollow_button#{user_to_project.user_id}", remote: true %>
+      <%= render 'user_to_projects/unfollow', user_follow: @user_follow %>
   <% end %>
 </li>

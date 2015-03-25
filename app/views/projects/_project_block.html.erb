@@ -1,5 +1,5 @@
 <% 
-   project_owner = getProjectOwner(project.id)
+   project_owner = Project.getProjectOwner(project.id)
 %>
 
 <div class="col-xs-4">
@@ -15,7 +15,7 @@
     </p>
     <p class="project-owner"> 
       <%= project_owner.first_name %>
-      <%= ", #{project_owner.location}" if project_owner.location %>
+      <%= ", #{project_owner.location}" if project_owner.profile.location %>
     </p>
   </div>
   <%# link_to 'Show', project %>
