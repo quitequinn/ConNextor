@@ -33,9 +33,9 @@ User To Project: <%= @user_to_project ? @user_to_project.project_user_class : 'u
 <br />
 
 <% unless @user_project_follow %>
-    <%= button_to 'Follow', user_project_follows_path(project_id: @project) %>
+    <%= render 'projects/follow', user_project_follow: UserProjectFollow.new %>
 <% else %>
-    <%= button_to 'Unfollow', @user_project_follow, method: :delete %>
+    <%= render 'projects/unfollow', user_project_follow: @user_project_follow%>
 <% end %>
 
 <br />

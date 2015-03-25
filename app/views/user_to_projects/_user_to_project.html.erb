@@ -1,4 +1,12 @@
+<%
+  @user_follow = UserFollow.find_by_follower_id_and_followee_id(current_user_id, user_to_project.user.id)
+%>
 <li>
   <%= user_to_project.user.email %>,
   <%= user_to_project.project_user_class %>
+  <% unless @user_follow %>
+    <%= render :partial => 'user_to_projects/follow', :locals =>{user_follow: UserFollow.new, followee_id: user_to_project.user.id } %>
+  <% else %>
+      <%= render 'user_to_projects/unfollow', user_follow: @user_follow %>
+  <% end %>
 </li>

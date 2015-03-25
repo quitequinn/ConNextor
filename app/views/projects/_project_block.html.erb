@@ -1,0 +1,24 @@
+<% 
+   project_owner = Project.getProjectOwner(project.id)
+%>
+
+<div class="col-xs-4">
+  <div class="project-block">
+    <div class="project-photo-container">
+      <%= image_tag 'cats/cat-profile.jpg', class:'project-photo' %>
+    </div>
+    <p class="project-title">
+      <%= link_to project.title, project %>
+    </p>
+    <p class="project-description">
+      <%= project.short_description %>
+    </p>
+    <p class="project-owner"> 
+      <%= project_owner.first_name %>
+      <%= ", #{project_owner.location}" if project_owner.profile.location %>
+    </p>
+  </div>
+  <%# link_to 'Show', project %>
+  <%# link_to 'Edit', edit_project_path(project) %>
+  <%# link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %>
+</div>

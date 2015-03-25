@@ -1,0 +1,5 @@
+<%= form_for user_follow, :url => url_for(:controller => 'user_follows', :action => 'create'), :remote=>true, html: { id: "user_follow_button" } do |f| %>
+  <%= f.hidden_field :follower_id, value: current_user_id %>
+  <%= f.hidden_field :followee_id, value: followee_id %>
+  <%= f.submit "Follow", class: "btn btn-large btn-primary" %>
+<% end %>

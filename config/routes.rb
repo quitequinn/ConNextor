@@ -14,6 +14,7 @@ Rails.application.routes.draw do
 
   resources :profiles
   # get 'profiles/:id/initialize', to: 'profiles#initialize', as: 'initialize_profile'
+  resources :user_follows
 
   resources :activities
 
@@ -49,8 +50,6 @@ Rails.application.routes.draw do
   get 'log_out' => 'sessions#destroy', :as => 'log_out'
   get 'log_in' => 'sessions#new', :as => 'log_in'
   get 'sign_up' => 'users#new', :as => 'sign_up'
-  # get "additional_info" => "sessions#newAdditionalInfo", :as => "additional_info"
-  # post "additional_info" => "sessions#createAdditionalInfo", :as => "create_additional_info"
   root 'welcome#index'
   resources :users do
     resources :notifications

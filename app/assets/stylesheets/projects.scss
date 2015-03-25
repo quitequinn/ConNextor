@@ -1,3 +1,38 @@
 // Place all the styles related to the Projects controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+$block-height:          400px;
+$image-height:          $block-height / 2;
+
+.projects {
+
+  .project-block {
+
+    height: $block-height;
+    margin: 5px 5px 5px 5px;
+    overflow: hidden;
+
+    .project-photo-container {
+      .project-photo{
+        object-fit: cover;
+        height: $image-height;
+      }
+    }
+
+    .project-title {
+      font-size: 16px;
+
+    }
+
+    .project-description {
+      font-size: 12px;
+    }
+
+    .project-owner {
+      font-size: 12px;
+    }
+  
+  }
+
+}

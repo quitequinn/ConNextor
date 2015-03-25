@@ -24,14 +24,12 @@ class UserProjectFollowsController < ApplicationController
   # POST /user_project_follows
   # POST /user_project_follows.json
   def create
-    user_id = current_user_id # might be nil
-    project = Project.find(params[:project_id]) # might throw exception
-
-    @user_project_follow = UserProjectFollow.new(user_id: user_id, project_id: project.id)
+    @user_project_follow = UserProjectFollow.new(user_project_follow_params)
 
     respond_to do |format|
       if @user_project_follow.save
         format.html { redirect_to @user_project_follow.project, notice: 'You are now following this project.' }
+        format.js
         format.json { render :show, status: :created, location: @user_project_follow }
       else
         format.html { render :new }
@@ -59,7 +57,8 @@ class UserProjectFollowsController < ApplicationController
   def destroy
     @user_project_follow.destroy
     respond_to do |format|
-      format.html { redirect_to @user_project_follow.project, notice: 'Project unfollowed' }
+      format.html { redirect_to project, notice: 'Project unfollowed' }
+      format.js
       format.json { head :no_content }
     end
   end
@@ -72,6 +71,6 @@ class UserProjectFollowsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_project_follow_params
-      params.require(:user_project_follow).permit(:user_id, :project_id)
+      params.permit(:user_id, :project_id)
     end
 end

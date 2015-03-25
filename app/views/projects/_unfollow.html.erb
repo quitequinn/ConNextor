@@ -1,0 +1,3 @@
+<%= form_for user_project_follow,:remote => true,method: :delete, html: { id: "project_follow_button" } do |f| %>
+  <%= f.submit "Unfollow", class: "btn btn-large" %>
+<% end %>
