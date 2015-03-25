@@ -1,0 +1,54 @@
+<div class="container">
+<!--    <h2>Welcome to ConNextor!</h2> -->
+
+  <%= form_for @profile, html: {class: 'form-horizontal'} do |f| %>
+      <% if @profile.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@profile.errors.count, "error") %> prohibited this profile from being saved:</h2>
+
+            <ul>
+              <% @profile.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+      <% end %>
+
+      <div class="row main-section">
+        <div class="col-md-8 textinput-area">
+         <%= render 'edit_geographic', f: f %>
+        </div>
+        <div class="col-md-4 side-description">
+          <p>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.</p>
+        </div>
+
+      </div>
+
+
+      <!--User Fields-->
+      <div class="row main-section">
+        <div class="col-md-8 check-box-area">
+          <%= fields_for @profile.user do |user_fields| %>
+              <p class="form-subheading">Interests:</p>
+              <%= render 'edit_interests', f: user_fields %>
+              <p class="form-subheading">Skills:</p>
+              <%= render 'edit_skills', f: user_fields %>
+          <% end %>
+        </div>
+        <div class="col-md-4 side-description">
+          <p>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.</p>
+        </div>
+      </div>
+
+      <div class="form-group submit form-group-extra-properties-this-is-semantically-a-disaster-but-please-dont-override-bootstrap-classes">
+        <div class="row">
+          <%= f.submit 'Submit', name: 'finish', class: 'btn-upright' %>
+        </div>
+      </div>
+
+      <div class="skip">
+        <%= link_to 'Skip', @profile %>
+      </div>
+  <% end %>
+
+</div>

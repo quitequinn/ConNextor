@@ -1,5 +1,20 @@
 Rails.application.routes.draw do
 
+  resources :profile_contacts
+  get 'profile_contact/swap/:id', to: 'profile_contacts#swap'
+  get 'profile_contacts/add/:profile_id', to: 'profile_contacts#add'
+
+  resources :profile_experiences
+  get 'profile_experience/swap/:id', to: 'profile_experiences#swap'
+  get 'profile_experiences/add/:profile_id', to: 'profile_experiences#add'
+
+  resources :profile_introductions
+  get 'profile_introduction/swap/:id', to: 'profile_introductions#swap'
+  get 'profile_introduction/add/:profile_id', to: 'profile_introductions#add'
+
+  resources :profiles
+  # get 'profiles/:id/initialize', to: 'profiles#initialize', as: 'initialize_profile'
+
   resources :activities
 
   resources :user_to_interests
@@ -11,6 +26,8 @@ Rails.application.routes.draw do
   resources :skills
 
   get 'control_panel/home'
+  get 'user', to: 'users#show'
+  get 'profile/:username', to: 'profiles#show'
 
   resources :user_to_project_tasks
 
@@ -29,9 +46,11 @@ Rails.application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
   get 'auth/:provider/callback', to: 'sessions#omniauthcreate'
-  get "log_out" => "sessions#destroy", :as => "log_out"
-  get "log_in" => "sessions#new", :as => "log_in"
-  get "sign_up" => "users#new", :as => "sign_up"
+  get 'log_out' => 'sessions#destroy', :as => 'log_out'
+  get 'log_in' => 'sessions#new', :as => 'log_in'
+  get 'sign_up' => 'users#new', :as => 'sign_up'
+  # get "additional_info" => "sessions#newAdditionalInfo", :as => "additional_info"
+  # post "additional_info" => "sessions#createAdditionalInfo", :as => "create_additional_info"
   root 'welcome#index'
   resources :users do
     resources :notifications

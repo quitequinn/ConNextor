@@ -1,0 +1,11 @@
+<div class="element-contact">
+  <p class="contact-body">
+    <%= profile_contact.contact_type %>:
+    <%= link_to profile_contact.name, profile_contact.link, class: '' %>
+    <% if @user_is_owner_of_profile %>
+        <%= link_to "/profile_contact/swap/#{profile_contact.id}", remote: true, class: '' do %>
+            <span class="glyphicon glyphicon-edit edit-icon hidden-xs"></span>
+        <% end %>
+    <% end %>
+  </p>
+</div>

@@ -1,0 +1,5 @@
+var existing = document.getElementById('introduction-new');
+if (existing == null) {
+    document.getElementById('introduction-body')
+            .insertAdjacentHTML('beforeend', '<%= j render 'new_profile_introduction', profile_introduction: @profile_introduction %>');
+}

@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Profile:</strong>
+  <%= @profile_contact.profile_id %>
+</p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @profile_contact.type %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @profile_contact.name %>
+</p>
+
+<p>
+  <strong>Link:</strong>
+  <%= @profile_contact.link %>
+</p>
+
+<%= link_to 'Edit', edit_profile_contact_path(@profile_contact) %> |
+<%= link_to 'Back', profile_contacts_path %>

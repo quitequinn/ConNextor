@@ -18,6 +18,8 @@
 //= require private_pub
 //= require_tree .
 
+Turbolinks.enableProgressBar();
+
 // Fade out loading screen when page is loaded
 function fadeOutLoadingScreen() {
     //console.log('why not?');
