@@ -1,0 +1,19 @@
+<div> 
+  <% if @is_owner %>
+    <p><%= link_to "Create position", new_project_position_path(@project.id), :locals=>{:position => Position.new} %></p>
+  <% end %>
+</div>
+
+<table>
+  <tbody>
+    <% @positions.each do |position| %>
+      <tr>
+        <td><%= position.description %></td>
+        <td><%= position.position_type %></td>
+        <td><%= link_to 'Show', project_position_path(@project.id,position) %></td>
+        <td><%= link_to 'Edit', edit_project_position_path(@project.id,position) %></td>
+        <td><%= link_to 'Destroy', project_position_path(@project.id,position), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

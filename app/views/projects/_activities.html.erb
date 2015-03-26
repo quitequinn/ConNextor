@@ -1,0 +1,7 @@
+<% @activities.each do |activity| %>
+  <tr>
+    <td><%= activity.user_id %></td>
+    <td><%= activity.activity_type %></td>
+    <td><%= link_to 'Destroy', activity, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
