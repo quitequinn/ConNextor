@@ -41,7 +41,7 @@ class ProjectPostsController < ApplicationController
                                link: '/projects/#{project.id}',
                                isRead: false )
           
-          PrivatePub.publish_to("/inbox/#{userToProject.user_id}",javascript)
+          #PrivatePub.publish_to("/inbox/#{userToProject.user_id}",javascript)
         end
       
         Activity.create( user_id: current_user_id,
@@ -52,6 +52,7 @@ class ProjectPostsController < ApplicationController
 
 
         format.html { redirect_to project_path(params[:project_id]), notice: 'Project post was successfully created.' }
+        format.js
         format.json { render :show, status: :created, location: @project_post }
       else
         format.html { render :new }

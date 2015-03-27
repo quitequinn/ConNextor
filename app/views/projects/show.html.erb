@@ -12,12 +12,23 @@
         <%= @project.title %>
     </p>
 
+    <div class="row">
+      <div class="project-photo-container col-md-6">
+        <%= image_tag 'cats/cat-profile.jpg', class:'project-photo' %>
+      </div>
+
+       <p class="project-description col-md-6">
+          <strong>Long description:</strong>
+          <%= @project.long_description %>
+      </p>
+    </div>
+
     <div class="row"> 
-      <p class="project-owner">
+      <p class="project-owner col-md-6">
         <%= project_owner.first_name %>
         <%= ", #{project_owner.location}" if project_owner.profile.location %>
       </p>
-      <div class="follow-button">
+      <div class="follow-button col-md-6">
         <% unless @user_project_follow %>
           <%= render 'projects/follow', user_project_follow: UserProjectFollow.new %>
           <% else %>
@@ -26,30 +37,25 @@
       </div>
     </div>
 
-    <p class="row description-row">
-        <strong>Long description:</strong>
-        <%= @project.long_description %>
-    </p>
-
     <div class="row tags-row">
-      <h3>Tags</h3>
+      <p>Tags: </p>
       <%= render @project.project_to_tags %>
     </div>
 
     <div class="row tabnames-row">
-      <h3>Activity Feed</h3>
-      <h3>Discussion</h3>
-      <h3>Members</h3>
-      <h3>Needs</h3>
+      <h3 class="col-md-3">Activity Feed</h3>
+      <h3 class="col-md-3">Discussion</h3>
+      <h3 class="col-md-3">Members</h3>
+      <h3 class="col-md-3">Needs</h3>
     </div>
   </div>
 
   <div class="tabs-section">
     <div>
-      <%= render 'projects/activities' %>
+      <%= render @project.project_posts %>
     </div>
-    <div>
-      <%= render 'projects/discussions' %>
+    <!-- <div>
+      <%= render 'projects/activities' %>
     </div>
     <div>
       <%= render @project.user_to_projects %>
@@ -59,7 +65,7 @@
     </div>
     <div>
       <%= render 'projects/needs' %>
-    </div>
+    </div> -->
   </div>
 
 </div>

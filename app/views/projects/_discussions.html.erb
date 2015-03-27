@@ -1,24 +1,25 @@
-<p><%= link_to "Create post", new_project_project_post_path(@project.id), :locals=>{:project_posts => ProjectPost.new} %></p>
-  <div> 
-    <table>
-      <tbody>
-        <% @posts.each do |post| %>
-          <tr>
-            <td><%= post.user_id %></td>
-            <td><%= post.text %></td>
-            <td><%= link_to 'Edit', edit_project_project_post_path(@project.id,post) %></td>
-            <td><%= link_to 'Destroy', project_project_post_path(@project.id,post), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-            <td><%= link_to "Create comment", new_project_project_post_project_comment_path(@project.id,post.id), :locals=>{:project_comments => ProjectComment.new} %></td>
-            <% if post.project_comments %>       
-              <% post.project_comments.each do |comment| %>
-                <td><%= comment.user_id %></td>
-                <td><%= comment.text %></td>
-                <td><%= link_to 'Edit', edit_project_project_post_project_comment_path(@project.id,post.id,comment) %></td>
-                <td><%= link_to 'Destroy', project_project_post_project_comment_path(@project.id,post.id,comment), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-              <% end %>     
-          <% end %>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
+<%
+  @project_post = ProjectPost.new
+%>
+<div>
+  <%= render '/project_posts/form' %>
+</div>
+
+<div>
+  <% @posts.each do |post| %>
+      <%= post.user_id %>
+      <%= post.text %>
+      <%= link_to 'Edit', edit_project_project_post_path(@project.id,post) %>
+      <%= link_to 'Destroy', project_project_post_path(@project.id,post), method: :delete, data: { confirm: 'Are you sure?' } %>
+      <%= link_to "Create comment", new_project_project_post_project_comment_path(@project.id,post.id), :locals=>{:project_comments => ProjectComment.new} %>
+
+      <% if post.project_comments %>       
+        <% post.project_comments.each do |comment| %>
+          <td><%= comment.user_id %></td>
+          <td><%= comment.text %></td>
+          <td><%= link_to 'Edit', edit_project_project_post_project_comment_path(@project.id,post.id,comment) %></td>
+          <td><%= link_to 'Destroy', project_project_post_project_comment_path(@project.id,post.id,comment), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>     
+    <% end %>
+  <% end %>
+<div>

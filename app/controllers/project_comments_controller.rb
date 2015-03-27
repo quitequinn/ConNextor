@@ -31,7 +31,7 @@ class ProjectCommentsController < ApplicationController
         project_post = @project_comment.project_post
         project_id = project_post.project.id
         project_comments = ProjectComment.where(project_post_id: project_post.id)
-        javascript = "alert('#{current_user.email} has posted in #{project.title}');"
+        #javascript = "alert('#{current_user.email} has posted in project');"
 
         project_comments.each do |project_comment|
           Notification.create( user_id: project_comment.user_id, 
@@ -42,7 +42,7 @@ class ProjectCommentsController < ApplicationController
                                link: project_project_post_path(project_id, project_post.id),
                                isRead: false )
           
-          PrivatePub.publish_to("/inbox/#{project_comment.user_id}",javascript)
+          #PrivatePub.publish_to("/inbox/#{project_comment.user_id}",javascript)
         end
       
         Activity.create( user_id: current_user_id,

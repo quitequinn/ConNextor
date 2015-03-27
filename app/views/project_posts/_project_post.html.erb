@@ -1,0 +1,15 @@
+<%
+  @project_post = project_post
+%>
+
+<div class="container">
+  <%= @project_post.user_id %>
+  <%= @project_post.text %>
+  <%= link_to 'Edit', edit_project_project_post_path(@project.id,@project_post) %>
+  <%= link_to 'Destroy', project_project_post_path(@project.id,@project_post), method: :delete, data: { confirm: 'Are you sure?' } %>
+  <%= link_to "Create comment", new_project_project_post_project_comment_path(@project.id,@project_post.id), :locals=>{:project_comments => ProjectComment.new} %>
+
+  <% if @project_post.project_comments %>       
+    <%= render @project_post.project_comments %>  
+  <% end %>
+</div>

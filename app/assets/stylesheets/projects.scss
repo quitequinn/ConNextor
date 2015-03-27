@@ -35,4 +35,15 @@ $image-height:          $block-height / 2;
   
   }
 
+  .project-info{
+    margin: 5px 5px 5px 5px;
+
+    .project-photo-container {
+      .project-photo{
+        object-fit: cover;
+        height: $image-height;
+      }
+    }
+  }
+
 }

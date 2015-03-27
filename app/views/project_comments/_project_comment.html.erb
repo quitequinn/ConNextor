@@ -1,0 +1,8 @@
+<div class="container">
+  <%= project_comment.user_id %>
+  <%= project_comment.text %>
+  <%= link_to 'Edit', edit_project_project_post_project_comment_path(@project.id, @project_post.id, project_comment) %>
+  <%= link_to 'Destroy', project_project_post_project_comment_path(@project.id, @project_post.id, project_comment), method: :delete, data: { confirm: 'Are you sure?' } %>
+</div>
+ 
+ 
