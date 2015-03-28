@@ -1,2 +1,2 @@
-$('#project_comments').append('<%= escape_javascript(render :partial=>@projectComments %>');
-$('#comment_body').val('');
+$('#project-posts-container').prepend('<%= j render @project_post %>');
+$('#project_post_text').val('');

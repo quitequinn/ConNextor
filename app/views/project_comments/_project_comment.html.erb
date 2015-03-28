@@ -1,8 +1,9 @@
-<div class="container">
+<div id="<% "comment-body-#{project_comment.id}" %>" class="comment-body">
+  ------------> COMMENT
   <%= project_comment.user_id %>
   <%= project_comment.text %>
-  <%= link_to 'Edit', edit_project_project_post_project_comment_path(@project.id, @project_post.id, project_comment) %>
-  <%= link_to 'Destroy', project_project_post_project_comment_path(@project.id, @project_post.id, project_comment), method: :delete, data: { confirm: 'Are you sure?' } %>
+  <% if project_comment.is_comment_owner?(current_user) %>
+    <%= link_to 'Edit', edit_project_comment_path(project_comment) %>
+    <%= link_to 'Destroy', project_comment_path(project_comment), method: :delete, data: { confirm: 'Are you sure?' } %>
+  <% end %>
 </div>
- 
- 

@@ -26,7 +26,7 @@
     <div class="row"> 
       <p class="project-owner col-md-6">
         <%= project_owner.first_name %>
-        <%= ", #{project_owner.location}" if project_owner.profile.location %>
+        <%= ", #{project_owner.profile.location}" if project_owner.profile.location %>
       </p>
       <div class="follow-button col-md-6">
         <% unless @user_project_follow %>
@@ -51,7 +51,14 @@
   </div>
 
   <div class="tabs-section">
-    <div>
+    <div id="project-posts-form-container">
+      <%
+         new_project_post = ProjectPost.new
+         new_project_post.project_id = @project.id
+      %>
+      <%= render partial: 'project_posts/form', locals: {project_post: new_project_post} %>
+    </div>
+    <div id="project-posts-container">
       <%= render @project.project_posts %>
     </div>
     <!-- <div>

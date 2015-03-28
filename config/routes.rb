@@ -47,24 +47,26 @@ Rails.application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
   get 'auth/:provider/callback', to: 'sessions#omniauthcreate'
-  get 'log_out' => 'sessions#destroy', :as => 'log_out'
-  get 'log_in' => 'sessions#new', :as => 'log_in'
-  get 'sign_up' => 'users#new', :as => 'sign_up'
+  get 'log_out' => 'sessions#destroy', as: 'log_out'
+  get 'log_in' => 'sessions#new', as: 'log_in'
+  get 'sign_up' => 'users#new', as: 'sign_up'
   root 'welcome#index'
-  resources :users do
-    resources :notifications
-    resources :requests
-  end
+  resources :users
+  resources :notifications
+  resources :requests
   resources :sessions
   resources :password_resets
-  resources :projects do
-    resources :positions
-    resources :project_posts do
-      resources :project_comments
-    end
-    post "join_project" => "projects#join_request", :as => "join_project"
-  end
-  post "accept_project" => "projects#accept_request", :as => "accept_project"
+  resources :projects
+  resources :positions
+  resources :project_posts
+  post 'join_project' => 'projects#join_request', as: 'join_project'
+
+  # THIS IS FOR POSTS.
+  resources :project_comments
+  post 'accept_project' => 'projects#accept_request', as: 'accept_project'
+
+
+
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
 

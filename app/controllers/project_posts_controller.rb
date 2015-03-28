@@ -25,20 +25,21 @@ class ProjectPostsController < ApplicationController
   # POST /project_posts.json
   def create
     @project_post = ProjectPost.new(project_post_params)
+    @project_post.user_id = current_user_id
 
     respond_to do |format|
       if @project_post.save
         project = @project_post.project
-        userToProjects = UserToProject.where(project_id: project.id)
-        javascript = "alert('#{current_user.email} has posted in #{project.title}');"
+        user_to_projects = UserToProject.where(project_id: project.id)
+        # javascript = "alert('#{current_user.email} has posted in #{project.title}');"
 
-        userToProjects.each do |userToProject|
+        user_to_projects.each do |userToProject|
           Notification.create( user_id: userToProject.user_id, 
                                actor_id: current_user_id,
                                verb: 'posted on project',
                                notification_type: 'ProjectPost',
-                               message: '#{current_user.email} has posted in #{project.title}', 
-                               link: '/projects/#{project.id}',
+                               message: "#{current_user.email} has posted in #{project.title}",
+                               link: "/projects/#{project.id}",
                                isRead: false )
           
           #PrivatePub.publish_to("/inbox/#{userToProject.user_id}",javascript)
@@ -66,7 +67,7 @@ class ProjectPostsController < ApplicationController
   def update
     respond_to do |format|
       if @project_post.update(project_post_params)
-        format.html { redirect_to @project_post, notice: 'Project post was successfully updated.' }
+        format.html { redirect_to @project_post.project, notice: 'Project post was successfully updated.' }
         format.json { render :show, status: :ok, location: @project_post }
       else
         format.html { render :edit }
@@ -93,6 +94,6 @@ class ProjectPostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_post_params
-      params.require(:project_post).permit(:user_id, :project_id, :text)
+      params.require(:project_post).permit(:project_id, :text)
     end
 end
