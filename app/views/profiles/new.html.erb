@@ -1,7 +1,13 @@
-<div class="container">
-<!--    <h2>Welcome to ConNextor!</h2> -->
+<script>
+  function submitProfile() {
+      document.forms['profile-form'].submit();
+  }
+</script>
 
-  <%= form_for @profile, html: {class: 'form-horizontal'} do |f| %>
+<div class="container">
+  <h2>We can't wait to know more about you!</h2>
+
+  <%= form_for @profile, html: {class: 'form-horizontal', id: 'profile-form'} do |f| %>
       <% if @profile.errors.any? %>
           <div id="error_explanation">
             <h2><%= pluralize(@profile.errors.count, "error") %> prohibited this profile from being saved:</h2>
@@ -29,10 +35,9 @@
       <div class="row main-section">
         <div class="col-md-8 check-box-area">
           <%= fields_for @profile.user do |user_fields| %>
-              <p class="form-subheading">Interests:</p>
+              <p class="form-subheading">What do you see yourself doing?</p>
+              <p class="">Please choose from the following</p>
               <%= render 'edit_interests', f: user_fields %>
-              <p class="form-subheading">Skills:</p>
-              <%= render 'edit_skills', f: user_fields %>
           <% end %>
         </div>
         <div class="col-md-4 side-description">
@@ -40,15 +45,19 @@
         </div>
       </div>
 
-      <div class="form-group submit form-group-extra-properties-this-is-semantically-a-disaster-but-please-dont-override-bootstrap-classes">
-        <div class="row">
-          <%= f.submit 'Submit', name: 'finish', class: 'btn-upright' %>
-        </div>
-      </div>
-
-      <div class="skip">
-        <%= link_to 'Skip', @profile %>
-      </div>
+      <!--<div class="skip">-->
+        <%# link_to 'Skip', @profile %>
+      <!--</div>-->
+  <!--End of Form (submit button on the bottom)-->
   <% end %>
 
+  <p class="form-subheading">More specifically what are you good at?</p>
+  <p class="">What are you top skills? e.g HTML, Ruby, Public Speaking, Graphic Design, Content Creation</p>
+  <%= render 'edit_skills', list_of_user_to_skills: @profile.user.user_to_skills %>
+
+  <div class="form-group submit form-group-extra-properties-this-is-semantically-a-disaster-but-please-dont-override-bootstrap-classes">
+    <div class="row">
+      <input type="submit" name="finish" class="btn-upright" onclick="submitProfile()" />
+    </div>
+  </div>
 </div>

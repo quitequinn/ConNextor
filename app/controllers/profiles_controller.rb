@@ -20,11 +20,14 @@ class ProfilesController < ApplicationController
   # we created profile when we created user
   def new
     set_skills_and_interests
+    if current_user and @profile
+      @user_is_owner_of_profile = @profile == current_user.profile
+    end
   end
 
-  # GET /profiles/1/edit
-  def edit
-  end
+  # # GET /profiles/1/edit
+  # def edit
+  # end
 
   # POST /profiles
   # POST /profiles.json

@@ -1,10 +1,7 @@
-
-  <div class="form-group form-group-extra-properties-this-is-semantically-a-disaster-but-please-dont-override-bootstrap-classes">
-    <%= f.hidden_field 'skill_ids', {multiple: true} %>
-    <% @skills.each do |a_value| %>
-      <div class="col-md-4 check-box-element">
-        <label><%= f.check_box('skill_ids', {multiple: true, class: 'input-checkbox check-skills'}, a_value.id, nil) %> <%=a_value.name %> 
-        </label>
-      </div>
-    <% end %>
+<div class="edit-skills-container">
+  <div id="profile-skills" class="profile-skills">
+    <%= render list_of_user_to_skills, user_is_owner_of_profile: nil %>
   </div>
+  <%# new_skill = Skill.new %>
+  <%= render 'skills/add_skill', skill: Skill.new %>
+</div>

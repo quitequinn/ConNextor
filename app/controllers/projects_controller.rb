@@ -79,7 +79,8 @@ class ProjectsController < ApplicationController
   def create
     @project = Project.new(project_params)
     respond_to do |format|
-      if @project.save 
+      if @project.save
+        logger.error "CURRENT_USER_ID: #{current_user_id}, and PROJECT_ID: #{@project.id}"
          @user_to_project = UserToProject.new( user_id: current_user_id, 
                                                project_id: @project.id, 
                                                project_user_class: ProjectUserClass::OWNER)
@@ -87,6 +88,7 @@ class ProjectsController < ApplicationController
           format.html { redirect_to @project, notice: 'Project was successfully created.' }
           format.json { render :show, status: :created, location: @project }
         else
+          logger.error 'User to Project save failed.'
           format.html { render :new }
           format.json { render json: @project.errors, status: :unprocessable_entity }
         end

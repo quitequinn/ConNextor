@@ -1,2 +1,3 @@
 $('#<%="post-comments-container-#{@project_comment.project_post_id}"%>').append('<%= j render @project_comment %>');
-$('#<%="post-comment-text-#{@project_comment.project_post_id}"%>').val('');
+document.getElementById('<%="post-comment-form-#{@project_comment.project_post_id}"%>').innerHTML = '<%= j render partial: 'project_comments/form', locals: {project_comment: ProjectComment.new(project_post_id: @project_comment.project_post_id)} %>';
+

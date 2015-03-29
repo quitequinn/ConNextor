@@ -16,7 +16,7 @@ def any_empty(*stuff)
       return true
     end
   end
-  return false
+  false
 end
 
 def seed_user(name=nil,username=nil,password=nil)
@@ -79,20 +79,23 @@ def generate_random_sequence( seq_size=0 )
   for i in 1..seq_size do
     res[i] = rand(2)
   end
-  return res
+  res
 end
 
 
-seed_skill('frontend')
-seed_skill('backend')
-seed_skill('design')
-seed_skill('logic')
-seed_skill('management')
-seed_skill('business')
+# seed_skill('frontend')
+# seed_skill('backend')
+# seed_skill('design')
+# seed_skill('logic')
+# seed_skill('management')
+# seed_skill('business')
 
-seed_interest('frontend')
-seed_interest('backend')
-seed_interest('design')
-seed_interest('logic')
-seed_interest('management')
-seed_interest('business')
+seed_interest('Back-end Engineer')
+seed_interest('Business Developer')
+seed_interest('Designer')
+seed_interest('Front-end Engineer')
+seed_interest('Hardware Engineer')
+seed_interest('Marketer')
+seed_interest('Mobile Developer')
+seed_interest('Product Manager')
+

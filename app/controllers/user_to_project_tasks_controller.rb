@@ -62,13 +62,21 @@ class UserToProjectTasksController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_user_to_project_task
-      @user_to_project_task = UserToProjectTask.find(params[:id])
-    end
+  # NOT USED.
+  def check_permission
+    @user_is_owner_of_association = has_user_permission? @user_to_project_task
+    redirect_to root_url, notice: 'Wrong Permissions' unless @user_is_owner_of_association
+    return false unless @user_is_owner_of_association
+    true
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def user_to_project_task_params
-      params.require(:user_to_project_task).permit(:user_id, :project_task_id, :relation)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_user_to_project_task
+    @user_to_project_task = UserToProjectTask.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def user_to_project_task_params
+    params.require(:user_to_project_task).permit(:user_id, :project_task_id, :relation)
+  end
 end

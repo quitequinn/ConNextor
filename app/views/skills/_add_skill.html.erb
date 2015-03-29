@@ -1,0 +1,4 @@
+<%= form_for skill, remote: true do |f| %>
+  <%= f.text_field :name, placeholder: 'Add skill', class: 'skill-edit-text input-upright' %>
+  <%= f.submit class: 'btn-upright' %>
+<% end %>

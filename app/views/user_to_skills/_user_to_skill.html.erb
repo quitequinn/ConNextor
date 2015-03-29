@@ -1,0 +1,8 @@
+<div id="<%="profile-skill-#{user_to_skill.id}"%>" class="profile-skill">
+  <%= render user_to_skill.skill %>
+  <% if @user_is_owner_of_association or @user_is_owner_of_profile %>
+      <%= link_to user_to_skill, method: :delete, remote: true do %>
+          <span class="glyphicon glyphicon-remove remove-icon hidden-xs"></span>
+      <% end %>
+  <% end %>
+</div>

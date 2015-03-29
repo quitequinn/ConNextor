@@ -1,6 +1,6 @@
 <% project_comment ||= @project_comment %>
 
-<%= form_for project_comment, remote: @project_comment ? false : true do |f| %>
+<%= form_for project_comment, remote: @project_comment ? false : true, html: {id: "post-comment-form-#{project_comment.project_post_id}"} do |f| %>
   <%= f.hidden_field :project_post_id %>
 
   <div class="field">

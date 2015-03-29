@@ -1,0 +1,2 @@
+$('#profile-skills').append('<%= j render @user_to_skill %>');
+document.getElementById('new_skill').innerHTML = '<%= j render 'skills/add_skill', skill: Skill.new %>';

@@ -6,27 +6,27 @@ class User < ActiveRecord::Base
   has_many :user_project_follows, dependent: :destroy
   has_many :projects, through: :user_to_projects
   has_many :project_tasks
-  has_many :identities
-  has_many :user_to_interests
-  has_many :user_to_skills
+  has_many :identities, dependent: :destroy
+  has_many :user_to_interests, dependent: :destroy
+  has_many :user_to_skills, dependent: :destroy
   has_many :interests, through: :user_to_interests
   has_many :skills, through: :user_to_skills
-  has_many :notifications
-  has_many :activities
-  has_many :project_posts
-  has_many :project_comments
+  has_many :notifications, dependent: :destroy
+  has_many :activities, dependent: :destroy
+  has_many :project_posts, dependent: :destroy
+  has_many :project_comments, dependent: :destroy
 
   attr_accessor :password
   attr_writer :current_step
-  before_save :downcase_email, :encrypt_password, :downcase_username
+  before_save :downcase_email, :encrypt_password
   validates_length_of :first_name, maximum: 30
   validates_length_of :last_name, maximum: 30
   validates_presence_of :email
   validates_uniqueness_of :email
-  validates_presence_of :username
+  # validates_presence_of :username
   validates_uniqueness_of :username
-  validates_format_of :username, with: /\A[a-z0-9]+[-a-z0-9]*[a-z0-9]+\z/i,
-                      message: 'Only alphanumeric characters and dashes, '
+  validates_format_of :username, with: /\A[a-z0-9]+[-a-z0-9]*[a-z0-9]+\z/i, allow_blank: true,
+                      message: 'only alphanumeric characters and dashes, '
 
   with_options if: :password_login_is_enabled do |password_login_user|
     password_login_user.validates_presence_of :password_hash, on: :save
