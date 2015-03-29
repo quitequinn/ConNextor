@@ -2,6 +2,8 @@ class User < ActiveRecord::Base
 
   belongs_to :profile
 
+  has_one :invitation_code, dependent: :destroy
+
   has_many :user_to_projects, dependent: :destroy
   has_many :user_project_follows, dependent: :destroy
   has_many :projects, through: :user_to_projects
