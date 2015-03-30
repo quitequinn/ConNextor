@@ -5,7 +5,7 @@
 
 
 body{
-  background-color: #f1f1f1;
+  background-color: #F0F0D4;
   margin-top: 40px;
   margin-bottom: 80px;
   font-family: omnes-regular;
@@ -16,15 +16,15 @@ body{
 }
 
 #logo-img {
-  background-image: url("../assets/images/logo-for-registraion_64-64.png");
+  background-image: url("../assets/images/logo_03.png");
   background-size: cover;
-  width: 64px;
-  height: 64px; }
+  width: 56px;
+  height: 56px; }
 
 #logo-text {
-  padding: 20px 15px 4px 0px;
-  font-size: 24px;
-  color: #EFC94C }
+  padding: 10px 15px 4px 15px;
+  font-size: 45px;
+  font-weight: bolder; }
 
 #logo {
   height: 56px; }
