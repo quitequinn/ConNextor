@@ -1,9 +1,3 @@
-<script>
-  function submitProfile() {
-      document.forms['profile-form'].submit();
-  }
-</script>
-
 <div class="container">
   <h2>We can't wait to know more about you!</h2>
 
@@ -21,19 +15,29 @@
       <% end %>
 
       <div class="row main-section">
+        <div class="row big-header">
+          <h4>Hey, Welcome to ConNextor</h4>
+        </div>
+        <div class="row small-header">
+          <h6>Let's take a few steps to finish your profile first.</h6>
+        </div>
         <div class="col-md-8 textinput-area">
          <%= render 'edit_geographic', f: f %>
         </div>
         <div class="col-md-4 side-description">
-          <p>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.</p>
+          <p class="title">Step 1 of 3</p>
+          <p class="text">Kowing where you are from will get you better connections with those who came from the same place</p>
         </div>
-
       </div>
-
 
 
       <!--User Fields-->
       <div class="row main-section">
+        <div class="row big-header">
+          <h4>Now, Choose what you like!</h4>
+        </div>
+        <br />
+        <br />
         <div class="col-md-8 check-box-area">
           <%= fields_for @profile.user do |user_fields| %>
               <p class="form-subheading">What do you see yourself doing?</p>
@@ -42,21 +46,26 @@
           <% end %>
         </div>
         <div class="col-md-4 side-description">
-          <p>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.</p>
+          <p class="title">Step 2 of 3</p>
+          <p class="text">After choosing the field you are interested in, we will give you better sponsors about ideas or projects</p>
         </div>
       </div>
-
-      <!--<div class="skip">-->
-        <%# link_to 'Skip', @profile %>
-      <!--</div>-->
-  <!--End of Form (submit button on the bottom)-->
   <% end %>
 
   <p class="form-subheading">More specifically what are you good at?</p>
   <p class="">What are you top skills? e.g HTML, Ruby, Public Speaking, Graphic Design, Content Creation</p>
   <%= render 'edit_skills', list_of_user_to_skills: @profile.user.user_to_skills %>
 
-  <div class="form-group submit form-group-extra-properties-this-is-semantically-a-disaster-but-please-dont-override-bootstrap-classes">
+  <div class="main-section thanks-section row">
+    <h4 class="row">Thanks!</h4>
+    <div class="text col-md-8 col-md-offset-4 row">
+      <p class="row single-line">Your profile has been updated to ConNextor</p>
+      <p class="row">Our final launch is about 2 months later, we will send you an email to keep you up-to-date about our most recent developments.</p>
+      <p class="row"></p>
+    </div>
+  </div>
+
+  <div class="form-group submit">
     <div class="row">
       <input type="submit" name="finish" class="btn-upright" onclick="submitProfile()" />
     </div>

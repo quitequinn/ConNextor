@@ -8,17 +8,11 @@
 
 
   
-  h2 {
+  .title {
     text-align: center;
     margin-bottom: 10px;
     margin-top: 25px;
     color: $primary-color;
-  }
-
-  p{
-    font-size: 18px;
-    margin-top: 30px;
-    margin-bottom: 30px; 
   }
 
   .container {
@@ -28,7 +22,6 @@
   
   .form-group .control-label {
     margin: 0 0 0 0;
-    color: white;
   }
 
   .field_with_errors > .control-label {
@@ -42,29 +35,38 @@
   }
 
   .paragraph-indent{
-    margin-top: 10px;
-  }
-  
-
-
- .form-group {
-
-  .input-upright {
-    width: 90%;
-    margin: 0 5% 0 5%;
-    background: white;
-    border:0px;
+    margin: 60px 0 30px;
+    font-size: 18px;
   }
 
-  .btn-upright {
-    margin: 0 5% 0 5%;
-    background: white;
-    border: 0px;
+
+
+  .form-group {
+
+    .input-upright {
+      width: 90%;
+      margin: 0 5% 0 0;
+      background: white;
+      border: 1px solid rgba(0, 0, 0, 0.2);
+    }
+
+    .btn-upright {
+      margin: 0 5% 0 5%;
+      background: $primary-color;
+      color: white;
+      border: 1px solid white;
+    }
+
+    .btn-upright:hover {
+      background-color: white;
+      color: $primary-color;
+      border: 1px solid rgba(0, 0, 0, 0.2);
+    }
+
   }
- }
 
   .highlight{
-    background: $primary-color-light;
+    background: white;
 
     //padding: 20px 20px 20px 20px;
     form {
@@ -78,7 +80,7 @@
     h2 {
       margin-top: 10px;
       margin-bottom: 20px;
-      color: white;
+      color: $primary-color;
     }
     .error_messages{
       margin-left: 80px;

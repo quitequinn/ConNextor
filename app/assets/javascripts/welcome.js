@@ -6,6 +6,14 @@ function scrollToInvitation() {
     return false;
 }
 
+function divHide() {
+  document.getElementById('pop-up').style.display = "none";
+}
+
+function divShow() {
+  document.getElementById('pop-up').style.display = "block";
+}
+
 // Form submit listener
 function postInviteToRemote(inviteForm) {
     var name = inviteForm.name.value,
