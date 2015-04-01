@@ -28,7 +28,7 @@
   
   .form-group .control-label {
     margin: 0 0 0 0;
-    color: white;
+    color: black;
   }
 
   .field_with_errors > .control-label {
@@ -50,21 +50,27 @@
  .form-group {
 
   .input-upright {
-    width: 90%;
-    margin: 0 5% 0 5%;
-    background: white;
-    border:0px;
+    width: 80%;
+    margin: 0 0 0 0;
+    //background: white;
+    border:1px solid;
+    color: #969696;
   }
 
   .btn-upright {
     margin: 0 5% 0 5%;
-    background: white;
+    background: $primary-color;
     border: 0px;
+    color: white;
   }
+
  }
 
   .highlight{
-    background: $primary-color-light;
+    background: white;
+    border: 1px solid;
+    color: #cccccc;
+    
 
     //padding: 20px 20px 20px 20px;
     form {
@@ -78,7 +84,7 @@
     h2 {
       margin-top: 10px;
       margin-bottom: 20px;
-      color: white;
+      color: $primary-color;
     }
     .error_messages{
       margin-left: 80px;
