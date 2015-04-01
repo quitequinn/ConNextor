@@ -7,7 +7,7 @@
   <title><%= full_title(yield(:title)) %></title>
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= favicon_link_tag 'favicon_3.ico' %>
+  <%= favicon_link_tag 'favicon' %>
   <%= csrf_meta_tags %>
 </head>
 
@@ -34,7 +34,7 @@
         <% end %>
         <!--Branding (logo)-->
         <a class="navbar-brand logo-img-navbar-container" href="/">
-          <%= image_tag 'logo_03.png', class: 'logo-img' %>
+          <%= image_tag 'logo.png', class: 'logo-img' %>
         </a>
         <a class="navbar-brand logo-txt" href="/">
           ConNextor
