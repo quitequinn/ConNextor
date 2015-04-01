@@ -1,8 +1,8 @@
 <%= form_tag sessions_path do %>
-    <%= label_tag :email, 'Email' %><br />
-    <%= text_field_tag :email, params[:email] %>
-    <%= label_tag :password %><br />
-    <%= password_field_tag :password %>
+    <%# label_tag :email, 'Email' %>
+    <%= text_field_tag :email, params[:email], html: {class: 'input-upright'} %><br />
+    <%# label_tag :password %>
+    <%= password_field_tag :password, html: {class: 'input-upright'} %><br />
 
     <!--<p><%# link_to "forgotten password?", new_password_reset_path %></p>-->
     <!--<div class="field">-->
@@ -10,5 +10,5 @@
       <%# label_tag :remember_me %>
     <!--</div>-->
 
-    <p class="button"><%= submit_tag "Log in" %></p>
+    <%= submit_tag 'Log in', html: {class: 'btn-upright text-center'}%>
 <% end %>

@@ -28,10 +28,14 @@ function fadeOutLoadingScreen() {
 }
 
 function toggleLogInPopUp() {
-  var popUp = document.getElementById('pop-up');
+  var popUp = document.getElementById('pop-up-container');
   if (popUp.style.display == 'none') {
     popUp.style.display = 'block'
   } else {
     popUp.style.display = 'none'
   }
+}
+
+function logthatshit() {
+  console.log('I HVAE BEEN TOUCHED');
 }
