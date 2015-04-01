@@ -1,20 +1,31 @@
+// Partial just for global Sass constants.
+//  - should be included in every other Sass file
+//  - until further plans to switch to Tomeji
+//    see http://stackoverflow.com/questions/9138946/proper-scss-asset-structure-in-rails
+
 // Colors
 $primary-color:         #EFC94C;
 $primary-color-light:   #F2DC95;
+$primary-fg-color:      #F0E49E;
+$primary-bg-color:      #FFF9C6;
 $secondary-color:       #888888;
 $secondary-fg-color:    #BBBBBB;
 $secondary-bg-color:    #EAEAEA;
-$warning-color:         #f98152;
+$complementary-color:   #298ABC;
+$palette-light-color:   #BFE2E4;
+$palette-dark-color:    #ACC6C7;
+$border-divider-color:  rgba(0, 0, 0, 0.2); // Greyscale value
+$warning-color:         #F98152;
 $active-text-color:     #000000;
-$inactive-text-color:   #ababab;
+$inactive-text-color:   #ABABAB;
 $subtext-color:         #888888;
 
 // Fonts
 $font-family:           omnes;
 $font-family-base:      omnes; // For Bootstrap
 $font-size-base:        16px;
-//$line-height-base:      20px;
-//$link-color:            $primary-color;
+//$line-height-base:      20px; // For Bootstrap
+//$link-color:            $primary-color; // For Bootstrap
 $font-size-extra-small: 11px;
 $font-size-small:       14px;
 $font-size-submedium:   16px;
@@ -64,4 +75,12 @@ $footer-padding:        ($footer-height - $font-size-text)/2;
     -moz-box-shadow: $top $left $blur $color;
     box-shadow: $top $left $blur $color;
   }
+}
+
+@mixin no-select {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }

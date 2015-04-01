@@ -1,5 +1,7 @@
+<% provide(:title, 'Welcome') %>
+
 <div class="container">
-  <h2>We can't wait to know more about you!</h2>
+  <!--<h2>We can't wait to know more about you!</h2>-->
 
   <%= form_for @profile, html: {class: 'form-horizontal', id: 'profile-form'} do |f| %>
       <% if @profile.errors.any? %>
@@ -14,59 +16,77 @@
           </div>
       <% end %>
 
-      <div class="row main-section">
-        <div class="row big-header">
-          <h4>Hey, Welcome to ConNextor</h4>
+      <!--Geographic-->
+      <div class="row registration-section">
+        <div class="section-header">
+          <div class="big-header">
+            <p>Hey, Welcome to ConNextor</p>
+          </div>
         </div>
-        <div class="row small-header">
-          <h6>Let's take a few steps to finish your profile first.</h6>
-        </div>
-        <div class="col-md-8 textinput-area">
-         <%= render 'edit_geographic', f: f %>
-        </div>
-        <div class="col-md-4 side-description">
+
+        <div class="col-sm-4 col-sm-push-8 side-description">
           <p class="title">Step 1 of 3</p>
-          <p class="text">Kowing where you are from will get you better connections with those who came from the same place</p>
+          <p class="text">Knowing where you are from will get you better connections with those who came from the same place</p>
+        </div>
+
+        <div class="col-sm-8 col-sm-pull-4 section-form-container">
+          <%= render 'edit_geographic', f: f %>
         </div>
       </div>
 
 
-      <!--User Fields-->
-      <div class="row main-section">
-        <div class="row big-header">
-          <h4>Now, Choose what you like!</h4>
+      <!--Interests-->
+      <div class="row registration-section">
+        <div class="section-header">
+          <div class="row big-header">
+            <p>What do you see yourself doing?</p>
+          </div>
         </div>
-        <br />
-        <br />
-        <div class="col-md-8 check-box-area">
-          <%= fields_for @profile.user do |user_fields| %>
-              <p class="form-subheading">What do you see yourself doing?</p>
-              <p class="">Please choose from the following</p>
-              <%= render 'edit_interests', f: user_fields %>
-          <% end %>
-        </div>
-        <div class="col-md-4 side-description">
+
+        <div class="col-sm-4 col-sm-push-8 side-description">
           <p class="title">Step 2 of 3</p>
           <p class="text">After choosing the field you are interested in, we will give you better sponsors about ideas or projects</p>
         </div>
+
+        <div class="col-sm-8 col-sm-pull-4 section-form-container">
+          <div class="checkbox-field">
+            <%= fields_for @profile.user do |user_fields| %>
+                <%= render 'edit_interests', f: user_fields %>
+            <% end %>
+          </div>
+        </div>
       </div>
   <% end %>
+  <!--End of Form-->
+  <!--Submit button separately, at the bottom-->
 
-  <p class="form-subheading">More specifically what are you good at?</p>
-  <p class="">What are you top skills? e.g HTML, Ruby, Public Speaking, Graphic Design, Content Creation</p>
-  <%= render 'edit_skills', list_of_user_to_skills: @profile.user.user_to_skills %>
 
-  <div class="main-section thanks-section row">
-    <h4 class="row">Thanks!</h4>
-    <div class="text col-md-8 col-md-offset-4 row">
-      <p class="row single-line">Your profile has been updated to ConNextor</p>
-      <p class="row">Our final launch is about 2 months later, we will send you an email to keep you up-to-date about our most recent developments.</p>
-      <p class="row"></p>
+  <!--Skills, separate Form for AJAX-->
+  <div class="row registration-section">
+    <div class="section-header">
+      <div class="big-header">
+        <p>What can you do?</p>
+      </div>
+    </div>
+
+    <div class="col-sm-4 col-sm-push-8 side-description">
+      <p class="title">Step 3 of 3</p>
+      <p class="text">What are you top skills? e.g HTML, Ruby, Public Speaking, Graphic Design, Content Creation</p>
+    </div>
+
+    <div class="col-sm-8 col-sm-pull-4 section-form-container">
+      <div class="skill-blocks">
+        <%= render 'edit_skills', list_of_user_to_skills: @profile.user.user_to_skills %>
+      </div>
     </div>
   </div>
 
-  <div class="form-group submit">
-    <div class="row">
+  <!--Thank you-->
+  <div class="row registration-section">
+    <div class="thanks-section">
+      <p>Thanks!</p>
+
+      <!--Submit (linked by Javascript)-->
       <input type="submit" name="finish" class="btn-upright" onclick="submitProfile()" />
     </div>
   </div>

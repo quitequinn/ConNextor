@@ -1,56 +1,44 @@
 <% provide(:title, 'Sign Up') %>
 
 <div class="container">
-  <div class="row">
-
-    <!--<div class="col-md-6">-->
-    <!--<div class="side-description-group">-->
-       <!--<div class="row"> -->
-          <!--<h2>Welcome to ConNextor</h2>-->
-        <!--</div>-->
-        <!--<p class="paragraph-indent">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>-->
-    <!--</div>-->
-    <!--</div>-->
-
-
-    <div class="col-md-6 col-md-offset-3 highlight">
     <%= form_for :user, url: users_path, html: {class: 'form-horizontal'} do |f| %>
 
-        <h2 class="title">Kick Start Your Journey?</h2>
-
-        <% if @user.errors.any? %>
-            <div class="error_messages">
-              <h3>Oops, something seems wrong</h3>
-              <ul>
-                <% @user.errors.full_messages.each do |message| %>
-                    <li><%= message %></li>
-                <% end %>
-              </ul>
-            </div>
-        <% end %>
-
-
-        <%= render 'users/form_username_email', f: f %>
-
-        <%= render 'users/form_first_last_name', f: f %>
-
-        <% if @identity and @user.profile %>
-            <%= f.hidden_field :identity_id, value: @identity.id %>
-            <%= f.hidden_field :profile_id, value: @user.profile.id %>
-        <% else %>
-            <%= render 'users/form_password', f: f %>
-        <% end %>
-
-
-          <div class="form-group button">
-            <div class="col-sm-offset-4 col-sm-8">
-              <%= f.submit 'Submit', name: 'finish', class: 'btn-upright' %>
+        <div class="row registration-section">
+          <div class="section-header">
+            <div class="big-header">
+              <p>Kick Start Your Journey?</p>
             </div>
           </div>
 
+          <div class="col-sm-4 col-sm-push-8 side-description">
+            <p class="title">Sign up!</p>
+            <p class="text">ConNextor is fun!</p>
+
+            <!--Errors-->
+            <% if @user.errors.any? %>
+                <div class="error_messages">
+                  <!--<p>Oops, something seems wrong</p>-->
+                  <% @user.errors.full_messages.each do |message| %>
+                      <p class="error_message"><%= message %></p>
+                  <% end %>
+                </div>
+            <% end %>
+          </div>
+
+          <div class="col-sm-8 col-sm-pull-4 section-form-container">
+            <%= render 'users/form_username_email', f: f %>
+            <%= render 'users/form_first_last_name', f: f %>
+            <% if @identity and @user.profile %>
+                <%= f.hidden_field :identity_id, value: @identity.id %>
+                <%= f.hidden_field :profile_id, value: @user.profile.id %>
+            <% else %>
+                <%= render 'users/form_password', f: f %>
+            <% end %>
+          </div>
+
+          <div class="row text-center">
+            <%= f.submit 'Submit', name: 'finish', class: 'btn-upright' %>
+          </div>
+        </div>
     <% end %>
-    </div>
-
-
-  </div>
 </div>

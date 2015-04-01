@@ -70,7 +70,7 @@ class UsersController < ApplicationController
         end
 
         # Confirm Email here, don't login.
-        sign_in @user
+        session_create @user
 
         format.html { redirect_to controller: :profiles, action: :new, id: @user.profile_id}
         format.json { render :show, status: :created, location: @user }

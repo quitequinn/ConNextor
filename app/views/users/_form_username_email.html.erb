@@ -1,3 +1,4 @@
+<!--Username no longer required-->
 <!--<div class="form-group">-->
   <%# f.label :username, {class: 'col-sm-4 control-label input-label'} %>
   <!--<div class="col-sm-8">-->
@@ -6,8 +7,8 @@
 <!--</div>-->
 
 <div class="form-group">
-  <%= f.label :email, {class: 'col-sm-4 control-label input-label'} %>
-  <div class="col-sm-8">
-    <%= f.text_field :email, {class: 'input-upright'} %>
+  <%= f.label :email, {class: 'col-xs-3 control-label input-label'} %>
+  <div class="col-xs-9">
+    <%= f.text_field :email, {class: 'input-upright', placeholder: 'emma@connextor.co'} %>
   </div>
 </div>

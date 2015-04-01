@@ -5,10 +5,10 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-UserToProject.destroy_all
-UserProjectFollow.destroy_all
-User.destroy_all
-Project.destroy_all
+# UserToProject.destroy_all
+# UserProjectFollow.destroy_all
+# User.destroy_all
+# Project.destroy_all
 
 def any_empty(*stuff)
   for s in stuff

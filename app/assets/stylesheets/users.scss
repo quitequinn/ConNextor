@@ -1,81 +1,40 @@
-// Place all the styles related to the users controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-
 @import "scss_constants";
 
 .users {
+//  > .container {
+//    background: white;
+//  }
 
-
-  
-  .title {
+  h2.title {
     text-align: center;
     margin-bottom: 10px;
     margin-top: 25px;
     color: $primary-color;
   }
 
-  .container {
-    margin-top: 60px;
-    margin-bottom: 60px;
-  }
-  
-  .form-group .control-label {
-    margin: 0 0 0 0;
-  }
-
   .field_with_errors > .control-label {
     color: $warning-color;
   }
-
 
   .paragraph-indent:before {
     content: "";
     padding: 0 0 0 30px;
   }
 
-  .paragraph-indent{
+  .paragraph-indent {
     margin: 60px 0 30px;
     font-size: 18px;
   }
 
-
-
-  .form-group {
-
-    .input-upright {
-      width: 90%;
-      margin: 0 5% 0 0;
-      background: white;
-      border: 1px solid rgba(0, 0, 0, 0.2);
-    }
-
-    .btn-upright {
-      margin: 0 5% 0 5%;
-      background: $primary-color;
-      color: white;
-      border: 1px solid white;
-    }
-
-    .btn-upright:hover {
-      background-color: white;
-      color: $primary-color;
-      border: 1px solid rgba(0, 0, 0, 0.2);
-    }
-
-  }
-
-  .highlight{
+  .sign-up-container {
     background: white;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    border: 1px solid $secondary-color;
 
-    //padding: 20px 20px 20px 20px;
     form {
-      // background: white;
       padding-top: 20px;
       padding-bottom: 20px;
-      box-sizing:border-box;
-      //border: 1px $secondary-fg-color solid;
-      border-radius: 25px;
     }
     h2 {
       margin-top: 10px;
@@ -86,7 +45,6 @@
       margin-left: 80px;
       color: $warning-color;
     }
-    border-radius: 25px;
   }
 
 }
