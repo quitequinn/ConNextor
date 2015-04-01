@@ -3,18 +3,11 @@
    section_dashed = section_title.downcase.gsub ' ', '-'
    section_upper = section_title.upcase
 
-   # elements will either be [] or [nil] or [*element]
-   # it is never nil.
-   # logger.error "#{elements}"
-   # logger.error "#{elements.any?}"
-   # logger.error "#{elements.nil?}"
-   # logger.error "#{elements.length}"
-   # logger.error 'hi sup'
-
    def can_add_arbitrary(section_name)
      section_name != 'introduction'
    end
 
+   # Should remove
    if elements.any? or @user_is_owner_of_profile
 %>
 

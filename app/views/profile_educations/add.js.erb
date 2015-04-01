@@ -1,0 +1,5 @@
+var existing = document.getElementById('education-new');
+if (existing == null) {
+    document.getElementById('educations-body')
+            .insertAdjacentHTML('beforeend', "<%= j render 'new_profile_education', profile_education: @profile_education %>");
+}

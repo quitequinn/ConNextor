@@ -1,26 +1,6 @@
 class ProfileExperiencesController < ApplicationController
   before_action :set_profile_experience, only: [:show, :swap, :edit, :update, :destroy]
 
-  # # GET /profile_experiences
-  # # GET /profile_experiences.json
-  # def index
-  #   @profile_experiences = ProfileExperience.all
-  # end
-  #
-  # # GET /profile_experiences/1
-  # # GET /profile_experiences/1.json
-  # def show
-  # end
-  #
-  # # GET /profile_experiences/new
-  # def new
-  #   @profile_experience = ProfileExperience.new
-  # end
-  #
-  # # GET /profile_experiences/1/edit
-  # def edit
-  # end
-
   # AJAX purposes only.
   # GET /profile_experience/swap/1
   def swap

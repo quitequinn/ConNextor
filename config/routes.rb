@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  resources :profile_educations
+  get 'profile_educations/swap/:id', to: 'profile_educations#swap'
+  get 'profile_educations/add/:profile_id', to: 'profile_educations#add'
+
   resources :profile_contacts
   get 'profile_contact/swap/:id', to: 'profile_contacts#swap'
   get 'profile_contacts/add/:profile_id', to: 'profile_contacts#add'

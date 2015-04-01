@@ -27,9 +27,10 @@
 <div class="container">
   <div class="row">
     <div class="col-md-9 sections-column" role="main">
-      <%= render 'section_container', section_title: 'introduction', elements: [@profile.profile_introduction] %>
-      <%= render 'section_container', section_title: 'experiences', elements: @profile.profile_experiences %>
-      <%= render 'section_container', section_title: 'contacts', elements: @profile.profile_contacts %>
+      <%= render 'section_container', section_title: 'Introduction', elements: [@profile.profile_introduction] %>
+      <%= render 'section_container', section_title: 'Experiences', elements: @profile.profile_experiences %>
+      <%= render 'section_container', section_title: 'Educations', elements: @profile.profile_educations %>
+      <%= render 'section_container', section_title: 'Contacts', elements: @profile.profile_contacts %>
     </div>
     <div class="col-md-3 hidden-xs hidden-sm" role="complementary">
       <ul>
@@ -44,6 +45,9 @@
         <% end %>
         <% if @profile.profile_experiences and @profile.profile_experiences.any? %>
             <li><a href="#experiences">Experiences</a></li>
+        <% end %>
+        <% if @profile.profile_educations and @profile.profile_educations.any? %>
+            <li><a href="#educations">Education</a></li>
         <% end %>
         <% if @profile.profile_contacts and @profile.profile_contacts.any? %>
             <li><a href="#contacts">Contacts</a></li>

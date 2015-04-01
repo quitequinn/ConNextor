@@ -1,3 +1,3 @@
 $('#project-posts-container').prepend('<%= j render @project_post %>');
-//$('#project-posts-form-container').val('');
-document.getElementById('project-posts-form-container').innerHTML = '<%= j render partial: 'project_posts/form', locals: {project_post: ProjectPost.new(project_id: @project_post.project_id)} %>';
+$('#project-posts-form-container').val('');
+//document.getElementById('project-posts-form-container').innerHTML = '<%= j render partial: 'project_posts/form', locals: {project_post: ProjectPost.new(project_id: @project_post.project_id)} %>';
