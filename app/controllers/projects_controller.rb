@@ -32,6 +32,20 @@ class ProjectsController < ApplicationController
   def edit
   end
 
+  def swap_tab 
+    tab_name = params[:tab]
+    case tab_name
+      when "Activity"
+
+      when "Needs"
+
+      when "Members"
+
+      when "Discussion"
+
+    end
+  end
+
   def join_request
     sender_id = join_request_params[:user_id]
     project_id = join_request_params[:project_id]

@@ -1,26 +1,6 @@
 class ProfileIntroductionsController < ApplicationController
   before_action :set_profile_introduction, only: [:show, :swap, :edit, :update, :destroy]
 
-  # # GET /profile_introductions
-  # # GET /profile_introductions.json
-  # def index
-  #   @profile_introductions = ProfileIntroduction.all
-  # end
-
-  # # GET /profile_introductions/1
-  # # GET /profile_introductions/1.json
-  # def show
-  # end
-
-  # # GET /profile_introductions/new
-  # def new
-  #   @profile_introduction = ProfileIntroduction.new
-  # end
-
-  # # GET /profile_introductions/1/edit
-  # def edit
-  # end
-
   # AJAX purposes only.
   # GET /profile_introduction/swap/1
   def swap
