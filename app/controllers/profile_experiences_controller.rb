@@ -1,29 +1,27 @@
 class ProfileExperiencesController < ApplicationController
   before_action :set_profile_experience, only: [:show, :swap, :edit, :update, :destroy]
 
-  # AJAX purposes only.
-  # GET /profile_experience/swap/1
   def swap
-    return unless check_permission
+    @user_is_owner_of_profile = has_profile_permission?(@profile_experience)
+    return unless @user_is_owner_of_profile
     respond_to do |format|
       format.js
     end
   end
 
-  # GET /profile_experience/add/:profile_id
   def add
     @profile_experience = ProfileExperience.new(profile_id: params[:profile_id])
-    return unless check_permission
+    @user_is_owner_of_profile = has_profile_permission?(@profile_experience)
+    return unless @user_is_owner_of_profile
     respond_to do |format|
       format.js
     end
   end
 
-  # POST /profile_experiences
-  # POST /profile_experiences.json
   def create
     @profile_experience = ProfileExperience.new(profile_experience_params)
-    return unless check_permission
+    @user_is_owner_of_profile = has_profile_permission?(@profile_experience)
+    return unless @user_is_owner_of_profile
     respond_to do |format|
       if @profile_experience.save
         format.html { redirect_to @profile_experience, notice: 'Profile experience was successfully created.' }
@@ -36,10 +34,9 @@ class ProfileExperiencesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /profile_experiences/1
-  # PATCH/PUT /profile_experiences/1.json
   def update
-    return unless check_permission
+    @user_is_owner_of_profile = has_profile_permission?(@profile_experience)
+    return unless @user_is_owner_of_profile
     respond_to do |format|
       if @profile_experience.update(profile_experience_params)
         format.html { redirect_to @profile_experience, notice: 'Profile experience was successfully updated.' }
@@ -52,31 +49,21 @@ class ProfileExperiencesController < ApplicationController
     end
   end
 
-  # # DELETE /profile_experiences/1
-  # # DELETE /profile_experiences/1.json
-  # def destroy
-  #   @profile_experience.destroy
-  #   respond_to do |format|
-  #     format.html { redirect_to profile_experiences_url, notice: 'Profile experience was successfully destroyed.' }
-  #     format.json { head :no_content }
-  #   end
-  # end
+  def destroy
+    @profile_experience.destroy
+    respond_to do |format|
+      format.html { redirect_to profile_experiences_url, notice: 'Profile experience was successfully destroyed.' }
+      format.js
+      format.json { head :no_content }
+    end
+  end
 
   private
-  def check_permission
-    @user_is_owner_of_profile = has_profile_permission? @profile_experience
-    redirect_to root_url, notice: 'Wrong Permissions' unless @user_is_owner_of_profile
-    return false unless @user_is_owner_of_profile
-    true
-  end
+    def set_profile_experience
+      @profile_experience = ProfileExperience.find(params[:id])
+    end
 
-  # Use callbacks to share common setup or constraints between actions.
-  def set_profile_experience
-    @profile_experience = ProfileExperience.find(params[:id])
+    def profile_experience_params
+      params.require(:profile_experience).permit(:profile_id, :name, :position, :from_date, :to_date, :description)
+    end
   end
-
-  # Never trust parameters from the scary internet, only allow the white list through.
-  def profile_experience_params
-    params.require(:profile_experience).permit(:profile_id, :name, :position, :from_date, :to_date, :description)
-  end
-end
