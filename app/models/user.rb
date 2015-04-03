@@ -26,7 +26,7 @@ class User < ActiveRecord::Base
   validates_presence_of :email
   validates_uniqueness_of :email
   # validates_presence_of :username
-  validates_uniqueness_of :username
+  validates_uniqueness_of :username, allow_blank: true
   validates_format_of :username, with: /\A[a-z0-9]+[-a-z0-9]*[a-z0-9]+\z/i, allow_blank: true,
                       message: 'only alphanumeric characters and dashes, '
 

@@ -25,8 +25,3 @@ en:
     attributes:
       user:
         password_hash: "Password"
-
-  helpers:
-    label:
-      profile:
-        location: "Location (City)"

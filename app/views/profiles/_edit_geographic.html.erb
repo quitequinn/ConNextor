@@ -1,14 +1,12 @@
-<div class="inner-box-textinput">
-  <div class="form-group form-group-extra-properties-this-is-semantically-a-disaster-but-please-dont-override-bootstrap-classes">
-    <%= f.label :location, {class: 'col-sm-3 control-label input-label'} %>
-    <div class="col-sm-6">
-      <%= f.text_field :location, {class: 'input-upright input-borderless'} %>
-    </div>
+<div class="form-group">
+  <%= f.label :location, {class: 'col-xs-3 control-label input-label'} %>
+  <div class="col-xs-9">
+    <%= f.text_field :location, {class: 'input-upright', placeholder: 'Waltham, US'} %>
   </div>
-  <div class="form-group form-group-extra-properties-this-is-semantically-a-disaster-but-please-dont-override-bootstrap-classes">
-    <%= f.label :school, {class: 'col-sm-3 control-label input-label'} %>
-    <div class="col-sm-6">
-      <%= f.text_field :school, {class: 'input-upright input-borderless'} %>
-    </div>
+</div>
+<div class="form-group">
+  <%= f.label :school, {class: 'col-xs-3 control-label input-label'} %>
+  <div class="col-xs-9">
+    <%= f.text_field :school, {class: 'input-upright', placeholder: 'Brandeis University'} %>
   </div>
 </div>

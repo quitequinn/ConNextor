@@ -1,9 +1,12 @@
-<div class="form-group form-group-extra-properties-this-is-semantically-a-disaster-but-please-dont-override-bootstrap-classes">
-	<%= f.hidden_field 'interest_ids', {multiple: true} %>
-    <% @interests.each do |a_value| %>
-        <div class="col-md-4 check-box-element">
-        	<label> <%= f.check_box('interest_ids', {multiple: true, class: 'input-checkbox check-interests'}, a_value.id, nil) %><%=a_value.name %>
-        	</label>
-    	</div>
-    <% end %>
+<div class="form-group">
+  <%= f.hidden_field 'interest_ids', {multiple: true} %>
+  <% @interests.each do |a_value| %>
+      <div class="col-xs-4 check-box-element-container">
+        <% checkbox_id = "interest-checkbox-#{a_value.id}" %>
+        <%= f.check_box('interest_ids', {multiple: true, id: checkbox_id, class: 'input-checkbox interest-checkbox'}, a_value.id, nil) %>
+        <label class="control-label check-box-element" onclick="toggleCheckbox('<%= checkbox_id %>')">
+          <%=a_value.name %>
+        </label>
+      </div>
+  <% end %>
 </div>
