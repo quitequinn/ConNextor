@@ -90,6 +90,8 @@ end
 # seed_skill('management')
 # seed_skill('business')
 
+Skill.destroy_all
+
 seed_interest('Back-end Engineer')
 seed_interest('Business Developer')
 seed_interest('Designer')

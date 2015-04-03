@@ -1,0 +1,68 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+
+      <% if logged_in? %>
+          <!--Expansion button-->
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+      <% end %>
+      <!--Branding (logo)-->
+      <a class="navbar-brand logo-img-navbar-container" href="/">
+        <%= image_tag 'logo.png', class: 'logo-img' %>
+      </a>
+      <a class="navbar-brand logo-txt" href="/">
+        ConNextor
+      </a>
+    </div>
+
+    <!--Links for navigation-->
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+      <% if logged_in? %>
+          <!--Links-->
+          <ul class="nav navbar-nav">
+            <!--<li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>-->
+            <li><%= link_to 'Projects', projects_path %></li>
+            <li><%= link_to 'Innovators', users_path %></li>
+            <li><a href="#">Forum</a></li>
+          </ul>
+
+          <!--For Searching. Future implementation.-->
+          <!--<form class="navbar-form navbar-left" role="search">-->
+          <!--<div class="form-group">-->
+          <!--<input type="text" class="form-control" placeholder="Search">-->
+          <!--</div>-->
+          <!--<button type="submit" class="btn btn-default">Submit</button>-->
+          <!--</form>-->
+
+          <!--Tools-->
+          <ul class="nav navbar-nav navbar-right">
+            <li><%= link_to 'C', new_project_path %></li>
+            <li><a href="#">S</a></li>
+            <li><a href="#">N</a></li>
+            <li><a href="#">C</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><%= current_user.first_name %> <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><%= link_to 'My profile', profile_path(current_user.profile) %></li>
+                <li><%= link_to 'Settings', edit_user_path(current_user) %></li>
+                <li><%= link_to 'Log out', log_out_path %></li>
+              </ul>
+            </li>
+          </ul>
+      <% elsif controller_name == 'users' and action_name == 'new' %>
+
+      <% else %>
+          <!--Sign Up and Login buttons-->
+          <button type="button" class="sign-up-button btn-inverse navbar-right open-pop-up" onclick="toggleLogInPopUp()">Log In</button>
+      <% end %>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>

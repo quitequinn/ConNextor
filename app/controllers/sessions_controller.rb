@@ -8,10 +8,10 @@ class SessionsController < ApplicationController
     user = User.authenticate(params[:email], params[:password])
     if user
       session_create user     
-      redirect_to root_url, :notice => "Logged in!"
+      redirect_to root_url, :notice => 'Logged in!'
     else
-      flash[:success] = "Invalid login"
-      render "new"
+      flash[:error] = 'Invalid login'
+      render 'new'
     end
   end
 

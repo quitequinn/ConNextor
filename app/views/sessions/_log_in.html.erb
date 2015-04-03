@@ -1,14 +1,14 @@
-<%= form_tag sessions_path do %>
-    <%# label_tag :email, 'Email' %>
-    <%= text_field_tag :email, params[:email], html: {class: 'input-upright'} %><br />
-    <%# label_tag :password %>
-    <%= password_field_tag :password, html: {class: 'input-upright'} %><br />
+<div class="log-in">
+  <%= form_tag sessions_path do %>
+      <%= text_field_tag :email, params[:email], class: 'input-upright', placeholder: 'Email' %><br />
+      <%= password_field_tag :password, nil,  class: 'input-upright', placeholder: 'Password' %><br />
 
-    <!--<p><%# link_to "forgotten password?", new_password_reset_path %></p>-->
-    <!--<div class="field">-->
+      <!--<p><%# link_to "forgotten password?", new_password_reset_path %></p>-->
+      <!--<div class="field">-->
       <%# check_box_tag :remember_me, 1, params[:remember_me] %>
       <%# label_tag :remember_me %>
-    <!--</div>-->
+      <!--</div>-->
 
-    <%= submit_tag 'Log in', html: {class: 'btn-upright text-center'}%>
-<% end %>
+      <%= submit_tag 'Log in', class: 'btn-upright text-center' %>
+  <% end %>
+</div>

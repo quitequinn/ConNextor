@@ -161,17 +161,22 @@ $tabs-offset:           20px;
 
   // Skills
   // - also used in registration
-  .profile-skill {
-    background: $secondary-bg-color;
-    margin: 5px;
-    padding: 10px;
-    display: inline-block;
+  .edit-skills-container {
+    @include no-select;
 
-    // add shadow
+    .profile-skill {
+      background: $secondary-bg-color;
+      margin: 5px;
+      padding: 10px;
+      display: inline-block;
 
-    .skill-name {
-      font-size: $font-size-medium;
-      font-weight: $font-weight-text;
+      // add shadow
+
+      .skill-name {
+        font-size: $font-size-medium;
+        font-weight: $font-weight-text;
+        cursor: default;
+      }
     }
   }
 }

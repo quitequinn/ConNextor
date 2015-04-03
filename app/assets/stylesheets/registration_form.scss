@@ -63,6 +63,7 @@ $checkbox-checked:      red;
             white-space: nowrap;
             overflow: hidden;
             padding: 7px;
+            cursor: pointer;
           }
           .check-box-element:hover {
             background: $primary-fg-color;
@@ -71,7 +72,6 @@ $checkbox-checked:      red;
             background: $primary-bg-color;
           }
         }
-
       }
 
       .checkbox-field, .skill-blocks {
