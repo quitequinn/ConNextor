@@ -1,7 +1,3 @@
-// Place all the styles related to the profiles controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-
 @import "scss_constants";
 
 $shadow-color:          gray;
@@ -149,10 +145,38 @@ $tabs-offset:           20px;
   }
 
   // dynamic
-  .edit-icon, .add-icon {
+  .edit-icon, .add-icon, .remove-icon {
     font-size: $font-size-icon;
     margin: 0 5px 0;
+//    color: gray;
   }
 
+//  .edit-icon:hover, .add-icon:hover, .remove-icon:hover {
+//    color: white;
+//  }
+//
+//  .edit-icon:active, .add-icon:active, .remove-icon:active {
+//    color: black;
+//  }
 
+  // Skills
+  // - also used in registration
+  .edit-skills-container {
+    @include no-select;
+
+    .profile-skill {
+      background: $secondary-bg-color;
+      margin: 5px;
+      padding: 10px;
+      display: inline-block;
+
+      // add shadow
+
+      .skill-name {
+        font-size: $font-size-medium;
+        font-weight: $font-weight-text;
+        cursor: default;
+      }
+    }
+  }
 }

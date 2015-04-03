@@ -26,3 +26,27 @@ function fadeOutLoadingScreen() {
     // Loading screen fadeout
     $('.loading-screen').fadeOut();
 }
+
+function toggleLogInPopUp() {
+  var popUp = document.getElementById('pop-up-container');
+  if (popUp.style.display == null || popUp.style.display == '' || popUp.style.display == 'none') {
+    popUp.style.display = 'table'
+  } else {
+    popUp.style.display = 'none'
+  }
+}
+
+function hideLogInPopUp() {
+  var popUp = document.getElementById('pop-up-container');
+  popUp.style.display = 'none'
+}
+
+function showLogInPopUp() {
+  var popUp = document.getElementById('pop-up-container');
+  popUp.style.display = 'table'
+}
+
+function logthatshit() {
+  // implement name change, and escape too.
+  console.log('I HVAE BEEN TOUCHED');
+}

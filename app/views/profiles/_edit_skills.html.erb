@@ -1,7 +1,6 @@
 <div class="edit-skills-container">
   <div id="profile-skills" class="profile-skills">
-    <%= render list_of_user_to_skills, user_is_owner_of_profile: nil %>
+    <%= render list_of_user_to_skills %>
   </div>
-  <%# new_skill = Skill.new %>
   <%= render 'skills/add_skill', skill: Skill.new %>
 </div>

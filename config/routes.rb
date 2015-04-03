@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   get 'profile_introduction/add/:profile_id', to: 'profile_introductions#add'
 
   resources :profiles
+  get 'profiles/new/:id', to: 'profiles#new', as: 'profile_initialize'
   # get 'profiles/:id/initialize', to: 'profiles#initialize', as: 'initialize_profile'
   resources :user_follows
 

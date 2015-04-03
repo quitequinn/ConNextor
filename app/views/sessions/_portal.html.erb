@@ -1,0 +1,15 @@
+<div class="logo-img-background block-center"></div>
+<%= render 'sessions/log_in' %>
+<%= link_to 'Sign Up With Email', sign_up_path, class: 'sign-up-message'%><br />
+<span>- or connect with one of the following -</span><br />
+<div class="social-media-imgs">
+  <%= link_to '/auth/twitter' do %>
+      <div class="social-media-img twitter-image block-center"></div>
+  <% end %>
+  <%= link_to '/auth/facebook' do %>
+      <div class="social-media-img facebook-image block-center"></div>
+  <% end %>
+  <%= link_to '/auth/linkedin' do %>
+      <div class="social-media-img linkedin-image block-center"></div>
+  <% end %>
+</div>
