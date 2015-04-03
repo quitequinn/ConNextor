@@ -1,28 +1,20 @@
 class ProjectPostsController < ApplicationController
   before_action :set_project_post, only: [:show, :edit, :update, :destroy]
 
-  # GET /project_posts
-  # GET /project_posts.json
   def index
     @project_posts = ProjectPost.all
   end
 
-  # GET /project_posts/1
-  # GET /project_posts/1.json
   def show
   end
 
-  # GET /project_posts/new
   def new
     @project_post = ProjectPost.new
   end
 
-  # GET /project_posts/1/edit
   def edit
   end
 
-  # POST /project_posts
-  # POST /project_posts.json
   def create
     @project_post = ProjectPost.new(project_post_params)
     @project_post.user_id = current_user_id
@@ -62,8 +54,6 @@ class ProjectPostsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /project_posts/1
-  # PATCH/PUT /project_posts/1.json
   def update
     respond_to do |format|
       if @project_post.update(project_post_params)
@@ -76,8 +66,6 @@ class ProjectPostsController < ApplicationController
     end
   end
 
-  # DELETE /project_posts/1
-  # DELETE /project_posts/1.json
   def destroy
     @project_post.destroy
     respond_to do |format|
@@ -87,12 +75,10 @@ class ProjectPostsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_project_post
       @project_post = ProjectPost.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def project_post_params
       params.require(:project_post).permit(:project_id, :text)
     end

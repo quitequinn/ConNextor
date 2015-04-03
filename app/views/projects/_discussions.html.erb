@@ -1,25 +1,10 @@
-<%
-  @project_post = ProjectPost.new
-%>
-<div>
-  <%= render '/project_posts/form' %>
+<div id="project-posts-form-container">
+  <%
+     new_project_post = ProjectPost.new
+     new_project_post.project_id = @project.id
+  %>
+  <%= render partial: 'project_posts/form', locals: {project_post: new_project_post} %>
 </div>
-
-<div>
-  <% @posts.each do |post| %>
-      <%= post.user_id %>
-      <%= post.text %>
-      <%= link_to 'Edit', edit_project_project_post_path(@project.id,post) %>
-      <%= link_to 'Destroy', project_project_post_path(@project.id,post), method: :delete, data: { confirm: 'Are you sure?' } %>
-      <%= link_to "Create comment", new_project_project_post_project_comment_path(@project.id,post.id), :locals=>{:project_comments => ProjectComment.new} %>
-
-      <% if post.project_comments %>       
-        <% post.project_comments.each do |comment| %>
-          <td><%= comment.user_id %></td>
-          <td><%= comment.text %></td>
-          <td><%= link_to 'Edit', edit_project_project_post_project_comment_path(@project.id,post.id,comment) %></td>
-          <td><%= link_to 'Destroy', project_project_post_project_comment_path(@project.id,post.id,comment), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %>     
-    <% end %>
-  <% end %>
-<div>
+<div id="project-posts-container">
+  <%= render @project.project_posts %>
+</div>

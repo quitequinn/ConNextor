@@ -1,28 +1,20 @@
 class ProjectCommentsController < ApplicationController
   before_action :set_project_comment, only: [:show, :edit, :update, :destroy]
 
-  # GET /project_comments
-  # GET /project_comments.json
   def index
     @project_comments = ProjectComment.all
   end
 
-  # GET /project_comments/1
-  # GET /project_comments/1.json
   def show
   end
 
-  # GET /project_comments/new
   def new
     @project_comment = ProjectComment.new
   end
 
-  # GET /project_comments/1/edit
   def edit
   end
 
-  # POST /project_comments
-  # POST /project_comments.json
   def create
     @project_comment = ProjectComment.new(project_comment_params)
     @project_comment.user_id = current_user_id
@@ -61,8 +53,6 @@ class ProjectCommentsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /project_comments/1
-  # PATCH/PUT /project_comments/1.json
   def update
     respond_to do |format|
       if @project_comment.update(project_comment_params)
@@ -75,8 +65,6 @@ class ProjectCommentsController < ApplicationController
     end
   end
 
-  # DELETE /project_comments/1
-  # DELETE /project_comments/1.json
   def destroy
     @project_comment.destroy
     respond_to do |format|
@@ -86,12 +74,10 @@ class ProjectCommentsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_project_comment
       @project_comment = ProjectComment.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def project_comment_params
       params.require(:project_comment).permit(:project_post_id, :text)
     end

@@ -43,23 +43,19 @@
     </div>
 
     <div class="row tabnames-row">
-      <h3 class="col-md-3">Activity Feed</h3>
-      <h3 class="col-md-3">Discussion</h3>
-      <h3 class="col-md-3">Members</h3>
-      <h3 class="col-md-3">Needs</h3>
+      <%= link_to  "Activity Feed", "/project/switch/#{@project.id}?tab=Activity", remote: true, class: 'col-md-3' %>
+      
+      <%= link_to  "Discussions", "/project/switch/#{@project.id}?tab=Discussions", remote: true, class: 'col-md-3' %>
+      
+      <%= link_to  "Members", "/project/switch/#{@project.id}?tab=Members", remote: true, class: 'col-md-3' %>
+      
+      <%= link_to  "Needs", "/project/switch/#{@project.id}?tab=Needs", remote: true, class: 'col-md-3' %>
     </div>
   </div>
 
-  <div class="tabs-section">
-    <div id="project-posts-form-container">
-      <%
-         new_project_post = ProjectPost.new
-         new_project_post.project_id = @project.id
-      %>
-      <%= render partial: 'project_posts/form', locals: {project_post: new_project_post} %>
-    </div>
-    <div id="project-posts-container">
-      <%= render @project.project_posts %>
+  <div id="tabs-body" class="tabs-section">
+    <div id="project-discussion-container">
+      <%= render 'projects/discussions' %>
     </div>
     <!-- <div>
       <%= render 'projects/activities' %>

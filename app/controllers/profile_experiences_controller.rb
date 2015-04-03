@@ -14,7 +14,7 @@ class ProfileExperiencesController < ApplicationController
     @user_is_owner_of_profile = has_profile_permission?(@profile_experience)
     return unless @user_is_owner_of_profile
     respond_to do |format|
-      format.js
+        format.js
     end
   end
 

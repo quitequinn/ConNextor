@@ -1,0 +1,8 @@
+<div>
+  <%= position.description %>
+  <%= position.position_type %>
+  <%= link_to 'Show', project_position_path(@project.id, position) %>
+  <% if @isOwner %>
+    <%= link_to 'Edit', edit_project_position_path(@project.id, position) %>
+  <% end %>
+</div>

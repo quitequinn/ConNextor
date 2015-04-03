@@ -2,4 +2,4 @@ var existing = document.getElementById('contact-new');
 existing.parentNode.removeChild(existing);
 
 document.getElementById('contacts-body')
-        .insertAdjacentHTML('beforeend', '<div id="<%= "introduction-#{@profile_contact.id}" %>"><%= j render @profile_contact %></div>');
+        .insertAdjacentHTML('beforeend', '<div id="<%= "contacts-#{@profile_contact.id}" %>"><%= j render @profile_contact %></div>');

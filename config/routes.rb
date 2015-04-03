@@ -60,8 +60,10 @@ Rails.application.routes.draw do
   resources :requests
   resources :sessions
   resources :password_resets
-  resources :projects
-  resources :positions
+  resources :projects do
+    resources :positions
+  end
+  get 'project/switch/:id', to: 'projects#switch'
   resources :project_posts
   post 'join_project' => 'projects#join_request', as: 'join_project'
 
