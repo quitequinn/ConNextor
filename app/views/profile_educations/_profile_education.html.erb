@@ -2,9 +2,14 @@
   <div class="experience-body">
     <p class="experience-title">
       <%= profile_education.school %>, <%= profile_education.major %>
-      <% if @user_is_owner_of_profile %>
+      
+      <% if @user_is_owner_of_profile %>        
           <%= link_to "/profile_educations/swap/#{profile_education.id}", remote: true, class: '' do %>
               <span class="glyphicon glyphicon-edit edit-icon hidden-xs"></span>
+          <% end %>
+
+          <%= link_to profile_education, method: :delete, remote: true do %>
+              <span class="glyphicon glyphicon-remove remove-icon hidden-xs"></span>
           <% end %>
       <% end %>
     </p>
