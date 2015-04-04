@@ -39,7 +39,7 @@ class ProjectsController < ApplicationController
                     link: "/users/#{sender_id}")
 
     javascript = "alert('There is a person who wants to join your project');"
-    PrivatePub.publish_to("/inbox/#{project_owner.user_id}",javascript)
+    #PrivatePub.publish_to("/inbox/#{project_owner.user_id}",javascript)
     redirect_to Project.find(project_id)
   end
 
@@ -64,7 +64,7 @@ class ProjectsController < ApplicationController
                          isRead: false )
 
     javascript = "alert('You have successfully joined #{@project.id}');"
-    PrivatePub.publish_to("/inbox/#{user_id}",javascript)
+    #PrivatePub.publish_to("/inbox/#{user_id}",javascript)
     redirect_to Project.find(project_id)
   end
 

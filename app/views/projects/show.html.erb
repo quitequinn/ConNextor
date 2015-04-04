@@ -2,61 +2,65 @@
    project_owner = Project.getProjectOwner(@project.id)
 %>
 <div class="container">
-  <div class="project-info section-container">
-    <% if @is_owner %>
-      <%= link_to 'Edit', edit_project_path(@project) %> 
-    <% end %>
+    <div class="project-info section-container">
+      <div class="row">
+        <div class="project-photo-container">
+          <%= image_tag 'cats/cat-profile.jpg', class:'project-photo col-md-3' %>
+        </div>
+        
+        <div class="col-md-6">    
+          
+          <div style="display:inline-block">
+            <p class="project-title">
+              <%= @project.title %>
+            </p>
+            <% if @is_owner %>
+              <%= link_to 'Edit', edit_project_path(@project) %> 
+            <% end %>
+          </div>
 
-    <p class="row title-row">
-        <%= @project.title %>
-    </p>
+          <p class="project-owner">
+            <%= project_owner.first_name %>
+            <%= ", #{project_owner.profile.location}" if project_owner.profile.location %>
+          </p>
 
-    <div class="row">
-      <div class="project-photo-container col-md-6">
-        <%= image_tag 'cats/cat-profile.jpg', class:'project-photo' %>
+          <p class="project-description">
+            <strong>Long description:</strong>
+            <%= @project.long_description %>
+          </p>
+
+          <div class="tags-row">
+            <p>Tags: </p>
+            <%= render @project.project_to_tags %>
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="follow-button">
+            <% unless @user_project_follow %>
+              <%= render 'projects/follow', user_project_follow: UserProjectFollow.new %>
+              <% else %>
+                  <%= render 'projects/unfollow', user_project_follow: @user_project_follow%>
+              <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="row" style="margin-top:20px">
+        <%= link_to  "Activity Feed", "/project/switch/#{@project.id}?tab=Activities", remote: true, class: 'col-md-3' %>
+        
+        <%= link_to  "Discussions", "/project/switch/#{@project.id}?tab=Discussions", remote: true, class: 'col-md-3' %>
+        
+        <%= link_to  "Members", "/project/switch/#{@project.id}?tab=Members", remote: true, class: 'col-md-3' %>
+        
+        <%= link_to  "Needs", "/project/switch/#{@project.id}?tab=Needs", remote: true, class: 'col-md-3' %>
       </div>
 
-       <p class="project-description col-md-6">
-          <strong>Long description:</strong>
-          <%= @project.long_description %>
-      </p>
     </div>
-
-    <div class="row"> 
-      <p class="project-owner col-md-6">
-        <%= project_owner.first_name %>
-        <%= ", #{project_owner.profile.location}" if project_owner.profile.location %>
-      </p>
-      <div class="follow-button col-md-6">
-        <% unless @user_project_follow %>
-          <%= render 'projects/follow', user_project_follow: UserProjectFollow.new %>
-          <% else %>
-              <%= render 'projects/unfollow', user_project_follow: @user_project_follow%>
-          <% end %>
-      </div>
-    </div>
-
-    <div class="row tags-row">
-      <p>Tags: </p>
-      <%= render @project.project_to_tags %>
-    </div>
-
-    <div class="row tabnames-row">
-      <%= link_to  "Activity Feed", "/project/switch/#{@project.id}?tab=Activity", remote: true, class: 'col-md-3' %>
-      
-      <%= link_to  "Discussions", "/project/switch/#{@project.id}?tab=Discussions", remote: true, class: 'col-md-3' %>
-      
-      <%= link_to  "Members", "/project/switch/#{@project.id}?tab=Members", remote: true, class: 'col-md-3' %>
-      
-      <%= link_to  "Needs", "/project/switch/#{@project.id}?tab=Needs", remote: true, class: 'col-md-3' %>
-    </div>
-  </div>
-
-  <div id="tabs-body" class="tabs-section section-container">
-    <div id="project-discussion-container">
+  
+    <div id="tabs-body" class="tabs-section">
       <%= render 'projects/discussions' %>
     </div>
-  </div>
+  
 
 </div>
 

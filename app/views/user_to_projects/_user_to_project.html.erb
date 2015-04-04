@@ -1,12 +1,28 @@
 <%
   @user_follow = UserFollow.find_by_follower_id_and_followee_id(current_user_id, user_to_project.user.id)
 %>
-<li>
-  <%= user_to_project.user.email %>,
-  <%= user_to_project.project_user_class %>
-  <% unless @user_follow %>
-    <%= render :partial => 'user_to_projects/follow', :locals =>{user_follow: UserFollow.new, followee_id: user_to_project.user.id } %>
-  <% else %>
-      <%= render 'user_to_projects/unfollow', user_follow: @user_follow %>
-  <% end %>
-</li>
+<div class="project-member">
+  <div style="font-weight:bold">
+    <%= user_to_project.user.first_name %>
+  </div>
+
+  <div style="font-weight:bold">
+    <%= position.position_title %>
+  </div>
+
+  <div>
+    <%= position.description %>
+  </div>
+
+  <div>
+    <%= user_to_project.project_user_class %>
+  </div>
+
+  <div>
+    <% unless @user_follow %>
+      <%= render 'user_follows/follow', user_follow: UserFollow.new, followee_id: user_to_project.user.id %>
+    <% else %>
+        <%= render 'user_follows/unfollow', user_follow: @user_follow %>
+    <% end %>
+  </div>
+</div>

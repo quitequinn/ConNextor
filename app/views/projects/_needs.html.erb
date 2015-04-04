@@ -4,6 +4,13 @@
   <% end %>
 </div>
 
-<div id="project-positions-container">
-  <%= render @project.positions %>
+<div class="section-container">
+  <p style="font-weight:bold">Looking for Core Members</p>      
+    <%= render @project.positions.where(position_type:'core') %>    
 </div>
+
+<div class="section-container">
+  <p style="font-weight:bold">Looking for Collaborators</p>
+    <%= render @project.positions.where(position_type:'collaborator') %>
+</div>
+

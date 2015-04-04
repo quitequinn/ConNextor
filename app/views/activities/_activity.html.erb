@@ -1,0 +1,20 @@
+<% case activity.activity_type 
+  when 'post' %>
+    <%= render ProjectPost.where(id: activity.source_id) %>
+<% when 'comment' %>  
+
+<% when 'new_need' %>  
+
+<% when 'new_member' %>  
+
+<% when 'accept_request' %>  
+
+<% when 'sent_request' %> 
+
+<% when 'follow_user' %> 
+
+<% when 'follow_project' %> 
+
+<% else %>  
+  UNDEFINED ACTIVITY
+<% end %>

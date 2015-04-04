@@ -1,1 +1,1 @@
-$('#user_follow_button').replaceWith("<%= escape_javascript(render :partial => 'user_to_projects/follow', :locals =>{user_follow: UserFollow.new, followee_id: @user_follow.followee_id }) %>");
+$('#user_follow_button').replaceWith("<%= escape_javascript(render 'user_follows/follow', user_follow: UserFollow.new, followee_id: @user_follow.followee_id ) %>");

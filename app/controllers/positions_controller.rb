@@ -5,9 +5,7 @@ class PositionsController < ApplicationController
     @positions = Position.all
   end
 
-  def show
-    @filled = @position.filled
-    
+  def show   
   end
 
   def new
@@ -57,6 +55,6 @@ class PositionsController < ApplicationController
     end
 
     def position_params
-      params.require(:position).permit(:description, :project_id, :position_type, :user_id)
+      params.require(:position).permit(:position_title, :description, :project_id, :position_type, :user_id)
     end
 end

@@ -1,0 +1,5 @@
+<div class="section-container">
+  <% @project.user_to_projects.each do |user_to_project| %>
+     <%= render 'user_to_projects/user_to_project', user_to_project: user_to_project, position: Position.find_by_user_id_and_project_id(user_to_project.user_id,@project.id) %>
+  <% end %>
+</div>

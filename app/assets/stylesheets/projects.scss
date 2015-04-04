@@ -17,19 +17,6 @@ $image-height:          $block-height / 2;
         height: $image-height;
       }
     }
-
-    .project-title {
-      font-size: 16px;
-
-    }
-
-    .project-description {
-      font-size: 12px;
-    }
-
-    .project-owner {
-      font-size: 12px;
-    }
   
   }
 
@@ -46,7 +33,20 @@ $image-height:          $block-height / 2;
         object-fit: cover;
         height: $image-height;
       }
-    }  
+    } 
+    .project-title {
+      font-size: 20px;
+      font-weight: bold;
+      display: inline-block;
+    }
+
+    .project-description {
+      font-size: 16px;
+    }
+
+    .project-owner {
+      font-size: 16px;
+    } 
   }
 
   .tabs-section{
@@ -112,6 +112,18 @@ $image-height:          $block-height / 2;
       clear:both;
       height:0;
     } 
+
+
+    .project-position{
+      border-top: solid 1px;
+      border-bottom: solid 1px;
+      border-color: rgb(160,160,255);
+    }
+
+    .project-member{
+      margin-top:10px;
+    }
+
 
   }
 }
