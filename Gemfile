@@ -42,6 +42,9 @@ gem 'thin'
 # Used for locations
 gem 'carmen'
 
+# Used for unzipping files
+gem 'rubyzip', '>= 1.0.0' 
+
 # Use Unicorn as the app server
 #gem 'unicorn'
 

@@ -5,6 +5,8 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+load 'db/cities_parser.rb'
+
 UserToProject.destroy_all
 UserProjectFollow.destroy_all
 User.destroy_all
@@ -139,3 +141,5 @@ seed_interest('management')
 seed_interest('business')
 
 seed_users_projects( 200, 70 )       
+
+seed_world
