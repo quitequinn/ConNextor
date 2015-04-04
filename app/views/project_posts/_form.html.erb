@@ -7,14 +7,14 @@
     <%# f.hidden_field :project_id, value: project_post.project_id %>
     <%= f.hidden_field :project_id %>
   </div>
-  <!--<div class="field">-->
-    <%# f.hidden_field :user_id, value: current_user_id %>
-  <!--</div>-->
-  <div class="field">
-    <%= f.label :text %><br>
-    <%= f.text_area :text %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
+  
+  <div>
+    <div class="field" style="display:inline-block">
+      <%= f.text_area :text, id:'project-posts-form-textbox' %>
+    </div>
+    <div class="actions" style="display:inline-block">
+      <%= f.submit 'Comment', class: 'btn-inverse btn-element-margin-match'%>
+    </div>
   </div>
 <% end %>
+

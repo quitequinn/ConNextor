@@ -67,9 +67,10 @@ class ProjectPostsController < ApplicationController
   end
 
   def destroy
+    project_id = @project_post.project_id
     @project_post.destroy
     respond_to do |format|
-      format.html { redirect_to project_path(params[:project_id]), notice: 'Project post was successfully destroyed.' }
+      format.html { redirect_to project_path(project_id), notice: 'Project post was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

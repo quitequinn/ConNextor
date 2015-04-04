@@ -1,23 +1,23 @@
-<div id="<%="post-body-#{project_post.id}"%>" class="post-body">
-  POST:
-  <%= project_post.user_id %>
-  <%= project_post.text %>
-  <% if project_post.is_post_owner?(current_user) %>
-    <%= link_to 'Edit', edit_project_post_path(project_post) %>
-    <%= link_to 'Destroy', project_post_path(project_post), method: :delete, data: { confirm: 'Are you sure?' } %>
-  <% end %>
-  <%# link_to 'Create comment', new_project_comment_path(project_post.id), remote: true, locals: {project_comments: ProjectComment.new} %>
-
-  <div id="<%="post-comments-container-#{project_post.id}"%>" class="post-comments" >
-    <%# render project_post.project_comments if project_post.project_comments %>
-    <%= render project_post.project_comments %>
-  </div>
-
-  <div id="<%="post-comments-form-container-#{project_post.id}"%>" class="" >
-    <%
-       new_project_comment = ProjectComment.new
-       new_project_comment.project_post_id = project_post.id
-    %>
-    <%= render partial: 'project_comments/form', locals: {project_comment: new_project_comment} %>
+<div class="project-post">
+  <div><%= image_tag 'cats/cat-profile.jpg', class:'post-image' %></div>
+  <div id="<%="post-body-#{project_post.id}"%>" class="post-body col-md-10">
+      <p class="post-username"><%= User.find(project_post.user_id).username %></p>
+      <p class="post-message"><%= project_post.text %></p>
+      <% if project_post.is_post_owner?(current_user) %>
+        <%= link_to 'Edit', edit_project_post_path(project_post) %>
+        <%= link_to 'Delete', project_post, method: :delete, data: { confirm: 'Are you sure?' } %>
+      <% end %>
   </div>
 </div>
+
+<!-- <div id="<%#="post-comments-container-#{project_post.id}"%>" class="post-comments" >
+      <%#= render project_post.project_comments %>
+    </div>
+
+    <div id="<%#="post-comments-form-container-#{project_post.id}"%>" class="" >
+      <%#
+         new_project_comment = ProjectComment.new
+         new_project_comment.project_post_id = project_post.id
+      %>
+      <%#= render partial: 'project_comments/form', locals: {project_comment: new_project_comment} %>
+</div> -->

@@ -2,13 +2,12 @@
    project_owner = Project.getProjectOwner(@project.id)
 %>
 <div class="container">
-  <div class="project-info">
+  <div class="project-info section-container">
     <% if @is_owner %>
       <%= link_to 'Edit', edit_project_path(@project) %> 
     <% end %>
 
     <p class="row title-row">
-        <strong>Title:</strong>
         <%= @project.title %>
     </p>
 
@@ -53,22 +52,10 @@
     </div>
   </div>
 
-  <div id="tabs-body" class="tabs-section">
+  <div id="tabs-body" class="tabs-section section-container">
     <div id="project-discussion-container">
       <%= render 'projects/discussions' %>
     </div>
-    <!-- <div>
-      <%= render 'projects/activities' %>
-    </div>
-    <div>
-      <%= render @project.user_to_projects %>
-    </div>
-    <div>
-      <%= render @project.project_tasks %>
-    </div>
-    <div>
-      <%= render 'projects/needs' %>
-    </div> -->
   </div>
 
 </div>
