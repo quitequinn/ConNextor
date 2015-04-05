@@ -39,12 +39,36 @@ $checkbox-checked:      red;
         }
 
         .input-upright {
-          width: 90%;
+          width: 100%;
           margin: 0 5% 0 5%;
+          padding:0 2% 0 2%;
           background: white;
           border: 1px solid $border-divider-color;
+          font-size: $font-size-base;
         }
 
+        .input-firstname{
+          width: 100%;
+          margin: 0 0 0 11%;
+          padding: 5% 5% 5% 5%;
+          border: 1px solid #cccccc;
+          font-size: $font-size-base;
+        }
+         
+        .input-lastname{
+         
+                width: 100%;
+                padding: 5% 5% 5% 5%;
+                margin: 0 0 0 10%;
+                border: 1px solid #cccccc;
+                /* float: inherit; */
+                font-size: $font-size-base;
+        }
+
+         .btn-signup{
+                width: 100%;
+                margin: 0 5% 0 5%;
+         }
         .check-box-element-container {
           padding: 5px;
           @include no-select;
