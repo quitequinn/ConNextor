@@ -36,8 +36,8 @@ class User < ActiveRecord::Base
   end
 
   with_options if: :password_is_present do |password_login_user|
-    password_login_user.validates_presence_of :password_confirmation
-    password_login_user.validates_confirmation_of :password
+    #password_login_user.validates_presence_of :password_confirmation
+    #password_login_user.validates_confirmation_of :password
     password_login_user.validates_length_of :password, minimum: 8
   end
 

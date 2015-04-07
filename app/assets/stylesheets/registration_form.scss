@@ -15,16 +15,20 @@ $checkbox-checked:      red;
     border: 1px solid $border-divider-color;
     padding: 30px;
 
-    .section-header {
-      margin-left: 5%;
-      margin-right: 5%;
-      text-align: center;
+    .section-container{
+      margin-top: 100px;
 
-      .big-header {
-        color: $primary-color;
-        font-size: $font-size-header;
-        font-weight: $font-weight-misc;
-        border-bottom: 1px solid $border-divider-color;
+      .section-header {
+        margin-left: 5%;
+        margin-right: 5%;
+        text-align: center;
+
+        .big-header {
+          color: $primary-color;
+          font-size: $font-size-header;
+          font-weight: $font-weight-misc;
+          border-bottom: 1px solid $border-divider-color;
+        }
       }
     }
 
@@ -120,4 +124,6 @@ $checkbox-checked:      red;
       }
     }
   }
+
+ 
 }

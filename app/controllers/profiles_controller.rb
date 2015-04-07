@@ -25,6 +25,16 @@ class ProfilesController < ApplicationController
 
     respond_to do |format|
       if @profile.save
+
+        if profile_params
+          if profile_params[:code]
+            InvitationCode.create(user_id:current_user_id, used:false, code: profile_params[:code])
+          end
+          if profile_params[:has_idea] == 1
+            ProfileIdea.create(user_id:current_user_id)
+          end
+        end
+
         format.html { redirect_to @profile, notice: 'Profile was successfully created.' }
         format.json { render :show, status: :created, location: @profile }
       else
@@ -37,6 +47,21 @@ class ProfilesController < ApplicationController
   def update
     unless current_user.profile == @profile
       redirect_to current_user.profile, notice: 'permissions not right'
+    end
+
+    if profile_params
+      if profile_params[:code]
+        if InvitationCode.find_by_user_id(current_user_id)
+          InvitationCode.update(code: profile_params[:code])
+        else
+          InvitationCode.create(user_id:current_user_id, used:false, code: profile_params[:code])
+        end
+      end
+      if profile_params[:has_idea] == 1
+        if ProfileIdea.find_by_user_id(current_user_id) == nil
+          ProfileIdea.create(user_id:current_user_id)
+        end
+      end
     end
 
     respond_to do |format|
@@ -63,34 +88,32 @@ class ProfilesController < ApplicationController
   end
 
   private
-  # Use callbacks to share common setup or constraints between actions.
-  def set_profile
-    # TODO more security?
-    if params[:id]
-      @profile = Profile.find(params[:id])
-    elsif params[:username]
-      @profile = User.find_by_username(params[:username]).profile
-    elsif logged_in?
-      @profile = current_user.profile
-    else
-      # not found
+    def set_profile
+      # TODO more security?
+      if params[:id]
+        @profile = Profile.find(params[:id])
+      elsif params[:username]
+        @profile = User.find_by_username(params[:username]).profile
+      elsif logged_in?
+        @profile = current_user.profile
+      else
+        # not found
+      end
     end
-  end
 
-  # Never trust parameters from the scary internet, only allow the white list through.
-  def profile_params
-    params.require(:profile).permit(:location, :school, :short_bio)
-  end
+    def profile_params
+      params.require(:profile).permit(:location, :school, :short_bio, :code, :has_idea)
+    end
 
-  def user_params
-    params.require(:user).permit(
-        :skill_ids=>[],
-        :interest_ids=>[]
-    )
-  end
+    def user_params
+      params.permit(
+          :skill_ids=>[],
+          :interest_ids=>[]
+      )
+    end
 
-  def set_skills_and_interests
-    @skills = Skill.all
-    @interests = Interest.all
-  end
+    def set_skills_and_interests
+      @skills = Skill.all
+      @interests = Interest.all
+    end
 end

@@ -77,3 +77,17 @@ function fadeInSectionImages() {
         }
     });
 }
+
+//Plays Video
+function hideVideo() {
+  var video = document.getElementById('video-container');
+  document.getElementById('video-iframe').src +='';
+  video.style.display = 'none';
+}
+
+function showVideo() {
+  var video = document.getElementById('video-container');
+  video.style.display = 'table';
+  //document.getElementById('video-iframe').src +="?autoplay=1";
+}
+

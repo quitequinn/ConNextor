@@ -251,6 +251,15 @@ body {
   background: $pop-up-background;
   z-index: 1034;
 
+  .pop-up-video{
+    height: 200px;
+    margin-left:200px;
+  }
+
+  .video-frame{
+    height: 500px;
+  }
+
   .pop-up {
     position: relative;
     padding: 30px 20px;

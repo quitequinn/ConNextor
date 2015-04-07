@@ -6,6 +6,8 @@ class Profile < ActiveRecord::Base
   has_many :profile_contacts, -> { order(created_at: :asc) }
 
   accepts_nested_attributes_for :user
+  attr_accessor :has_idea
+  attr_accessor :code
 
   ##########Registration############
 

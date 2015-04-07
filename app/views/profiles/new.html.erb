@@ -1,6 +1,6 @@
 <% provide(:title, 'Welcome') %>
 
-<div class="container">
+<div class="container registration-section">
   <!--<h2>We can't wait to know more about you!</h2>-->
 
   <%= form_for @profile, html: {class: 'form-horizontal', id: 'profile-form'} do |f| %>
@@ -17,7 +17,7 @@
       <% end %>
 
       <!--Geographic-->
-      <div class="row registration-section">
+      <div class="row section-container">
         <div class="section-header">
           <div class="big-header">
             <p>Hey, Welcome to ConNextor</p>
@@ -26,17 +26,26 @@
 
         <div class="col-sm-4 col-sm-push-8 side-description">
           <p class="title">Step 1 of 3</p>
-          <p class="text">Knowing where you are from will get you better connections with those who came from the same place</p>
+          <p class="text">Let us know a little more about you. Knowing where you are from will get you better connections with those who came from the same place</p>
         </div>
 
         <div class="col-sm-8 col-sm-pull-4 section-form-container">
           <%= render 'edit_geographic', f: f %>
+          <!--Idea checkbox + Invitation Code-->
+     
+          <div class="profile-idea">
+            <%= render 'edit_hasIdea', f: f %>
+          </div> 
+
+          <div class="invitation-code">
+            <%= render 'edit_invitation_code',f: f %>
+          </div>
         </div>
       </div>
 
 
       <!--Interests-->
-      <div class="row registration-section">
+      <div class="row section-container">
         <div class="section-header">
           <div class="row big-header">
             <p>What do you see yourself doing?</p>
@@ -55,14 +64,15 @@
             <% end %>
           </div>
         </div>
-      </div>
+     </div>
+
   <% end %>
   <!--End of Form-->
   <!--Submit button separately, at the bottom-->
 
 
   <!--Skills, separate Form for AJAX-->
-  <div class="row registration-section">
+  <div id="skills-form" class="row section-container">
     <div class="section-header">
       <div class="big-header">
         <p>What can you do?</p>
@@ -82,10 +92,8 @@
   </div>
 
   <!--Thank you-->
-  <div class="row registration-section">
+  <div class="row section-container">
     <div class="thanks-section">
-      <p>Thanks!</p>
-
       <!--Submit (linked by Javascript)-->
       <input type="submit" name="finish" class="btn-upright" onclick="submitProfile()" />
     </div>

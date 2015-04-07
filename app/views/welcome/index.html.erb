@@ -26,7 +26,17 @@
     <p class="main-txt">
       Connect the Next Generation of Innovators<span class="alt-theme"></span>
     </p>
-    <button class="stay-tuned-button btn-upright btn-border-rounded scroll-to-invite">Stay Tuned</button>
+    <!-- <button class="stay-tuned-button btn-upright btn-border-rounded scroll-to-invite">Stay Tuned</button> -->
+    <button class="video-button" src="/assets/images/play_button.png" onClick="showVideo()">Video</button>  
+  </div>
+</div>
+
+<div id="video-container" class="pop-up-container">
+  <div class="pop-up-video" >
+    <a href="javascript:hideVideo()"><span class="glyphicon glyphicon-remove close-button" ></span></a>
+    <iframe id='video-iframe' class="video-frame col-md-8"
+      src="http://www.youtube.com/embed/XGSy3_Czz8k">
+      </iframe>
   </div>
 </div>
 
