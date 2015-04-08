@@ -251,13 +251,25 @@ body {
   background: $pop-up-background;
   z-index: 1034;
 
-  .pop-up-video{
-    height: 200px;
-    margin-left:200px;
+  .video-container {
+    position:relative;
+    padding-bottom:56.25%;
+    padding-top:30px;
+    height:0;
+    top:100px;
+    overflow:hidden;
+    margin-left:30%;
+
+    .close-button {
+      position: absolute;
+    }
   }
 
-  .video-frame{
-    height: 500px;
+  .video-container iframe, .video-container object, .video-container embed {
+    top:0;
+    left:0;
+    width:60%;
+    height:50%;
   }
 
   .pop-up {

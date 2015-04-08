@@ -81,7 +81,10 @@ function fadeInSectionImages() {
 //Plays Video
 function hideVideo() {
   var video = document.getElementById('video-container');
-  document.getElementById('video-iframe').src +='';
+  var link = document.getElementById('video-iframe').src
+  document.getElementById('video-iframe').src +=''
+  //removes the string ?autoplay=1
+  //document.getElementById('video-iframe').src = link.substr(0,link.indexOf("?"));
   video.style.display = 'none';
 }
 
