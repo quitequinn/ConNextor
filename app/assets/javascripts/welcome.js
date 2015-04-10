@@ -82,15 +82,27 @@ function fadeInSectionImages() {
 function hideVideo() {
   var video = document.getElementById('video-container');
   var link = document.getElementById('video-iframe').src
-  document.getElementById('video-iframe').src +=''
+  //document.getElementById('video-iframe').src +=''
   //removes the string ?autoplay=1
-  //document.getElementById('video-iframe').src = link.substr(0,link.indexOf("?"));
+  document.getElementById('video-iframe').src = link.substr(0,link.indexOf("?"));
   video.style.display = 'none';
 }
 
 function showVideo() {
   var video = document.getElementById('video-container');
   video.style.display = 'table';
-  //document.getElementById('video-iframe').src +="?autoplay=1";
+  document.getElementById('video-iframe').src +="?autoplay=1";
+}
+
+// sign-up pop-up
+
+function hideSignUpPopUp() {
+  var popUp = document.getElementById('sign-up-pop-up-container');
+  popUp.style.display = 'none'
+}
+
+function showSignUpPopUp() {
+  var popUp = document.getElementById('sign-up-pop-up-container');
+  popUp.style.display = 'table'
 }
 

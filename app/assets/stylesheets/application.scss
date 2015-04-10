@@ -200,6 +200,13 @@ body {
   }
 }
 
+.sign-up {
+  padding: 20px 0;
+  .error-message {
+    color: $warning-color;
+  }
+}
+
 .social-media-imgs {
   //      height: 50px;
   .social-media-img {
@@ -279,6 +286,7 @@ body {
     background: white;
     max-width: 400px; // TODO
     text-align: center;
+    margin-top:50px;
 
     .close-button {
       position: absolute;

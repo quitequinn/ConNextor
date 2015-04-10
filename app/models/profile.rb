@@ -8,6 +8,8 @@ class Profile < ActiveRecord::Base
   accepts_nested_attributes_for :user
   attr_accessor :has_idea
   attr_accessor :code
+  attr_accessor :first_name
+  attr_accessor :last_name
 
   ##########Registration############
 

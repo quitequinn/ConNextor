@@ -27,8 +27,8 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :email
   # validates_presence_of :username
   validates_uniqueness_of :username, allow_blank: true
-  validates_format_of :username, with: /\A[a-z0-9]+[-a-z0-9]*[a-z0-9]+\z/i, allow_blank: true,
-                      message: 'only alphanumeric characters and dashes, '
+  #validates_format_of :username, with: /\A[a-z0-9]+[-a-z0-9]*[a-z0-9]+\z/i, allow_blank: true,
+                      #message: 'only alphanumeric characters and dashes, '
 
   with_options if: :password_login_is_enabled do |password_login_user|
     password_login_user.validates_presence_of :password_hash, on: :save
@@ -42,7 +42,7 @@ class User < ActiveRecord::Base
   end
 
 
-  validates_presence_of :first_name, :last_name
+  # validates_presence_of :first_name, :last_name
   before_create { generate_remember_token(:remember_token) }
 
   def password_login_is_enabled

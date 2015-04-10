@@ -18,6 +18,14 @@ class ProfilesController < ApplicationController
     if current_user and @profile
       @user_is_owner_of_profile = @profile == current_user.profile
     end
+    if @profile.user
+      if @profile.user.first_name
+        @profile.first_name = @profile.user.first_name
+      end
+      if @profile.user.last_name
+        @profile.last_name = @profile.user.last_name
+      end
+    end
   end
 
   def create
@@ -32,6 +40,12 @@ class ProfilesController < ApplicationController
           end
           if profile_params[:has_idea] == 1
             ProfileIdea.create(user_id:current_user_id)
+          end
+          if profile_params[:first_name]
+            current_user.update( first_name: profile_params[:first_name])
+          end
+          if profile_params[:last_name]
+            current_user.update( last_name: profile_params[:last_name])
           end
         end
 
@@ -52,15 +66,21 @@ class ProfilesController < ApplicationController
     if profile_params
       if profile_params[:code]
         if InvitationCode.find_by_user_id(current_user_id)
-          InvitationCode.update(code: profile_params[:code])
+          InvitationCode.find_by_user_id(current_user_id).update(code: profile_params[:code])
         else
           InvitationCode.create(user_id:current_user_id, used:false, code: profile_params[:code])
         end
       end
-      if profile_params[:has_idea] == 1
+      if profile_params[:has_idea] == '1'
         if ProfileIdea.find_by_user_id(current_user_id) == nil
           ProfileIdea.create(user_id:current_user_id)
         end
+      end
+      if profile_params[:first_name]
+        current_user.update( first_name: profile_params[:first_name])
+      end
+      if profile_params[:last_name]
+        current_user.update( last_name: profile_params[:last_name])
       end
     end
 
@@ -102,7 +122,14 @@ class ProfilesController < ApplicationController
     end
 
     def profile_params
-      params.require(:profile).permit(:location, :school, :short_bio, :code, :has_idea)
+      params.require(:profile).permit(
+        :location, 
+        :school, 
+        :short_bio, 
+        :code, 
+        :has_idea, 
+        :first_name, 
+        :last_name )
     end
 
     def user_params

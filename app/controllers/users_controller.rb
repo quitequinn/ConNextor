@@ -45,8 +45,10 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     # TODO for security, use a 128 bit hash instead of id when marshalling
-    identity_id = params.require(:user)[:identity_id]
-    profile_id = params.require(:user)[:profile_id]
+    #identity_id = params.require(:user)[:identity_id]
+    #profile_id = params.require(:user)[:profile_id]
+    identity_id = params[:identity_id]
+    profile_id = params[:profile_id]
 
     registering_with_omni_auth = identity_id and profile_id
 
@@ -114,7 +116,7 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(
+    params.permit(
         :username,
         :email,
         :first_name,

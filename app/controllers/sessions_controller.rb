@@ -60,7 +60,10 @@ class SessionsController < ApplicationController
           @user.profile.user = @user
           @user.profile.save
 
-          redirect_to root_url, notice: "Successful login!"
+          respond_to do |format|
+            format.html { redirect_to controller: :profiles, action: :new, id: @user.profile_id}
+            format.json { render json: @user.errors, status: :unprocessable_entity }
+          end
         else
           # Email or username is missing or invalid
 

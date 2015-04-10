@@ -1,7 +1,6 @@
 <% provide(:title, 'Welcome') %>
 
 <div class="container registration-section">
-  <!--<h2>We can't wait to know more about you!</h2>-->
 
   <%= form_for @profile, html: {class: 'form-horizontal', id: 'profile-form'} do |f| %>
       <% if @profile.errors.any? %>
@@ -16,7 +15,6 @@
           </div>
       <% end %>
 
-      <!--Geographic-->
       <div class="row section-container">
         <div class="section-header">
           <div class="big-header">
@@ -25,24 +23,40 @@
         </div>
 
         <div class="col-sm-4 col-sm-push-8 side-description">
-          <p class="title">Step 1 of 3</p>
+          <p class="title">Step 1 of 4</p>
+          <p class="text">Lets get started. Some basic information about you.</p>
+        </div>
+
+        <div class="col-sm-8 col-sm-pull-4 section-form-container">
+          <%= render 'users/form_first_last_name', f: f %>
+          <!--Idea checkbox + Invitation Code-->
+          <div class="invitation-code">
+            <%= render 'edit_invitation_code',f: f %>
+          </div>
+          <br />
+          <div class="checkbox-field">
+            <%= render 'edit_hasIdea', f: f %>
+          </div> 
+        </div>
+      </div>
+
+      <!--Geographic-->
+      <div class="row section-container">
+        <div class="section-header">
+          <div class="big-header">
+            <p>Where are you located?</p>
+          </div>
+        </div>
+
+        <div class="col-sm-4 col-sm-push-8 side-description">
+          <p class="title">Step 2 of 4</p>
           <p class="text">Let us know a little more about you. Knowing where you are from will get you better connections with those who came from the same place</p>
         </div>
 
         <div class="col-sm-8 col-sm-pull-4 section-form-container">
           <%= render 'edit_geographic', f: f %>
-          <!--Idea checkbox + Invitation Code-->
-     
-          <div class="profile-idea">
-            <%= render 'edit_hasIdea', f: f %>
-          </div> 
-
-          <div class="invitation-code">
-            <%= render 'edit_invitation_code',f: f %>
-          </div>
         </div>
       </div>
-
 
       <!--Interests-->
       <div class="row section-container">
@@ -53,7 +67,7 @@
         </div>
 
         <div class="col-sm-4 col-sm-push-8 side-description">
-          <p class="title">Step 2 of 3</p>
+          <p class="title">Step 3 of 4</p>
           <p class="text">After choosing the field you are interested in, we will give you better sponsors about ideas or projects</p>
         </div>
 
@@ -80,7 +94,7 @@
     </div>
 
     <div class="col-sm-4 col-sm-push-8 side-description">
-      <p class="title">Step 3 of 3</p>
+      <p class="title">Step 4 of 4</p>
       <p class="text">What are you top skills? e.g HTML, Ruby, Public Speaking, Graphic Design, Content Creation</p>
     </div>
 
