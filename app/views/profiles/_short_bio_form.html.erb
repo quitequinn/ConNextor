@@ -1,0 +1,9 @@
+<%= form_for profile, remote:true do |f| %>
+  <div class="field">
+    <%= f.label :short_bio, 'Something about you' %>
+    <%= f.text_field :short_bio %>
+  </div>
+  <div class="actions" style="display:inline">
+    <%= f.submit 'Save' %>
+  </div>
+<% end %>

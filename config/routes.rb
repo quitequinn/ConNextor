@@ -17,8 +17,11 @@ Rails.application.routes.draw do
   get 'profile_introduction/add/:profile_id', to: 'profile_introductions#add'
 
   resources :profiles
+  get 'profiles/switch/:id', to: 'profiles#switch'
+  get 'profiles/edit_bio/:id', to: 'profiles#edit_bio'
+  get 'profiles/edit_location/:id', to: 'profiles#edit_location'
   get 'profiles/new/:id', to: 'profiles#new', as: 'profile_initialize'
-  # get 'profiles/:id/initialize', to: 'profiles#initialize', as: 'initialize_profile'
+  
   resources :user_follows
 
   resources :activities

@@ -1,23 +1,42 @@
 class ProfilesController < ApplicationController
-  before_action :set_profile, only: [:show, :edit, :new, :update, :destroy]
+  # sets @profile
+  before_action :set_profile, only: [:show, :edit, :new, :update, :destroy, :switch, :edit_bio, :edit_location]
+  
+  # sets @user_is_owner_of_profile
+  before_action :set_profile_owner, only: [:show, :new, :update]
+  
+  def switch
+    @tab_name = params[:tab]
+    @tab_name.downcase!
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def edit_bio
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def edit_location
+    respond_to do |format|
+      format.js
+    end
+  end
 
   def index
     @profiles = Profile.all
   end
 
   def show
-    if current_user and @profile
-      @user_is_owner_of_profile = @profile == current_user.profile
-    end
   end
 
   # Not the usual 'new', more like initialize.
   # we created profile when we created user
   def new
     set_skills_and_interests
-    if current_user and @profile
-      @user_is_owner_of_profile = @profile == current_user.profile
-    end
+
     if @profile.user
       if @profile.user.first_name
         @profile.first_name = @profile.user.first_name
@@ -89,6 +108,7 @@ class ProfilesController < ApplicationController
         @profile.user.create_skills user_params[:skill_ids]
         @profile.user.create_interests user_params[:interest_ids]
         format.html { redirect_to @profile, notice: 'Profile was successfully updated.' }
+        format.js
         format.json { render :show, status: :ok, location: @profile }
       else
         set_skills_and_interests
@@ -118,6 +138,12 @@ class ProfilesController < ApplicationController
         @profile = current_user.profile
       else
         # not found
+      end
+    end
+
+    def set_profile_owner
+      if current_user and @profile
+        @user_is_owner_of_profile = @profile == current_user.profile
       end
     end
 

@@ -4,20 +4,24 @@
       <div class="col-sm-3 profile-photo-container">
         <%= image_tag 'cats/cat-profile.jpg', class: 'profile-photo' %>
       </div>
-      <div class="col-sm-9 hidden-xs info-container beside-profile-photo">
+      <div id="profile-header" class="col-sm-9 hidden-xs info-container beside-profile-photo">
         <%= render 'profile_header_info' %>
       </div>
     </div>
   </div>
   <div class="container-fluid profile-tabs">
-    <!--<div class="col-sm-offset-3 col-sm-9 hidden-xs tabs-columns">-->
-      <!--<ul class="nav nav-tabs">-->
-        <!--<li role="presentation" class="active"><a href="#">link1</a></li>-->
-        <!--<li role="presentation"><a href="#">link2</a></li>-->
-        <!--<li role="presentation"><a href="#">link3</a></li>-->
-        <!--<li role="presentation"><a href="#">link4</a></li>-->
-      <!--</ul>-->
-    <!--</div>-->
+    <div class="col-sm-offset-3 col-sm-12 hidden-xs tabs-columns">
+      <ul id="profile-tabs" class="nav nav-tabs">
+
+        <li id="profile-project-tab" role="presentation" class="active"><%= link_to "Projects/Tasks", "/profiles/switch/#{@profile.id}?tab=Projects_Tasks", remote: true  %></li>
+        
+        <li id="profile-activity" role="presentation"> <%= link_to "Activity", "/profiles/switch/#{@profile.id}?tab=Activity", remote: true %></li>
+        
+        <li id="profile-followers" role="presentation"><%= link_to "Followers", "/profiles/switch/#{@profile.id}?tab=Followers", remote: true %></li>
+        
+        <li id="profile-followees" role="presentation"><%= link_to "Following", "/profiles/switch/#{@profile.id}?tab=Followings", remote: true %></li>
+      </ul>
+    </div>
   </div>
   <div class="info-container text-center visible-xs-block">
     <%= render 'profile_header_info' %>
@@ -25,34 +29,7 @@
 </div>
 
 <div class="container">
-  <div class="row">
-    <div class="col-md-9 sections-column" role="main">
-      <%= render 'section_container', section_title: 'Introduction', elements: [@profile.profile_introduction] %>
-      <%= render 'section_container', section_title: 'Experiences', elements: @profile.profile_experiences %>
-      <%= render 'section_container', section_title: 'Educations', elements: @profile.profile_educations %>
-      <%= render 'section_container', section_title: 'Contacts', elements: @profile.profile_contacts %>
-    </div>
-    <div class="col-md-3 hidden-xs hidden-sm" role="complementary">
-      <ul>
-        <% if [@profile.profile_introduction] and [@profile.profile_introduction].any? %>
-            <li><a href="#introduction">Introduction</a></li>
-        <% end %>
-        <% if nil %>
-            <li><a href="#projects">Projects</a></li>
-        <% end %>
-        <% if nil %>
-            <li><a href="#skills">Skills</a></li>
-        <% end %>
-        <% if @profile.profile_experiences and @profile.profile_experiences.any? %>
-            <li><a href="#experiences">Experiences</a></li>
-        <% end %>
-        <% if @profile.profile_educations and @profile.profile_educations.any? %>
-            <li><a href="#educations">Education</a></li>
-        <% end %>
-        <% if @profile.profile_contacts and @profile.profile_contacts.any? %>
-            <li><a href="#contacts">Contacts</a></li>
-        <% end %>
-      </ul>
-    </div>
+  <div id="tabs-body" class="row">
+    <%= render 'profiles/projects_tasks' %>
   </div>
 </div>

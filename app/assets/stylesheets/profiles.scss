@@ -71,6 +71,7 @@ $tabs-offset:           20px;
 
     .profile-tabs {
       height: $tabs-height;
+      margin-left:50px;
       background: white;
       .tabs-columns {
         margin-top: - $tabs-offset;

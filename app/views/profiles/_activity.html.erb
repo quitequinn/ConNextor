@@ -1,0 +1,6 @@
+<div class="section-container">
+  <p>User Updates:</p>
+  <div>
+    <%= render Activity.where(parent_id: @profile.user.id, parent_type: 'user') %>
+  </div>
+</div>

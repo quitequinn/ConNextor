@@ -1,0 +1,7 @@
+<div class="section-container">
+  <% @followers = UserFollow.where(followee_id: @profile.user.id) %>
+  <%  @followers.each do |follower| %>
+    <% @user = User.find_by_user_id( follower.follower_id ) %>
+    <%= render @user %>
+  <% end %>
+</div>

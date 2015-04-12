@@ -1,0 +1,9 @@
+<%= form_for profile, remote: true do |f| %>
+  <div class="field">
+    <%= f.label :location, 'Your Current Location:' %>
+    <%= f.text_field :location %>
+  </div>
+  <div class="actions">
+    <%= f.submit 'Save' %>
+  </div>
+<% end %>

@@ -2,20 +2,24 @@
   <%= @profile.user.first_name %> <%= @profile.user.last_name %>
 </p>
 
-<p class="profile-short-bio">
+<p id="profile-bio" class="profile-short-bio">
   <% if @user_is_owner_of_profile %>
       <%= @profile.short_bio || 'Add a short biography' %>
-      <a href="#"><span class="glyphicon glyphicon-edit edit-icon hidden-xs"></span></a>
+      <%= link_to "/profiles/edit_bio/#{@profile.id}", remote: true do %>
+          <span class="glyphicon glyphicon-edit edit-icon hidden-xs"></span>
+      <% end %>
   <% else %>
       <%= @profile.short_bio %>
   <% end %>
 </p>
 
-<p class="profile-location">
+<p id="profile-location" class="profile-location">
   <% if @user_is_owner_of_profile %>
       <span class="glyphicon glyphicon-map-marker hidden-xs"></span>
       <%= @profile.location || 'Add a location' %>
-      <a href="#"><span class="glyphicon glyphicon-edit edit-icon hidden-xs"></span></a>
+      <%= link_to "/profiles/edit_location/#{@profile.id}", remote: true do %>
+          <span class="glyphicon glyphicon-edit edit-icon hidden-xs"></span>
+      <% end %>
   <% elsif @profile.location %>
       <span class="glyphicon glyphicon-map-marker hidden-xs"></span>
       <%= @profile.location %>

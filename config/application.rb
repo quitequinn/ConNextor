@@ -32,8 +32,5 @@ module Myapp
 
     config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
     # config.assets.paths << Rails.root.join('app', 'assets', 'vectors')
-    config.action_dispatch.default_headers = {
-        'X-Frame-Options' => 'ALLOWALL'
-    }
   end
 end
