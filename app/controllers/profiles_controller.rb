@@ -149,6 +149,8 @@ class ProfilesController < ApplicationController
 
     def profile_params
       params.require(:profile).permit(
+        :profile_photo,
+        :cover_photo,
         :location, 
         :school, 
         :short_bio, 

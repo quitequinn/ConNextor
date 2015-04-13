@@ -11,6 +11,8 @@ class Profile < ActiveRecord::Base
   attr_accessor :first_name
   attr_accessor :last_name
 
+  mount_uploader :profile_photo, ImageUploader
+  mount_uploader :cover_photo, ImageUploader
   ##########Registration############
 
   def current_step
