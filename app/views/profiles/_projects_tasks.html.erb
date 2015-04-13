@@ -32,6 +32,32 @@
   <%= render 'section_container', section_title: 'Contacts', elements: @profile.profile_contacts %>
 </div>
 <div class="col-md-3 hidden-xs hidden-sm" role="complementary">
+    <% if @user_is_owner_of_profile %>
+      <% if @profile.user.identities.find_by_provider('facebook') == nil %>
+        <div>
+          <%= link_to '/auth/facebook' do %>
+              <div class="social-media-img">Connect with Facebook</div>
+          <% end %>
+        </div>
+      <% end %>
+
+      <% if @profile.user.identities.find_by_provider('linkedin') == nil  %>
+        <div>
+          <%= link_to '/auth/linkedin' do %>
+              <div class="social-media-img">Connect with Linkedin</div>
+          <% end %>
+        </div>
+      <% end %>
+
+      <% if @profile.user.identities.find_by_provider('github') == nil %>
+        <div>
+          <%= link_to '/auth/github' do %>
+              <div class="social-media-img github-image block-center">Connect with GitHub</div>
+          <% end %>
+        </div>
+      <% end %>
+    <% end %>
+    <br />
   <ul>
     <% if [@profile.profile_introduction] and [@profile.profile_introduction].any? %>
         <li><a href="#introduction">Introduction</a></li>

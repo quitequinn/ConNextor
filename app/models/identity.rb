@@ -26,6 +26,11 @@ class Identity < ActiveRecord::Base
               :uid =>           auth.uid,
               :oauth_token =>   auth.credentials.token
             )
+    elsif auth.provider == "github"
+      create( :provider  =>     auth.provider,
+              :uid =>           auth.uid,
+              :oauth_token =>   auth.credentials.token
+            )
     end
   end
 
