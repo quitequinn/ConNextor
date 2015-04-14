@@ -31,12 +31,13 @@
   <%= render 'section_container', section_title: 'Educations', elements: @profile.profile_educations %>
   <%= render 'section_container', section_title: 'Contacts', elements: @profile.profile_contacts %>
 </div>
-<div class="col-md-3 hidden-xs hidden-sm" role="complementary">
+<div class="col-md-3 hidden-xs hidden-sm social-media-imgs" role="complementary">
     <% if @user_is_owner_of_profile %>
       <% if @profile.user.identities.find_by_provider('facebook') == nil %>
         <div>
           <%= link_to '/auth/facebook' do %>
-              <div class="social-media-img">Connect with Facebook</div>
+              <div class="social-media-img facebook-image"></div>
+              Connect with Facebook
           <% end %>
         </div>
       <% end %>
@@ -44,7 +45,8 @@
       <% if @profile.user.identities.find_by_provider('linkedin') == nil  %>
         <div>
           <%= link_to '/auth/linkedin' do %>
-              <div class="social-media-img">Connect with Linkedin</div>
+              <div class="social-media-img linkedin-image"></div>
+              Connect with Linkedin
           <% end %>
         </div>
       <% end %>
@@ -52,7 +54,8 @@
       <% if @profile.user.identities.find_by_provider('github') == nil %>
         <div>
           <%= link_to '/auth/github' do %>
-              <div class="social-media-img github-image block-center">Connect with GitHub</div>
+              <div class="social-media-img github-image block-center"></div>
+              Connect with GitHub
           <% end %>
         </div>
       <% end %>

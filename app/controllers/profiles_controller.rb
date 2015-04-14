@@ -39,7 +39,7 @@ class ProfilesController < ApplicationController
   # we created profile when we created user
   def new
     set_skills_and_interests
-
+    @profile.profile_photo = 'cats/cat-profile.jpg'
     if @profile.user
       if @profile.user.first_name
         @profile.first_name = @profile.user.first_name
