@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   has_many :user_to_projects, dependent: :destroy
   has_many :user_project_follows, dependent: :destroy
   has_many :projects, through: :user_to_projects
-  has_many :project_tasks
+  has_many :project_tasks, dependent: :destroy
   has_many :identities, dependent: :destroy
   has_many :user_to_interests, dependent: :destroy
   has_many :user_to_skills, dependent: :destroy

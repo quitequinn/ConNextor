@@ -1,9 +1,10 @@
 class Profile < ActiveRecord::Base
+
   has_one :user
-  has_one :profile_introduction
-  has_many :profile_experiences, -> { order(created_at: :asc) }
-  has_many :profile_educations, -> { order(created_at: :asc) }
-  has_many :profile_contacts, -> { order(created_at: :asc) }
+  has_one :profile_introduction, dependent: :destroy
+  has_many :profile_experiences, -> { order(created_at: :asc) }, dependent: :destroy
+  has_many :profile_educations, -> { order(created_at: :asc) }, dependent: :destroy
+  has_many :profile_contacts, -> { order(created_at: :asc) }, dependent: :destroy
 
   accepts_nested_attributes_for :user
   attr_accessor :has_idea
