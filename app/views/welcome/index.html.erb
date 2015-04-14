@@ -12,13 +12,10 @@
 </script>
 
 <!--Loading screen-->
-<div class="outer-centering loading-screen">
-  <div class="middle-centering">
-    <div class="inner-centering loading-container">
-      <img class="loading-vector" src="<%= image_path 'loading-screen.svg' %>" />
-    </div>
-  </div>
-</div>
+<%= render 'welcome/loading_screen' %>
+
+<!--Welcome Video-->
+<%= render 'welcome/welcome_video' %>
 
 <!--Main image-->
 <div class="main-container main-img">
@@ -27,14 +24,9 @@
       Connect the Next Generation of Innovators<span class="alt-theme"></span>
     </p>
     <!-- <button class="stay-tuned-button btn-upright btn-border-rounded scroll-to-invite">Stay Tuned</button> -->
-    <button id="video-button" class="video-button btn-upright btn-border-rounded" onClick="showVideo()"></button>  
-  </div>
-</div>
-
-<div id="video-container" class="pop-up-container">
-  <div class="video-container" >
-    <a href="javascript:hideVideo()"><span class="glyphicon glyphicon-remove close-button" ></span></a>
-    <iframe id="video-iframe" class="iframe" src="https://player.vimeo.com/video/124384619" frameborder="0"> </iframe>
+    <a class="" href="javascript:showVideo()">
+      <img class="video-button-image" src="<%= image_path 'play_button.png' %>" />
+    </a>
   </div>
 </div>
 

@@ -38,21 +38,28 @@
       }
     }
 
-    .video-button {
-      background-image: image_url("play_button.png");
-      background-size: contain;
-      background-repeat: no-repeat;
-      position: absolute;
-      border-radius: 50%;
+    .video-button-image {
       width: 50px;
       height: 50px;
       margin-top: 35px;
+      @include transition-all-ease(300ms);
     }
 
     .stay-tuned-button {
       margin-top: 35px;
       //    background: none;
       font-weight: $font-weight-misc;
+    }
+  }
+
+  .pop-up-container {
+    .video-container {
+      height: 50%;
+
+      .iframe {
+        width: 100%;
+        height: 100%;
+      }
     }
   }
 

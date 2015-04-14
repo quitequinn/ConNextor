@@ -19,9 +19,17 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-//*****************
-// Dynamic Classes
-//*****************
+//*************************************************
+// --------------- Dynamic Classes ---------------
+//
+// Include these classes in tags for their effects.
+// Try not overload these classes directly,
+// overload implicitly by adding more specific
+// classes to the tag itself, and then overload
+// inside that specific page's Sass file.
+//*************************************************
+
+// positional
 
 .float-left {
   display: inline-block;
@@ -34,6 +42,30 @@
   position: relative;
   float: right;
 }
+
+.block-center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.outer-centering {
+  display: table;
+  height: 100%;
+  width: 100%;
+
+  .middle-centering {
+    display: table-cell;
+    vertical-align: middle;
+
+    .inner-centering {
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+}
+
+// form input
 
 .form-part-title {
   font-size: $font-size-section;
@@ -121,26 +153,41 @@
   @extend .form-element-margin-basis;
 }
 
-.block-center {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
+// pop up
 
-.outer-centering {
-  display: table;
-  height: 100%;
+.pop-up-container {
+  position: fixed;
+  display: none;
+  top: 0;
+  left: 0;
   width: 100%;
+  height: 100%;
+  background: $pop-up-background;
+  z-index: 1034;
 
-  .middle-centering {
-    display: table-cell;
-    vertical-align: middle;
+  .pop-up {
+    position: relative;
 
-    .inner-centering {
-      margin-left: auto;
-      margin-right: auto;
+    .close-button {
+      position: absolute;
+      top: 10px;
+      right: 10px;
     }
   }
+}
+
+// images
+
+.logo-img {
+  width: 57px;
+  height: 54px;
+}
+
+.logo-img-background {
+  background-image: image_url("logo.png");
+  background-size: cover;
+  width: 57px;
+  height: 54px;
 }
 
 .facebook-image {background-image: image_url("icons/social-media/facebook-gray.png");}
@@ -152,9 +199,10 @@
 .linkedin-image {background-image: image_url("icons/social-media/linkedin-gray.png");}
 .linkedin-image:hover {background-image: image_url("icons/social-media/linkedin-blue.png");}
 
-//*****************
-// Global classes
-//*****************
+
+//************************************************
+// ----------- Global Element Styling -----------
+//************************************************
 
 html.turbolinks-progress-bar::before {
   background-color: $primary-color !important;
@@ -173,24 +221,11 @@ body {
   //  background-color: #808080;
 }
 
-
 #content-wrap {
   min-height: 100%;
   height: auto !important;
   //  height: 100%;
   margin: 0 auto (0-$footer-height);
-}
-
-.logo-img {
-  width: 57px;
-  height: 54px;
-}
-
-.logo-img-background {
-  background-image: image_url("logo.png");
-  background-size: cover;
-  width: 57px;
-  height: 54px;
 }
 
 .log-in {
@@ -219,12 +254,6 @@ body {
 }
 
 
-
-//*****************
-// Element Styling
-//*****************
-
-
 .navbar-default {
 //  background: white;
   .navbar-brand {
@@ -249,49 +278,13 @@ body {
 }
 
 .pop-up-container {
-  position: fixed;
-  display: none; // TODO
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: $pop-up-background;
-  z-index: 1034;
-
-  .video-container {
-    position:relative;
-    padding-bottom:56.25%;
-    padding-top:30px;
-    height:100%;
-    width:40%;
-    top:80px;
-    overflow:hidden;
-    margin-left:30%;
-
-    .iframe {
-      width:100%;
-      height:50%;
-    }
-
-    .close-button {
-      position: absolute;
-    }
-  }
-
-  .pop-up {
-    position: relative;
+  .log-in-pop-up {
     padding: 30px 20px;
     // add shadow
     background: white;
     max-width: 400px; // TODO
     text-align: center;
     margin-top:50px;
-
-    .close-button {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-    }
 
     .sign-up-message {
 
