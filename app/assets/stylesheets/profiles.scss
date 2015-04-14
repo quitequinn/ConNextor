@@ -55,11 +55,14 @@ $tabs-offset:           20px;
       .profile-name {
         padding-top: 3px;
         font-size: $font-size-header;
+        color: black;
       }
       .profile-short-bio {
         font-size: $font-size-subheader;
+        color: black;
       }
       .profile-location {
+        color: black;
         .glyphicon-map-marker {
           margin-right: 12px;
         }

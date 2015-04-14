@@ -1,7 +1,7 @@
 <div class="sign-up">
   <%= form_for user do |f| %>
-      <%= f.text_field :email, class: 'input-upright', placeholder: 'Email' %><br />
-      <%= f.text_field :password,  class: 'input-upright', placeholder: 'Password' %><br />
+       <%= text_field_tag :email, params[:email], class: 'input-upright', placeholder: 'Email' %><br />
+      <%= password_field_tag :password, nil,  class: 'input-upright', placeholder: 'Password' %><br />
       <%= submit_tag 'Sign Up', class: 'btn-upright text-center' %>
   <% end %>
 </div>

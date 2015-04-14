@@ -1,9 +1,9 @@
 class ProfilesController < ApplicationController
   # sets @profile
-  before_action :set_profile, only: [:show, :edit, :new, :update, :destroy, :switch, :edit_bio, :edit_location]
+  before_action :set_profile, only: [:show, :new, :edit, :update, :destroy, :switch, :edit_bio, :edit_location, :additional_info]
   
   # sets @user_is_owner_of_profile
-  before_action :set_profile_owner, only: [:show, :new, :update]
+  before_action :set_profile_owner, only: [:show, :update]
   
   def switch
     @tab_name = params[:tab]
@@ -23,6 +23,9 @@ class ProfilesController < ApplicationController
     respond_to do |format|
       format.js
     end
+  end
+
+  def additional_info
   end
 
   def index
@@ -49,7 +52,7 @@ class ProfilesController < ApplicationController
 
   def create
     @profile = Profile.new(profile_params)
-
+    profile.user = current_user
     respond_to do |format|
       if @profile.save
 
@@ -57,7 +60,7 @@ class ProfilesController < ApplicationController
           if profile_params[:code]
             InvitationCode.create(user_id:current_user_id, used:false, code: profile_params[:code])
           end
-          if profile_params[:has_idea] == 1
+          if profile_params[:has_idea] == '1'
             ProfileIdea.create(user_id:current_user_id)
           end
           if profile_params[:first_name]
@@ -68,8 +71,7 @@ class ProfilesController < ApplicationController
           end
         end
 
-        format.html { redirect_to @profile, notice: 'Profile was successfully created.' }
-        format.json { render :show, status: :created, location: @profile }
+        format.html { redirect_to controller: :profiles, action: :additional_info }
       else
         format.html { render :new }
         format.json { render json: @profile.errors, status: :unprocessable_entity }
@@ -107,7 +109,11 @@ class ProfilesController < ApplicationController
       if @profile.update profile_params
         @profile.user.create_skills user_params[:skill_ids]
         @profile.user.create_interests user_params[:interest_ids]
-        format.html { redirect_to @profile, notice: 'Profile was successfully updated.' }
+        if @profile.resume == nil && @profile.user.identities.find_by_provider('linkedin') == nil
+          format.html { redirect_to controller: :profiles, action: :additional_info }
+        else
+          format.html { redirect_to @profile, notice: 'Profile was successfully updated.' }
+        end
         format.js
         format.json { render :show, status: :ok, location: @profile }
       else
@@ -151,6 +157,7 @@ class ProfilesController < ApplicationController
       params.require(:profile).permit(
         :profile_photo,
         :cover_photo,
+        :resume,
         :location, 
         :school, 
         :short_bio, 

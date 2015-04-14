@@ -1,0 +1,44 @@
+<div class="container registration-section">
+  <div class="row section-container">
+    <div class="section-header">
+      <div class="big-header">
+        <p>Final step</p>
+      </div>
+    </div>
+
+    <div class="col-sm-6 col-sm-push-1 side-description">
+      <p class="title">Resume</p>
+      <p class="text">Upload your resume or show off your Linkedin</p>
+    </div>
+
+    <div class="col-sm-6 col-sm-push-1 section-form-container">
+      <div class="profile-professionalism">
+        <%= form_for @profile, html: {multipart: true, id:"resume-form"} do |f| %>
+          <p>
+            <%= f.file_field :resume %>
+          </p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row section-container">
+    <div class="col-sm-6 col-sm-push-1 side-description">
+      <p class="title">Linkedin</p>
+      <p class="text">Connect with Linkedin so we can know more about you!</p>
+      </div>
+
+     <div class="social-media-imgs col-sm-6 col-sm-push-1 ">
+      <%= link_to '/auth/linkedin' do %>
+          <div class="social-media-img linkedin-image"></div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="row section-container">
+    <div class="thanks-section">
+      <!--Submit (linked by Javascript)-->
+      <input type="submit" name="Finish" class="btn-upright" onclick="submitResume()" />
+    </div>
+  </div>
+</div>

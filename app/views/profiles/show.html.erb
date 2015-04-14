@@ -1,20 +1,20 @@
 <div class="header">
   <% if  @user_is_owner_of_profile %>
-        <%= form_for @profile, html: {multipart: true} do |f| %>
-          <p>
-            <%= f.file_field :profile_photo %>
-          </p>
-          <%= f.submit 'Change profile pic' %>
-        <% end %>
-      <% end %>
-      <% if  @user_is_owner_of_profile %>
-        <%= form_for @profile, html: {multipart: true} do |f| %>
-          <p>
-            <%= f.file_field :cover_photo %>
-          </p>
-          <%= f.submit 'Change cover' %>
-        <% end %>
-      <% end %>
+    <%= form_for @profile, html: {multipart: true} do |f| %>
+      <p>
+        <%= f.file_field :profile_photo %>
+      </p>
+      <%= f.submit 'Change profile pic' %>
+    <% end %>
+  <% end %>
+  <% if  @user_is_owner_of_profile %>
+    <%= form_for @profile, html: {multipart: true} do |f| %>
+      <p>
+        <%= f.file_field :cover_photo %>
+      </p>
+      <%= f.submit 'Change cover' %>
+    <% end %>
+  <% end %>
   <div class="cover-photo" style="background-image: url(<%= image_path('cats/abstract-background.jpg') %>)">
     <div class="container header-container">    
       <div class="col-sm-3 profile-photo-container">
@@ -25,20 +25,20 @@
       </div>
     </div>
   </div>
-  <div class="container-fluid profile-tabs">
+  <!-- <div class="container-fluid profile-tabs">
     <div class="col-sm-offset-3 col-sm-12 hidden-xs tabs-columns">
       <ul id="profile-tabs" class="nav nav-tabs">
 
-        <li id="profile-project-tab" role="presentation" class="active"><%= link_to "Projects/Tasks", "/profiles/switch/#{@profile.id}?tab=Projects_Tasks", remote: true %></li>
+        <li id="profile-project-tab" role="presentation" class="active"><%#= link_to "Projects/Tasks", "/profiles/switch/#{@profile.id}?tab=Projects_Tasks", remote: true %></li>
         
-        <li id="profile-activity" role="presentation"> <%= link_to "Activity", "/profiles/switch/#{@profile.id}?tab=Activity", remote: true %></li>
+        <li id="profile-activity" role="presentation"> <%#= link_to "Activity", "/profiles/switch/#{@profile.id}?tab=Activity", remote: true %></li>
         
-        <li id="profile-followers" role="presentation"><%= link_to "Followers", "/profiles/switch/#{@profile.id}?tab=Followers", remote: true %></li>
+        <li id="profile-followers" role="presentation"><%#= link_to "Followers", "/profiles/switch/#{@profile.id}?tab=Followers", remote: true %></li>
         
-        <li id="profile-followees" role="presentation"><%= link_to "Following", "/profiles/switch/#{@profile.id}?tab=Followings", remote: true %></li>
+        <li id="profile-followees" role="presentation"><%#= link_to "Following", "/profiles/switch/#{@profile.id}?tab=Followings", remote: true %></li>
       </ul>
     </div>
-  </div>
+  </div> -->
   <div class="info-container text-center visible-xs-block">
     <%= render 'profile_header_info' %>
   </div>

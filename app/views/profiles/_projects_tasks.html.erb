@@ -1,17 +1,17 @@
 <div class="col-md-9 sections-column" role="main">
   <%= render 'section_container', section_title: 'Introduction', elements: [@profile.profile_introduction] %>
-  <div class="section-container">
+  <!--<div class="section-container">
     <p class="section-title hidden-xs">
       PROJECTS
     </p>
     <div class="section-body">
       <div class="profile-projects-container">
-        <%= @profile.user.projects.each do |project| %>
-          <%= render 'profiles/project', project: project %>
-        <% end %>
+        <%#= @profile.user.projects.each do |project| %>
+          <%#= render 'profiles/project', project: project %>
+        <%# end %>
       </div>
     </div>
-  </div>
+  </div>-->
   <div class="section-container">
     <p class="section-title hidden-xs">
       HIGHLIGHT SKILLS
@@ -62,9 +62,9 @@
     <% if [@profile.profile_introduction] and [@profile.profile_introduction].any? %>
         <li><a href="#introduction">Introduction</a></li>
     <% end %>
-    <% if @profile.user.projects.any? %>
-        <li><a href="#projects">Projects</a></li>
-    <% end %>
+    <%# if @profile.user.projects.any? %>
+        <!-- <li><a href="#projects">Projects</a></li> -->
+    <%# end %>
     <% if @profile.user.skills.any? %>
         <li><a href="#skills">Skills</a></li>
     <% end %>

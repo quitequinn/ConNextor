@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   get 'profile_introduction/add/:profile_id', to: 'profile_introductions#add'
 
   resources :profiles
+  get 'profiles/additional_info/:id', to: 'profiles#additional_info'
   get 'profiles/switch/:id', to: 'profiles#switch'
   get 'profiles/edit_bio/:id', to: 'profiles#edit_bio'
   get 'profiles/edit_location/:id', to: 'profiles#edit_location'

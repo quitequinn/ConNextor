@@ -7,8 +7,12 @@ class SessionsController < ApplicationController
   def create
     user = User.authenticate(params[:email], params[:password])
     if user
-      session_create user     
-      redirect_to root_url, :notice => 'Logged in!'
+      session_create user
+      if user.profile == nil
+        format.html { redirect_to controller: :profiles, action: :new, :notice => 'Must complete profile!' }
+      else
+        redirect_to root_url, :notice => 'Logged in!'
+      end     
     else
       flash[:error] = 'Invalid login'
       render 'new'
@@ -49,7 +53,8 @@ class SessionsController < ApplicationController
           @user.profile.save
 
           respond_to do |format|
-            format.html { redirect_to controller: :profiles, action: :new, id: @user.profile_id}
+            format.html { redirect_to controller: :profiles, action: :new, id: @user.profile_id }
+            format.js
             format.json { render json: @user.errors, status: :unprocessable_entity }
           end
         else
