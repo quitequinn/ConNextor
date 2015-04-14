@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150413043234) do
+ActiveRecord::Schema.define(version: 20150414010635) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -139,6 +139,7 @@ ActiveRecord::Schema.define(version: 20150413043234) do
     t.string   "linkedin_url"
     t.string   "profile_photo"
     t.string   "cover_photo"
+    t.string   "resume"
   end
 
   create_table "project_comments", force: :cascade do |t|
