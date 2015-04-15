@@ -2,7 +2,7 @@
 
 <div class="container registration-section">
 
-  <%= form_for @profile, html: {class: 'form-horizontal', id: 'profile-form'} do |f| %>
+  <%= form_for @profile, url: register_info_path, html: {class: 'form-horizontal', id: 'profile-form'} do |f| %>
       <% if @profile.errors.any? %>
           <div id="error_explanation">
             <h2><%= pluralize(@profile.errors.count, "error") %> prohibited this profile from being saved:</h2>

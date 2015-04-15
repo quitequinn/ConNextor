@@ -1,52 +1,16 @@
 class UsersController < ApplicationController
+  before_action :set_user, only: [:show, :edit, :update ]
   before_action :logged_in_user, only: [:index, :edit, :update, :show]
   before_action :correct_user,   only: [:edit, :update]
 
   def new
-    session[:user_params] ||= {}
     @user = User.new
   end
 
-  # def create
-  #   session[:user_params].deep_merge!(user_params) if user_params
-  #   @user = User.new(session[:user_params])
-  #   @user.current_step = session[:reg_step]
-  #   @skills = Skill.all
-  #   @interests = Interest.all
-  #
-  #   if params[:back_button]
-  #     @user.previous_step
-  #   elsif @user.last_step?
-  #     if @user.save
-  #       if session[:identity_id]
-  #         identity = Identity.find(session[:identity_id])
-  #         identity.user = @user
-  #         identity.save()
-  #         session[:identity_id] = nil
-  #       end
-  #       flash[:success] = "Signed up!"
-  #       session[:reg_step] = session[:user_params] = nil
-  #       redirect_to root_url and return
-  #     else
-  #       render 'new' and return
-  #     end
-  #   else
-  #     @user.next_step
-  #   end
-  #   session[:reg_step] = @user.current_step
-  #   render 'new'
-  #
-  #
-  #
-  # end
-
-  # POST users/
-  # POST users.json
   def create
     @user = User.new(user_params)
     # TODO for security, use a 128 bit hash instead of id when marshalling
-    #identity_id = params.require(:user)[:identity_id]
-    #profile_id = params.require(:user)[:profile_id]
+    # params.require is prefered
     identity_id = params[:identity_id]
     profile_id = params[:profile_id]
 
@@ -61,15 +25,15 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        if registering_with_omni_auth
-          @identity.user = @user
-          @identity.save
-        else
+        #if registering_with_omni_auth
+          #@identity.user = @user
+          #@identity.save
+        #else
           @profile = Profile.new
           @profile.save # no reason for it not to save
           @user.profile = @profile
           @user.save # no room for errors
-        end
+        #end
 
         # Confirm Email here, don't login.
         session_create @user
@@ -88,11 +52,9 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
   end
 
   def update
-    @user = User.find(params[:id])
     unless current_user == @user
       redirect_to @user, notice: 'permissions not right'
     end
@@ -104,47 +66,39 @@ class UsersController < ApplicationController
     end
   end
 
-  def show
-    if params[:id]
-      @user = User.find(params[:id])
-    else
-      @user = current_user
-    end
-    @user_is_owner_of_user = @user == current_user
-  end
-
-
   private
-  def user_params
-    params.permit(
-        :username,
-        :email,
-        :first_name,
-        :last_name,
-        # :school,
-        # :school_email,
-        # :location,
-        # :industry,
-        # :skill_ids=>[],
-        # :interest_ids=>[],
-        :password,
-        :password_confirmation)
-  end
-
-
-  # Confirms a logged-in user.
-  def logged_in_user
-    unless logged_in?
-      store_location
-      flash[:danger] = "Please log in."
-      redirect_to log_in_url
+    def set_user
+      begin
+        @user = User.find(params[:id])
+      rescue ActiveRecord::RecordNotFound
+        logger.error "Attempted access to invalid user #{params[:id]}"
+        redirect_to users_url, notice: 'Invalid user, please try again.'
+      end
     end
-  end
 
-  # Confirms the correct user.
-  def correct_user
-    @user = User.find(params[:id])
-    redirect_to(root_url) unless current_user?(@user)
-  end
+    def user_params
+      params.permit(
+          :username,
+          :email,
+          :first_name,
+          :last_name,
+          :password,
+          :password_confirmation)
+    end
+
+    # Confirms a logged-in user.
+    def logged_in_user
+      unless logged_in?
+        store_location
+        flash[:danger] = "Please log in."
+        redirect_to log_in_url
+      end
+    end
+
+    # Confirms the correct user.
+    def correct_user
+      @user = User.find(params[:id])
+      redirect_to(root_url) unless current_user?(@user)
+    end
 
 end

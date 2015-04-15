@@ -17,15 +17,19 @@ Rails.application.routes.draw do
   get 'profile_introduction/add/:profile_id', to: 'profile_introductions#add'
 
   resources :profiles
+  patch 'register_info' => 'profiles#register_info', as: 'register_info'
+  patch 'resume_info' => 'profiles#resume_info', as: 'resume_info'
   get 'profiles/additional_info/:id', to: 'profiles#additional_info'
+  get 'profiles/edit_photo/:id', to: 'profiles#edit_photo'
+  get 'profiles/edit_cover/:id', to: 'profiles#edit_cover'
   get 'profiles/switch/:id', to: 'profiles#switch'
   get 'profiles/edit_bio/:id', to: 'profiles#edit_bio'
   get 'profiles/edit_location/:id', to: 'profiles#edit_location'
   get 'profiles/new/:id', to: 'profiles#new', as: 'profile_initialize'
   
-  resources :user_follows
+  #resources :user_follows
 
-  resources :activities
+  #resources :activities
 
   resources :user_to_interests
 
@@ -39,15 +43,15 @@ Rails.application.routes.draw do
   get 'user', to: 'users#show'
   get 'profile/:username', to: 'profiles#show'
 
-  resources :user_to_project_tasks
+  #resources :user_to_project_tasks
 
-  resources :project_tasks
+  #resources :project_tasks
 
-  resources :project_to_tags
+  #resources :project_to_tags
 
-  resources :project_tags
+  #resources :project_tags
 
-  resources :user_project_follows
+  #resources :user_project_follows
 
   resources :user_to_projects
 
@@ -61,20 +65,20 @@ Rails.application.routes.draw do
   get 'sign_up' => 'users#new', as: 'sign_up'
   root 'welcome#index'
   resources :users
-  resources :notifications
-  resources :requests
+  #resources :notifications
+  #resources :requests
   resources :sessions
-  resources :password_resets
+  #resources :password_resets
   resources :projects do
     resources :positions
   end
-  get 'project/switch/:id', to: 'projects#switch'
-  resources :project_posts
-  post 'join_project' => 'projects#join_request', as: 'join_project'
+  #get 'project/switch/:id', to: 'projects#switch'
+  #resources :project_posts
+  #post 'join_project' => 'projects#join_request', as: 'join_project'
 
   # THIS IS FOR POSTS.
-  resources :project_comments
-  post 'accept_project' => 'projects#accept_request', as: 'accept_project'
+  #resources :project_comments
+  #post 'accept_project' => 'projects#accept_request', as: 'accept_project'
 
 
 

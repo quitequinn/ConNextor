@@ -3,8 +3,8 @@
 $shadow-color:          gray;
 
 $cover-photo-height:    200px;
-$profile-photo-height:  160px;
-$profile-photo-width:   160px;
+$profile-photo-height:  170px;
+$profile-photo-width:   170px;
 $profile-photo-border:  2px;
 $tabs-height:           40px;
 $tabs-offset:           20px;
@@ -21,16 +21,25 @@ $tabs-offset:           20px;
       background-position: center;
       background-size: cover;
 
-      .profile-photo {
-        height: $profile-photo-height;
-        width: $profile-photo-width;
-        object-fit: cover;
-        border: $profile-photo-border solid white;
-        @include border-rounded(10px);
-        background: white;
-        display:block;
-        margin:auto;
-        @include box-shadow(0, 3px, 5px, $shadow-color);
+      .profile-photo-container {
+        .profile-photo {
+          height: $profile-photo-height;
+          width: $profile-photo-width;
+          object-fit: cover;
+          border: $profile-photo-border solid white;
+          @include border-rounded(10px);
+          background: white;
+          display:block;
+          margin:auto;
+          @include box-shadow(0, 3px, 5px, $shadow-color);
+        }
+        .edit-icon {
+          position:absolute;
+          right:10px;
+        }
+        .edit-icon:hover {
+          color: $primary-color;
+        }
       }
 
       .header-container {

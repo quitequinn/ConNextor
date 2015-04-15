@@ -94,22 +94,21 @@ class User < ActiveRecord::Base
         self.image = auth.info.image unless self.image
 
         self.profile.location = auth.info.location unless self.profile.location
-        # self.profile.short_bio = auth.info.description unless self.profile.short_bio
 
         self.profile.facebook_url = auth.info.urls.Facebook
-      when 'twitter'
-        name_array = auth.info.name.gsub(/\s+/m, ' ').strip.split(' ')
+      # when 'twitter'
+      #   name_array = auth.info.name.gsub(/\s+/m, ' ').strip.split(' ')
 
-        self.first_name = name_array.first unless self.first_name
-        self.last_name = name_array.last unless self.last_name
-        self.username = auth.info.nickname unless self.username
-        # self.email = auth.info.email unless self.email
-        self.image = auth.info.image unless self.image
+      #   self.first_name = name_array.first unless self.first_name
+      #   self.last_name = name_array.last unless self.last_name
+      #   self.username = auth.info.nickname unless self.username
+      #   # self.email = auth.info.email unless self.email
+      #   self.image = auth.info.image unless self.image
 
-        self.profile.location = auth.info.location unless self.profile.location
-        self.profile.short_bio = auth.info.description unless self.profile.short_bio
+      #   self.profile.location = auth.info.location unless self.profile.location
+      #   self.profile.short_bio = auth.info.description unless self.profile.short_bio
 
-        self.profile.twitter_url = auth.info.urls.Twitter
+      #   self.profile.twitter_url = auth.info.urls.Twitter
       when 'linkedin'
         self.first_name = auth.info.first_name unless self.first_name
         self.last_name = auth.info.last_name unless self.last_name
@@ -159,17 +158,17 @@ class User < ActiveRecord::Base
     UserMailer.send_password_reset_mail(self).deliver
   end
 
-  def create_skills(skill_ids)
-    if skill_ids
-      unless skill_ids.length == 1
-        skill_ids.shift
-        skills = Skill.find skill_ids
-        skills.each do |skill|
-          UserToSkill.create user: self, skill: skill
-        end
-      end
-    end
-  end
+  # def create_skills(skill_ids)
+  #   if skill_ids
+  #     unless skill_ids.length == 1
+  #       skill_ids.shift
+  #       skills = Skill.find skill_ids
+  #       skills.each do |skill|
+  #         UserToSkill.create user: self, skill: skill
+  #       end
+  #     end
+  #   end
+  # end
 
   def create_interests(interest_ids)
     if interest_ids
