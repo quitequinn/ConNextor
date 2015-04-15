@@ -54,7 +54,10 @@
 
   .pop-up-container {
     .video-container {
-      height: 50%;
+      max-height: 600px;
+      max-width: 800px;
+      height: 100%;
+      width: 100%;
 
       .iframe {
         width: 100%;
