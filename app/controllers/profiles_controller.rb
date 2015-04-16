@@ -42,8 +42,8 @@ class ProfilesController < ApplicationController
   def register_info
     respond_to do |format|
       if @profile.update profile_params
-        @profile.update_misc_info( current_user, profile_params )
-        @profile.update_user_info( current_user, profile_params )
+        Profile.update_misc_info( current_user, profile_params )
+        Profile.update_user_info( current_user, profile_params )
         @profile.user.create_interests( user_params[:interest_ids] )
         #@profile.user.create_skills( user_params[:skill_ids] )
         format.html { redirect_to controller: 'profiles', action: 'additional_info', id: @profile.id }
@@ -58,14 +58,11 @@ class ProfilesController < ApplicationController
   # resume registration page
   def resume_info
     if profile_params[:resume] == nil
-      flash[:notice] = "Need resume or linkedin"
-      redirect_to controller: 'profiles', action: 'additional_info', id: @profile.id
-      return
-    end
-    if @profile.update profile_params
-      redirect_to @profile
+      flash[:warning] = 'Oops! You forgot to upload your resume or connect with linkedin'
+      redirect_to controller: 'profiles', action: 'additional_info', id: @profile.id 
     else
-      render :new
+      @profile.update profile_params
+      redirect_to @profile
     end
   end
 
@@ -77,7 +74,14 @@ class ProfilesController < ApplicationController
   # we created profile when we created user
   def new
     set_skills_and_interests
-    @profile = Profile.initialize( @profile )
+    if @profile.user
+      if @profile.user.first_name
+        @profile.first_name = @profile.user.first_name
+      end
+      if @profile.user.last_name
+        @profile.last_name = @profile.user.last_name
+      end
+    end
   end
 
   def update

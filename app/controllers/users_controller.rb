@@ -10,30 +10,23 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     # TODO for security, use a 128 bit hash instead of id when marshalling
-    # params.require is prefered
-    identity_id = params[:identity_id]
-    profile_id = params[:profile_id]
-
-    registering_with_omni_auth = identity_id and profile_id
-
-    if registering_with_omni_auth
-      @identity = Identity.find(identity_id)
-      @user.profile = Profile.find(profile_id)
-    end
-
-    @user.password_login = true unless registering_with_omni_auth
+    @user.password_login = true
 
     respond_to do |format|
       if @user.save
-        #if registering_with_omni_auth
-          #@identity.user = @user
-          #@identity.save
-        #else
-          @profile = Profile.new
-          @profile.save # no reason for it not to save
-          @user.profile = @profile
-          @user.save # no room for errors
-        #end
+        @profile = Profile.new
+        @profile.save # no reason for it not to save
+        @user.profile = @profile
+        @user.save # no room for errors
+
+        # subscribe to mailchimp
+        @list_id = '81056fe877'
+        gb = Gibbon::API.new("726405e7f61983d166f64ef27bcc0f3a-us10")
+
+        gb.lists.subscribe({
+        :id => @list_id,
+        :email => {:email => user_params[:email]}
+        })
 
         # Confirm Email here, don't login.
         session_create @user
@@ -77,7 +70,7 @@ class UsersController < ApplicationController
     end
 
     def user_params
-      params.permit(
+      params.require(:user).permit(
           :username,
           :email,
           :first_name,

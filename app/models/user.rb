@@ -182,6 +182,16 @@ class User < ActiveRecord::Base
     end
   end
 
+  def self.subscribe_to_mailchimp(email)
+    @list_id = ENV["MAILCHIMP_LIST_ID"]
+    gb = Gibbon::API.new
+
+    gb.lists.subscribe({
+      id: @list_id,
+      email: {email: email}
+      })
+  end
+
   private
 
   # def password_and_password_login

@@ -18,21 +18,7 @@ class Profile < ActiveRecord::Base
 
   ##########Registration############
 
-  def self.initialize( profile )
-    profile.profile_photo = '/cats/cat-profile.jpg'
-    profile.cover_photo = '/cats/abstract-background.jpg'
-    if profile.user
-      if profile.user.first_name
-        profile.first_name = profile.user.first_name
-      end
-      if profile.user.last_name
-        profile.last_name = profile.user.last_name
-      end
-    end
-    profile
-  end
-
-  def update_user_info( user, profile_params )
+  def self.update_user_info( user, profile_params )
     if profile_params[:first_name]
       user.update( first_name: profile_params[:first_name] )
     end
@@ -41,7 +27,7 @@ class Profile < ActiveRecord::Base
     end
   end
 
-  def update_misc_info ( user, profile_params )
+  def self.update_misc_info ( user, profile_params )
     if profile_params[:code]
       if InvitationCode.find_by_user_id( user.id )
         InvitationCode.find_by_user_id( user.id ).update(code: profile_params[:code] )

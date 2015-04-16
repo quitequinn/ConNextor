@@ -42,6 +42,8 @@ gem 'thin'
 
 gem 'carrierwave'
 
+gem 'gibbon'
+
 # Use Unicorn as the app server
 #gem 'unicorn'
 
