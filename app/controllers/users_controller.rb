@@ -20,13 +20,11 @@ class UsersController < ApplicationController
         @user.save # no room for errors
 
         # subscribe to mailchimp
-        @list_id = '81056fe877'
-        gb = Gibbon::API.new("726405e7f61983d166f64ef27bcc0f3a-us10")
-
-        gb.lists.subscribe({
-        :id => @list_id,
-        :email => {:email => user_params[:email]}
-        })
+        begin
+          Gibbon::API.new(ENV['MAILCHIMP_API_KEY']).lists.subscribe({:id => ENV['MAILCHIMP_LIST_ID'], :email => {:email => user_params[:email]}, :double_optin => false})
+        rescue Gibbon::MailChimpError => e
+          return redirect_to root_path, :flash => { error: e.message }
+        end
 
         # Confirm Email here, don't login.
         session_create @user
