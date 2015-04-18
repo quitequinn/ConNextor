@@ -1,0 +1,6 @@
+<div class="section-container">
+  <p>Project Updates:</p>
+  <div>
+    <%= render Activity.where(parent_id: @project.id, parent_type: 'project') %>
+  </div>
+</div>

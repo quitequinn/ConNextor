@@ -1,0 +1,54 @@
+<div class="header">
+
+  <div class="cover-photo" style="background-image: url(<%= image_path("#{@profile.cover_photo}") %>)">
+    <div class="container header-container">    
+      <div class="col-sm-3 profile-photo-container">
+        <%= image_tag @profile.profile_photo.to_s, class: 'profile-photo' %>
+        <% if  @user_is_owner_of_profile %>
+          <%= link_to "/profiles/edit_photo/#{@profile.id}", remote: true do %>
+              <span class="glyphicon glyphicon-edit edit-icon hidden-xs"></span>
+          <% end %>
+        <% end %>
+      </div>
+
+      <div id="profile-header" class="col-sm-9 hidden-xs info-container beside-profile-photo">
+        <%= render 'profile_header_info' %>
+        <% if  @user_is_owner_of_profile %>
+          <%= link_to "/profiles/edit_cover/#{@profile.id}", style:'float:right', remote: true do %>
+              <span class="glyphicon glyphicon-edit hidden-xs"></span>
+          <% end %>
+        <% end %>
+      </div>    
+
+    </div>
+  </div>
+  <div class="container-fluid profile-tabs">
+    <div class="col-sm-12 hidden-xs tabs-columns">
+      <!--<ul id="profile-tabs" class="nav nav-tabs">
+
+        <li id="profile-project-tab" role="presentation" class="active"><%#= link_to "Projects/Tasks", "/profiles/switch/#{@profile.id}?tab=Projects_Tasks", remote: true %></li>
+        
+        <li id="profile-activity" role="presentation"> <%#= link_to "Activity", "/profiles/switch/#{@profile.id}?tab=Activity", remote: true %></li>
+        
+        <li id="profile-followers" role="presentation"><%#= link_to "Followers", "/profiles/switch/#{@profile.id}?tab=Followers", remote: true %></li>
+        
+        <li id="profile-followees" role="presentation"><%#= link_to "Following", "/profiles/switch/#{@profile.id}?tab=Followings", remote: true %></li>
+      </ul> -->
+    </div>
+  </div> 
+  <div class="info-container text-center visible-xs-block">
+    <%= render 'profile_header_info' %>
+  </div>
+</div>
+
+<!--  hidden form -->
+<div id="profile-photo-form" class="row col-md-4 col-md-push-2"></div>
+
+<!--  hidden form -->
+<div id="profile-cover-photo-form" class="row col-md-4 col-md-push-6"></div>
+
+<div class="container">
+  <div id="tabs-body" class="row">
+    <%= render 'profiles/projects_tasks' %>
+  </div>
+</div>

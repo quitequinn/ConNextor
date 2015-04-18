@@ -1,0 +1,12 @@
+<div class="section-container">
+  <div id="project-posts-form-container" class="project-posts-form-container">
+    <%
+       new_project_post = ProjectPost.new
+       new_project_post.project_id = @project.id
+    %>
+    <%= render partial: 'project_posts/form', locals: {project_post: new_project_post} %>
+  </div>
+  <div id="project-posts-container">
+    <%= render @project.project_posts.order('created_at DESC') %>
+  </div>
+<div>

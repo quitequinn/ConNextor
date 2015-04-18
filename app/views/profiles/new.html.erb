@@ -1,0 +1,116 @@
+<% provide(:title, 'Welcome') %>
+
+<div class="container registration-section">
+
+  <%= form_for @profile, url: register_info_path, html: {class: 'form-horizontal', id: 'profile-form'} do |f| %>
+      <% if @profile.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@profile.errors.count, "error") %> prohibited this profile from being saved:</h2>
+
+            <ul>
+              <% @profile.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+      <% end %>
+      <%= f.hidden_field :profile_photo, value: "/cats/cat-profile.jpg" %>
+      <%= f.hidden_field :cover_photo, value: "/cats/abstract-background.jpg" %>
+      <div class="row section-container">
+        <div class="section-header">
+          <div class="big-header">
+            <p>Hey, Welcome to ConNextor</p>
+          </div>
+        </div>
+
+        <div class="col-sm-4 col-sm-push-8 side-description">
+          <p class="title">Step 1 of 4</p>
+          <p class="text">Lets get started. Some basic information about you.</p>
+        </div>
+
+        <div class="col-sm-8 col-sm-pull-4 section-form-container">
+          <%= render 'users/form_first_last_name', f: f %>
+          <!--Idea checkbox + Invitation Code-->
+          <div class="invitation-code">
+            <%= render 'edit_invitation_code',f: f %>
+          </div>
+          <br />
+          <div class="checkbox-field">
+            <%= render 'edit_hasIdea', f: f %>
+          </div> 
+        </div>
+      </div>
+
+      <!--Geographic-->
+      <div class="row section-container">
+        <div class="section-header">
+          <div class="big-header">
+            <p>Where are you located?</p>
+          </div>
+        </div>
+
+        <div class="col-sm-4 col-sm-push-8 side-description">
+          <p class="title">Step 2 of 4</p>
+          <p class="text">Let us know a little more about you. Knowing where you are from will get you better connections with those who came from the same place</p>
+        </div>
+
+        <div class="col-sm-8 col-sm-pull-4 section-form-container">
+          <%= render 'edit_geographic', f: f %>
+        </div>
+      </div>
+
+      <!--Interests-->
+      <div class="row section-container">
+        <div class="section-header">
+          <div class="row big-header">
+            <p>What do you see yourself doing?</p>
+          </div>
+        </div>
+
+        <div class="col-sm-4 col-sm-push-8 side-description">
+          <p class="title">Step 3 of 4</p>
+          <p class="text">After choosing the field you are interested in, we will give you better sponsors about ideas or projects</p>
+        </div>
+
+        <div class="col-sm-8 col-sm-pull-4 section-form-container">
+          <div class="checkbox-field">
+            <%= fields_for @profile.user do |user_fields| %>
+                <%= render 'edit_interests', f: user_fields %>
+            <% end %>
+          </div>
+        </div>
+     </div>
+
+  <% end %>
+  <!--End of Form-->
+  <!--Submit button separately, at the bottom-->
+
+
+  <!--Skills, separate Form for AJAX-->
+  <div id="skills-form" class="row section-container">
+    <div class="section-header">
+      <div class="big-header">
+        <p>What can you do?</p>
+      </div>
+    </div>
+
+    <div class="col-sm-4 col-sm-push-8 side-description">
+      <p class="title">Step 4 of 4</p>
+      <p class="text">What are you top skills? e.g HTML, Ruby, Public Speaking, Graphic Design, Content Creation</p>
+    </div>
+
+    <div class="col-sm-8 col-sm-pull-4 section-form-container">
+      <div class="skill-blocks">
+        <%= render 'edit_skills', list_of_user_to_skills: @profile.user.user_to_skills %>
+      </div>
+    </div>
+  </div>
+
+  <!--Thank you-->
+  <div class="row section-container">
+    <div class="thanks-section">
+      <!--Submit (linked by Javascript)-->
+      <input type="submit" name="Submit" class="btn-upright" onclick="submitProfile()" />
+    </div>
+  </div>
+</div>

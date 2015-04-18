@@ -18,9 +18,41 @@
 //= require private_pub
 //= require_tree .
 
+Turbolinks.enableProgressBar();
+
 // Fade out loading screen when page is loaded
 function fadeOutLoadingScreen() {
-    //console.log('why not?');
-    // Loading screen fadeout
-    $('.loading-screen').fadeOut();
+  // Loading screen fadeout
+  $('.loading-screen').fadeOut();
+}
+
+function hidePopUps() {
+  var popUps = document.getElementsByClassName('pop-up-container');
+  Array.prototype.forEach.call(popUps, function (element) {
+    element.style.display = 'none';
+  });
+}
+
+function toggleLogInPopUp() {
+  var popUp = document.getElementById('pop-up-container');
+  if (popUp.style.display == null || popUp.style.display == '' || popUp.style.display == 'none') {
+    popUp.style.display = 'table';
+  } else {
+    popUp.style.display = 'none';
+  }
+}
+
+function hideLogInPopUp() {
+  var popUp = document.getElementById('pop-up-container');
+  popUp.style.display = 'none';
+}
+
+function showLogInPopUp() {
+  var popUp = document.getElementById('pop-up-container');
+  popUp.style.display = 'table';
+}
+
+function logthatshit() {
+  // implement name change, and escape too.
+  console.log('I HVAE BEEN TOUCHED');
 }

@@ -1,27 +1,20 @@
-<%= form_for (@project_post), :url => url_for(:controller => 'project_posts', :action => 'create') do |f| %>
-  <% if @project_post.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@project_post.errors.count, "error") %> prohibited this project_post from being saved:</h2>
+<% project_post ||= @project_post %>
 
-      <ul>
-      <% @project_post.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+<%= form_for project_post, remote: @project_post ? false : true do |f| %>
+
+  <div class="field">
+    <%# f.hidden_field :project_id, value: params[:project_id] %>
+    <%# f.hidden_field :project_id, value: project_post.project_id %>
+    <%= f.hidden_field :project_id %>
+  </div>
+  
+  <div>
+    <div class="field" style="display:inline-block">
+      <%= f.text_area :text, id:'project-posts-form-textbox' %>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.hidden_field :project_id, value: params[:project_id] %>
-  </div>
-  <div class="field">
-    <%= f.hidden_field :user_id, value: current_user_id %>
-  </div>
-  <div class="field">
-    <%= f.label :text %><br>
-    <%= f.text_field :text %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
+    <div class="actions" style="display:inline-block">
+      <%= f.submit 'Comment', class: 'btn-inverse btn-element-margin-match'%>
+    </div>
   </div>
 <% end %>
+

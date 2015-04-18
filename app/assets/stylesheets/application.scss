@@ -19,62 +19,17 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+//*************************************************
+// --------------- Dynamic Classes ---------------
+//
+// Include these classes in tags for their effects.
+// Try not overload these classes directly,
+// overload implicitly by adding more specific
+// classes to the tag itself, and then overload
+// inside that specific page's Sass file.
+//*************************************************
 
-
-body {
-  margin: 0px;
-  padding: $navbar-height 0 0 0;
-  font-family: $font-family;
-  //  background-color: #808080;
-}
-.container {
-  //  background-color: white;
-}
-
-.sign-up-button {
-  margin: 8px 15px 8px 0;
-}
-
-.logo-img-background {
-  background-image: image_url("logo_03.png");
-  background-size: cover;
-  width: 57px;
-  height: 54px;
-}
-
-.navbar-default {
-//  background: white;
-}
-
-.logo-img {
-  width: 57px;
-  height: 54px;
-}
-
-.logo-img-navbar-container {
-  padding: 0 0 0 0 !important;
-}
-
-.logo-txt {
-//  display: inline-block;
-  padding: 22px 15px 4px 15px !important;
-  margin-right: 15px;
-  font-size: $font-size-banner;
-  font-weight: $font-weight-banner;
-}
-
-.footer {
-  height: 80px;
-  background-color: $primary-color;
-  padding-top: 30px;
-}
-
-.copyright-txt, .contact-us {
-  font-size: $font-size-text;
-  color: white;
-}
-
-// dynamic classes
+// positional
 
 .float-left {
   display: inline-block;
@@ -88,15 +43,56 @@ body {
   float: right;
 }
 
-.input-base {
+.block-center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.outer-centering {
+  display: table;
+  height: 100%;
+  width: 100%;
+
+  .middle-centering {
+    display: table-cell;
+    vertical-align: middle;
+
+    .inner-centering {
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+}
+
+// form input
+
+.form-part-title {
+  font-size: $font-size-section;
+}
+
+.form-element-margin-basis {
+  margin: 5px 5px 5px 5px;
+}
+
+.form-element-base {
   font-size: $font-size-misc;
   padding: 5px 20px 5px 20px;
-  margin: 5px 5px 5px 5px;
-  border: solid $secondary-fg-color 1px;
-  width: 255px;
-  height: 40px;
+  @extend .form-element-margin-basis;
   background: none;
+  height: 40px;
   color: black;
+}
+
+.input-label {
+  @extend .form-element-base;
+  font-weight: $font-weight-misc;
+}
+
+.input-base {
+  @extend .form-element-base;
+  min-width: 255px;
+  border: solid $secondary-fg-color 1px;
 }
 
 .input-upright {
@@ -149,30 +145,167 @@ body {
   border-color: $primary-color-light;
 }
 
-.border-rounded {
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  border-radius: 4px;
+.btn-border-rounded {
+  @include border-rounded(4px);
 }
 
-.block-center {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
+.btn-element-margin-match {
+  @extend .form-element-margin-basis;
 }
 
-.outer-centering {
-  display: table;
-  height: 100%;
+// pop up
+
+.pop-up-container {
+  position: fixed;
+  display: none;
+  top: 0;
+  left: 0;
   width: 100%;
+  height: 100%;
+  background: $pop-up-background;
+  z-index: 1034;
 
-  .middle-centering {
-    display: table-cell;
-    vertical-align: middle;
+  .pop-up {
+    position: relative;
 
-    .inner-centering {
-      margin-left: auto;
-      margin-right: auto;
+    .close-button {
+      position: absolute;
+      top: 10px;
+      right: 10px;
     }
   }
+}
+
+// images
+
+.logo-img {
+  width: 57px;
+  height: 54px;
+}
+
+.logo-img-background {
+  background-image: image_url("logo.png");
+  background-size: cover;
+  width: 57px;
+  height: 54px;
+}
+
+.facebook-image {background-image: image_url("icons/social-media/facebook-gray.png");}
+.facebook-image:hover {background-image: image_url("icons/social-media/facebook-blue.png")}
+
+.twitter-image {background-image: image_url("icons/social-media/twitter-bird-gray.png");}
+.twitter-image:hover {background-image: image_url("icons/social-media/twitter-bird-blue.png");}
+
+.linkedin-image {background-image: image_url("icons/social-media/linkedin-gray.png");}
+.linkedin-image:hover {background-image: image_url("icons/social-media/linkedin-blue.png");}
+
+.github-image {background-image: image_url("icons/social-media/github-gray.png");}
+.github-image:hover {background-image: image_url("icons/social-media/github-color.png");}
+
+
+//************************************************
+// ----------- Global Element Styling -----------
+//************************************************
+
+html.turbolinks-progress-bar::before {
+  background-color: $primary-color !important;
+  height: 2px !important;
+  z-index: 1032 !important;
+}
+
+html, body {
+  height: 100%;
+  background: $secondary-bg-color;
+}
+body {
+  margin: 0px;
+
+  font-family: $font-family;
+  //  background-color: #808080;
+}
+
+#content-wrap {
+  min-height: 100%;
+  height: auto !important;
+  //  height: 100%;
+  margin: 0 auto (0-$footer-height);
+}
+
+.log-in {
+  padding: 20px 0;
+  .error-message {
+    color: $warning-color;
+  }
+}
+
+.sign-up {
+  padding: 20px 0;
+  .error-message {
+    color: $warning-color;
+  }
+}
+
+.social-media-imgs {
+  //      height: 50px;
+  .social-media-img {
+    width: 30px;
+    height: 30px;
+    margin: 10px;
+    background-size: cover;
+    display: inline-block;
+  }
+}
+
+
+.navbar-default {
+//  background: white;
+  .navbar-brand {
+    color: $primary-color;
+  }
+
+  .logo-img-navbar-container {
+    padding: 0 0 0 0 !important;
+  }
+
+  .logo-txt {
+    //  display: inline-block;
+    padding: 19px 15px 4px 15px !important;
+    margin-right: 15px;
+    font-size: $font-size-banner;
+    font-weight: $font-weight-banner;
+  }
+
+  .sign-up-button {
+    margin: 8px 15px 8px 0;
+  }
+}
+
+.pop-up-container {
+  .log-in-pop-up {
+    padding: 30px 20px;
+    // add shadow
+    background: white;
+    max-width: 400px; // TODO
+    text-align: center;
+    margin-top:50px;
+
+    .sign-up-message {
+
+    }
+  }
+}
+
+.template-wrap {
+  padding: $navbar-height 0 $footer-height 0;
+}
+
+.footer {
+  height: $footer-height;
+  background-color: $primary-color;
+  padding-top: $footer-padding;
+}
+
+.copyright-txt, .contact-us {
+  font-size: $font-size-text;
+  color: white;
 }

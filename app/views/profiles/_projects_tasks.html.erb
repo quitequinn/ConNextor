@@ -1,0 +1,84 @@
+<div class="col-md-9 sections-column" role="main">
+  <%= render 'section_container', section_title: 'Introduction', elements: [@profile.profile_introduction] %>
+  <!--<div class="section-container">
+    <p class="section-title hidden-xs">
+      PROJECTS
+    </p>
+    <div class="section-body">
+      <div class="profile-projects-container">
+        <%#= @profile.user.projects.each do |project| %>
+          <%#= render 'profiles/project', project: project %>
+        <%# end %>
+      </div>
+    </div>
+  </div>-->
+  <div class="section-container">
+    <p class="section-title hidden-xs">
+      HIGHLIGHT SKILLS
+      <% if @user_is_owner_of_profile %>
+          <%= render 'skills/add_skill', skill: Skill.new %>
+      <% end %>
+    </p>
+    <div class="section-body">
+      <div class="edit-skills-container">
+        <div id="profile-skills" class="profile-skills">
+          <%= render @profile.user.user_to_skills %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <%= render 'section_container', section_title: 'Experiences', elements: @profile.profile_experiences %>
+  <%= render 'section_container', section_title: 'Educations', elements: @profile.profile_educations %>
+  <%= render 'section_container', section_title: 'Contacts', elements: @profile.profile_contacts %>
+</div>
+<div class="col-md-3 hidden-xs hidden-sm social-media-imgs" role="complementary">
+    <% if @user_is_owner_of_profile %>
+      <% if @profile.user.identities.find_by_provider('facebook') == nil %>
+        <div>
+          <%= link_to '/auth/facebook' do %>
+              <div class="social-media-img facebook-image"></div>
+              Connect with Facebook
+          <% end %>
+        </div>
+      <% end %>
+
+      <% if @profile.user.identities.find_by_provider('linkedin') == nil  %>
+        <div>
+          <%= link_to '/auth/linkedin' do %>
+              <div class="social-media-img linkedin-image"></div>
+              Connect with Linkedin
+          <% end %>
+        </div>
+      <% end %>
+
+      <% if @profile.user.identities.find_by_provider('github') == nil %>
+        <div>
+          <%= link_to '/auth/github' do %>
+              <div class="social-media-img github-image block-center"></div>
+              Connect with GitHub
+          <% end %>
+        </div>
+      <% end %>
+    <% end %>
+    <br />
+  <ul>
+    <% if [@profile.profile_introduction] and [@profile.profile_introduction].any? %>
+        <li><a href="#introduction">Introduction</a></li>
+    <% end %>
+    <%# if @profile.user.projects.any? %>
+        <!-- <li><a href="#projects">Projects</a></li> -->
+    <%# end %>
+    <% if @profile.user.skills.any? %>
+        <li><a href="#skills">Skills</a></li>
+    <% end %>
+    <% if @profile.profile_experiences and @profile.profile_experiences.any? %>
+        <li><a href="#experiences">Experiences</a></li>
+    <% end %>
+    <% if @profile.profile_educations and @profile.profile_educations.any? %>
+        <li><a href="#educations">Education</a></li>
+    <% end %>
+    <% if @profile.profile_contacts and @profile.profile_contacts.any? %>
+        <li><a href="#contacts">Contacts</a></li>
+    <% end %>
+  </ul>
+</div>

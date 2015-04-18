@@ -1,31 +1,21 @@
 <% provide(:title, 'All projects') %>
-<p id="notice"><%= notice %></p>
 
-<h1>Listing Projects</h1>
+<div class="container">
+  <div class="row search-row">
+    <%= form_tag projects_path, :method => 'get' do %>
+      <p>
+        <%= text_field_tag :search, params[:search] %>
+        <%= submit_tag "Search", :title => nil %>
+      </p>
+    <% end %>
+  </div>
+  <div class="row blocks-row">
+    <% @projects.each do |project| %>
+        <%= render 'project_block', project: project %>
+    <% end %>
+  </div>
+</div>
 
-<h4><%= link_to 'New Project', new_project_path %></h4>
-<br>
-
-<%= form_tag projects_path, :method => 'get' do %>
-  <p>
-    <%= text_field_tag :search, params[:search] %>
-    <%= submit_tag "Search", :title => nil %>
-  </p>
-<% end %>
-
-<table class="pretty">
-
-  <% @projects.each do |project| %>
-    <tr>
-      <td><%= project.title %></td>
-      <td><%= project.short_description %></td>
-      <td><%= project.long_description %></td>
-      <td><%= link_to 'Show', project %></td>
-      <td><%= link_to 'Edit', edit_project_path(project) %></td>
-      <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-    </tr>
-  <% end %>
-</table>
 
 
 

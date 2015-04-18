@@ -1,0 +1,9 @@
+<%= form_for user_follow, remote: true, html: { id: "user_follow_button" } do |f| %>
+  <div class="field">
+    <%= f.hidden_field :follower_id, value: current_user_id %>
+  </div>
+  <div class="field">
+    <%= f.hidden_field :followee_id, value: followee_id %>
+  </div>
+  <%= f.submit "Follow", class: 'btn-inverse btn-element-margin-match' %>
+<% end %>

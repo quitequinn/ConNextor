@@ -1,0 +1,129 @@
+// Dedicated partial just for registration pages
+//  - centralize variables
+
+@import "scss_constants";
+
+$checkbox-checked:      red;
+
+
+.users, .profiles, .sessions {
+
+  .registration-section {
+    margin-bottom: 50px;
+    margin-top: 50px;
+    background-color: white;
+    border: 1px solid $border-divider-color;
+    padding: 30px;
+
+    .section-container{
+      margin-top: 80px;
+
+      .section-header {
+        margin-left: 5%;
+        margin-right: 5%;
+        text-align: center;
+
+        .big-header {
+          color: $primary-color;
+          font-size: $font-size-header;
+          font-weight: $font-weight-misc;
+          border-bottom: 1px solid $border-divider-color;
+        }
+      }
+    }
+
+    .section-form-container {
+      padding: 35px 0 0;
+
+      .form-group {
+        .control-label {
+          margin: 0 0 0 0;
+          font-size: $font-size-submedium;
+          font-weight: $font-weight-text;
+        }
+
+        .input-upright {
+          width: 90%;
+          margin: 0 5% 0 5%;
+          background: white;
+          border: 1px solid $border-divider-color;
+        }
+
+        .check-box-element-container {
+          padding: 5px;
+          @include no-select;
+
+          .interest-checkbox {
+            display: none;
+          }
+          .interest-checkbox:checked + label {
+            background: $palette-light-color;
+          }
+
+          .check-box-element {
+            width: 100%;
+            text-align: center;
+            border: 1px solid $primary-color;
+            white-space: nowrap;
+            overflow: hidden;
+            padding: 7px;
+            cursor: pointer;
+          }
+          .check-box-element:hover {
+            background: $primary-fg-color;
+          }
+          .check-box-element:active {
+            background: $primary-bg-color;
+          }
+        }
+      }
+
+      .checkbox-field, .skill-blocks {
+        padding: 0 30px;
+      }
+
+      .edit-skills-container {
+
+        .add-skill-form {
+          text-align: center;
+        }
+      }
+    }
+
+    .side-description {
+      padding: 35px 40px 0;
+      background-color: white;
+//      border-left: 1px solid $border-divider-color;
+
+      p.title {
+        color: $complementary-color;
+        font-size: $font-size-header;
+      }
+
+      p.text {
+        color: $secondary-color;
+      }
+
+      .error_messages {
+        .error_message {
+          font-size: $font-size-small;
+          color: $warning-color;
+          margin-bottom: 2px;
+        }
+      }
+    }
+
+    .thanks-section {
+      text-align: center;
+
+      p {
+        font-size: $font-size-heading;
+        color: $primary-color;
+        margin-top: 20px;
+        margin-bottom: 20px;
+      }
+    }
+  }
+
+ 
+}

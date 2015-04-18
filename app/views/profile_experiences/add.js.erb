@@ -1,0 +1,5 @@
+var existing = document.getElementById('experience-new');
+if (existing == null) {
+    document.getElementById('experiences-body')
+            .insertAdjacentHTML('beforeend', '<%= j render 'new_profile_experience', profile_experience: @profile_experience %>');
+}

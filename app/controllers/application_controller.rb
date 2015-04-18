@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   include SessionsHelper
-  include UserToProjectsHelper
+  include PermissionsHelper
   include AsanaHelper
 
   helper_method :current_user, :current_user?, :logged_in?, :current_user_id
@@ -13,8 +13,6 @@ class ApplicationController < ActionController::Base
   def current_user
     if session[:user_id]
       @current_user ||= User.find_by(id: session[:user_id])
-    elsif cookies[:remember_token]
-      @current_user ||= User.find_by_remember_token(cookies[:remember_token])
     end
   end
 

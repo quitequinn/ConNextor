@@ -1,3 +1,129 @@
-// Place all the styles related to the Projects controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+@import "scss_constants";
+
+$block-height:          400px;
+$image-height:          $block-height / 2;
+
+.projects {
+
+  .project-block {
+
+    height: $block-height;
+    margin: 5px 5px 5px 5px;
+    overflow: hidden;
+
+    .project-photo-container {
+      .project-photo{
+        object-fit: cover;
+        height: $image-height;
+      }
+    }
+  
+  }
+
+  .section-container {
+      margin: 10px 0 10px 0;
+      border: solid $secondary-fg-color 1px;
+      padding: 13px 20px 20px 20px;
+      background: white;
+  }
+
+  .project-info{
+    .project-photo-container {
+      .project-photo{
+        object-fit: cover;
+        height: $image-height;
+      }
+    } 
+    .project-title {
+      font-size: 20px;
+      font-weight: bold;
+      display: inline-block;
+    }
+
+    .project-description {
+      font-size: 16px;
+    }
+
+    .project-owner {
+      font-size: 16px;
+    } 
+  }
+
+  .tabs-section{
+
+    margin-top: 25px;
+
+    .project-posts-form-container {
+      margin-top: 20px;
+      margin-bottom: 30px;
+    }
+   
+    .post-image {
+        float:left;
+        width:70px;
+        height:70px;
+        border:3px solid #ffffff;
+        border-radius:10px;
+        display: inline-block;
+        object-fit: cover;
+    }
+
+    .post-body {
+       position:relative;
+       display: inline-block;
+       float:left;
+       margin-left:12px;
+       padding:0px 20px;
+       border-radius:10px;
+       background-color: #d3d3d3;
+       box-shadow:1px 1px 5px rgba(0,0,0,.2);
+       word-wrap: break-word;
+
+       .post-username{
+          font-weight:bold;
+       }
+
+       .post-message{}
+       
+    }
+
+    .post-body:after {
+      content: '';
+      position: absolute;
+      border-style: solid;
+      border-width: 10px 10px 10px 0;
+      border-color: transparent #d3d3d3;
+      display: block;
+      width: 0;
+      z-index: 1;
+      left: -10px;
+      top: 15px;
+    }
+
+    .project-post {
+      margin-top:40px;
+    }
+
+    .project-post:after {
+      visibility:hidden;
+      display:block;
+      font-size:0;
+      content: ".";
+      clear:both;
+      height:0;
+    } 
+
+
+    .project-position{
+      border-top: solid 1px;
+      border-bottom: solid 1px;
+      border-color: rgb(160,160,255);
+    }
+
+    .project-member{
+      margin-top:10px;
+    }
+
+
+  }
+}

@@ -1,117 +1,71 @@
-<p id="notice"><%= notice %></p>
+<% 
+   project_owner = Project.getProjectOwner(@project.id)
+%>
+<div class="container">
+    <div class="project-info section-container">
+      <div class="row">
+        <div class="project-photo-container">
+          <%= image_tag 'cats/cat-profile.jpg', class:'project-photo col-md-3' %>
+        </div>
+        
+        <div class="col-md-6">    
+          
+          <div style="display:inline-block">
+            <p class="project-title">
+              <%= @project.title %>
+            </p>
+            <% if @is_owner %>
+              <%= link_to 'Edit', edit_project_path(@project) %> 
+            <% end %>
+          </div>
 
-<p>
-  <strong>Title:</strong>
-  <%= @project.title %>
-</p>
+          <p class="project-owner">
+            <%= project_owner.first_name %>
+            <%= ", #{project_owner.profile.location}" if project_owner.profile.location %>
+          </p>
 
-<p>
-  <strong>Short description:</strong>
-  <%= @project.short_description %>
-</p>
+          <p class="project-description">
+            <strong>Long description:</strong>
+            <%= @project.long_description %>
+          </p>
 
-<p>
-  <strong>Long description:</strong>
-  <%= @project.long_description %>
-</p>
+          <div class="tags-row">
+            <p>Tags: </p>
+            <%= render @project.project_to_tags %>
+          </div>
+        </div>
 
-<%= link_to 'Edit', edit_project_path(@project) %> |
-<%= link_to 'Back', projects_path %>
+        <div class="col-md-3">
+          <div class="follow-button">
+            <% unless @user_project_follow %>
+              <%= render 'projects/follow', user_project_follow: UserProjectFollow.new %>
+              <% else %>
+                  <%= render 'projects/unfollow', user_project_follow: @user_project_follow%>
+              <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="row" style="margin-top:20px">
+        <%= link_to  "Activity Feed", "/project/switch/#{@project.id}?tab=Activities", remote: true, class: 'col-md-3' %>
+        
+        <%= link_to  "Discussions", "/project/switch/#{@project.id}?tab=Discussions", remote: true, class: 'col-md-3' %>
+        
+        <%= link_to  "Members", "/project/switch/#{@project.id}?tab=Members", remote: true, class: 'col-md-3' %>
+        
+        <%= link_to  "Needs", "/project/switch/#{@project.id}?tab=Needs", remote: true, class: 'col-md-3' %>
+      </div>
 
-<br />
+    </div>
+  
+    <div id="tabs-body" class="tabs-section">
+      <%= render 'projects/discussions' %>
+    </div>
+  
 
-User To Project: <%= @user_to_project ? @user_to_project.project_user_class : 'unrelated' %>
-
-<br />
-
-<% if @user_to_project and @is_owner %>
-    <%= link_to 'Manage Users', user_to_projects_path(project: @project) %>
-    <%= link_to 'Manage Tags', project_to_tags_path(project: @project) %>
-    <%= link_to 'Manage Tasks', project_tasks_path(project: @project) %>
-<% end %>
-
-<br />
-
-<% unless @user_project_follow %>
-    <%= button_to 'Follow', user_project_follows_path(project_id: @project) %>
-<% else %>
-    <%= button_to 'Unfollow', @user_project_follow, method: :delete %>
-<% end %>
-
-<br />
-
-<h3>Members</h3>
-<ul>
-  <%= render @project.user_to_projects %>
-</ul>
-
-<h3>Tags</h3>
-<%= render @project.project_to_tags %>
-
-<h3>Tasks</h3>
-<ul>
-  <%= render @project.project_tasks %>
-</ul>
-
-<h3>General</h3>
-<div> 
-  <table>
-    <tbody>
-      <% @activities.each do |activity| %>
-        <tr>
-          <td><%= activity.user_id %></td>
-          <td><%= activity.activity_type %></td>
-          <td><%= link_to 'Destroy', activity, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
 </div>
 
-<h3>Discussion</h3>
-<p><%= link_to "Create post", new_project_project_post_path(@project.id), :locals=>{:project_posts => ProjectPost.new} %></p>
-<div> 
-  <table>
-    <tbody>
-      <% @posts.each do |post| %>
-        <tr>
-          <td><%= post.user_id %></td>
-          <td><%= post.text %></td>
-          <td><%= link_to 'Edit', edit_project_project_post_path(@project.id,post) %></td>
-          <td><%= link_to 'Destroy', project_project_post_path(@project.id,post), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-          <td><%= link_to "Create comment", new_project_project_post_project_comment_path(@project.id,post.id), :locals=>{:project_comments => ProjectComment.new} %></td>
-          <% if post.project_comments %>       
-            <% post.project_comments.each do |comment| %>
-              <td><%= comment.user_id %></td>
-              <td><%= comment.text %></td>
-              <td><%= link_to 'Edit', edit_project_project_post_project_comment_path(@project.id,post.id,comment) %></td>
-              <td><%= link_to 'Destroy', project_project_post_project_comment_path(@project.id,post.id,comment), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-            <% end %>     
-        <% end %>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-</div>
-
-<h3>Needs</h3>
-<div> 
-  <% if @is_owner %>
-    <p><%= link_to "Create position", new_project_position_path(@project.id), :locals=>{:position => Position.new} %></p>
-  <% end %>
-</div>
-
-<table>
-  <tbody>
-    <% @positions.each do |position| %>
-      <tr>
-        <td><%= position.description %></td>
-        <td><%= position.position_type %></td>
-        <td><%= link_to 'Show', project_position_path(@project.id,position) %></td>
-        <td><%= link_to 'Edit', edit_project_position_path(@project.id,position) %></td>
-        <td><%= link_to 'Destroy', project_position_path(@project.id,position), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
+    <%# if @user_to_project and @is_owner %>
+        <%#= link_to 'Manage Users', user_to_projects_path(project: @project) %>
+        <%#= link_to 'Manage Tags', project_to_tags_path(project: @project) %>
+        <%#= link_to 'Manage Tasks', project_tasks_path(project: @project) %>
+    <%# end %>

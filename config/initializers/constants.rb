@@ -25,10 +25,10 @@ module ProjectTaskState
   STATES = [COMPLETE, ASSIGNED, UNASSIGNED, DRAFT]
 end
 
-module UserTaskRelation
+module UserTaskStatus
   COMPLETED = 'Completed'
+  IN_PROGRESS = 'In Progress'
   DROPPED = 'Dropped'
 
-
-  RELATIONS = [COMPLETED, DROPPED]
+  STATUSES = [COMPLETED, IN_PROGRESS, DROPPED]
 end

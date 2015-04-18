@@ -29,6 +29,7 @@ gem 'faker'
 gem 'omniauth-twitter'
 gem 'omniauth-facebook'
 gem 'omniauth-linkedin'
+gem 'omniauth-github'
 gem 'omniauth-asana'
 
 # Use bootstrap to make fronted development easier
@@ -39,6 +40,10 @@ gem 'autoprefixer-rails'
 # Used for notifications and real-time updates
 gem 'private_pub'
 gem 'thin'
+
+gem 'carrierwave'
+
+gem 'gibbon'
 
 # Use Unicorn as the app server
 #gem 'unicorn'

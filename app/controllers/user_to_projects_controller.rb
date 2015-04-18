@@ -1,8 +1,6 @@
 class UserToProjectsController < ApplicationController
   before_action :set_user_to_project, only: [:show, :edit, :update, :destroy]
 
-  # GET /user_to_projects
-  # GET /user_to_projects.json
   def index
     set_user_project_env
     # Security Clearance
@@ -11,22 +9,16 @@ class UserToProjectsController < ApplicationController
     end
   end
 
-  # GET /user_to_projects/1
-  # GET /user_to_projects/1.json
   def show
   end
 
-  # GET /user_to_projects/new
   def new
     @user_to_project = UserToProject.new
   end
 
-  # GET /user_to_projects/1/edit
   def edit
   end
 
-  # POST /user_to_projects
-  # POST /user_to_projects.json
   def create
     @user_to_project = UserToProject.new(user_to_project_params)
 
@@ -41,8 +33,6 @@ class UserToProjectsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /user_to_projects/1
-  # PATCH/PUT /user_to_projects/1.json
   def update # need more work
     respond_to do |format|
       if @user_to_project.update(user_to_project_params)
@@ -55,8 +45,6 @@ class UserToProjectsController < ApplicationController
     end
   end
 
-  # DELETE /user_to_projects/1
-  # DELETE /user_to_projects/1.json
   def destroy
     @user_to_project.destroy
     respond_to do |format|
@@ -66,15 +54,12 @@ class UserToProjectsController < ApplicationController
   end
 
   private
+    def set_user_to_project
+      @user_to_project = UserToProject.find(params[:id])
+    end
 
-  # Use callbacks to share common setup or constraints between actions.
-  def set_user_to_project
-    @user_to_project = UserToProject.find(params[:id])
-  end
-
-  # Never trust parameters from the scary internet, only allow the white list through.
-  def user_to_project_params
-    params.require(:user_to_project).permit(:user_id, :project_id, :project_user_class)
-  end
+    def user_to_project_params
+      params.require(:user_to_project).permit(:user_id, :project_id, :project_user_class)
+    end
 
 end

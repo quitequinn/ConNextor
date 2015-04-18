@@ -1,5 +1,36 @@
 Rails.application.routes.draw do
 
+  resources :profile_educations
+  get 'profile_educations/swap/:id', to: 'profile_educations#swap'
+  get 'profile_educations/add/:profile_id', to: 'profile_educations#add'
+
+  resources :profile_contacts
+  get 'profile_contact/swap/:id', to: 'profile_contacts#swap'
+  get 'profile_contacts/add/:profile_id', to: 'profile_contacts#add'
+
+  resources :profile_experiences
+  get 'profile_experience/swap/:id', to: 'profile_experiences#swap'
+  get 'profile_experiences/add/:profile_id', to: 'profile_experiences#add'
+
+  resources :profile_introductions
+  get 'profile_introduction/swap/:id', to: 'profile_introductions#swap'
+  get 'profile_introduction/add/:profile_id', to: 'profile_introductions#add'
+
+  resources :profiles
+  patch 'register_info' => 'profiles#register_info', as: 'register_info'
+  patch 'resume_info' => 'profiles#resume_info', as: 'resume_info'
+  get 'profiles/additional_info/:id', to: 'profiles#additional_info'
+  get 'profiles/edit_photo/:id', to: 'profiles#edit_photo'
+  get 'profiles/edit_cover/:id', to: 'profiles#edit_cover'
+  get 'profiles/switch/:id', to: 'profiles#switch'
+  get 'profiles/edit_bio/:id', to: 'profiles#edit_bio'
+  get 'profiles/edit_location/:id', to: 'profiles#edit_location'
+  get 'profiles/new/:id', to: 'profiles#new', as: 'profile_initialize'
+  
+  #resources :user_follows
+
+  #resources :activities
+
   get 'asana/index'
 
   get 'asana/create'
@@ -7,9 +38,7 @@ Rails.application.routes.draw do
   get 'asana/show'
 
   post "asana_integrate" => "asana#integrate", :as => "asana_integrate"
-
-  resources :activities
-
+  
   resources :user_to_interests
 
   resources :user_to_skills
@@ -19,16 +48,18 @@ Rails.application.routes.draw do
   resources :skills
 
   get 'control_panel/home'
+  get 'user', to: 'users#show'
+  get 'profile/:username', to: 'profiles#show'
 
-  resources :user_to_project_tasks
+  #resources :user_to_project_tasks
 
-  resources :project_tasks
+  #resources :project_tasks
 
-  resources :project_to_tags
+  #resources :project_to_tags
 
-  resources :project_tags
+  #resources :project_tags
 
-  resources :user_project_follows
+  #resources :user_project_follows
 
   resources :user_to_projects
 
@@ -36,28 +67,29 @@ Rails.application.routes.draw do
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
-  get 'auth/facebook/callback', to: 'sessions#omniauthcreate'
-  get 'auth/twitter/callback', to: 'sessions#omniauthcreate'
-  get 'auth/linkedin/callback', to: 'sessions#omniauthcreate'
-  get 'auth/asana/callback', to: 'asana#create'
-  get "log_out" => "sessions#destroy", :as => "log_out"
-  get "log_in" => "sessions#new", :as => "log_in"
-  get "sign_up" => "users#new", :as => "sign_up"
+  get 'auth/:provider/callback', to: 'sessions#omniauthcreate'
+  get 'log_out' => 'sessions#destroy', as: 'log_out'
+  get 'log_in' => 'sessions#new', as: 'log_in'
+  get 'sign_up' => 'users#new', as: 'sign_up'
   root 'welcome#index'
-  resources :users do
-    resources :notifications
-    resources :requests
-  end
+  resources :users
+  #resources :notifications
+  #resources :requests
   resources :sessions
-  resources :password_resets
+  #resources :password_resets
   resources :projects do
     resources :positions
-    resources :project_posts do
-      resources :project_comments
-    end
-    post "join_project" => "projects#join_request", :as => "join_project"
   end
-  post "accept_project" => "projects#accept_request", :as => "accept_project"
+  #get 'project/switch/:id', to: 'projects#switch'
+  #resources :project_posts
+  #post 'join_project' => 'projects#join_request', as: 'join_project'
+
+  # THIS IS FOR POSTS.
+  #resources :project_comments
+  #post 'accept_project' => 'projects#accept_request', as: 'accept_project'
+
+
+
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
 

@@ -7,32 +7,32 @@ class SkillsController < ApplicationController
     @skills = Skill.all
   end
 
-  # GET /skills/1
-  # GET /skills/1.json
-  def show
-  end
+  # # GET /skills/1
+  # # GET /skills/1.json
+  # def show
+  # end
 
-  # GET /skills/new
-  def new
-    @skill = Skill.new
-  end
+  # # GET /skills/new
+  # def new
+  #   @skill = Skill.new
+  # end
 
-  # GET /skills/1/edit
-  def edit
-  end
+  # # GET /skills/1/edit
+  # def edit
+  # end
 
   # POST /skills
   # POST /skills.json
   def create
-    @skill = Skill.new(skill_params)
+    @skill = Skill.find_by_name(skill_params[:name]) || Skill.create(skill_params)
+    @user_to_skill = UserToSkill.new(user_id: current_user_id, skill_id: @skill.id)
+    @user_is_owner_of_association = true
 
     respond_to do |format|
-      if @skill.save
-        format.html { redirect_to @skill, notice: 'Skill was successfully created.' }
+      if @user_to_skill.save
+        # format.html { redirect_to @skill, notice: 'Skill was successfully created.' }
+        format.js
         format.json { render :show, status: :created, location: @skill }
-      else
-        format.html { render :new }
-        format.json { render json: @skill.errors, status: :unprocessable_entity }
       end
     end
   end

@@ -1,36 +1,26 @@
 class PositionsController < ApplicationController
   before_action :set_position, only: [:show, :edit, :update, :destroy]
 
-  # GET /positions
-  # GET /positions.json
   def index
     @positions = Position.all
   end
 
-  # GET /positions/1
-  # GET /positions/1.json
-  def show
-    @filled = @position.filled
-    
+  def show   
   end
 
-  # GET /positions/new
   def new
     @position = Position.new
   end
 
-  # GET /positions/1/edit
   def edit
   end
 
-  # POST /positions
-  # POST /positions.json
   def create
     @position = Position.new(position_params)
 
     respond_to do |format|
       if @position.save
-        format.html { redirect_to project_path(params[:project_id]), notice: 'Position was successfully created.' }
+        format.html { redirect_to project_path(position_params[:project_id]), notice: 'Position was successfully created.' }
         format.json { render :show, status: :created, location: @position }
       else
         format.html { render :new }
@@ -39,8 +29,6 @@ class PositionsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /positions/1
-  # PATCH/PUT /positions/1.json
   def update
     respond_to do |format|
       if @position.update(position_params)
@@ -53,8 +41,6 @@ class PositionsController < ApplicationController
     end
   end
 
-  # DELETE /positions/1
-  # DELETE /positions/1.json
   def destroy
     @position.destroy
     respond_to do |format|
@@ -64,13 +50,11 @@ class PositionsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_position
       @position = Position.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def position_params
-      params.require(:position).permit(:description, :project_id, :position_type, :user_id)
+      params.require(:position).permit(:position_title, :description, :project_id, :position_type, :user_id)
     end
 end

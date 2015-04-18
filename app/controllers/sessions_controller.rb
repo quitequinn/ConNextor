@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  before_action :check_signed_in, except: :destroy
+  #before_action :check_signed_in, except: :destroy
 
   def new
   end
@@ -7,65 +7,66 @@ class SessionsController < ApplicationController
   def create
     user = User.authenticate(params[:email], params[:password])
     if user
-      if params[:remember_me]
-        flash.now.alert = "Remember me!"
-        sign_in user
+      session_create user
+      if user.profile == nil
+        format.html { redirect_to controller: :profiles, action: :new, :notice => 'Must complete profile!' }
       else
-        session_create user
-      end
-      redirect_to root_url, :notice => "Logged in!"
+        redirect_to root_url, :notice => 'Logged in!'
+      end     
     else
-      flash[:success] = "Invalid login"
-      render "new"
+      flash[:error] = 'Invalid login'
+      render 'new'
     end
   end
 
   def omniauthcreate
     auth = env['omniauth.auth']
-    @identity = Identity.find_with_omniauth(auth)
-    @identity = Identity.create_with_omniauth(auth) if @identity.nil?
+    @identity = Identity.find_with_omniauth(auth) || Identity.create_with_omniauth(auth)
 
     if logged_in?
       if @identity.user == current_user
         # Identity is already associated with this user
-        redirect_to root_url, notice: "Already logged in with omniauth"
+        redirect_to profile_path(current_user.profile), notice: "Already logged in with omniauth"
       else
         # Identity is not associated with the current_user
-        @old_user = @identity.user
-        if @old_user
-          #current_user.posts << @old_user.posts
-          #current_user.galleries << @old_user.galleries
-          #current_user.favorites << @old_user.favorites
-        end
         @identity.user = current_user
-        @identity.save()
-        @old_user.destroy if @old_user && @old_user.identities.blank?
-        redirect_to root_url, notice: "Account was successfully linked"
+        @identity.save
+        redirect_to profile_path(current_user.profile), notice: "Account was successfully linked"
       end
     else
       if @identity.user
-        # Identity has a user associated with it
-        if auth.provider == "twitter" && @identity.user.location == nil
-          @identity.user.update_with_omniauth(auth)
-        end
+        # Identity has a user associated with it, we simply log them in
         session_create @identity.user
         redirect_to root_url
       else
         # No user associated with the identity so create a new one
         # If user has registered and then logs in with provider
-        user = User.find_by_email(auth.info.email)
-        if user
-          user.update_with_omniauth(auth)
-          session_create user
-          @identity.user = user
-          @identity.save()
-          redirect_to root_url, notice: "Successful login!"
-        else # if user logs in with provider but is not registered
-          if auth.provider == "twitter"
-            session[:identity_id] = @identity.id
+        # if user logs in with provider but is not registered
+
+        @user = User.find_by_email(auth.info.email) || User.new
+        @user.update_with_omniauth(auth)
+        if @user.save
+          session_create @user
+          @identity.user = @user
+          @identity.save
+          @user.profile.user = @user
+          @user.profile.save
+
+          respond_to do |format|
+            format.html { redirect_to controller: :profiles, action: :new, id: @user.profile_id }
+            format.js
+            format.json { render json: @user.errors, status: :unprocessable_entity }
           end
-          redirect_to new_user_path, notice: "Sorry you need to first register for an account"
-        end     
+        else
+          # Email or username is missing or invalid
+
+          # Save identity first without user
+          @identity.save
+          respond_to do |format|
+            format.html { render 'users/new', notice: 'Need additional info.' }
+            format.json { render json: @user.errors, status: :unprocessable_entity }
+          end
+        end
       end
     end
   end
@@ -77,11 +78,11 @@ class SessionsController < ApplicationController
     redirect_to root_url
   end
 
-  private
-    def check_signed_in
-      if logged_in?
-        flash.now.alert = "Already signed in"
-        redirect_to rool_url
-      end
-    end
+  #private
+    # def check_signed_in
+    #   if logged_in?
+    #     flash.now.alert = "Already signed in"
+    #     redirect_to root_url
+    #   end
+    # end
 end

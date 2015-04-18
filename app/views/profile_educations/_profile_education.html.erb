@@ -1,0 +1,23 @@
+<div class="element-experience">
+  <div class="experience-body">
+    <p class="experience-title">
+      <%= profile_education.school %>, <%= profile_education.major %>
+      
+      <% if @user_is_owner_of_profile %>        
+          <%= link_to "/profile_educations/swap/#{profile_education.id}", remote: true, class: '' do %>
+              <span class="glyphicon glyphicon-edit edit-icon hidden-xs"></span>
+          <% end %>
+
+          <%= link_to profile_education, method: :delete, remote: true do %>
+              <span class="glyphicon glyphicon-remove remove-icon hidden-xs"></span>
+          <% end %>
+      <% end %>
+    </p>
+
+    <p class="experience-subtitle">
+      <%= profile_education.from_date %> - <%= profile_education.to_date %>
+    </p>
+
+   <!--  <p class="experience-description"><%= profile_education.description %></p> -->
+  </div>
+</div>

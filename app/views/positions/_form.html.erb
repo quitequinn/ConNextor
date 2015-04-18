@@ -11,7 +11,14 @@
     </div>
   <% end %>
   <div class="field">
+    <%= f.hidden_field :user_id, value: current_user_id %>
+  </div>
+  <div class="field">
     <%= f.hidden_field :project_id, value: params[:project_id] %>
+  </div>
+  <div class="field">
+    <%= f.label :position_title %><br>
+    <%= f.text_field :position_title %>
   </div>
   <div class="field">
     <%= f.label :description %><br>

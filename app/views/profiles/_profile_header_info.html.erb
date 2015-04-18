@@ -1,0 +1,27 @@
+<p class="profile-name">
+  <%= @profile.user.first_name %> <%= @profile.user.last_name %>
+</p>
+
+<p id="profile-bio" class="profile-short-bio">
+  <% if @user_is_owner_of_profile %>
+      <%= @profile.short_bio || 'Add a short biography' %>
+      <%= link_to "/profiles/edit_bio/#{@profile.id}", remote: true do %>
+          <span class="glyphicon glyphicon-edit edit-icon hidden-xs"></span>
+      <% end %>
+  <% else %>
+      <%= @profile.short_bio %>
+  <% end %>
+</p>
+
+<p id="profile-location" class="profile-location">
+  <% if @user_is_owner_of_profile %>
+      <span class="glyphicon glyphicon-map-marker hidden-xs"></span>
+      <%= @profile.location || 'Add a location' %>
+      <%= link_to "/profiles/edit_location/#{@profile.id}", remote: true do %>
+          <span class="glyphicon glyphicon-edit edit-icon hidden-xs"></span>
+      <% end %>
+  <% elsif @profile.location %>
+      <span class="glyphicon glyphicon-map-marker hidden-xs"></span>
+      <%= @profile.location %>
+  <% end %>
+</p>

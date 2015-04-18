@@ -1,0 +1,11 @@
+<%= form_for @profile, remote:true do |f| %>
+  <div class="field">
+    <%= f.label :location %><br>
+    <%= f.text_field :location %>
+  </div>
+
+  <div class="field">
+    <%= f.label :short_bio %><br>
+    <%= f.text_field :short_bio %>
+  </div>
+<% end %>

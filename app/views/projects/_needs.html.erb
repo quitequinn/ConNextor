@@ -1,0 +1,16 @@
+<div> 
+  <% if @is_owner %>
+    <p><%= link_to 'Create position', new_project_position_path(@project.id, Position.new) %></p>
+  <% end %>
+</div>
+
+<div class="section-container">
+  <p style="font-weight:bold">Looking for Core Members</p>      
+    <%= render @project.positions.where(position_type:'core') %>    
+</div>
+
+<div class="section-container">
+  <p style="font-weight:bold">Looking for Collaborators</p>
+    <%= render @project.positions.where(position_type:'collaborator') %>
+</div>
+

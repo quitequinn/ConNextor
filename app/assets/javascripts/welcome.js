@@ -70,8 +70,6 @@ var triggerPad = 150;
 function fadeInSectionImages() {
     var distFromTop = $(window).scrollTop();
     var viewPortSize = $(window).height();
-    //console.log("distFromTop: " + distFromTop + ", "
-                //+ "viewPortSize: " + viewPortSize);
     $('.fade-in').each(function (i) {
         if (distFromTop >= $(this).offset().top - viewPortSize + triggerPad) {
             $(this).removeClass('fade-in');
@@ -79,3 +77,32 @@ function fadeInSectionImages() {
         }
     });
 }
+
+//Plays Video
+function hideVideo() {
+  var video = document.getElementById('video-container');
+  var link = document.getElementById('video-iframe').src;
+  //document.getElementById('video-iframe').src +=''
+  //removes the string ?autoplay=1
+  document.getElementById('video-iframe').src = link.substr(0,link.indexOf("?"));
+  video.style.display = 'none';
+}
+
+function showVideo() {
+  var video = document.getElementById('video-container');
+  video.style.display = 'table';
+  document.getElementById('video-iframe').src +="?autoplay=1";
+}
+
+// sign-up pop-up
+
+function hideSignUpPopUp() {
+  var popUp = document.getElementById('sign-up-pop-up-container');
+  popUp.style.display = 'none'
+}
+
+function showSignUpPopUp() {
+  var popUp = document.getElementById('sign-up-pop-up-container');
+  popUp.style.display = 'table'
+}
+

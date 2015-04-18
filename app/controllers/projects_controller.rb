@@ -1,35 +1,29 @@
 class ProjectsController < ApplicationController
-  before_action :set_project, only: [:show, :edit, :update, :destroy] 
-  before_action :set_user_project_follow, only: [:show, :edit, :update, :destroy]
+  before_action :set_project, only: [:switch, :show, :edit, :update, :destroy] 
+  before_action :get_user_access, only: [:switch, :show] 
 
-  # GET /projects
-  # GET /projects.json
   def index
     @projects = Project.all
   end
 
-  # GET /projects/1
-  # GET /projects/1.json
   def show
-    @positions = @project.positions
-    @posts = @project.project_posts
     @activities = Activity.where( parent_id: @project.id)
-
-    @user_to_project = UserToProject.find_by user: current_user, project: @project
-    if @user_to_project
-      @is_owner = @user_to_project.project_user_class == ProjectUserClass::OWNER
-      @is_core_member = @user_to_project.project_user_class == ProjectUserClass::CORE_MEMBER
-      @is_contributor = @user_to_project.project_user_class == ProjectUserClass::CONTRIBUTOR
-    end
+    @user_project_follow = UserProjectFollow.find_by_user_id_and_project_id(current_user_id, @project.id)
   end
 
-  # GET /projects/new
   def new
     @project = Project.new
   end
 
-  # GET /projects/1/edit
   def edit
+  end
+
+  def switch
+    @tab_name = params[:tab]
+    @tab_name.downcase!
+    respond_to do |format|
+      format.js
+    end
   end
 
   def join_request
@@ -45,7 +39,7 @@ class ProjectsController < ApplicationController
                     link: "/users/#{sender_id}")
 
     javascript = "alert('There is a person who wants to join your project');"
-    PrivatePub.publish_to("/inbox/#{project_owner.user_id}",javascript)
+    #PrivatePub.publish_to("/inbox/#{project_owner.user_id}",javascript)
     redirect_to Project.find(project_id)
   end
 
@@ -70,29 +64,23 @@ class ProjectsController < ApplicationController
                          isRead: false )
 
     javascript = "alert('You have successfully joined #{@project.id}');"
-    PrivatePub.publish_to("/inbox/#{user_id}",javascript)
+    #PrivatePub.publish_to("/inbox/#{user_id}",javascript)
     redirect_to Project.find(project_id)
   end
 
-  # POST /projects
-  # POST /projects.json
   def create
     @project = Project.new(project_params)
-
-    user_id = current_user_id # might be nil
-    project_user_class = ProjectUserClass::OWNER
-
-    @user_to_project = UserToProject.new(user_id: user_id, project_id: @project.id, project_user_class: project_user_class)
-    @user_to_project.save
-
     respond_to do |format|
       if @project.save
-        # add ownership for current_user
-        @user_to_project = UserToProject.new(user_id: user_id, project_id: @project.id, project_user_class: project_user_class)
+        logger.error "CURRENT_USER_ID: #{current_user_id}, and PROJECT_ID: #{@project.id}"
+         @user_to_project = UserToProject.new( user_id: current_user_id, 
+                                               project_id: @project.id, 
+                                               project_user_class: ProjectUserClass::OWNER)
         if @user_to_project.save
           format.html { redirect_to @project, notice: 'Project was successfully created.' }
           format.json { render :show, status: :created, location: @project }
         else
+          logger.error 'User to Project save failed.'
           format.html { render :new }
           format.json { render json: @project.errors, status: :unprocessable_entity }
         end
@@ -100,8 +88,6 @@ class ProjectsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /projects/1
-  # PATCH/PUT /projects/1.json
   def update
     respond_to do |format|
       if @project.update(project_params)
@@ -114,8 +100,6 @@ class ProjectsController < ApplicationController
     end
   end
 
-  # DELETE /projects/1
-  # DELETE /projects/1.json
   def destroy
     @project.destroy
     respond_to do |format|
@@ -125,32 +109,35 @@ class ProjectsController < ApplicationController
   end
 
   private
-  # Use callbacks to share common setup or constraints between actions.
-  def set_project
-    begin
-      @project = Project.find(params[:id])
-    rescue ActiveRecord::RecordNotFound
-      logger.error "Attempted access to invalid project #{params[:id]}"
-      redirect_to projects_url, notice: 'Invalid project, please try again.'
+ 
+    def set_project
+      begin
+        @project = Project.find(params[:id])
+      rescue ActiveRecord::RecordNotFound
+        logger.error "Attempted access to invalid project #{params[:id]}"
+        redirect_to projects_url, notice: 'Invalid project, please try again.'
+      end
     end
-  end
 
-  def set_user_project_follow
-    # user_project_follow
-    @user_project_follow = UserProjectFollow.find_by user: @current_user, project: @project
-  end
+    def get_user_access
+      @user_to_project = UserToProject.find_by user: current_user, project: @project
+      if @user_to_project
+        @is_owner = @user_to_project.project_user_class == ProjectUserClass::OWNER
+        @is_core_member = @user_to_project.project_user_class == ProjectUserClass::CORE_MEMBER
+        @is_contributor = @user_to_project.project_user_class == ProjectUserClass::CONTRIBUTOR
+      end
+    end
 
-  # Never trust parameters from the scary internet, only allow the white list through.
-  def project_params
-    params.require(:project).permit(:title, :short_description, :long_description)
-  end
+    def project_params
+      params.require(:project).permit(:title, :short_description, :long_description)
+    end
 
-  def join_request_params
-    params.permit(:user_id, :project_id, :position_id)
-  end
+    def join_request_params
+      params.permit(:user_id, :project_id, :position_id)
+    end
 
-  def accept_request_params
-    params.permit(:user_id, :position_id, :link)
-  end
+    def accept_request_params
+      params.permit(:user_id, :position_id, :link)
+    end
 
 end

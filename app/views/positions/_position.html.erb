@@ -1,0 +1,29 @@
+<div id="position<%=position.id %>" class="project-position">
+  <% if position.filled %>
+    <p>This position is filled</p>
+  <% else %>
+    <p>This position is unfilled</p>
+  <%end%>
+
+  <% if Position.applied(current_user, position.id) %>
+    <p>Request sent!</p>
+  <%end%>
+
+  <div>
+    <div style="font-weight:bold">
+      <%= position.position_title %>
+    </div>
+    <div >
+      <%= position.description %>
+      <%= link_to 'More details', project_position_path(@project.id, position) %>
+    </div>
+
+   <% if !@filled %>
+      <%= button_to 'Apply', join_project_path(user_id: current_user_id, project_id: @project.id, position_id: position.id), class: 'btn-inverse btn-element-margin-match display:inline-block' %>
+    <% end %>
+  </div>
+
+  <% if @isOwner %>
+    <%= link_to 'Edit', edit_project_position_path(@project.id, position) %>
+  <% end %>
+</div>
