@@ -25,6 +25,8 @@
       <div class="profile-professionalism">
         <%= form_for @profile, url: resume_info_path, html: {multipart: true, id:"resume-form"} do |f| %>
           <p>
+            <!-- hidden field for params.require(:profile) -->
+            <%= f.hidden_field :id, value: @profile.id %>
             <%= f.file_field :resume %>
           </p>
         <% end %>
