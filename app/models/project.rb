@@ -8,6 +8,7 @@ class Project < ActiveRecord::Base
   has_many :positions, dependent: :destroy
   # has_many :project_comments, dependent: :destroy
   has_many :project_posts, dependent: :destroy
+  has_many :tasks, dependent: :destroy
 
   validates :title, :short_description, presence: true
 

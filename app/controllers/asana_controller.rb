@@ -45,13 +45,16 @@ class AsanaController < ApplicationController
                          asana_user_id: asanaProject_params[:asana_user_id],
                          user_id: current_user_id)
 
-    redirect_to :action => 'index'
+    redirect_to action: 'index'
   end
 
   private 
 
     def asanaProject_params
-      params.require(:asanaProject).permit(:workspace_id, :asana_user_id, :project_id)
+      params.require(:asana_project).permit(
+        :workspace_id,
+        :asana_user_id,
+        :project_id)
     end
 
     def make_asana_request(url, token)
@@ -62,61 +65,63 @@ class AsanaController < ApplicationController
       request = Net::HTTP::Get.new(uri.request_uri)
       request.initialize_http_header({"Authorization" => "Bearer #{token}"})
       response = http.request(request)
+
+      # I believe this displays non UTF-8 characters
       result = response.body.force_encoding('ISO-8859-1')
     end
 
     def workspaces( token )
-      url = "https://app.asana.com/api/1.0/workspaces"
+      url = ASANA::API_URL + "/workspaces"
       make_asana_request( url, token )
     end
 
     def workspace_projects( workspace_id, token )
-      url = "https://app.asana.com/api/1.0/workspaces/#{workspace_id}/projects"
+      url = ASANA::API_URL + "/workspaces/#{workspace_id}/projects"
       make_asana_request( url, token )
     end
 
     def project( project_id, token )
-      url = "https://app.asana.com/api/1.0/projects/#{project_id}"
+      url = ASANA::API_URL + "/projects/#{project_id}"
       make_asana_request( url, token )
     end
 
     def workspace_users( workspace_id, token )
-      url = "https://app.asana.com/api/1.0/workspaces/#{workspace_id}/users"
+      url = ASANA::API_URL + "/workspaces/#{workspace_id}/users"
       make_asana_request( url, token )
     end
 
     def current_asana_user( token )
-      url = "https://app.asana.com/api/1.0/users/me"
+      url = ASANA::API_URL + "/users/me"
       make_asana_request( url, token )
     end
 
     def task( task_id, token )
-      url = "https://app.asana.com/api/1.0/tasks/#{task_id}"
+      url = ASANA::API_URL + "/tasks/#{task_id}"
       make_asana_request( url, token )
     end
 
     def project_tasks( project_id, token )
-      url = "https://app.asana.com/api/1.0/projects/#{project_id}/tasks"
+      url = ASANA::API_URL + "/projects/#{project_id}/tasks"
       make_asana_request( url, token )
     end
 
     def workspace_tasks( workspace_id, token )
-      url = "https://app.asana.com/api/1.0/workspaces/#{workspace_id}/tasks"
+      url = ASANA::API_URL + "/workspaces/#{workspace_id}/tasks"
       make_asana_request( url, token )
     end
 
     def tag( tag_id, token )
-      url = "https://app.asana.com/api/1.0/tags/#{tag_id}"
+      url = ASANA::API_URL + "/tags/#{tag_id}"
       make_asana_request( url, token )
     end
 
     def tag_tasks (tag_id, token )
-      url = "https://app.asana.com/api/1.0/tags/#{tag_id}/tasks"
+      url = ASANA::API_URL + "/tags/#{tag_id}/tasks"
       make_asana_request( url, token )
     end
 
     def workspace_tags( workspace_id, token )
-      url = "https://app.asana.com/api/1.0/workspaces/#{workspace_id}/tags"
+      url = ASANA::API_URL + "/workspaces/#{workspace_id}/tags"
       make_asana_request( url, token )
     end
 

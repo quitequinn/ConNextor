@@ -32,3 +32,7 @@ module UserTaskStatus
 
   STATUSES = [COMPLETED, IN_PROGRESS, DROPPED]
 end
+
+module ASANA
+  API_URL = 'https://app.asana.com/api/1.0'
+end
