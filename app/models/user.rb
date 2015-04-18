@@ -17,6 +17,8 @@ class User < ActiveRecord::Base
   has_many :activities, dependent: :destroy
   has_many :project_posts, dependent: :destroy
   has_many :project_comments, dependent: :destroy
+  has_many :user_to_tasks, dependent: :destroy
+  has_many :tasks, through: :user_to_tasks
 
   attr_accessor :password
   attr_writer :current_step
