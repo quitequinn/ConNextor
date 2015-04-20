@@ -15,7 +15,7 @@
               <%= @project.title %>
             </p>
             <% if @is_owner %>
-              <%= link_to 'Edit', edit_project_path(@project) %> 
+              <%= link_to 'Manage', controller: 'projects', action: 'manage' %> 
             <% end %>
           </div>
 
@@ -40,8 +40,16 @@
             <% unless @user_project_follow %>
               <%= render 'projects/follow', user_project_follow: UserProjectFollow.new %>
               <% else %>
-                  <%= render 'projects/unfollow', user_project_follow: @user_project_follow%>
+                  <%= render 'projects/unfollow', user_project_follow: @user_project_follow %>
               <% end %>
+          </div>
+          <div>
+            <div>
+              <%= link_to 'See open tasks', tasks_path(project: @project) %>
+            </div>
+            <div>
+              <%= link_to 'Go to core member page', controller: 'projects', action:'core_project' %>
+            </div>
           </div>
         </div>
       </div>
@@ -63,9 +71,3 @@
   
 
 </div>
-
-    <%# if @user_to_project and @is_owner %>
-        <%#= link_to 'Manage Users', user_to_projects_path(project: @project) %>
-        <%#= link_to 'Manage Tags', project_to_tags_path(project: @project) %>
-        <%#= link_to 'Manage Tasks', project_tasks_path(project: @project) %>
-    <%# end %>

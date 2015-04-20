@@ -1,0 +1,10 @@
+<h1>Core Members page</h1>
+
+<h2>Asana tasks</h2>
+
+<% if @tasks %>
+  <% @tasks['data'].each do |task| %>
+      <p><%= task['name'] %></p>
+      <br />
+  <% end %>
+<% end %>

@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-  before_action :set_project, only: [:switch, :show, :edit, :update, :destroy] 
+  before_action :set_project, only: [:switch, :show, :edit, :update, :destroy, :manage, :core_project] 
   before_action :get_user_access, only: [:switch, :show] 
 
   def index
@@ -7,8 +7,33 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    @activities = Activity.where( parent_id: @project.id)
+    @activities = Activity.where( parent_id: @project.id )
     @user_project_follow = UserProjectFollow.find_by_user_id_and_project_id(current_user_id, @project.id)
+  end
+
+  def manage
+  end
+
+  def core_project
+    access = has_project_permission?(current_user, @project)
+    #Asana tasks
+    @asana_project = AsanaProject.find_by_project_id( @project.id )
+    @asana_identity = AsanaIdentity.find_by_user_id( current_user_id )
+    workspace_id = @asana_project.workspace_id
+    asana_user_id = @asana_project.asana_user_id
+    token = @asana_identity.access_token
+
+    @projects = JSON.parse workspace_projects( workspace_id, token )
+
+    if @projects
+      @tasks = JSON.parse project_tasks( @projects['data'][0]['id'] , token )
+    end
+
+    #poll all tasks that have been created within the past 15 minutes
+    #poll all tasks that have been completed within the past 15 minutes
+    #poll all tasks that have been modified within the past 15 minutes
+    #map asana task to connextor task
+    #send notification
   end
 
   def new

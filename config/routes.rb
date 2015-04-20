@@ -27,9 +27,11 @@ Rails.application.routes.draw do
   get 'profiles/edit_location/:id', to: 'profiles#edit_location'
   get 'profiles/new/:id', to: 'profiles#new', as: 'profile_initialize'
   
-  #resources :user_follows
+  resources :user_follows
 
-  #resources :activities
+  resources :activities
+
+  get 'auth/asana/callback', to: 'asana#create'
 
   get 'asana/index'
 
@@ -51,19 +53,21 @@ Rails.application.routes.draw do
   get 'user', to: 'users#show'
   get 'profile/:username', to: 'profiles#show'
 
-  #resources :user_to_project_tasks
+  resources :tasks
 
-  #resources :project_tasks
+  resources :user_to_tasks
 
-  #resources :project_to_tags
+  resources :project_tasks
 
-  #resources :project_tags
+  resources :project_to_tags
 
-  #resources :user_project_follows
+  resources :project_tags
+
+  resources :user_project_follows
 
   resources :user_to_projects
 
-  # get 'projects/new'
+  get 'projects/new'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -73,20 +77,22 @@ Rails.application.routes.draw do
   get 'sign_up' => 'users#new', as: 'sign_up'
   root 'welcome#index'
   resources :users
-  #resources :notifications
-  #resources :requests
+  resources :notifications
+  resources :requests
   resources :sessions
   #resources :password_resets
   resources :projects do
     resources :positions
   end
-  #get 'project/switch/:id', to: 'projects#switch'
-  #resources :project_posts
-  #post 'join_project' => 'projects#join_request', as: 'join_project'
+  get 'project/switch/:id', to: 'projects#switch'
+  get 'project/manage/:id', to: 'projects#manage'
+  get 'project/core/:id', to: 'projects#core_project'
+  resources :project_posts
+  post 'join_project' => 'projects#join_request', as: 'join_project'
 
   # THIS IS FOR POSTS.
-  #resources :project_comments
-  #post 'accept_project' => 'projects#accept_request', as: 'accept_project'
+  resources :project_comments
+  post 'accept_project' => 'projects#accept_request', as: 'accept_project'
 
 
 

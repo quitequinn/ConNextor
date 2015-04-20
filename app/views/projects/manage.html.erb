@@ -1,0 +1,25 @@
+<div>
+  <%= link_to '/auth/asana' do %>
+    Connect with Asana
+  <% end %>
+</div>
+
+<% if @user_to_project and @is_owner %>
+
+  <div>
+    <%= link_to 'Manage Users', user_to_projects_path(project: @project) %>
+  </div>
+
+  <div>
+    <%= link_to 'Manage Tags', project_to_tags_path(project: @project) %>
+  </div>
+
+  <div>
+    <%= link_to 'Manage Tasks', tasks_path(project: @project) %>
+  </div>
+
+<% end %>
+
+<div>
+  <%= link_to 'Edit Project Info', edit_project_path(@project) %>
+</div>

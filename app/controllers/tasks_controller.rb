@@ -1,7 +1,8 @@
-class TaskController < ApplicationController
+class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
 
   def index
+    @tasks = Task.where(project_id: params[:project_id])
   end
 
   def new

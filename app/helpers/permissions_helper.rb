@@ -18,4 +18,14 @@ module PermissionsHelper
     object and object.user and current_user and object.user == current_user
   end
 
+  def has_project_permission?(user, project)
+    result = false
+    user_to_project = UserToProject.find_by_user_id_and_project_id(user.id, project.id)
+    if user_to_project
+      result = user_to_project.project_user_class == ProjectUserClass::OWNER or 
+              user_to_project.project_user_class == ProjectUserClass::CORE_MEMBER
+    end
+    result
+  end
+
 end

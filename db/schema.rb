@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150418173247) do
+ActiveRecord::Schema.define(version: 20150419213408) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,6 +51,19 @@ ActiveRecord::Schema.define(version: 20150418173247) do
   end
 
   add_index "asana_projects", ["project_id"], name: "index_asana_projects_on_project_id", using: :btree
+
+  create_table "asana_tasks", force: :cascade do |t|
+    t.integer  "asana_project_id"
+    t.integer  "created_by"
+    t.integer  "assigned_to"
+    t.integer  "workspace_id"
+    t.boolean  "completed"
+    t.datetime "completed_at"
+    t.string   "description"
+    t.string   "title"
+  end
+
+  add_index "asana_tasks", ["asana_project_id"], name: "index_asana_tasks_on_asana_project_id", using: :btree
 
   create_table "feedbacks", force: :cascade do |t|
     t.string  "feedback"
@@ -246,6 +259,7 @@ ActiveRecord::Schema.define(version: 20150418173247) do
     t.datetime "due_on"
     t.string   "description"
     t.string   "title"
+    t.string   "member_type"
   end
 
   add_index "tasks", ["project_id"], name: "index_tasks_on_project_id", using: :btree
@@ -329,6 +343,7 @@ ActiveRecord::Schema.define(version: 20150418173247) do
 
   add_index "users_with_ideas", ["user_id"], name: "index_users_with_ideas_on_user_id", using: :btree
 
+  add_foreign_key "asana_tasks", "asana_projects"
   add_foreign_key "feedbacks", "user_to_tasks"
   add_foreign_key "positions", "projects"
   add_foreign_key "positions", "users"

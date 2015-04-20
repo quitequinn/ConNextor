@@ -1,0 +1,18 @@
+<%= form_for task do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+
+  <%= f.label :description %>
+  <%= f.text_field :description %>
+
+  <%= f.label :due_on %>
+  <%= f.text_field :due_on %>
+
+  <%= f.label :assigned_to %>
+  <%= f.text_field :asigned_to %>
+
+  <%= f.label :created_by %>
+  <%= f.text_field :created_by %>
+
+  <%= f.submit %>
+<% end %>
