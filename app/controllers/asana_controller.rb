@@ -2,20 +2,28 @@ class AsanaController < ApplicationController
   def index
   end
 
+  # Creating asana identity
   def create
     auth = env['omniauth.auth']
-    @asanaIdentity = AsanaIdentity.find_with_omniauth(auth)
-    @asanaIdentity = AsanaIdentity.create_with_omniauth(auth, current_user_id) if @asanaIdentity.nil?
-    # get new token using refresh token if current token as expired
-    redirect_to :action => 'show'
+    @asana_identity = AsanaIdentity.find_with_omniauth(auth)
+    AsanaIdentity.create_with_omniauth(auth, current_user_id) if @asana_identity.nil?
+    # get new bearer tokens
+    redirect_to action:'show', id: session.delete(:return_to)
   end
 
+  # Setting project integration
   def show
-    asanaIdentity = AsanaIdentity.find_by_user_id( current_user_id )
-    token = asanaIdentity.access_token
-    @workspaces = JSON.parse workspaces(token)
-    @asana_user_id = (JSON.parse current_asana_user(token))['data']['id']
-    @projects = current_user.projects
+    @workspaces = []
+    @projects = []
+    @project_id = params[:project_id]
+    asana_identity = AsanaIdentity.find_by_user_id( current_user_id )
+    @asana_project = AsanaProject.find_by_project_id( @project_id  )
+    workspace_id = @asana_project.workspace_id if @asana_project
+    if asana_identity
+      token =  asana_identity.access_token
+      @workspaces = JSON.parse workspaces(token)
+      @asana_user_id = (JSON.parse current_asana_user(token))['data']['id'] if current_asana_user(token)['data']
+    end
   end
 
   def integrate

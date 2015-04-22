@@ -1,0 +1,8 @@
+<p><%=task.title%></p>
+<p><%=task.description%></p>
+<p><%=task.due_on%></p>
+<p><%=task.assigned_to%></p>
+<p><%=task.created_by%></p>
+
+<!-- need to authorize -->
+<%= link_to 'edit', edit_project_task_path(task.project_id, task.id) %>

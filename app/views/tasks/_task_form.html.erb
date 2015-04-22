@@ -1,18 +1,31 @@
-<%= form_for task do |f| %>
-  <%= f.label :title %>
-  <%= f.text_field :title %>
+<%= form_for @task, :url => url_for(:controller => 'tasks', :action => 'create') do |f| %>
+  <div>
+    <%= f.hidden_field :project_id, value: params[:project_id] %>
+  </div>
+  <div>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </div>
 
-  <%= f.label :description %>
-  <%= f.text_field :description %>
+  <div>
+    <%= f.label :description %>
+    <%= f.text_area :description %>
+  </div>
 
-  <%= f.label :due_on %>
-  <%= f.text_field :due_on %>
+  <div>
+    <%= f.label :due_on %>
+    <%= f.text_field :due_on %>
+  </div>
 
-  <%= f.label :assigned_to %>
-  <%= f.text_field :asigned_to %>
+  <div>
+    <%= f.label :assigned_to %>
+    <%= f.text_field :assigned_to %>
+  </div>
 
-  <%= f.label :created_by %>
-  <%= f.text_field :created_by %>
+  <div>
+    <%= f.label :created_by %>
+    <%= f.select :created_by, @core_members.collect{ |u| [u.first_name , u.id] } %>
+  </div>
 
   <%= f.submit %>
 <% end %>

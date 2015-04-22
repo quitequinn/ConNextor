@@ -45,7 +45,7 @@
           </div>
           <div>
             <div>
-              <%= link_to 'See open tasks', tasks_path(project: @project) %>
+              <%= link_to 'See open tasks', project_tasks_path(@project) %>
             </div>
             <div>
               <%= link_to 'Go to core member page', controller: 'projects', action:'core_project' %>

@@ -12,10 +12,11 @@ class ProjectsController < ApplicationController
   end
 
   def manage
+    session[:return_to] = @project.id
   end
 
   def core_project
-    access = has_project_permission?(current_user, @project)
+    access = has_project_permission?(current_user_id, @project.id)
     #Asana tasks
     @asana_project = AsanaProject.find_by_project_id( @project.id )
     @asana_identity = AsanaIdentity.find_by_user_id( current_user_id )

@@ -4,6 +4,16 @@
   <% end %>
 </div>
 
+<div>
+  <%= link_to "/project/#{@project.id}/asana/show" do %>
+    See Integration
+  <% end %>
+</div>
+
+<div>
+  <%= link_to 'Create a task', new_project_task_path(@project) %>
+</div>
+
 <% if @user_to_project and @is_owner %>
 
   <div>
@@ -15,7 +25,7 @@
   </div>
 
   <div>
-    <%= link_to 'Manage Tasks', tasks_path(project: @project) %>
+    <%= link_to 'Manage Tasks', project_tasks_path(@project) %>
   </div>
 
 <% end %>

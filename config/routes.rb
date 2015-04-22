@@ -33,11 +33,9 @@ Rails.application.routes.draw do
 
   get 'auth/asana/callback', to: 'asana#create'
 
-  get 'asana/index'
+  get 'project/asana/index', to: 'asana#index'
 
-  get 'asana/create'
-
-  get 'asana/show'
+  get 'project/:id/asana/show', to: 'asana#show'
 
   post "asana_integrate" => "asana#integrate", :as => "asana_integrate"
   
@@ -53,11 +51,7 @@ Rails.application.routes.draw do
   get 'user', to: 'users#show'
   get 'profile/:username', to: 'profiles#show'
 
-  resources :tasks
-
   resources :user_to_tasks
-
-  resources :project_tasks
 
   resources :project_to_tags
 
@@ -82,6 +76,7 @@ Rails.application.routes.draw do
   resources :sessions
   #resources :password_resets
   resources :projects do
+    resources :tasks
     resources :positions
   end
   get 'project/switch/:id', to: 'projects#switch'

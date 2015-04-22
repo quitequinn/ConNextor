@@ -2,11 +2,12 @@
 
 <%= form_for :asana_project, url: asana_integrate_path do |f| %>
   <%= f.hidden_field :asana_user_id, :value => @asana_user_id%>
-  <h2> Choose your Asana Workspace </h2>
-  <%= f.select :workspace_id, @workspaces['data'].collect{ |u| [ u['name'], u['id'] ] } %>
+  <%= f.hidden_field :project_id, :value => @project_id%>
+  
+  <p> Your Asana Workspace </p>
+  <% if @workspaces['data'] %>
+    <%= f.select :workspace_id, @workspaces['data'].collect{ |u| [ u['name'], u['id'] ] } %>
+  <% end %>
  
-  <h2> Choose your current project </h2>
-  <%= f.select :project_id, @projects.collect{ |u| [u.title, u.id] } %>
-    
   <p class="button"><%= f.submit "Integrate" %></p>
 <% end %>
