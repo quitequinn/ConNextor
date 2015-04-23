@@ -1,11 +1,11 @@
 <h1>Configure Asana Integration</h1>
 
 <%= form_for :asana_project, url: asana_integrate_path do |f| %>
-  <%= f.hidden_field :asana_user_id, :value => @asana_user_id%>
-  <%= f.hidden_field :project_id, :value => @project_id%>
-  
+  <%= f.hidden_field :asana_user_id, value: @asana_user_id%>
+  <%= f.hidden_field :project_id, value: params[:id]%>
+
   <p> Your Asana Workspace </p>
-  <% if @workspaces['data'] %>
+  <% if @workspaces.any? %>
     <%= f.select :workspace_id, @workspaces['data'].collect{ |u| [ u['name'], u['id'] ] } %>
   <% end %>
  

@@ -26,15 +26,13 @@ class ProjectsController < ApplicationController
 
     @projects = JSON.parse workspace_projects( workspace_id, token )
 
-    if @projects
-      @tasks = JSON.parse project_tasks( @projects['data'][0]['id'] , token )
+    if @projects['data']
+      @tasks = JSON.parse workspace_tasks( @asana_project.workspace_id , token )
+      @tasks['data'] = [] if @tasks['data'] == nil
+      @tasks['data'].each do |task|
+        AsanaTask.create_from_Asana(task) if AsanaTask.find_by_asana_task_id(task['id']) == nil
+      end
     end
-
-    #poll all tasks that have been created within the past 15 minutes
-    #poll all tasks that have been completed within the past 15 minutes
-    #poll all tasks that have been modified within the past 15 minutes
-    #map asana task to connextor task
-    #send notification
   end
 
   def new

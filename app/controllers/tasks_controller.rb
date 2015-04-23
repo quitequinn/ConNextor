@@ -69,7 +69,7 @@ class TasksController < ApplicationController
         :title,
         :description,
         :created_by,
-        :modified_by,
+        :modified_at,
         :completed,
         :completed_on,
         :assign_to,

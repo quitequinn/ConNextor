@@ -33,9 +33,9 @@ Rails.application.routes.draw do
 
   get 'auth/asana/callback', to: 'asana#create'
 
-  get 'project/asana/index', to: 'asana#index'
+  get 'projects/asana/index', to: 'asana#index'
 
-  get 'project/:id/asana/show', to: 'asana#show'
+  get 'projects/:id/asana/show', to: 'asana#show'
 
   post "asana_integrate" => "asana#integrate", :as => "asana_integrate"
   
@@ -79,9 +79,9 @@ Rails.application.routes.draw do
     resources :tasks
     resources :positions
   end
-  get 'project/switch/:id', to: 'projects#switch'
-  get 'project/manage/:id', to: 'projects#manage'
-  get 'project/core/:id', to: 'projects#core_project'
+  get 'projects/switch/:id', to: 'projects#switch'
+  get 'projects/manage/:id', to: 'projects#manage'
+  get 'projects/core/:id', to: 'projects#core_project'
   resources :project_posts
   post 'join_project' => 'projects#join_request', as: 'join_project'
 

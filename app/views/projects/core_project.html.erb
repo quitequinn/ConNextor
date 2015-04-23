@@ -2,9 +2,50 @@
 
 <h2>Asana tasks</h2>
 
-<% if @tasks %>
-  <% @tasks['data'].each do |task| %>
-      <p><%= task['name'] %></p>
-      <br />
-  <% end %>
+<% @tasks['data'].each do |task| %>
+    <p>Title: <%= task['name'] %></p>
+    <p>Assigned to: <%= task['assignee']['name'] %></p>
+    <p>Description: <%= task['notes'] %></p>
+    <p>Completed: <%= task['completed'] %></p>
+    <p>Modified at: <%= task['modified_at'] %></p>
+    <p>Due on<%= task['due_on'] %></p>
+    <br />
 <% end %>
+
+
+<!-- # Response
+HTTP/1.1 201
+{
+  "data": {
+    "assignee": {
+      "id": 1235,
+      "name": "Tim Bizarro"
+    },
+    "assignee_status": "inbox",
+    "completed": false,
+    "completed_at": null,
+    "created_at": "2012-02-22T02:06:58.158Z",
+    "due_on": null,
+    "followers": [
+      {
+        "id": 5678,
+        "name": "Greg Sanchez"
+      }
+    ],
+    "id": 1001,
+    "modified_at": "2012-02-22T02:06:58.158Z",
+    "name": "Hello, world!",
+    "notes": "How are you today?",
+    "parent": null,
+    "projects": [
+      {
+        "id": 14641,
+        "name": "Cat Stuff"
+      }
+    ],
+    "workspace": {
+      "id": 14916,
+      "name": "My Favorite Workspace"
+    }
+  }
+} -->
