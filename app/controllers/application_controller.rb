@@ -74,7 +74,7 @@ class ApplicationController < ActionController::Base
     make_asana_request( url, token )
   end
 
-  def task( task_id, token )
+  def get_asana_task( task_id, token )
     url = ASANA::API_URL + "/tasks/#{task_id}"
     make_asana_request( url, token )
   end

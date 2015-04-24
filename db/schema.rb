@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150423054754) do
+ActiveRecord::Schema.define(version: 20150424042754) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,7 +42,7 @@ ActiveRecord::Schema.define(version: 20150423054754) do
 
   create_table "asana_projects", force: :cascade do |t|
     t.integer  "project_id"
-    t.integer  "asana_project_id"
+    t.integer  "asana_project_id", limit: 8
     t.string   "workspace_id"
     t.integer  "asana_user_id",    limit: 8
     t.datetime "created_at",                 null: false
@@ -53,18 +53,25 @@ ActiveRecord::Schema.define(version: 20150423054754) do
   add_index "asana_projects", ["project_id"], name: "index_asana_projects_on_project_id", using: :btree
 
   create_table "asana_tasks", force: :cascade do |t|
-    t.integer  "asana_project_id"
+    t.integer  "asana_project_id", limit: 8
     t.integer  "created_by"
-    t.integer  "assigned_to"
-    t.integer  "workspace_id"
+    t.integer  "assigned_to",      limit: 8
+    t.integer  "workspace_id",     limit: 8
     t.boolean  "completed"
     t.datetime "completed_at"
     t.string   "description"
     t.string   "title"
-    t.integer  "asana_task_id"
+    t.integer  "asana_task_id",    limit: 8
   end
 
   add_index "asana_tasks", ["asana_project_id"], name: "index_asana_tasks_on_asana_project_id", using: :btree
+
+  create_table "asana_users", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "asana_user_id", limit: 8
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
 
   create_table "feedbacks", force: :cascade do |t|
     t.string  "feedback"

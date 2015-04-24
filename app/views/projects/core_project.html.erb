@@ -2,18 +2,51 @@
 
 <h2>Asana tasks</h2>
 
-<% @tasks['data'].each do |task| %>
-    <p>Title: <%= task['name'] %></p>
-    <p>Assigned to: <%= task['assignee']['name'] %></p>
-    <p>Description: <%= task['notes'] %></p>
-    <p>Completed: <%= task['completed'] %></p>
-    <p>Modified at: <%= task['modified_at'] %></p>
-    <p>Due on<%= task['due_on'] %></p>
+<% if @asana_tasks %>
+  <%= @asana_tasks.each do |asana_task| %>
+    <p>Title: <%= asana_task.title %> </p>
+    <p>Assigned to: <%= asana_task.assigned_to %> </p>
+    <p>Description: <%= asana_task.description %> </p>
+    <p>Completed: <%= asana_task.completed %> </p>
+    <!-- <p>Modified at: <%#= asana_task.modified_at %> </p>
+    <p>Due on <%#= asana_task.due_on %> </p> -->
     <br />
+  <% end %>
 <% end %>
 
 
-<!-- # Response
+<%# if @asana_projects %>
+  <%#= @asana_projects.each do |asana_project| %>
+    <!-- <p>Some separator</p>
+    <#% if asana_project.asana_tasks %>
+      <%#= asana_project.asana_tasks.each do |asana_task| %>
+        <p>Title: <%#= asana_task.title %> </p>
+        <p>Assigned to: <%#= asana_task.assigned_to %> </p>
+        <p>Description: <%#= asana_task.description %> </p>
+        <p>Completed: <%#= asana_task.completed %> </p>
+       <p>Modified at: <%#= asana_task.modified_at %> </p>
+        <p>Due on <%#= asana_task.due_on %> </p> -->
+
+      <%# end %>
+    <%# end %>
+   <!--  <br /> 
+
+  <%# end %>
+<%# end %> -->
+
+
+<%# @tasks['data'].each do |task| %>
+    <!-- <p>Title: <%#= task['name'] %></p>
+    <p>Assigned to: <%#= task['assignee']['name'] %></p>
+    <p>Description: <%#= task['notes'] %></p>
+    <p>Completed: <%#= task['completed'] %></p>
+    <p>Modified at: <%#= task['modified_at'] %></p>
+    <p>Due on<%#= task['due_on'] %></p>
+    <br />
+<%# end %>
+
+
+ # Response
 HTTP/1.1 201
 {
   "data": {

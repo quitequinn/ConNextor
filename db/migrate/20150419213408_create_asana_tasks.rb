@@ -10,6 +10,5 @@ class CreateAsanaTasks < ActiveRecord::Migration
       t.string :description
       t.string :title
     end
-    add_foreign_key :asana_tasks, :asana_projects
   end
 end

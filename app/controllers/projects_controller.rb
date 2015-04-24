@@ -17,21 +17,46 @@ class ProjectsController < ApplicationController
 
   def core_project
     access = has_project_permission?(current_user_id, @project.id)
-    #Asana tasks
-    @asana_project = AsanaProject.find_by_project_id( @project.id )
-    @asana_identity = AsanaIdentity.find_by_user_id( current_user_id )
-    workspace_id = @asana_project.workspace_id
-    asana_user_id = @asana_project.asana_user_id
-    token = @asana_identity.access_token
 
-    @projects = JSON.parse workspace_projects( workspace_id, token )
+    asana_identity = AsanaIdentity.find_by_user_id( current_user_id )
+    token = asana_identity.access_token
+    @asana_projects = AsanaProject.where(project_id: @project.id )
 
-    if @projects['data']
-      @tasks = JSON.parse workspace_tasks( @asana_project.workspace_id , token )
-      @tasks['data'] = [] if @tasks['data'] == nil
-      @tasks['data'].each do |task|
-        AsanaTask.create_from_Asana(task) if AsanaTask.find_by_asana_task_id(task['id']) == nil
+    if @asana_projects
+      # Add any new projects
+      # TODO put into model
+      workspace_id = @asana_projects[0].workspace_id
+      new_asana_projects = JSON.parse workspace_projects(workspace_id, token)
+      if new_asana_projects['data']
+        new_asana_projects['data'].each do |new_asana_project|
+          asana_project = AsanaProject.find_by_asana_project_id(new_asana_project['id'])
+          if asana_project == nil
+            asana_project_details = JSON.parse project(new_asana_project['id'],token)
+            AsanaProject.create_asana_project(asana_project_details)
+          else
+            #Update method (future work)
+          end
+        end
       end
+
+      # Add and update tasks
+      # TODO put into model
+      @asana_projects.each do |asana_project|
+        tasks = JSON.parse project_tasks( asana_project.asana_project_id , token )
+        if tasks['data']
+          tasks['data'].each do |task|
+            asana_task = AsanaTask.find_by_asana_task_id(task['id'])
+            asana_task_details = JSON.parse get_asana_task(task['id'],token)
+            if asana_task == nil
+              AsanaTask.create_asana_task(asana_task_details['data'], asana_project.asana_project_id) 
+            else
+              asana_task.update_asana_task(asana_task_details['data'], asana_project.asana_project_id)
+            end
+          end
+        end
+      end
+
+      @asana_tasks = AsanaTask.where(workspace_id: workspace_id)
     end
   end
 
