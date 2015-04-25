@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150424042754) do
+ActiveRecord::Schema.define(version: 20150425021049) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,6 +72,22 @@ ActiveRecord::Schema.define(version: 20150424042754) do
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
   end
+
+  create_table "delayed_jobs", force: :cascade do |t|
+    t.integer  "priority",   default: 0, null: false
+    t.integer  "attempts",   default: 0, null: false
+    t.text     "handler",                null: false
+    t.text     "last_error"
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.string   "locked_by"
+    t.string   "queue"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
 
   create_table "feedbacks", force: :cascade do |t|
     t.string  "feedback"
@@ -351,7 +367,6 @@ ActiveRecord::Schema.define(version: 20150424042754) do
 
   add_index "users_with_ideas", ["user_id"], name: "index_users_with_ideas_on_user_id", using: :btree
 
-  add_foreign_key "asana_tasks", "asana_projects"
   add_foreign_key "feedbacks", "user_to_tasks"
   add_foreign_key "positions", "projects"
   add_foreign_key "positions", "users"

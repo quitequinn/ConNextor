@@ -48,7 +48,7 @@
               <%= link_to 'See open tasks', project_tasks_path(@project) %>
             </div>
             <div>
-              <%= link_to 'Go to core member page', controller: 'projects', action:'core_project' %>
+              <%= link_to 'Go to core member page', controller: 'projects', action:'core_project',notice: 'Your asana tasks are being fetched..' %>
             </div>
           </div>
         </div>
