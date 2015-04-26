@@ -297,6 +297,27 @@ body {
 
 .template-wrap {
   padding: $navbar-height 0 $footer-height 0;
+
+  .flash-messages {
+    position: fixed;
+    top: $navbar-height;
+    width: 100%;
+    //max-width: 400px;
+    margin: 5px auto;
+
+    .alert {
+      max-width: 400px;
+      margin: 5px auto;
+      padding: 10px 15px;
+      color: black;
+      opacity: 0.9;
+      border: 1px white solid;
+    }
+    .alert-success { background: $success-color; }
+    .alert-error { background: $warning-color; }
+    .alert-notice { background: $secondary-bg-color; }
+
+  }
 }
 
 .footer {

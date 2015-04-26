@@ -11,7 +11,8 @@ class SessionsController < ApplicationController
       if user.profile == nil
         format.html { redirect_to controller: :profiles, action: :new, :notice => 'Must complete profile!' }
       else
-        redirect_to root_url, :notice => 'Logged in!'
+        flash[:success] = 'Logged in!'
+        redirect_to root_url
       end     
     else
       flash[:error] = 'Invalid login'
