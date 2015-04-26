@@ -3,7 +3,7 @@
 <h2>Asana tasks</h2>
 
 <% if @asana_tasks %>
-  <%= @asana_tasks.each do |asana_task| %>
+  <% @asana_tasks.each do |asana_task| %>
     <p>Title: <%= asana_task.title %> </p>
     <p>Assigned to: <%= asana_task.assigned_to %> </p>
     <p>Description: <%= asana_task.description %> </p>

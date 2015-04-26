@@ -75,6 +75,9 @@ Rails.application.routes.draw do
   resources :requests
   resources :sessions
   #resources :password_resets
+
+  post 'join_task' => 'tasks#join_request', as: 'join_task'
+  post 'accept_task' => 'tasks#accept_request', as: 'accept_task'
   resources :projects do
     resources :tasks
     resources :positions
