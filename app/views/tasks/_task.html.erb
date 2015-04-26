@@ -1,4 +1,4 @@
-<p>Title: <%=task.title%></p>
+<p>Title: <%= link_to "#{task.title}", project_task_path(params[:project_id],task.id) %></p>
 <p>Description: <%=task.description%></p>
 <p>Due on: <%=task.due_on%><%= 'Not Set' unless task.due_on%></p>
 <% if task.completed %>
@@ -14,9 +14,4 @@
 
 <% if !task.assigned_to %>
   <%= button_to "I'm interested", join_task_path(user_id: current_user_id, project_id: params[:project_id], task_id: task.id) %>
-<% end %>
-
-<!-- need to authorize -->
-<% if !task.completed && @has_project_permission %>
-  <%= link_to 'edit', edit_project_task_path(task.project_id, task.id) %>
 <% end %>

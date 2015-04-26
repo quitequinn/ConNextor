@@ -91,6 +91,9 @@ class TasksController < ApplicationController
   end
 
   def show
+    @has_project_permission = has_project_permission?(current_user_id, params[:project_id])
+    @user_to_task = UserToTask.find_by_user_id_and_task_id(@task.assigned_to,@task.id)
+    @statuses = ProjectTaskState::STATES
   end
 
   def update

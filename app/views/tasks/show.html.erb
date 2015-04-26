@@ -1,11 +1,13 @@
-<h1><%= @task.title %></h1>
+<%= render @task %>
 
-<p>Description: <%= @task.description %></p>
+<!-- need to authorize -->
+<% if !@task.completed && @has_project_permission %>
+  <%= link_to 'edit', edit_project_task_path(@task.project_id, @task.id) %>
+<% end %>
 
-<p>Assigned_to <%= @task.assigned_to %></p>
-
-<p>Created_by: <%= @task.created_by %></p>
-
-<p>Project_id <%= @task.project_id %></p>
-
-<p>Completed: <%= @task.completed %></p>
+<% if @task.assigned_to && @has_project_permission && @user_to_task %>
+  <%= form_for @user_to_task do |f| %>
+    <%= f.select :status, @statuses.collect{ |u| [ u, u ] } %>  
+    <p class="button"><%= f.submit "Change status" %></p>
+  <% end %>
+<% end %>
