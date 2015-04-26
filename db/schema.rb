@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150418024816) do
+ActiveRecord::Schema.define(version: 20150426153210) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,15 +46,19 @@ ActiveRecord::Schema.define(version: 20150418024816) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "invitation_code_records", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "invitation_code_id"
+  end
+
+  add_index "invitation_code_records", ["invitation_code_id"], name: "index_invitation_code_records_on_invitation_code_id", using: :btree
+  add_index "invitation_code_records", ["user_id"], name: "index_invitation_code_records_on_user_id", using: :btree
+
   create_table "invitation_codes", force: :cascade do |t|
-    t.integer  "user_id"
     t.string   "code"
-    t.boolean  "used"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
-
-  add_index "invitation_codes", ["user_id"], name: "index_invitation_codes_on_user_id", using: :btree
 
   create_table "notifications", force: :cascade do |t|
     t.integer "user_id"
@@ -314,6 +318,8 @@ ActiveRecord::Schema.define(version: 20150418024816) do
 
   add_index "users_with_ideas", ["user_id"], name: "index_users_with_ideas_on_user_id", using: :btree
 
+  add_foreign_key "invitation_code_records", "invitation_codes"
+  add_foreign_key "invitation_code_records", "users"
   add_foreign_key "positions", "projects"
   add_foreign_key "positions", "users"
   add_foreign_key "project_comments", "project_posts"

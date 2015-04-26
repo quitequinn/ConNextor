@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   include SessionsHelper
   include PermissionsHelper
 
-  helper_method :current_user, :current_user?, :logged_in?, :current_user_id
+  helper_method :current_user, :current_user?, :logged_in?, :current_user_id, :phase_active?
 
   private
 
@@ -31,6 +31,10 @@ class ApplicationController < ActionController::Base
 
   def current_user_id
     session[:user_id]
+  end
+
+  def phase_active?(array)
+    array.include? ProjectMeta::CURRENT_PHASE
   end
 
   private

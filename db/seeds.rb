@@ -59,6 +59,12 @@ def seed_interest(name=nil)
   Interest.create!(name: name)
 end
 
+# Invitation Codes
+
+def seed_invite(code=nil)
+  return nil if any_empty(code)
+  InvitationCode.create!(code: code)
+end
 
 # Miscellaneous
 
@@ -130,3 +136,9 @@ seed_interest('Hardware Engineer')
 seed_interest('Marketer')
 seed_interest('Mobile Developer')
 seed_interest('Product Manager')
+
+InvitationCode.destroy_all
+
+seed_invite('WATERLOOWARRIORS')
+seed_invite('BEDFORDSCHMUCKS')
+

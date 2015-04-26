@@ -1,3 +1,3 @@
 class InvitationCode < ActiveRecord::Base
-  belongs_to :user
+  has_many :invitation_code_records
 end
