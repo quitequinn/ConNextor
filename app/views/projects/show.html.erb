@@ -36,6 +36,7 @@
         </div>
 
         <div class="col-md-3">
+          <p>Project Stage: <%= @project.stage %></p>
           <div class="follow-button">
             <% unless @user_project_follow %>
               <%= render 'projects/follow', user_project_follow: UserProjectFollow.new %>

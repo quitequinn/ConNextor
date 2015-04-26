@@ -13,6 +13,8 @@ class ProjectsController < ApplicationController
 
   def manage
     session[:return_to] = @project.id
+    @stages = ProjectStage::STAGES
+    @has_project_permission = has_project_permission?(current_user_id, @project.id)
   end
 
   def core_project
@@ -148,7 +150,11 @@ class ProjectsController < ApplicationController
     end
 
     def project_params
-      params.require(:project).permit(:title, :short_description, :long_description)
+      params.require(:project).permit(
+        :title,
+        :short_description,
+        :long_description,
+        :stage )
     end
 
     def join_request_params

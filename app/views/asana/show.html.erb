@@ -4,7 +4,7 @@
   <%= f.hidden_field :project_id, value: params[:id]%>
 
   <p> Your Asana Workspace </p>
-  <% if @workspaces.any? %>
+  <% if @workspaces.any? && @workspaces['data'] %>
     <%= f.select :workspace_id, @workspaces['data'].collect{ |u| [ u['name'], u['id'] ] } %>
   <% end %>
  

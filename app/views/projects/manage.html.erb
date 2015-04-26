@@ -1,6 +1,8 @@
 <div>
-  <%= link_to '/auth/asana' do %>
-    Connect with Asana
+  <% if AsanaProject.find_by_project_id(@project.id) == nil %>
+    <%= link_to '/auth/asana' do %>
+      Connect with Asana
+    <% end %>
   <% end %>
 </div>
 
@@ -32,4 +34,14 @@
 
 <div>
   <%= link_to 'Edit Project Info', edit_project_path(@project) %>
+</div>
+
+<div>
+  <p>Change project status</p>
+  <% if @has_project_permission %>
+    <%= form_for @project do |f| %>
+      <%= f.select :stage, @stages.collect{ |u| [ u, u ] }, selected: @project.stage %>  
+      <p class="button"><%= f.submit "Update project stage" %></p>
+    <% end %>
+  <% end %>
 </div>
