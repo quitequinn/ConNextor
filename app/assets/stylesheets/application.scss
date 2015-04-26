@@ -163,7 +163,7 @@
   width: 100%;
   height: 100%;
   background: $pop-up-background;
-  z-index: 1034;
+  z-index: $layer-pop-up;
 
   .pop-up {
     position: relative;
@@ -210,7 +210,7 @@
 html.turbolinks-progress-bar::before {
   background-color: $primary-color !important;
   height: 2px !important;
-  z-index: 1032 !important;
+  z-index: $layer-progress-bar !important;
 }
 
 html, body {
@@ -303,6 +303,7 @@ body {
     top: $navbar-height;
     width: 100%;
     //max-width: 400px;
+    z-index: $layer-messages;
     margin: 5px auto;
 
     .alert {

@@ -54,6 +54,14 @@ $navbar-default-bg:     white;
 $footer-height:         80px;
 $footer-padding:        ($footer-height - $font-size-text)/2;
 
+// Layers
+$layer-default:         1;
+$layer-base:            1024;
+$layer-progress-bar:    1032;
+$layer-pop-up:          1034;
+$layer-messages:        1036;
+$layer-highest:         1048;
+
 @mixin transition-all-ease($time) {
   -webkit-transition: all $time ease;
   -moz-transition: all $time ease;
