@@ -164,9 +164,15 @@
   height: 100%;
   background: $pop-up-background;
   z-index: $layer-pop-up;
+  @include transition-all-ease(300ms);
 
   .pop-up {
     position: relative;
+    @include transition-all-ease(300ms);
+    // Either overload or extend an element with this class with
+    //  - fixed height and width or static elemental height
+    //  - 100% height and width, with max-height and max-width for responsiveness
+    //    Note: 100% width with max-width is always recommended
 
     .close-button {
       position: absolute;
@@ -281,16 +287,23 @@ body {
 }
 
 .pop-up-container {
-  .log-in-pop-up {
+  .authentication-pop-up {
+    width: 100%;
+    max-width: 400px;
     padding: 30px 20px;
     // add shadow
     background: white;
-    max-width: 400px; // TODO
     text-align: center;
-    margin-top:50px;
+  }
+  .log-in-pop-up {
+    @extend .authentication-pop-up;
+  }
 
-    .sign-up-message {
+  .sign-up-pop-up {
+    @extend .authentication-pop-up;
 
+    .registration-portal {
+      margin: 30px 0 0;
     }
   }
 }
@@ -303,13 +316,13 @@ body {
     top: $navbar-height;
     width: 100%;
     //max-width: 400px;
-    z-index: $layer-messages;
     margin: 5px auto;
 
     .alert {
       max-width: 400px;
       margin: 5px auto;
       padding: 10px 15px;
+      z-index: $layer-messages;
       color: black;
       opacity: 0.9;
       border: 1px white solid;

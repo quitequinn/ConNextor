@@ -1,3 +1,6 @@
+# The priority is based upon order of creation: first created -> highest priority.
+# See how all your routes lay out with "rake routes".
+
 Rails.application.routes.draw do
 
   resources :profile_educations
@@ -26,6 +29,8 @@ Rails.application.routes.draw do
   get 'profiles/edit_bio/:id', to: 'profiles#edit_bio'
   get 'profiles/edit_location/:id', to: 'profiles#edit_location'
   get 'profiles/new/:id', to: 'profiles#new', as: 'profile_initialize'
+
+  post 'invitation_code/validate', to: 'invitation_code#validate'
   
   #resources :user_follows
 
@@ -57,8 +62,6 @@ Rails.application.routes.draw do
 
   # get 'projects/new'
 
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
   get 'auth/:provider/callback', to: 'sessions#omniauthcreate'
   get 'log_out' => 'sessions#destroy', as: 'log_out'
   get 'log_in' => 'sessions#new', as: 'log_in'
@@ -72,6 +75,9 @@ Rails.application.routes.draw do
   resources :projects do
     resources :positions
   end
+
+
+
   #get 'project/switch/:id', to: 'projects#switch'
   #resources :project_posts
   #post 'join_project' => 'projects#join_request', as: 'join_project'

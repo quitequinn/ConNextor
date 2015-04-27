@@ -93,16 +93,3 @@ function showVideo() {
   video.style.display = 'table';
   document.getElementById('video-iframe').src +="?autoplay=1";
 }
-
-// sign-up pop-up
-
-function hideSignUpPopUp() {
-  var popUp = document.getElementById('sign-up-pop-up-container');
-  popUp.style.display = 'none'
-}
-
-function showSignUpPopUp() {
-  var popUp = document.getElementById('sign-up-pop-up-container');
-  popUp.style.display = 'table'
-}
-

@@ -3,9 +3,6 @@
 
 @import "scss_constants";
 
-$checkbox-checked:      red;
-
-
 .users, .profiles, .sessions {
 
   .registration-section {
@@ -16,7 +13,7 @@ $checkbox-checked:      red;
     padding: 30px;
 
     .section-container{
-      margin-top: 80px;
+      //margin-top: 80px;
 
       .section-header {
         margin-left: 5%;

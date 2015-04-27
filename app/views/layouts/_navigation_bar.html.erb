@@ -63,10 +63,14 @@
           <!--Sign Up and Login buttons-->
           <% if phase_active? ProjectMeta::AUTHENTICATION_PHASES %>
               <button class="btn-inverse navbar-right open-pop-up" onclick="showSignUpPopUp()">Sign Up</button>
-              <button class="btn-inverse navbar-right open-pop-up" onclick="showSignUpPopUp()">Log In</button>
+              <button class="btn-inverse navbar-right open-pop-up" onclick="showLogInPopUp()">Log In</button>
           <% end %>
           <% if phase_active? ProjectMeta::INVITATION_PHASES %>
-              <button class="btn-inverse navbar-right scroll-to-invite">Request an Invitation</button>
+              <% if controller_name == 'welcome' %>
+                  <button class="btn-inverse navbar-right scroll-to-invite">Request an Invitation</button>
+              <% else %>
+                  <a href="/#invite"><button class="btn-inverse navbar-right">Request an Invitation</button></a>
+              <% end %>
           <% end %>
       <% end %>
     </div><!-- /.navbar-collapse -->

@@ -21,7 +21,10 @@
   <%= render 'layouts/navigation_bar' %>
 
   <!--Log In-->
-  <%= render 'layouts/log_in_portal' %> 
+  <%= render 'authentication/log_in_portal' %>
+
+  <!--Sign Up-->
+  <%= render 'authentication/sign_up_portal' %>
 
   <!--Template-->
   <div class="template-wrap <%= controller.controller_name %>">
