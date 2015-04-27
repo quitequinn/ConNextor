@@ -7,6 +7,9 @@
 @import "scss_constants";
 
 .pop-up-container {
+  .logo-img-background {
+    margin-bottom: 30px;
+  }
   .authentication-pop-up {
     width: 100%;
     max-width: 400px;
@@ -23,8 +26,8 @@
   .sign-up-pop-up {
     @extend .authentication-pop-up;
 
-    .registration-portal {
-      margin: 30px 0 0;
-    }
+    //.registration-portal {
+    //  margin: 30px 0 0;
+    //}
   }
 }

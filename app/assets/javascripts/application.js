@@ -71,6 +71,11 @@ function switchLogInForSignUpPopUp() {
   showSignUpPopUp();
 }
 
+function switchSignUpForRequest() {
+  hidePopUps();
+  scrollToInvitation();
+}
+
 function logthatshit() {
   // implement name change, and escape too.
   console.log('I HVAE BEEN TOUCHED');
