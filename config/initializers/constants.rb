@@ -6,10 +6,10 @@ module ProjectMeta
 
   PHASES = [CLOSED, ALPHA, BETA, PUBLIC_RELEASE].freeze
 
-  INVITATION_PHASES = [CLOSED, ALPHA, BETA].freeze
+  INVITATION_PHASES = [CLOSED, ALPHA].freeze
   AUTHENTICATION_PHASES = [ALPHA, BETA, PUBLIC_RELEASE].freeze
 
-  CURRENT_PHASE = ENV['connextor_project_phase'] || ALPHA
+  CURRENT_PHASE = ENV['connextor_project_phase'] || CLOSED
 end
 
 module ProjectStage
