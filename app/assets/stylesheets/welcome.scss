@@ -162,11 +162,11 @@
   .stay-tuned {
     height: auto;
     text-align: center;
+    background: white;
 
     > .container {
       padding-top: 50px;
       padding-bottom: 50px;
-      background: white;
     }
 
     p.form-title {
@@ -184,9 +184,11 @@
     }
 
     .quote {
-      margin-top: 100px;
+      margin-top: 50px;
+      
       blockquote {
         border: none;
+        margin-bottom: 50px;
         quotes: '\201C' '\201D' '\2018' '\2019';
         p {
           display: inline;
