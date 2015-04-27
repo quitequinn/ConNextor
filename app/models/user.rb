@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
 
   belongs_to :profile
 
-  has_one :invitation_code, dependent: :destroy
+  has_one :invitation_code_record, dependent: :destroy
 
   has_many :user_to_projects, dependent: :destroy
   has_many :user_project_follows, dependent: :destroy
