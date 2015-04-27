@@ -5,6 +5,9 @@
     <% else %>
         <a href="/#invite">request a code</a>
     <% end %>
-    , or wait for our official launch.</span><br />
-  ...
+  , or wait for our official launch.</span><br />
+  <%= form_tag invitation_code_validate_path, remote: true do %>
+      <%= text_field_tag :code, params[:code], class: 'input-upright', placeholder: 'Invite Code' %><br />
+      <%= submit_tag 'Validate', class: 'btn-upright' %>
+  <% end %>
 </div>
