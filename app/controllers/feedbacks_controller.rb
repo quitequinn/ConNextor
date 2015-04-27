@@ -13,7 +13,9 @@ class FeedbacksController < ApplicationController
 
     respond_to do |format|
       if @feedback.save
-        format.html { redirect_to @feedback.user_to_task.project }
+        task = @feedback.user_to_task.task
+        project = task.project
+        format.html { redirect_to project_task_path(project.id,task.id) }
       else
         format.html { render :new }
       end
@@ -29,7 +31,7 @@ class FeedbacksController < ApplicationController
   def update
     respond_to do |format|
       if @feedback.update(feedback_params)
-        format.html { redirect_to @feedback.user_to_task.project }
+        format.html { redirect_to @feedback.user_to_task.task }
       else
         format.html { render :edit }
         format.json { render json: @feedback.errors, status: :unprocessable_entity }
@@ -55,7 +57,7 @@ class FeedbacksController < ApplicationController
         :feedback_creator,
         :rating,
         :feedback,
-        :user_to_task
+        :user_to_task_id
         )
     end
 

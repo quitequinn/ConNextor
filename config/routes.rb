@@ -53,6 +53,8 @@ Rails.application.routes.draw do
 
   resources :user_to_tasks
 
+  resources :feedbacks
+
   resources :project_to_tags
 
   resources :project_tags

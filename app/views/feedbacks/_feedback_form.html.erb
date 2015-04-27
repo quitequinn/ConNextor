@@ -1,0 +1,19 @@
+<%= form_for feedback do |f| %>
+  <div>
+    <%= f.hidden_field :user_to_task_id, value: @user_to_task.id %>
+  </div>
+  <div>
+    <%= f.hidden_field :feedback_creator, value: current_user_id %>
+  </div>
+  <div>
+    <%= f.label :feedback %>
+    <%= f.text_area :feedback%>
+  </div>
+
+  <div>
+    <%= f.label :rating %>
+    <%= f.text_field :rating %>
+  </div>
+
+  <%= f.submit %>
+<% end %>

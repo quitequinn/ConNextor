@@ -27,12 +27,14 @@
         <% if request.request_type == 'project_task' %>
           <td> <%= button_to 'Accept', accept_task_path( user_id: request.sender_id, 
             task_id: request.request_type_id,
-            link: request.link) %> 
+            link: request.link,
+            request_id: request.id) %> 
         </td>
         <% elsif request.request_type == 'project_position' %>
           <td> <%= button_to 'Accept', accept_project_path( user_id: request.sender_id, 
             position_id: request.request_type_id,
-            link: request.link) %> 
+            link: request.link,
+            request_id: request.id) %> 
         </td>
         <% end %>
         <td><%= link_to 'Show', request_path(request.id ) %></td>

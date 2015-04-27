@@ -56,6 +56,7 @@ class TasksController < ApplicationController
   # Create user to task
   # Update task
   # Send notification
+  # Delete request
   def accept_request
     user_id = accept_request_params[:user_id]
     task_id = accept_request_params[:task_id]
@@ -77,6 +78,7 @@ class TasksController < ApplicationController
                          link: "/projects/#{project_id}/tasks#{task_id}",
                          isRead: false )
 
+    Request.find(accept_request_params[:request_id]).destroy
     javascript = "alert('You have successfully joined #{task_id}');"
     #PrivatePub.publish_to("/inbox/#{user_id}",javascript)
     redirect_to Project.find(project_id), notice: 'Request sent!'
@@ -142,7 +144,7 @@ class TasksController < ApplicationController
     end
 
     def accept_request_params
-      params.permit(:user_id, :task_id, :link)
+      params.permit(:user_id, :task_id, :link, :request_id)
     end
 
     def check_user_permission(project_id)

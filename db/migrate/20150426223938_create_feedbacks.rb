@@ -2,7 +2,7 @@ class CreateFeedbacks < ActiveRecord::Migration
   def change
     create_table :feedbacks do |t|
       t.string :feedback
-      t.integer :rating
+      t.decimal :rating
       t.integer :feedback_creator
       t.belongs_to :user_to_task, index: true
     end

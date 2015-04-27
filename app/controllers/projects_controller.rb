@@ -76,6 +76,7 @@ class ProjectsController < ApplicationController
                           project_user_class: position.position_type )
 
     Position.update(position_id, filled: true, user_id: user_id)
+
     Notification.create( user_id: user_id, 
                          actor_id: current_user_id,
                          verb: 'joined project',
@@ -84,6 +85,7 @@ class ProjectsController < ApplicationController
                          link: "/projects/#{project_id}",
                          isRead: false )
 
+    Request.find(accept_request_params[:request_id]).destroy
     javascript = "alert('You have successfully joined #{@project.id}');"
     #PrivatePub.publish_to("/inbox/#{user_id}",javascript)
     redirect_to Project.find(project_id)
@@ -162,7 +164,7 @@ class ProjectsController < ApplicationController
     end
 
     def accept_request_params
-      params.permit(:user_id, :position_id, :link)
+      params.permit(:user_id, :position_id, :link, :request_id)
     end
 
     def fetch_asana_projects_tasks(asana_projects)
