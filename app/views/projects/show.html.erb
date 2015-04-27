@@ -41,7 +41,7 @@
             <% unless @user_project_follow %>
               <%= render 'projects/follow', user_project_follow: UserProjectFollow.new %>
               <% else %>
-                  <%= render 'projects/unfollow', user_project_follow: @user_project_follow %>
+                  <%= render 'projects/unfollow', user_project_follow: @user_project_follow%>
               <% end %>
           </div>
           <div>

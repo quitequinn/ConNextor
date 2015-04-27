@@ -240,6 +240,16 @@ ActiveRecord::Schema.define(version: 20150426223938) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "project_tasks", force: :cascade do |t|
+    t.integer  "project_id"
+    t.integer  "user_id"
+    t.string   "name"
+    t.string   "description"
+    t.string   "state"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
   create_table "project_to_tags", force: :cascade do |t|
     t.integer  "project_id"
     t.integer  "project_tag_id"
@@ -312,6 +322,14 @@ ActiveRecord::Schema.define(version: 20150426223938) do
 
   add_index "user_to_interests", ["interest_id"], name: "index_user_to_interests_on_interest_id", using: :btree
   add_index "user_to_interests", ["user_id"], name: "index_user_to_interests_on_user_id", using: :btree
+
+  create_table "user_to_project_tasks", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "project_task_id"
+    t.string   "relation"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
 
   create_table "user_to_projects", force: :cascade do |t|
     t.integer  "user_id"
