@@ -1,15 +1,6 @@
 <%= render 'sessions/log_in' %>
-<%#= link_to 'Sign Up With Email', sign_up_path, class: 'sign-up-message'%>
+<span>Don't have an account? <a href="javascript:switchLogInForSignUpPopUp()" class="sign-up-message">Sign up instead</a></span>
+
 <!--<br />-->
 <!--<span>- or connect with one of the following -</span><br />-->
-<!--<div class="social-media-imgs">-->
-  <%#= link_to '/auth/twitter' do %>
-      <!--<div class="social-media-img twitter-image block-center"></div>-->
-  <%# end %>
-  <%#= link_to '/auth/facebook' do %>
-      <!--<div class="social-media-img facebook-image block-center"></div>-->
-  <%# end %>
-  <%#= link_to '/auth/linkedin' do %>
-      <!--<div class="social-media-img linkedin-image block-center"></div>-->
-  <%# end %>
-<!--</div>-->
+<%#= render 'authentication/oauth_registration' %>

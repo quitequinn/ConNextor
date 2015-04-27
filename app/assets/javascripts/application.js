@@ -66,7 +66,10 @@ function showSignUpPopUp() {
   popUp.style.display = 'table'
 }
 
-
+function switchLogInForSignUpPopUp() {
+  hidePopUps();
+  showSignUpPopUp();
+}
 
 function logthatshit() {
   // implement name change, and escape too.

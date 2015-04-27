@@ -1,0 +1,30 @@
+// Dedicated partial just for authentication pop-ups and more
+//   Note: The classes in this stylesheet are not wrapped within
+//         any particular controller(s). And so they are by
+//         definition, global
+//   Note: Switch to Tomeji will come soon (see _scss_constants.scss)
+
+@import "scss_constants";
+
+.pop-up-container {
+  .authentication-pop-up {
+    width: 100%;
+    max-width: 400px;
+    padding: 30px 20px;
+    // add shadow
+    background: white;
+    text-align: center;
+  }
+
+  .log-in-pop-up {
+    @extend .authentication-pop-up;
+  }
+
+  .sign-up-pop-up {
+    @extend .authentication-pop-up;
+
+    .registration-portal {
+      margin: 30px 0 0;
+    }
+  }
+}
