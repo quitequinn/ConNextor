@@ -3,11 +3,13 @@
     <div class="inner-centering pop-up sign-up-pop-up" onclick="">
       <a href="javascript:hideSignUpPopUp()"><span class="glyphicon glyphicon-remove close-button" ></span></a>
       <div class="logo-img-background block-center"></div>
-      <% if phase_active? ProjectMeta::INVITATION_PHASES %>
-          <%= render 'authentication/invitation_code' %>
-      <% else %>
-          <%= render 'authentication/registration_portal' %>
-      <% end %>
+      <div id="authentication-body" class="authentication-body">
+        <% if phase_active? ProjectMeta::INVITATION_PHASES %>
+            <%= render 'authentication/invitation_code' %>
+        <% else %>
+            <%= render 'authentication/registration_portal' %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

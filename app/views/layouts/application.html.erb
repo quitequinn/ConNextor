@@ -18,7 +18,7 @@
 <div id="content-wrap">
 
   <!--Navigation bar-->
-  <%= render 'layouts/navigation_bar' %>
+  <%= render 'layouts/navigation_bar' unless controller_name == 'profiles' and action_name == 'new' %>
 
   <!--Log In-->
   <%= render 'authentication/log_in_portal' %>

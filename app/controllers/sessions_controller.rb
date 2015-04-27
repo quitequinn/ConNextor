@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  #before_action :check_signed_in, except: :destroy
+  # before_action :check_signed_in, except: :destroy
 
   def new
   end
@@ -27,12 +27,12 @@ class SessionsController < ApplicationController
     if logged_in?
       if @identity.user == current_user
         # Identity is already associated with this user
-        redirect_to profile_path(current_user.profile), notice: "Already logged in with omniauth"
+        redirect_to profile_path(current_user.profile), notice: 'Already logged in with omniauth'
       else
         # Identity is not associated with the current_user
         @identity.user = current_user
         @identity.save
-        redirect_to profile_path(current_user.profile), notice: "Account was successfully linked"
+        redirect_to profile_path(current_user.profile), notice: 'Account was successfully linked'
       end
     else
       if @identity.user

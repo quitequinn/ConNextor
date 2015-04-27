@@ -1,6 +1,6 @@
 class ProfilesController < ApplicationController
   # sets @profile
-  before_action :set_profile, only: [:show, :new, :edit, :update, :destroy, :switch, :edit_bio, :edit_location, :edit_photo, :edit_cover, :additional_info, :register_info, :resume_info]
+  before_action :set_profile, only: [:show, :new, :update, :destroy, :switch, :edit_bio, :edit_location, :edit_photo, :edit_cover, :additional_info, :register_info, :resume_info]
   
   # sets @user_is_owner_of_profile
   before_action :set_profile_owner, only: [:show, :update]
@@ -42,7 +42,7 @@ class ProfilesController < ApplicationController
   def register_info
     respond_to do |format|
       if @profile.update profile_params
-        Profile.update_misc_info( current_user, profile_params )
+        # Profile.update_misc_info( current_user, profile_params )
         Profile.update_user_info( current_user, profile_params )
         @profile.user.create_interests( user_params[:interest_ids] )
         #@profile.user.create_skills( user_params[:skill_ids] )
@@ -137,8 +137,8 @@ class ProfilesController < ApplicationController
         :location, 
         :school, 
         :short_bio, 
-        :code, 
-        :has_idea, 
+        # :code,
+        # :has_idea,
         :first_name, 
         :last_name )
     end

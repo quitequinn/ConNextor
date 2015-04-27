@@ -27,19 +27,20 @@ class Profile < ActiveRecord::Base
     end
   end
 
+
   def self.update_misc_info ( user, profile_params )
-    if profile_params[:code]
-      if InvitationCode.find_by_user_id( user.id )
-        InvitationCode.find_by_user_id( user.id ).update(code: profile_params[:code] )
-      else
-        InvitationCode.create( user_id: user.id, used: false, code: profile_params[:code] )
-      end
-    end
-    if profile_params[:has_idea] == '1'
-      if ProfileIdea.find_by_user_id( user.id ) == nil
-        ProfileIdea.create( user_id: user.id )
-      end
-    end
+    # if profile_params[:code]
+    #   if InvitationCode.find_by_user_id( user.id )
+    #     InvitationCode.find_by_user_id( user.id ).update(code: profile_params[:code] )
+    #   else
+    #     InvitationCode.create( user_id: user.id, used: false, code: profile_params[:code] )
+    #   end
+    # end
+    # if profile_params[:has_idea] == '1'
+    #   if ProfileIdea.find_by_user_id( user.id ) == nil
+    #     ProfileIdea.create( user_id: user.id )
+    #   end
+    # end
   end
 
   def current_step
