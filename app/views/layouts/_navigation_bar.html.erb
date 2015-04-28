@@ -66,10 +66,8 @@
               <button class="btn-inverse navbar-right open-pop-up" onclick="showLogInPopUp()">Log In</button>
           <% end %>
           <% if phase_active? ProjectMeta::INVITATION_PHASES %>
-              <% if controller_name == 'welcome' %>
-                  <button class="btn-inverse navbar-right scroll-to-invite">Request an Invitation</button>
-              <% else %>
-                  <a href="/#invite"><button class="btn-inverse navbar-right">Request an Invitation</button></a>
+              <%= link_to new_invitation_request_path do %>
+                  <button class="btn-inverse navbar-right">Request an Invitation</button>
               <% end %>
           <% end %>
       <% end %>

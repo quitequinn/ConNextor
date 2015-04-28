@@ -25,3 +25,8 @@ en:
     attributes:
       user:
         password_hash: "Password"
+      invitation_request:
+        github: "GitHub"
+        linkedin: "LinkedIn"
+        portfolio: "Portfolio"
+        message: "Tell us something you are excited about"

@@ -1,10 +1,6 @@
 <div class="invitation-code">
   <p>ConNextor is currently open only by invitation only. If you have an invitation code, enter it here. Otherwise, you are welcome to
-    <% if controller_name == 'welcome' %>
-        <a href="javascript:switchSignUpForRequest()">request a code</a>
-    <% else %>
-        <a href="/#invite">request a code</a>
-    <% end %>
+    <%= link_to 'request a code', new_invitation_request_path %>
   , or wait for our official launch.</p>
   <%= form_tag invitation_code_validate_path, remote: true do %>
       <%= text_field_tag :code, params[:code], class: 'input-upright', placeholder: 'Invite Code' %><br />

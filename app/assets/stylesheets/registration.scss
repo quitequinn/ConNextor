@@ -2,7 +2,7 @@
 
 @import "scss_constants";
 
-.users, .profiles, .sessions {
+.users, .profiles, .sessions, .invitation_requests {
 
   .registration-section {
     margin-bottom: 50px;
@@ -32,10 +32,19 @@
       padding: 35px 0 0;
 
       .form-group {
+        .field_with_errors {
+          label {
+            color: $warning-color;
+          }
+          .input-upright {
+            box-shadow: 0 0 5px $warning-color;
+          }
+        }
+
         .control-label {
           margin: 0 0 0 0;
-          font-size: $font-size-submedium;
-          font-weight: $font-weight-text;
+          //font-size: $font-size-submedium;
+          //font-weight: $font-weight-text;
         }
 
         .input-upright {
@@ -100,7 +109,7 @@
         color: $secondary-color;
       }
 
-      .error_messages {
+      .error_messages, #error_messages {
         .error_message {
           font-size: $font-size-small;
           color: $warning-color;
