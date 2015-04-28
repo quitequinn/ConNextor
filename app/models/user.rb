@@ -184,6 +184,16 @@ class User < ActiveRecord::Base
     end
   end
 
+  def update_name(first_name, last_name)
+    if first_name and not first_name.empty?
+      self.first_name = first_name
+    end
+    if last_name and not last_name.empty?
+      self.last_name = last_name
+    end
+    self.save
+  end
+
   def self.subscribe_to_mailchimp(email)
     @list_id = ENV["MAILCHIMP_LIST_ID"]
     gb = Gibbon::API.new

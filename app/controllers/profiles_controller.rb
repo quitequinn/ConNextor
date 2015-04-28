@@ -53,17 +53,23 @@ class ProfilesController < ApplicationController
 
   def update
     check_is_owner( current_user, @profile )
-
+    if session[:step] == 0
+      @profile.user.update_name user_params[:first_name], user_params[:last_name]
+    elsif session[:step] == 2
+      @profile.user.create_interests user_params[:interest_ids]
+    end
     respond_to do |format|
       if @profile.update profile_params
         session[:step] += 1
         if session[:step] == 2 || session[:step] == 3
           set_skills_and_interests
         end
+
         format.html { redirect_to @profile, notice: 'Profile was successfully updated.' }
         format.js { render 'update_registration.js.erb' }
       else
         format.html { render :new }
+        format.js { render js: 'alert("internal error")' }
         format.json { render json: @profile.errors, status: :unprocessable_entity }
       end
     end
@@ -107,17 +113,15 @@ class ProfilesController < ApplicationController
         :resume,
         :location,
         :school,
-        :short_bio,
-        # :code,
-        # :has_idea,
-        :first_name,
-        :last_name )
+        :short_bio
+      )
     end
 
     def user_params
-      params.permit(
-          #:skill_ids=>[],
-          :interest_ids=>[]
+      params.require(:user).permit(
+        :first_name,
+        :last_name,
+        :interest_ids=>[]
       )
     end
 
