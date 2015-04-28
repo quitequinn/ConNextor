@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @invitation_request.name %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @invitation_request.email %>
+</p>
+
+<p>
+  <strong>Expertise:</strong>
+  <%= @invitation_request.expertise %>
+</p>
+
+<p>
+  <strong>Github:</strong>
+  <%= @invitation_request.github %>
+</p>
+
+<p>
+  <strong>Linkedin:</strong>
+  <%= @invitation_request.linkedin %>
+</p>
+
+<p>
+  <strong>Portfolio:</strong>
+  <%= @invitation_request.portfolio %>
+</p>
+
+<p>
+  <strong>Message:</strong>
+  <%= @invitation_request.message %>
+</p>
+
+<%= link_to 'Edit', edit_invitation_request_path(@invitation_request) %> |
+<%= link_to 'Back', invitation_requests_path %>

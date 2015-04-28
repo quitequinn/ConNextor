@@ -3,6 +3,8 @@
 
 Rails.application.routes.draw do
 
+  resources :invitation_requests
+
   resources :profile_educations
   get 'profile_educations/swap/:id', to: 'profile_educations#swap'
   get 'profile_educations/add/:profile_id', to: 'profile_educations#add'
