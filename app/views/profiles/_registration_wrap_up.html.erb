@@ -1,0 +1,21 @@
+<div class="row section-container">
+  <div class="section-header">
+    <div class="big-header">
+      <p>You are finished!</p>
+    </div>
+  </div>
+
+  <div class="col-sm-4 col-sm-push-8 side-description">
+    <p class="title">Some tips</p>
+    <p class="text">Connect with some external social media sites to find your friends easier!</p>
+  </div>
+
+  <div class="col-sm-8 col-sm-pull-4 section-form-container">
+    <div class="text-center">
+      <%= render 'authentication/oauth_registration' %>
+    </div>
+  </div>
+</div>
+<div class="end-section col-sm-12">
+  <%= link_to 'Proceed to your profile', profile_path(@profile) %>
+</div>

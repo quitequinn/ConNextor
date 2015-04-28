@@ -1,9 +1,9 @@
 class ProfilesController < ApplicationController
   # sets @profile
-  before_action :set_profile, only: [:show, :new, :update, :destroy, :switch, :edit_bio, :edit_location, :edit_photo, :edit_cover, :additional_info]
+  before_action :set_profile, only: [:show, :new, :update, :update_header, :destroy, :switch, :edit_bio, :edit_location, :edit_photo, :edit_cover, :additional_info]
   
   # sets @user_is_owner_of_profile
-  before_action :set_profile_owner, only: [:show, :update]
+  before_action :set_profile_owner, only: [:show, :update, :update_header]
   
   def switch
     @tab_name = params[:tab]
@@ -53,6 +53,7 @@ class ProfilesController < ApplicationController
 
   def update
     check_is_owner( current_user, @profile )
+    session[:step] = 1 if session[:step] > 4
     if session[:step] == 0
       @profile.user.update_name user_params[:first_name], user_params[:last_name]
     elsif session[:step] == 2
@@ -69,6 +70,18 @@ class ProfilesController < ApplicationController
         format.js { render 'update_registration.js.erb' }
       else
         format.html { render :new }
+        format.js { render js: 'alert("internal error")' }
+        format.json { render json: @profile.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def update_header
+    check_is_owner( current_user, @profile )
+    respond_to do |format|
+      if @profile.update profile_params
+        format.js
+      else
         format.js { render js: 'alert("internal error")' }
         format.json { render json: @profile.errors, status: :unprocessable_entity }
       end

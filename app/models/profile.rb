@@ -49,6 +49,7 @@ class Profile < ActiveRecord::Base
       profiles/registration_geographic
       profiles/registration_interests
       profiles/registration_skills
+      profiles/registration_wrap_up
     ]
   end
 
