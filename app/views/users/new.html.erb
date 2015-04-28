@@ -28,12 +28,7 @@
           <div class="col-sm-8 col-sm-pull-4 section-form-container">
             <%= render 'users/form_username_email', f: f %>
             <%= render 'users/form_first_last_name', f: f %>
-            <% if @identity and @user.profile %>
-                <%= f.hidden_field :identity_id, value: @identity.id %>
-                <%= f.hidden_field :profile_id, value: @user.profile.id %>
-            <% else %>
-                <%= render 'users/form_password', f: f %>
-            <% end %>
+            <%= render 'users/form_password', f: f %>
           </div>
 
           <div class="row text-center">

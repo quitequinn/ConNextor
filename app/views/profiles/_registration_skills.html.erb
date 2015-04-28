@@ -1,0 +1,36 @@
+<div id="skills-form" class="row section-container">
+  <div class="section-header">
+    <div class="big-header">
+      <p>What can you do?</p>
+    </div>
+  </div>
+
+  <div class="col-sm-4 col-sm-push-8 side-description">
+    <p class="title">Step 4 of 4</p>
+    <p class="text">What are you top skills? e.g HTML, Ruby, Public Speaking, Graphic Design, Content Creation</p>
+  </div>
+
+  <div class="col-sm-8 col-sm-pull-4 section-form-container">
+    <div class="skill-blocks">
+      <%= render 'edit_skills', list_of_user_to_skills: @profile.user.user_to_skills %>
+    </div>
+  </div>
+
+  <!--Resume-->
+  <div class="col-sm-6 col-sm-push-1 side-description">
+    <p class="title">Resume</p>
+    <p class="text">Upload your resume</p>
+  </div>
+
+  <div class="col-sm-6 col-sm-push-1 section-form-container">
+    <div class="profile-professionalism">
+      <%= form_for @profile, html: {multipart: true, id: 'resume-form'} do |f| %>
+          <p>
+            <!-- hidden field for params.require(:profile) -->
+            <%= f.hidden_field :id, value: @profile.id %>
+            <%= f.file_field :resume %>
+          </p>
+      <% end %>
+    </div>
+  </div>
+</div>

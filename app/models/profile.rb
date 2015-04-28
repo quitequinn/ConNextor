@@ -43,6 +43,15 @@ class Profile < ActiveRecord::Base
     # end
   end
 
+  def self.file_step_hash
+    %w[
+      profiles/registration_basic_information
+      profiles/registration_geographic
+      profiles/registration_interests
+      profiles/registration_skills
+    ]
+  end
+
   def current_step
     @current_step || steps.first
   end

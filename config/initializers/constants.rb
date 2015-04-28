@@ -6,6 +6,16 @@ module ProjectMeta
 
   PHASES = [CLOSED, ALPHA, BETA, PUBLIC_RELEASE].freeze
 
+  # Use with phase_active?(array) in application_controller
+  # For example:
+  #   if phase_active? ProjectMeta::INVITATION_PHASES
+  #     ...
+  #   end
+  # and the stuff inside will be only active in the particular
+  # phases defined within the array
+  # For use mostly inside views
+  # See app/views/layouts/_navigation_bar.html.erb
+
   INVITATION_PHASES = [CLOSED, ALPHA].freeze
   AUTHENTICATION_PHASES = [ALPHA, BETA, PUBLIC_RELEASE].freeze
 
