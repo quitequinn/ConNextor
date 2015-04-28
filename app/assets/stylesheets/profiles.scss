@@ -29,8 +29,8 @@ $tabs-offset:           20px;
           border: $profile-photo-border solid white;
           @include border-rounded(10px);
           background: white;
-          display:block;
-          margin:auto;
+          display: block;
+          margin: auto;
           @include box-shadow(0, 3px, 5px, $shadow-color);
         }
         .edit-icon {
