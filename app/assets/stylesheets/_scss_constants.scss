@@ -17,6 +17,7 @@ $palette-light-color:   #BFE2E4;
 $palette-dark-color:    #ACC6C7;
 $border-divider-color:  #CCCCCC;
 $warning-color:         #F98152;
+$success-color:         #DFF0D8;
 $active-text-color:     #000000;
 $inactive-text-color:   #ABABAB;
 $subtext-color:         #888888;
@@ -52,6 +53,14 @@ $navbar-height:         57px;
 $navbar-default-bg:     white;
 $footer-height:         80px;
 $footer-padding:        ($footer-height - $font-size-text)/2;
+
+// Layers
+$layer-default:         1;
+$layer-base:            1024;
+$layer-progress-bar:    1032;
+$layer-pop-up:          1034;
+$layer-messages:        1036;
+$layer-highest:         1048;
 
 @mixin transition-all-ease($time) {
   -webkit-transition: all $time ease;

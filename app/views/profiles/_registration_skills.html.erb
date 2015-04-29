@@ -1,0 +1,25 @@
+<div id="skills-form" class="row section-container">
+  <div class="section-header">
+    <div class="big-header">
+      <p>What can you do?</p>
+    </div>
+  </div>
+
+  <div class="col-sm-4 col-sm-push-8 side-description">
+    <p class="title">Step 4 of 4</p>
+    <p class="text">What are you top skills? e.g HTML, Ruby, Public Speaking, Graphic Design, Content Creation</p>
+  </div>
+
+  <div class="col-sm-8 col-sm-pull-4 section-form-container">
+    <div class="skill-blocks">
+      <%= render 'edit_skills', list_of_user_to_skills: @profile.user.user_to_skills %>
+    </div>
+  </div>
+</div>
+
+<%= form_for @profile, remote: true, authenticity_token: true, html: {class: 'form-horizontal', id: 'profile-form'} do |f| %>
+    <%= f.hidden_field :id %>
+    <div class="end-section col-sm-12">
+      <input type="submit" name="Submit" class="btn-upright" value="Submit" />
+    </div>
+<% end %>

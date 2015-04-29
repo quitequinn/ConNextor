@@ -1,0 +1,27 @@
+<%= form_for @profile, remote: true, html: {class: 'form-horizontal', id: 'profile-form'} do |f| %>
+    <%= f.hidden_field :id %>
+
+    <div class="row section-container">
+      <div class="section-header">
+        <div class="row big-header">
+          <p>What do you see yourself doing?</p>
+        </div>
+      </div>
+
+      <div class="col-sm-4 col-sm-push-8 side-description">
+        <p class="title">Step 3 of 4</p>
+        <p class="text">After choosing the field you are interested in, we will give you better sponsors about ideas or projects</p>
+      </div>
+
+      <div class="col-sm-8 col-sm-pull-4 section-form-container">
+        <div class="checkbox-field">
+          <%= fields_for :user, @profile.user do |user_fields| %>
+              <%= render 'edit_interests', f: user_fields %>
+          <% end %>
+        </div>
+      </div>
+      <div class="end-section col-sm-12">
+        <input type="submit" name="Submit" class="btn-upright" value="Submit" />
+      </div>
+    </div>
+<% end %>

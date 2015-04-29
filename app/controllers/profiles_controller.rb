@@ -1,9 +1,9 @@
 class ProfilesController < ApplicationController
   # sets @profile
-  before_action :set_profile, only: [:show, :new, :edit, :update, :destroy, :switch, :edit_bio, :edit_location, :edit_photo, :edit_cover, :additional_info, :register_info, :resume_info]
+  before_action :set_profile, only: [:show, :new, :update, :update_header, :destroy, :switch, :edit_bio, :edit_location, :edit_photo, :edit_cover, :additional_info]
   
   # sets @user_is_owner_of_profile
-  before_action :set_profile_owner, only: [:show, :update]
+  before_action :set_profile_owner, only: [:show, :update, :update_header]
   
   def switch
     @tab_name = params[:tab]
@@ -37,43 +37,10 @@ class ProfilesController < ApplicationController
     end
   end
 
-  # POST
-  # main registration page
-  def register_info
-    respond_to do |format|
-      if @profile.update profile_params
-        Profile.update_misc_info( current_user, profile_params )
-        Profile.update_user_info( current_user, profile_params )
-        @profile.user.create_interests( user_params[:interest_ids] )
-        #@profile.user.create_skills( user_params[:skill_ids] )
-        format.html { redirect_to controller: 'profiles', action: 'additional_info', id: @profile.id }
-      else
-        format.html { render :new }
-        format.json { render json: @profile.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # POST
-  # resume registration page
-  def resume_info
-    if profile_params[:resume] == nil
-      flash[:warning] = 'Oops! You forgot to upload your resume or connect with linkedin'
-      redirect_to controller: 'profiles', action: 'additional_info', id: @profile.id 
-    else
-      @profile.update profile_params
-      redirect_to @profile
-    end
-  end
-
-  # resume registration page
-  def additional_info
-  end
-
   # Not the usual 'new', more like initialize.
   # we created profile when we created user
   def new
-    set_skills_and_interests
+    session[:step] = 0
     if @profile.user
       if @profile.user.first_name
         @profile.first_name = @profile.user.first_name
@@ -86,13 +53,36 @@ class ProfilesController < ApplicationController
 
   def update
     check_is_owner( current_user, @profile )
-
+    session[:step] = 1 if session[:step] > 4
+    if session[:step] == 0
+      @profile.user.update_name user_params[:first_name], user_params[:last_name]
+    elsif session[:step] == 2
+      @profile.user.create_interests user_params[:interest_ids]
+    end
     respond_to do |format|
       if @profile.update profile_params
+        session[:step] += 1
+        if session[:step] == 2 || session[:step] == 3
+          set_skills_and_interests
+        end
+
         format.html { redirect_to @profile, notice: 'Profile was successfully updated.' }
-        format.js
+        format.js { render 'update_registration.js.erb' }
       else
         format.html { render :new }
+        format.js { render js: 'alert("internal error")' }
+        format.json { render json: @profile.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def update_header
+    check_is_owner( current_user, @profile )
+    respond_to do |format|
+      if @profile.update profile_params
+        format.js
+      else
+        format.js { render js: 'alert("internal error")' }
         format.json { render json: @profile.errors, status: :unprocessable_entity }
       end
     end
@@ -134,19 +124,17 @@ class ProfilesController < ApplicationController
         :profile_photo,
         :cover_photo,
         :resume,
-        :location, 
-        :school, 
-        :short_bio, 
-        :code, 
-        :has_idea, 
-        :first_name, 
-        :last_name )
+        :location,
+        :school,
+        :short_bio
+      )
     end
 
     def user_params
-      params.permit(
-          #:skill_ids=>[],
-          :interest_ids=>[]
+      params.require(:user).permit(
+        :first_name,
+        :last_name,
+        :interest_ids=>[]
       )
     end
 

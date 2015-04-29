@@ -80,13 +80,18 @@
   padding: 5px 20px 5px 20px;
   @extend .form-element-margin-basis;
   background: none;
-  height: 40px;
+  min-height: 40px;
   color: black;
 }
 
 .input-label {
   @extend .form-element-base;
-  font-weight: $font-weight-misc;
+  font-weight: $font-weight-text;
+  font-size: $font-size-submedium;
+}
+
+.input-label-mandatory:after {
+  content: ' *';
 }
 
 .input-base {
@@ -108,6 +113,7 @@
 }
 
 .input-upright:focus, .select-upright:focus {
+  outline: none; // erases blue focus rectangle on Macs
   box-shadow: 0 0 5px $primary-color;
   border: solid $primary-color 1px;
 }
@@ -163,10 +169,16 @@
   width: 100%;
   height: 100%;
   background: $pop-up-background;
-  z-index: 1034;
+  z-index: $layer-pop-up;
+  @include transition-all-ease(300ms); // TODO Doesn't work
 
   .pop-up {
     position: relative;
+    @include transition-all-ease(300ms); // TODO same as above
+    // Either overload or extend an element with this class with
+    //  - fixed height and width or static elemental height
+    //  - 100% height and width, with max-height and max-width for responsiveness
+    //    Note: 100% width with max-width is always recommended
 
     .close-button {
       position: absolute;
@@ -210,7 +222,7 @@
 html.turbolinks-progress-bar::before {
   background-color: $primary-color !important;
   height: 2px !important;
-  z-index: 1032 !important;
+  z-index: $layer-progress-bar !important;
 }
 
 html, body {
@@ -231,21 +243,21 @@ body {
   margin: 0 auto (0-$footer-height);
 }
 
-.log-in {
-  padding: 20px 0;
-  .error-message {
-    color: $warning-color;
-  }
-}
+//.log-in {
+//  padding: 20px 0;
+//  .error-message {
+//    color: $warning-color;
+//  }
+//}
 
-.sign-up {
-  padding: 20px 0;
-  .error-message {
-    color: $warning-color;
-  }
-}
+//.sign-up {
+//  padding: 20px 0;
+//  .error-message {
+//    color: $warning-color;
+//  }
+//}
 
-.social-media-imgs {
+.social-media-connect {
   //      height: 50px;
   .social-media-img {
     width: 30px;
@@ -275,28 +287,35 @@ body {
     font-weight: $font-weight-banner;
   }
 
-  .sign-up-button {
-    margin: 8px 15px 8px 0;
-  }
-}
-
-.pop-up-container {
-  .log-in-pop-up {
-    padding: 30px 20px;
-    // add shadow
-    background: white;
-    max-width: 400px; // TODO
-    text-align: center;
-    margin-top:50px;
-
-    .sign-up-message {
-
-    }
+  input[type=button], button {
+    margin: 8px 15px 8px 0 !important;
   }
 }
 
 .template-wrap {
   padding: $navbar-height 0 $footer-height 0;
+
+  .flash-messages {
+    position: fixed;
+    top: $navbar-height;
+    width: 100%;
+    //max-width: 400px;
+    margin: 5px auto;
+
+    .alert {
+      max-width: 400px;
+      margin: 5px auto;
+      padding: 10px 15px;
+      z-index: $layer-messages;
+      color: black;
+      opacity: 0.9;
+      border: 1px white solid;
+    }
+    .alert-success { background: $success-color; }
+    .alert-error { background: $warning-color; }
+    .alert-notice { background: $secondary-bg-color; }
+
+  }
 }
 
 .footer {

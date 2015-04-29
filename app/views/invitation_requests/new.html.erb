@@ -1,0 +1,101 @@
+<% provide(:title, 'Request an Invitation') %>
+
+<div class="container registration-section">
+  <%= form_for @invitation_request, html: {multipart: true, class: 'form-horizontal'} do |f| %>
+      <div class="row section-container">
+        <div class="section-header">
+          <div class="big-header">
+            <p>Request an Invitation</p>
+          </div>
+        </div>
+
+        <div class="col-sm-4 col-sm-push-8 side-description">
+          <p class="title">Apply for an invitation</p>
+          <p class="text">The more information you put here, the faster we can be convinced that you are someone we want in our community. You will be notified with an exclusive invitation via email. </p>
+
+          <!--Errors-->
+          <% if @invitation_request.errors.any? %>
+              <div id="error_messages">
+                <% @invitation_request.errors.full_messages.each do |message| %>
+                    <p class="error_message"><%= message %></p>
+                <% end %>
+              </div>
+          <% end %>
+        </div>
+        <div class="col-sm-8 col-sm-pull-4 section-form-container">
+
+          <div class="form-group">
+            <%= f.label :name, {class: 'col-sm-3 control-label input-label input-label-mandatory'} %>
+            <div class="col-sm-9">
+              <%= f.text_field :name, {class: 'input-upright', placeholder: 'Emmalene M Clementine'} %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :email, {class: 'col-sm-3 control-label input-label input-label-mandatory'} %>
+            <div class="col-sm-9">
+              <%= f.text_field :email, {class: 'input-upright', placeholder: 'emma@connextor.co'} %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :linkedin, {class: 'col-sm-3 control-label input-label'} %>
+            <div class="col-sm-9">
+              <%= f.text_field :linkedin, {class: 'input-upright', placeholder: 'https://linkedin.com/in/emmalenemclements/'} %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :github, {class: 'col-sm-3 control-label input-label'} %>
+            <div class="col-sm-9">
+              <%= f.text_field :github, {class: 'input-upright', placeholder: 'https://github.com/emmalenemclements/'} %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :portfolio, {class: 'col-sm-3 control-label input-label'} %>
+            <div class="col-sm-9">
+              <%= f.text_field :portfolio, {class: 'input-upright', placeholder: 'http://emmaclementine.com/'} %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <!--<p class="input-label">Tell us something you are excited about</p>-->
+            <%= f.label :message, {class: 'col-sm-3 control-label input-label input-label-mandatory'} %>
+            <div class="col-sm-9">
+              <%= f.text_area :message, rows: 6, class: 'input-upright', placeholder: 'Don\'t overthink this!' %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :expertise, {class: 'col-sm-3 control-label input-label'} %>
+            <div class="col-sm-9">
+              <%= f.hidden_field :expertise, {id: 'expertise-image'} %>
+              <% @interests.each do |a_value| %>
+                  <div class="col-sm-4 check-box-element-container">
+                    <% checkbox_id = "interest-checkbox-#{a_value.id}" %>
+                    <input type="checkbox" id="<%= checkbox_id %>" class="input-checkbox interest-checkbox" />
+                    <label class="control-label check-box-element" onclick="updateExpertise('<%= a_value.name %>', '<%= checkbox_id %>')">
+                      <%= a_value.name %>
+                    </label>
+                  </div>
+              <% end %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <!--<p class="input-label">Tell us something you are excited about</p>-->
+            <%= f.label :resume, {class: 'col-sm-3 control-label input-label'} %>
+            <div class="col-sm-9">
+              <%= f.file_field :resume, rows: 6, class: '' %>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="col-sm-12 text-center">
+          <%= f.submit 'Submit', name: 'finish', class: 'btn-upright' %>
+        </div>
+      </div>
+  <% end %>
+</div>

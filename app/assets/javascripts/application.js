@@ -42,14 +42,38 @@ function toggleLogInPopUp() {
   }
 }
 
+// Log-in Pop-up
+
 function hideLogInPopUp() {
-  var popUp = document.getElementById('pop-up-container');
+  var popUp = document.getElementById('log-in-pop-up-container');
   popUp.style.display = 'none';
 }
 
 function showLogInPopUp() {
-  var popUp = document.getElementById('pop-up-container');
+  var popUp = document.getElementById('log-in-pop-up-container');
   popUp.style.display = 'table';
+}
+
+// Sign-up Pop-up
+
+function hideSignUpPopUp() {
+  var popUp = document.getElementById('sign-up-pop-up-container');
+  popUp.style.display = 'none'
+}
+
+function showSignUpPopUp() {
+  var popUp = document.getElementById('sign-up-pop-up-container');
+  popUp.style.display = 'table'
+}
+
+function switchLogInForSignUpPopUp() {
+  hidePopUps();
+  showSignUpPopUp();
+}
+
+function switchSignUpForRequest() {
+  hidePopUps();
+  scrollToInvitation();
 }
 
 function logthatshit() {

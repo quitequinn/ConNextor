@@ -1,0 +1,22 @@
+<%= form_for @profile, remote: true, html: {class: 'form-horizontal', id: 'profile-form'} do |f| %>
+    <div class="row section-container">
+      <div class="section-header">
+        <div class="big-header">
+          <p>Where are you located?</p>
+        </div>
+      </div>
+
+      <div class="col-sm-4 col-sm-push-8 side-description">
+        <p class="title">Step 2 of 4</p>
+        <p class="text">Let us know a little more about you. Knowing where you are from will get you better connections with those who came from the same place</p>
+      </div>
+
+      <div class="col-sm-8 col-sm-pull-4 section-form-container">
+        <%= render 'edit_geographic', f: f %>
+      </div>
+
+      <div class="end-section col-sm-12">
+        <input type="submit" name="Submit" class="btn-upright" value="Submit" />
+      </div>
+    </div>
+<% end %>

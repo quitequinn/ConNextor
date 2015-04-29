@@ -1,4 +1,4 @@
-<%= form_for profile, html: {multipart: true} do |f| %>
+<%= form_for profile, url: "update_header/#{profile.id}", html: {multipart: true} do |f| %>
   <p>
     <%= f.file_field :cover_photo %>
   </p>

@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
 
   belongs_to :profile
 
-  has_one :invitation_code, dependent: :destroy
+  has_one :invitation_code_record, dependent: :destroy
 
   has_many :user_to_projects, dependent: :destroy
   has_many :user_project_follows, dependent: :destroy
@@ -182,6 +182,16 @@ class User < ActiveRecord::Base
         end
       end
     end
+  end
+
+  def update_name(first_name, last_name)
+    if first_name and not first_name.empty?
+      self.first_name = first_name
+    end
+    if last_name and not last_name.empty?
+      self.last_name = last_name
+    end
+    self.save
   end
 
   def self.subscribe_to_mailchimp(email)
