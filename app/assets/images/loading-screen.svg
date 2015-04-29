@@ -47,5 +47,5 @@
 <circle fill="#FFFFFF" cx="97.4" cy="88.8" r="5.5"/>
 <circle fill="#FFFFFF" cx="202.7" cy="29" r="5.5"/>
 <circle fill="#FFFFFF" cx="142.2" cy="45.2" r="5.5"/>
-<text transform="matrix(1 0 0 1 66.4702 360.3359)" fill="#FFFFFF" font-family="'Omnes-Medium'" font-size="60">ConNextor</text>
+<text transform="matrix(1 0 0 1 66.4702 360.3359)" fill="#FFFFFF" font-family="'Omnes-Medium'" font-size="50">ConNextor</text>
 </svg>
