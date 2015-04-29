@@ -3,6 +3,7 @@ class InvitationRequestsController < ApplicationController
   # GET /invitation_requests
   # GET /invitation_requests.json
   def index
+    # TODO add security
     @invitation_requests = InvitationRequest.all
   end
 

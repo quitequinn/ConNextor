@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
 
 <h1>Listing Invitation Requests</h1>
 
@@ -27,7 +27,7 @@
         <td><%= invitation_request.linkedin %></td>
         <td><%= invitation_request.portfolio %></td>
         <td><%= invitation_request.message %></td>
-        <td><%= invitation_request.resume %></td>
+        <td><%= link_to('resume', url: invitation_request.resume) if invitation_request.resume %></td>
         <td><%= link_to 'Show', invitation_request %></td>
         <td><%= link_to 'Edit', edit_invitation_request_path(invitation_request) %></td>
         <td><%= link_to 'Destroy', invitation_request, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -36,6 +36,4 @@
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Invitation request', new_invitation_request_path %>
+</div>
