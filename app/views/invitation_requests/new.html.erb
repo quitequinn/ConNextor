@@ -1,7 +1,7 @@
 <% provide(:title, 'Request an Invitation') %>
 
 <div class="container registration-section">
-  <%= form_for @invitation_request, html: {class: 'form-horizontal'} do |f| %>
+  <%= form_for @invitation_request, html: {multipart: true, class: 'form-horizontal'} do |f| %>
       <div class="row section-container">
         <div class="section-header">
           <div class="big-header">
@@ -39,13 +39,6 @@
           </div>
 
           <div class="form-group">
-            <%= f.label :expertise, {class: 'col-sm-3 control-label input-label'} %>
-            <div class="col-sm-9">
-              <%= f.text_field :expertise, {class: 'input-upright', placeholder: 'Software engineering, hand crafting'} %>
-            </div>
-          </div>
-
-          <div class="form-group">
             <%= f.label :linkedin, {class: 'col-sm-3 control-label input-label'} %>
             <div class="col-sm-9">
               <%= f.text_field :linkedin, {class: 'input-upright', placeholder: 'https://linkedin.com/in/emmalenemclements/'} %>
@@ -71,6 +64,30 @@
             <%= f.label :message, {class: 'col-sm-3 control-label input-label input-label-mandatory'} %>
             <div class="col-sm-9">
               <%= f.text_area :message, rows: 6, class: 'input-upright', placeholder: 'Don\'t overthink this!' %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :expertise, {class: 'col-sm-3 control-label input-label'} %>
+            <div class="col-sm-9">
+              <%= f.hidden_field :expertise, {id: 'expertise-image'} %>
+              <% @interests.each do |a_value| %>
+                  <div class="col-sm-4 check-box-element-container">
+                    <% checkbox_id = "interest-checkbox-#{a_value.id}" %>
+                    <input type="checkbox" id="<%= checkbox_id %>" class="input-checkbox interest-checkbox" />
+                    <label class="control-label check-box-element" onclick="updateExpertise('<%= a_value.name %>', '<%= checkbox_id %>')">
+                      <%= a_value.name %>
+                    </label>
+                  </div>
+              <% end %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <!--<p class="input-label">Tell us something you are excited about</p>-->
+            <%= f.label :resume, {class: 'col-sm-3 control-label input-label'} %>
+            <div class="col-sm-9">
+              <%= f.file_field :resume, rows: 6, class: '' %>
             </div>
           </div>
 

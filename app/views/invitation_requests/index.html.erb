@@ -12,6 +12,7 @@
       <th>Linkedin</th>
       <th>Portfolio</th>
       <th>Message</th>
+      <th>Resume</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -26,6 +27,7 @@
         <td><%= invitation_request.linkedin %></td>
         <td><%= invitation_request.portfolio %></td>
         <td><%= invitation_request.message %></td>
+        <td><%= invitation_request.resume %></td>
         <td><%= link_to 'Show', invitation_request %></td>
         <td><%= link_to 'Edit', edit_invitation_request_path(invitation_request) %></td>
         <td><%= link_to 'Destroy', invitation_request, method: :delete, data: { confirm: 'Are you sure?' } %></td>
