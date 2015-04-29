@@ -25,50 +25,51 @@
         <div class="col-sm-8 col-sm-pull-4 section-form-container">
 
           <div class="form-group">
-            <%= f.label :name, {class: 'col-xs-3 control-label input-label'} %>
-            <div class="col-xs-9">
+            <%= f.label :name, {class: 'col-sm-3 control-label input-label'} %>
+            <div class="col-sm-9">
               <%= f.text_field :name, {class: 'input-upright', placeholder: 'Emmalene M Clementine'} %>
             </div>
           </div>
 
           <div class="form-group">
-            <%= f.label :email, {class: 'col-xs-3 control-label input-label'} %>
-            <div class="col-xs-9">
+            <%= f.label :email, {class: 'col-sm-3 control-label input-label'} %>
+            <div class="col-sm-9">
               <%= f.text_field :email, {class: 'input-upright', placeholder: 'emma@connextor.co'} %>
             </div>
           </div>
 
           <div class="form-group">
-            <%= f.label :expertise, {class: 'col-xs-3 control-label input-label'} %>
-            <div class="col-xs-9">
+            <%= f.label :expertise, {class: 'col-sm-3 control-label input-label'} %>
+            <div class="col-sm-9">
               <%= f.text_field :expertise, {class: 'input-upright', placeholder: 'Software engineering, hand crafting'} %>
             </div>
           </div>
 
           <div class="form-group">
-            <%= f.label :github, {class: 'col-xs-3 control-label input-label'} %>
-            <div class="col-xs-9">
-              <%= f.text_field :github, {class: 'input-upright', placeholder: 'https://github.com/emmalenemclements/'} %>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <%= f.label :linkedin, {class: 'col-xs-3 control-label input-label'} %>
-            <div class="col-xs-9">
+            <%= f.label :linkedin, {class: 'col-sm-3 control-label input-label'} %>
+            <div class="col-sm-9">
               <%= f.text_field :linkedin, {class: 'input-upright', placeholder: 'https://linkedin.com/in/emmalenemclements/'} %>
             </div>
           </div>
 
           <div class="form-group">
-            <%= f.label :portfolio, {class: 'col-xs-3 control-label input-label'} %>
-            <div class="col-xs-9">
+            <%= f.label :github, {class: 'col-sm-3 control-label input-label'} %>
+            <div class="col-sm-9">
+              <%= f.text_field :github, {class: 'input-upright', placeholder: 'https://github.com/emmalenemclements/'} %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :portfolio, {class: 'col-sm-3 control-label input-label'} %>
+            <div class="col-sm-9">
               <%= f.text_field :portfolio, {class: 'input-upright', placeholder: 'http://emmaclementine.com/'} %>
             </div>
           </div>
 
           <div class="form-group">
-            <p class="input-label">Tell us something you are excited about</p>
-            <div class="col-xs-9 col-xs-offset-3">
+            <!--<p class="input-label">Tell us something you are excited about</p>-->
+            <%= f.label :message, {class: 'col-sm-3 control-label input-label'} %>
+            <div class="col-sm-9">
               <%= f.text_area :message, rows: 10, class: 'input-upright', placeholder: 'Don\'t overthink this!' %>
             </div>
           </div>
