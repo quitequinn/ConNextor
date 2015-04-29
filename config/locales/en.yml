@@ -25,3 +25,9 @@ en:
     attributes:
       user:
         password_hash: "Password"
+      invitation_request:
+        github: "GitHub"
+        linkedin: "LinkedIn"
+        portfolio: "Portfolio"
+        message: "What Does Creativity Mean To You?"
+

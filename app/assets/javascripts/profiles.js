@@ -1,8 +1,3 @@
-
-function submitProfile() {
-  document.forms['profile-form'].submit();
-}
-
 function submitResume() {
   document.forms['resume-form'].submit();
 }

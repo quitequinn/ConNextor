@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   include SessionsHelper
   include PermissionsHelper
 
-  helper_method :current_user, :current_user?, :logged_in?, :current_user_id
+  helper_method :current_user, :current_user?, :logged_in?, :current_user_id, :phase_active?
 
   private
 
@@ -102,6 +102,10 @@ class ApplicationController < ActionController::Base
   def workspace_tags( workspace_id, token )
     url = ASANA::API_URL + "/workspaces/#{workspace_id}/tags"
     make_asana_request( url, token )
+  end
+
+  def phase_active?(array)
+    array.include? ProjectMeta::CURRENT_PHASE
   end
 
   private

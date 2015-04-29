@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150426223938) do
+ActiveRecord::Schema.define(version: 20150429191301) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -116,15 +116,32 @@ ActiveRecord::Schema.define(version: 20150426223938) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "invitation_code_records", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "invitation_code_id"
+  end
+
+  add_index "invitation_code_records", ["invitation_code_id"], name: "index_invitation_code_records_on_invitation_code_id", using: :btree
+  add_index "invitation_code_records", ["user_id"], name: "index_invitation_code_records_on_user_id", using: :btree
+
   create_table "invitation_codes", force: :cascade do |t|
-    t.integer  "user_id"
     t.string   "code"
-    t.boolean  "used"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_index "invitation_codes", ["user_id"], name: "index_invitation_codes_on_user_id", using: :btree
+  create_table "invitation_requests", force: :cascade do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "expertise"
+    t.string   "github"
+    t.string   "linkedin"
+    t.string   "portfolio"
+    t.string   "message"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "resume"
+  end
 
   create_table "notifications", force: :cascade do |t|
     t.integer "user_id"
@@ -240,16 +257,6 @@ ActiveRecord::Schema.define(version: 20150426223938) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "project_tasks", force: :cascade do |t|
-    t.integer  "project_id"
-    t.integer  "user_id"
-    t.string   "name"
-    t.string   "description"
-    t.string   "state"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
   create_table "project_to_tags", force: :cascade do |t|
     t.integer  "project_id"
     t.integer  "project_tag_id"
@@ -323,14 +330,6 @@ ActiveRecord::Schema.define(version: 20150426223938) do
   add_index "user_to_interests", ["interest_id"], name: "index_user_to_interests_on_interest_id", using: :btree
   add_index "user_to_interests", ["user_id"], name: "index_user_to_interests_on_user_id", using: :btree
 
-  create_table "user_to_project_tasks", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "project_task_id"
-    t.string   "relation"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-  end
-
   create_table "user_to_projects", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "project_id"
@@ -387,6 +386,8 @@ ActiveRecord::Schema.define(version: 20150426223938) do
   add_index "users_with_ideas", ["user_id"], name: "index_users_with_ideas_on_user_id", using: :btree
 
   add_foreign_key "feedbacks", "user_to_tasks"
+  add_foreign_key "invitation_code_records", "invitation_codes"
+  add_foreign_key "invitation_code_records", "users"
   add_foreign_key "positions", "projects"
   add_foreign_key "positions", "users"
   add_foreign_key "project_comments", "project_posts"

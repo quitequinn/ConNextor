@@ -1,0 +1,7 @@
+document.getElementById('error-messages').innerHTML = "";
+<% if @user.errors.any? %>
+//    document.getElementById('error-messages').innerHTML += "<p>errors:<p>"
+    <% @user.errors.full_messages.each do |message| %>
+      document.getElementById('error-messages').innerHTML += "<p><%= message %></p>\n";
+    <% end %>
+<% end %>

@@ -1,0 +1,9 @@
+<% if @valid %>
+
+document.getElementById('authentication-body').innerHTML = '<%= j render 'authentication/registration_portal', invitation_code_id: @valid %>';
+
+<% else %>
+
+$('#code').addClass('input-warning-glow');
+
+<% end %>

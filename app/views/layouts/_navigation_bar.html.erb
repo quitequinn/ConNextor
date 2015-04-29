@@ -14,7 +14,7 @@
       <% end %>
       <!--Branding (logo)-->
       <!--<a class="navbar-brand logo-img-navbar-container" href="/">-->
-        <%# image_tag 'logo.png', class: 'logo-img' %>
+      <%# image_tag 'logo.png', class: 'logo-img' %>
       <!--</a>-->
       <a class="navbar-brand logo-txt" href="/">
         ConNextor
@@ -61,8 +61,15 @@
 
       <% else %>
           <!--Sign Up and Login buttons-->
-          <!-- <button type="button" class="sign-up-button btn-inverse navbar-right open-pop-up" onclick="showSignUpPopUp()">Request an Invitation</button> -->
-          <button type="button" class="sign-up-button btn-inverse navbar-right scroll-to-invite">Request an Invitation</button>
+          <% if phase_active? ProjectMeta::AUTHENTICATION_PHASES %>
+              <button class="btn-inverse navbar-right open-pop-up" onclick="showSignUpPopUp()">Sign Up</button>
+              <button class="btn-inverse navbar-right open-pop-up" onclick="showLogInPopUp()">Log In</button>
+          <% end %>
+          <% if phase_active? ProjectMeta::INVITATION_PHASES %>
+              <%= link_to new_invitation_request_path do %>
+                  <button class="btn-inverse navbar-right">Request an Invitation</button>
+              <% end %>
+          <% end %>
       <% end %>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->

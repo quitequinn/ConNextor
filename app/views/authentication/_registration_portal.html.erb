@@ -1,0 +1,13 @@
+<div class="registration-portal">
+  <% if phase_active? ProjectMeta::INVITATION_PHASES and invitation_code_id %>
+      <p class="welcome-message">It seems that you are a bro! Welcome bro, the invitation code worked!</p>
+  <% else %>
+      <p class="welcome-message">Welcome to ConNextor!</p>
+  <% end %>
+
+  <span>- Register with -</span><br />
+  <%= render 'authentication/oauth_registration', invitation_code_id: invitation_code_id %>
+  <p>- or -</p>
+  <div id="error-messages" class="error-messages"></div>
+  <%= render 'authentication/simple_registration_form', invitation_code_id: invitation_code_id %>
+</div>

@@ -1,0 +1,39 @@
+<div class="container">
+
+<h1>Listing Invitation Requests</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Expertise</th>
+      <th>Github</th>
+      <th>Linkedin</th>
+      <th>Portfolio</th>
+      <th>Message</th>
+      <th>Resume</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @invitation_requests.each do |invitation_request| %>
+      <tr>
+        <td><%= invitation_request.name %></td>
+        <td><%= invitation_request.email %></td>
+        <td><%= invitation_request.expertise %></td>
+        <td><%= invitation_request.github %></td>
+        <td><%= invitation_request.linkedin %></td>
+        <td><%= invitation_request.portfolio %></td>
+        <td><%= invitation_request.message %></td>
+        <td><%= link_to('resume', url: invitation_request.resume) if invitation_request.resume %></td>
+        <td><%= link_to 'Show', invitation_request %></td>
+        <td><%= link_to 'Edit', edit_invitation_request_path(invitation_request) %></td>
+        <td><%= link_to 'Destroy', invitation_request, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+</div>

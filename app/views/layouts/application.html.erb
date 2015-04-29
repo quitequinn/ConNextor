@@ -21,13 +21,19 @@
   <%= render 'layouts/navigation_bar' %>
 
   <!--Log In-->
-  <%= render 'layouts/log_in_portal' %> 
+  <%= render 'authentication/log_in_portal' %>
+
+  <!--Sign Up-->
+  <%= render 'authentication/sign_up_portal' %>
 
   <!--Template-->
   <div class="template-wrap <%= controller.controller_name %>">
-    <% flash.each do |key, value| %>
-        <div class="alert alert-<%= key %>"><%= value %></div>
+    <div class="flash-messages">
+      <% flash.each do |key, value| %>
+        <%= content_tag :div, value, class: "alert alert-#{key}" %>
       <% end %>
+    </div>
+    <!--Yield-->
     <%= yield %>
   </div>
 

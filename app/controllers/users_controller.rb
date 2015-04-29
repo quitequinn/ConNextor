@@ -9,6 +9,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+
     # TODO for security, use a 128 bit hash instead of id when marshalling
     @user.password_login = true
 
@@ -29,10 +30,12 @@ class UsersController < ApplicationController
         # Confirm Email here, don't login.
         session_create @user
 
-        format.html { redirect_to controller: :profiles, action: :new, id: @user.profile_id}
+        format.html { redirect_to new_profile_path id: @user.profile_id }
+        format.js { render js: "window.location.href='#{new_profile_path id: @user.profile_id}'" }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }
+        format.js
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
