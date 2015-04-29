@@ -1,5 +1,8 @@
 @import "scss_constants";
 
+$loading-vector-width:  300px;
+$loading-vector-height: 300px;
+
 .welcome {
   > .container {
     background-color: white;
@@ -12,8 +15,8 @@
     top: 0;
 
     .loading-container, .loading-vector {
-      width: 64px;
-      height: 64px;
+      width: $loading-vector-width;
+      height: $loading-vector-height;
     }
   }
 
