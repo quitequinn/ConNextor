@@ -90,6 +90,10 @@
   font-size: $font-size-submedium;
 }
 
+.input-label-mandatory:after {
+  content: ' *';
+}
+
 .input-base {
   @extend .form-element-base;
   min-width: 255px;
@@ -109,6 +113,7 @@
 }
 
 .input-upright:focus, .select-upright:focus {
+  outline: none; // erases blue focus rectangle on Macs
   box-shadow: 0 0 5px $primary-color;
   border: solid $primary-color 1px;
 }
@@ -238,19 +243,19 @@ body {
   margin: 0 auto (0-$footer-height);
 }
 
-.log-in {
-  padding: 20px 0;
-  .error-message {
-    color: $warning-color;
-  }
-}
+//.log-in {
+//  padding: 20px 0;
+//  .error-message {
+//    color: $warning-color;
+//  }
+//}
 
-.sign-up {
-  padding: 20px 0;
-  .error-message {
-    color: $warning-color;
-  }
-}
+//.sign-up {
+//  padding: 20px 0;
+//  .error-message {
+//    color: $warning-color;
+//  }
+//}
 
 .social-media-imgs {
   //      height: 50px;

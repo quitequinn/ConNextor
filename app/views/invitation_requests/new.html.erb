@@ -25,14 +25,14 @@
         <div class="col-sm-8 col-sm-pull-4 section-form-container">
 
           <div class="form-group">
-            <%= f.label :name, {class: 'col-sm-3 control-label input-label'} %>
+            <%= f.label :name, {class: 'col-sm-3 control-label input-label input-label-mandatory'} %>
             <div class="col-sm-9">
               <%= f.text_field :name, {class: 'input-upright', placeholder: 'Emmalene M Clementine'} %>
             </div>
           </div>
 
           <div class="form-group">
-            <%= f.label :email, {class: 'col-sm-3 control-label input-label'} %>
+            <%= f.label :email, {class: 'col-sm-3 control-label input-label input-label-mandatory'} %>
             <div class="col-sm-9">
               <%= f.text_field :email, {class: 'input-upright', placeholder: 'emma@connextor.co'} %>
             </div>
@@ -68,7 +68,7 @@
 
           <div class="form-group">
             <!--<p class="input-label">Tell us something you are excited about</p>-->
-            <%= f.label :message, {class: 'col-sm-3 control-label input-label'} %>
+            <%= f.label :message, {class: 'col-sm-3 control-label input-label input-label-mandatory'} %>
             <div class="col-sm-9">
               <%= f.text_area :message, rows: 6, class: 'input-upright', placeholder: 'Don\'t overthink this!' %>
             </div>

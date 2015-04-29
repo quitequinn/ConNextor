@@ -142,3 +142,5 @@ InvitationCode.destroy_all
 seed_invite('WATERLOOWARRIORS')
 seed_invite('BEDFORDSCHMUCKS')
 
+InvitationRequest.destroy_all
+

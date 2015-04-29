@@ -3,7 +3,9 @@
     <%= link_to 'request a code', new_invitation_request_path %>
   , or wait for our official launch.</p>
   <%= form_tag invitation_code_validate_path, remote: true do %>
-      <%= text_field_tag :code, params[:code], class: 'input-upright', placeholder: 'Invite Code' %><br />
+      <div class="form-fields">
+        <%= text_field_tag :code, params[:code], class: 'input-upright', placeholder: 'Invite Code' %><br />
+      </div>
       <%= submit_tag 'Validate', class: 'btn-upright' %>
   <% end %>
 </div>

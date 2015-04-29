@@ -1,13 +1,15 @@
 <div class="sign-up">
   <%= form_for User.new, remote: true do |f| %>
+      <div class="form-fields">
 
-      <!--Invitation Code Carry Over-->
-      <% if phase_active? ProjectMeta::INVITATION_PHASES and invitation_code_id %>
-          <%= f.hidden_field :invitation_code_id, value: invitation_code_id %>
-      <% end %>
+        <!--Invitation Code Carry Over-->
+        <% if phase_active? ProjectMeta::INVITATION_PHASES and invitation_code_id %>
+            <%= f.hidden_field :invitation_code_id, value: invitation_code_id %>
+        <% end %>
 
-      <%= f.text_field :email, class: 'input-upright', placeholder: 'Email' %><br />
-      <%= f.password_field :password,  class: 'input-upright', placeholder: 'Password' %><br />
+        <%= f.text_field :email, class: 'input-upright', placeholder: 'Email' %><br />
+        <%= f.password_field :password,  class: 'input-upright', placeholder: 'Password' %><br />
+      </div>
       <%= f.submit 'Sign Up', class: 'btn-upright text-center' %>
   <% end %>
 </div>
