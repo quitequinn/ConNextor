@@ -35,10 +35,18 @@ Rails.application.routes.draw do
 
   post 'invitation_code/validate', to: 'invitation_code#validate'
   
-  #resources :user_follows
+  resources :user_follows
 
-  #resources :activities
+  resources :activities
 
+  get 'auth/asana/callback', to: 'asana#create'
+
+  get 'projects/asana/index', to: 'asana#index'
+
+  get 'projects/:id/asana/show', to: 'asana#show'
+
+  post "asana_integrate" => "asana#integrate", :as => "asana_integrate"
+  
   resources :user_to_interests
 
   resources :user_to_skills
@@ -51,19 +59,19 @@ Rails.application.routes.draw do
   get 'user', to: 'users#show'
   get 'profile/:username', to: 'profiles#show'
 
-  #resources :user_to_project_tasks
+  resources :user_to_tasks
 
-  #resources :project_tasks
+  resources :feedbacks
 
-  #resources :project_to_tags
+  resources :project_to_tags
 
-  #resources :project_tags
+  resources :project_tags
 
-  #resources :user_project_follows
+  resources :user_project_follows
 
   resources :user_to_projects
 
-  # get 'projects/new'
+  get 'projects/new'
 
   get 'auth/:provider/callback', to: 'sessions#omniauthcreate'
   get 'log_out' => 'sessions#destroy', as: 'log_out'
@@ -71,23 +79,31 @@ Rails.application.routes.draw do
   get 'sign_up' => 'users#new', as: 'sign_up'
   root 'welcome#index'
   resources :users
-  #resources :notifications
-  #resources :requests
+  resources :notifications
+  resources :requests
   resources :sessions
   #resources :password_resets
+
+  post 'join_task' => 'tasks#join_request', as: 'join_task'
+  post 'accept_task' => 'tasks#accept_request', as: 'accept_task'
   resources :projects do
+    resources :tasks
     resources :positions
   end
 
-
+  get 'projects/switch/:id', to: 'projects#switch'
+  get 'projects/manage/:id', to: 'projects#manage'
+  get 'projects/core/:id', to: 'projects#core_project'
+  resources :project_posts
+  post 'join_project' => 'projects#join_request', as: 'join_project'
 
   #get 'project/switch/:id', to: 'projects#switch'
   #resources :project_posts
   #post 'join_project' => 'projects#join_request', as: 'join_project'
 
   # THIS IS FOR POSTS.
-  #resources :project_comments
-  #post 'accept_project' => 'projects#accept_request', as: 'accept_project'
+  resources :project_comments
+  post 'accept_project' => 'projects#accept_request', as: 'accept_project'
 
 
 

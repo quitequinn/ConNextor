@@ -1,0 +1,31 @@
+<div>
+  <h2>Open tasks</h2>
+  <% @open_tasks.each do |task| %>
+    <div>
+      <%= render task %>
+    </div>
+    <br />
+  <% end %>
+</div>
+
+
+<div>
+  <h2>On-going tasks</h2>
+  <% @filled_tasks.each do |task| %>
+    <div>
+      <%= render task %>
+    </div>
+    <br />
+  <% end %>
+</div>
+
+
+<div>
+  <h2>Completed tasks</h2>
+  <% @completed_tasks.each do |task| %>
+    <div>
+      <%= render task %>
+    </div>
+    <br />
+  <% end %>
+</div>

@@ -1,0 +1,47 @@
+<div>
+  <% if AsanaProject.find_by_project_id(@project.id) == nil %>
+    <%= link_to '/auth/asana' do %>
+      Connect with Asana
+    <% end %>
+  <% end %>
+</div>
+
+<div>
+  <%= link_to "/projects/#{@project.id}/asana/show" do %>
+    See Integration
+  <% end %>
+</div>
+
+<div>
+  <%= link_to 'Create a task', new_project_task_path(@project) %>
+</div>
+
+<% if @user_to_project and @is_owner %>
+
+  <div>
+    <%= link_to 'Manage Users', user_to_projects_path(project: @project) %>
+  </div>
+
+  <div>
+    <%= link_to 'Manage Tags', project_to_tags_path(project: @project) %>
+  </div>
+
+  <div>
+    <%= link_to 'Manage Tasks', project_tasks_path(@project) %>
+  </div>
+
+<% end %>
+
+<div>
+  <%= link_to 'Edit Project Info', edit_project_path(@project) %>
+</div>
+
+<div>
+  <p>Change project status</p>
+  <% if @has_project_permission %>
+    <%= form_for @project do |f| %>
+      <%= f.select :stage, @stages.collect{ |u| [ u, u ] }, selected: @project.stage %>  
+      <p class="button"><%= f.submit "Update project stage" %></p>
+    <% end %>
+  <% end %>
+</div>

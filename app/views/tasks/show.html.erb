@@ -1,0 +1,23 @@
+<%= render @task %>
+
+<% if !@task.completed && @has_project_permission %>
+  <%= link_to 'edit', edit_project_task_path(@task.project_id, @task.id) %>
+<% end %>
+
+<% if @task.assigned_to && @has_project_permission && @user_to_task %>
+  <%= form_for @user_to_task do |f| %>
+    <%= f.select :status, @statuses.collect{ |u| [ u, u ] } %> <p class="button"><%= f.submit "Change status" %></p>
+  <% end %>
+<% end %>
+
+<% if @has_project_permission && @user_to_task.feedbacks == nil %>
+  <h3>Give feedback</h3>
+  <%= render 'feedbacks/feedback_form', feedback: Feedback.new %>
+<% end %>
+
+<% if @user_to_task.feedbacks != nil %>
+  <h3>Feedback</h3>
+  <% @user_to_task.feedbacks.each do |feedback| %>
+    <%= render feedback %>
+  <% end %>
+<% end %>

@@ -1,0 +1,8 @@
+<h1>Asana#index</h1>
+
+<% if @tasks %>
+  <% @tasks['data'].each do |task| %>
+      <p><%= task['name'] %></p>
+      <br />
+  <% end %>
+<% end %>

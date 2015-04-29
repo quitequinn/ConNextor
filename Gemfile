@@ -30,6 +30,7 @@ gem 'omniauth-twitter'
 gem 'omniauth-facebook'
 gem 'omniauth-linkedin'
 gem 'omniauth-github'
+gem 'omniauth-asana'
 
 # Use bootstrap to make fronted development easier
 gem 'bootstrap-will_paginate'
@@ -43,6 +44,8 @@ gem 'thin'
 gem 'carrierwave'
 
 gem 'gibbon'
+
+gem 'delayed_job_active_record'
 
 # Use Unicorn as the app server
 #gem 'unicorn'

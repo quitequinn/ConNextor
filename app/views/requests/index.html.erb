@@ -24,12 +24,21 @@
         <td><%= request.request_type_id %></td>
         <td><%= request.message %></td>
         <td><%= request.link %></td>
-        <td> <%= button_to 'Accept', accept_project_path( user_id: request.sender_id, 
-                                                          position_id: request.request_type_id,
-                                                          link: request.link) %> 
+        <% if request.request_type == 'project_task' %>
+          <td> <%= button_to 'Accept', accept_task_path( user_id: request.sender_id, 
+            task_id: request.request_type_id,
+            link: request.link,
+            request_id: request.id) %> 
         </td>
-        <td><%= link_to 'Show', user_request_path( current_user_id, request.id ) %></td>
-        <td><%= link_to 'Destroy', user_request_path(current_user_id, request.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% elsif request.request_type == 'project_position' %>
+          <td> <%= button_to 'Accept', accept_project_path( user_id: request.sender_id, 
+            position_id: request.request_type_id,
+            link: request.link,
+            request_id: request.id) %> 
+        </td>
+        <% end %>
+        <td><%= link_to 'Show', request_path(request.id ) %></td>
+        <td><%= link_to 'Destroy', request, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

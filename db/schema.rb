@@ -28,6 +28,76 @@ ActiveRecord::Schema.define(version: 20150429191301) do
 
   add_index "activities", ["user_id"], name: "index_activities_on_user_id", using: :btree
 
+  create_table "asana_identities", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "access_token"
+    t.string   "refresh_token"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.string   "provider"
+    t.string   "uid"
+  end
+
+  add_index "asana_identities", ["user_id"], name: "index_asana_identities_on_user_id", using: :btree
+
+  create_table "asana_projects", force: :cascade do |t|
+    t.integer  "project_id"
+    t.integer  "asana_project_id", limit: 8
+    t.string   "workspace_id"
+    t.integer  "asana_user_id",    limit: 8
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.integer  "user_id"
+  end
+
+  add_index "asana_projects", ["project_id"], name: "index_asana_projects_on_project_id", using: :btree
+
+  create_table "asana_tasks", force: :cascade do |t|
+    t.integer  "asana_project_id", limit: 8
+    t.integer  "created_by"
+    t.integer  "assigned_to",      limit: 8
+    t.integer  "workspace_id",     limit: 8
+    t.boolean  "completed"
+    t.datetime "completed_at"
+    t.string   "description"
+    t.string   "title"
+    t.integer  "asana_task_id",    limit: 8
+  end
+
+  add_index "asana_tasks", ["asana_project_id"], name: "index_asana_tasks_on_asana_project_id", using: :btree
+
+  create_table "asana_users", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "asana_user_id", limit: 8
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  create_table "delayed_jobs", force: :cascade do |t|
+    t.integer  "priority",   default: 0, null: false
+    t.integer  "attempts",   default: 0, null: false
+    t.text     "handler",                null: false
+    t.text     "last_error"
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.string   "locked_by"
+    t.string   "queue"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
+
+  create_table "feedbacks", force: :cascade do |t|
+    t.string  "feedback"
+    t.decimal "rating"
+    t.integer "feedback_creator"
+    t.integer "user_to_task_id"
+  end
+
+  add_index "feedbacks", ["user_to_task_id"], name: "index_feedbacks_on_user_to_task_id", using: :btree
+
   create_table "identities", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "provider"
@@ -187,16 +257,6 @@ ActiveRecord::Schema.define(version: 20150429191301) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "project_tasks", force: :cascade do |t|
-    t.integer  "project_id"
-    t.integer  "user_id"
-    t.string   "name"
-    t.string   "description"
-    t.string   "state"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
   create_table "project_to_tags", force: :cascade do |t|
     t.integer  "project_id"
     t.integer  "project_tag_id"
@@ -210,6 +270,7 @@ ActiveRecord::Schema.define(version: 20150429191301) do
     t.string   "long_description"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
+    t.string   "stage"
   end
 
   create_table "requests", force: :cascade do |t|
@@ -240,6 +301,7 @@ ActiveRecord::Schema.define(version: 20150429191301) do
     t.datetime "due_on"
     t.string   "description"
     t.string   "title"
+    t.string   "member_type"
   end
 
   add_index "tasks", ["project_id"], name: "index_tasks_on_project_id", using: :btree
@@ -268,14 +330,6 @@ ActiveRecord::Schema.define(version: 20150429191301) do
   add_index "user_to_interests", ["interest_id"], name: "index_user_to_interests_on_interest_id", using: :btree
   add_index "user_to_interests", ["user_id"], name: "index_user_to_interests_on_user_id", using: :btree
 
-  create_table "user_to_project_tasks", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "project_task_id"
-    t.string   "relation"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-  end
-
   create_table "user_to_projects", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "project_id"
@@ -297,9 +351,9 @@ ActiveRecord::Schema.define(version: 20150429191301) do
   create_table "user_to_tasks", force: :cascade do |t|
     t.integer "user_id"
     t.integer "task_id"
-    t.string  "feedback"
     t.integer "rating"
     t.string  "status"
+    t.boolean "approved"
   end
 
   add_index "user_to_tasks", ["task_id"], name: "index_user_to_tasks_on_task_id", using: :btree
@@ -331,6 +385,7 @@ ActiveRecord::Schema.define(version: 20150429191301) do
 
   add_index "users_with_ideas", ["user_id"], name: "index_users_with_ideas_on_user_id", using: :btree
 
+  add_foreign_key "feedbacks", "user_to_tasks"
   add_foreign_key "invitation_code_records", "invitation_codes"
   add_foreign_key "invitation_code_records", "users"
   add_foreign_key "positions", "projects"

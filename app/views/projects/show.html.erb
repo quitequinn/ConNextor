@@ -1,5 +1,5 @@
 <% 
-   project_owner = Project.get_project_owner(@project.id)
+   project_owner = Project.getProjectOwner(@project.id)
 %>
 <div class="container">
     <div class="project-info section-container">
@@ -15,7 +15,7 @@
               <%= @project.title %>
             </p>
             <% if @is_owner %>
-              <%= link_to 'Edit', edit_project_path(@project) %> 
+              <%= link_to 'Manage', controller: 'projects', action: 'manage' %> 
             <% end %>
           </div>
 
@@ -36,12 +36,21 @@
         </div>
 
         <div class="col-md-3">
+          <p>Project Stage: <%= @project.stage %></p>
           <div class="follow-button">
             <% unless @user_project_follow %>
               <%= render 'projects/follow', user_project_follow: UserProjectFollow.new %>
               <% else %>
                   <%= render 'projects/unfollow', user_project_follow: @user_project_follow%>
               <% end %>
+          </div>
+          <div>
+            <div>
+              <%= link_to 'See open tasks', project_tasks_path(@project) %>
+            </div>
+            <div>
+              <%= link_to 'Go to core member page', controller: 'projects', action:'core_project',notice: 'Your asana tasks are being fetched..' %>
+            </div>
           </div>
         </div>
       </div>
@@ -63,9 +72,3 @@
   
 
 </div>
-
-    <%# if @user_to_project and @is_owner %>
-        <%#= link_to 'Manage Users', user_to_projects_path(project: @project) %>
-        <%#= link_to 'Manage Tags', project_to_tags_path(project: @project) %>
-        <%#= link_to 'Manage Tasks', project_tasks_path(project: @project) %>
-    <%# end %>
