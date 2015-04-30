@@ -15,11 +15,6 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        @profile = Profile.new
-        @profile.save # no reason for it not to save
-        @user.profile = @profile
-        @user.save # no room for errors
-
         # subscribe to mailchimp
         # begin
         #   Gibbon::API.new(ENV['MAILCHIMP_API_KEY']).lists.subscribe({:id => ENV['MAILCHIMP_LIST_ID'], :email => {:email => user_params[:email]}, :double_optin => false})
@@ -30,7 +25,7 @@ class UsersController < ApplicationController
         # Confirm Email here, don't login.
         session_create @user
 
-        format.html { redirect_to new_profile_path id: @user.profile_id }
+        format.html { redirect_to new_profile_path }
         format.js { render js: "window.location.href='#{new_profile_path id: @user.profile_id}'" }
         format.json { render :show, status: :created, location: @user }
       else

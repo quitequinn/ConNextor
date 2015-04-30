@@ -38,41 +38,47 @@ class ProfilesController < ApplicationController
   end
 
   # Not the usual 'new', more like initialize.
-  # we created profile when we created user
   def new
+    @user = current_user
     session[:step] = 0
-    if @profile.user
-      if @profile.user.first_name
-        @profile.first_name = @profile.user.first_name
-      end
-      if @profile.user.last_name
-        @profile.last_name = @profile.user.last_name
-      end
-    end
   end
 
-  def update
-    check_is_owner( current_user, @profile )
-    session[:step] = 1 if session[:step] > 4
-    if session[:step] == 0
-      @profile.user.update_name user_params[:first_name], user_params[:last_name]
-    elsif session[:step] == 2
-      @profile.user.create_interests user_params[:interest_ids]
-    end
+  # Create profile
+  # First step
+  def create
+    current_user.profile = Profile.new if current_user.profile == nil
+    current_user.update_name user_params[:first_name], user_params[:last_name]
     respond_to do |format|
-      if @profile.update profile_params
-        session[:step] += 1
-        if session[:step] == 2 || session[:step] == 3
-          set_skills_and_interests
-        end
-
-        format.html { redirect_to @profile, notice: 'Profile was successfully updated.' }
+      if current_user.save
+        @profile = current_user.profile
+        session[:step] += 1        
         format.js { render 'update_registration.js.erb' }
       else
         format.html { render :new }
         format.js { render js: 'alert("internal error")' }
         format.json { render json: @profile.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  # Profile building steps
+  def update
+    check_is_owner( current_user, @profile )
+    session[:step] = 1 if session[:step] > 4
+    if session[:step] == 2
+      @profile.user.create_interests user_params[:interest_ids]
+    end
+    if session[:step] == 1
+      @profile.update profile_params
+    end
+    respond_to do |format|
+      session[:step] += 1
+      if session[:step] == 2 || session[:step] == 3
+        set_skills_and_interests
+      end
+
+      format.html { redirect_to @profile, notice: 'Profile was successfully updated.' }
+      format.js { render 'update_registration.js.erb' }
     end
   end
 
@@ -89,14 +95,6 @@ class ProfilesController < ApplicationController
   end
 
   def show
-  end
-
-  def destroy
-    @profile.destroy
-    respond_to do |format|
-      format.html { redirect_to profiles_url, notice: 'Profile was successfully destroyed.' }
-      format.json { head :no_content }
-    end
   end
 
   private
@@ -145,7 +143,7 @@ class ProfilesController < ApplicationController
 
     def check_is_owner( user, profile )
       unless user.profile == profile
-        redirect_to current_user.profile, notice: 'permissions not right'
+        redirect_to current_user.profile, notice: 'No access'
       end
     end
 end

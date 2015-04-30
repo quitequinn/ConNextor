@@ -15,9 +15,9 @@ class Project < ActiveRecord::Base
   validates :title, :short_description, presence: true
 
   def self.get_project_owner( project_id )
-    userToProject = UserToProject.find_by_project_id_and_project_user_class(project_id, ProjectUserClass::OWNER)
-    if userToProject
-      return userToProject.user
+    user_to_project = UserToProject.find_by_project_id_and_project_user_class(project_id, ProjectUserClass::OWNER)
+    if user_to_project
+      return user_to_project.user
     end
   end
 
