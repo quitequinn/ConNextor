@@ -1,6 +1,6 @@
 class ProfilesController < ApplicationController
   # sets @profile
-  before_action :set_profile, only: [:show, :new, :update, :update_header, :destroy, :switch, :edit_bio, :edit_location, :edit_photo, :edit_cover, :additional_info]
+  before_action :set_profile, only: [:show, :update, :update_header, :destroy, :switch, :edit_bio, :edit_location, :edit_photo, :edit_cover]
   
   # sets @user_is_owner_of_profile
   before_action :set_profile_owner, only: [:show, :update, :update_header]
@@ -46,11 +46,12 @@ class ProfilesController < ApplicationController
   # Create profile
   # First step
   def create
-    current_user.profile = Profile.new if current_user.profile == nil
-    current_user.update_name user_params[:first_name], user_params[:last_name]
+    @profile = Profile.new
+    current_user.profile = @profile if current_user.profile == nil
+    current_user.save
+  
     respond_to do |format|
-      if current_user.save
-        @profile = current_user.profile
+      if current_user.update_name user_params[:first_name], user_params[:last_name]
         session[:step] += 1        
         format.js { render 'update_registration.js.erb' }
       else

@@ -30,7 +30,7 @@ Rails.application.routes.draw do
   get 'profiles/switch/:id', to: 'profiles#switch'
   get 'profiles/edit_bio/:id', to: 'profiles#edit_bio'
   get 'profiles/edit_location/:id', to: 'profiles#edit_location'
-  get 'profiles/new/:id', to: 'profiles#new', as: 'profile_initialize'
+  get 'profiles/new', to: 'profiles#new', as: 'profile_initialize'
   patch 'profiles/update_header/:id', to: 'profiles#update_header'
 
   post 'invitation_code/validate', to: 'invitation_code#validate'
