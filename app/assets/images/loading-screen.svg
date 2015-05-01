@@ -3,8 +3,8 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg version="1.1" id="图层_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 400 400" enable-background="new 0 0 400 400" xml:space="preserve">
-<polyline fill="none" stroke="#FFFFFF" stroke-miterlimit="10" points="308.6,212.3 263.8,256.9 202.7,273.1 141.7,256.7 
-	97.1,211.9 80.9,150.8 97.4,89.8 142.2,45.2 203.3,29 264.3,45.5 308.9,90.2 "/>
+<polyline class="path" fill="none" stroke="#FFFFFF" stroke-miterlimit="10" points="308.6,212.3 263.8,256.9 202.7,273.1 141.7,256.7 
+	97.1,211.9 80.9,150.8 97.4,89.8 142.2,45.2 203.3,29 264.3,45.5 308.9,90.2 "></polyline>
 <polyline fill="none" stroke="#FFFFFF" stroke-miterlimit="10" points="258.6,183.7 203,215.8 147.4,183.7 147.4,119.5 203,87.4 
 	258.6,119.5 "/>
 <line fill="none" stroke="#FFFFFF" stroke-miterlimit="10" x1="203" y1="87.4" x2="264.3" y2="45.5"/>
@@ -30,22 +30,82 @@
 <line fill="none" stroke="#FFFFFF" stroke-miterlimit="10" x1="258.6" y1="183.7" x2="202.7" y2="273.1"/>
 <line fill="none" stroke="#FFFFFF" stroke-miterlimit="10" x1="203" y1="215.8" x2="308.6" y2="212.3"/>
 <line fill="none" stroke="#FFFFFF" stroke-miterlimit="10" x1="97.1" y1="211.9" x2="263.8" y2="256.9"/>
-<circle fill="#FFFFFF" cx="308.9" cy="90.2" r="5.5"/>
-<circle fill="#FFFFFF" cx="264.3" cy="45.2" r="5.5"/>
-<circle fill="#FFFFFF" cx="258.6" cy="119.5" r="5.5"/>
-<circle fill="#FFFFFF" cx="203.3" cy="87.4" r="5.5"/>
-<circle fill="#FFFFFF" cx="147.4" cy="119.5" r="5.5"/>
-<circle fill="#FFFFFF" cx="147.4" cy="183.7" r="5.5"/>
-<circle fill="#FFFFFF" cx="203" cy="213.7" r="5.5"/>
-<circle fill="#FFFFFF" cx="258.6" cy="183.7" r="5.5"/>
-<circle fill="#FFFFFF" cx="308.6" cy="212.3" r="5.5"/>
-<circle fill="#FFFFFF" cx="264.3" cy="256.7" r="5.5"/>
-<circle fill="#FFFFFF" cx="202.7" cy="273.1" r="5.5"/>
-<circle fill="#FFFFFF" cx="142.2" cy="256.7" r="5.5"/>
-<circle fill="#FFFFFF" cx="97.1" cy="211.9" r="5.5"/>
-<circle fill="#FFFFFF" cx="80.9" cy="151.1" r="5.5"/>
-<circle fill="#FFFFFF" cx="97.4" cy="88.8" r="5.5"/>
-<circle fill="#FFFFFF" cx="202.7" cy="29" r="5.5"/>
-<circle fill="#FFFFFF" cx="142.2" cy="45.2" r="5.5"/>
+
+
+<circle fill="#FFFFFF" cx="258.6" cy="119.5" r="5.5">
+	<animate attributeName="r" values="0; 5.5; 0; 0" dur="3s" repeatCount="indefinite" begin="0"
+      keytimes="0;0.2;0.7;1" keySplines="0.2 0.2 0.4 0.8;0.2 0.6 0.4 0.8;0.2 0.6 0.4 0.8" calcMode="spline"/>
+  </circle>
+<circle fill="#FFFFFF" cx="203.3" cy="87.4" r="5.5">
+	<animate attributeName="r" values="0; 5.5; 0; 0" dur="3s" repeatCount="indefinite" begin="0.1"
+      keytimes="0;0.2;0.7;1" keySplines="0.2 0.2 0.4 0.8;0.2 0.6 0.4 0.8;0.2 0.6 0.4 0.8" calcMode="spline"/>
+  </circle>
+<circle fill="#FFFFFF" cx="147.4" cy="119.5" r="5.5">
+	<animate attributeName="r" values="0; 5.5; 0; 0" dur="3s" repeatCount="indefinite" begin="0.2"
+      keytimes="0;0.2;0.7;1" keySplines="0.2 0.2 0.4 0.8;0.2 0.6 0.4 0.8;0.2 0.6 0.4 0.8" calcMode="spline"/>
+  </circle>
+<circle fill="#FFFFFF" cx="147.4" cy="183.7" r="5.5">
+	<animate attributeName="r" values="0; 5.5; 0; 0" dur="3s" repeatCount="indefinite" begin="0.3"
+      keytimes="0;0.2;0.7;1" keySplines="0.2 0.2 0.4 0.8;0.2 0.6 0.4 0.8;0.2 0.6 0.4 0.8" calcMode="spline"/>
+  </circle>
+<circle fill="#FFFFFF" cx="203" cy="213.7" r="5.5">
+	<animate attributeName="r" values="0; 5.5; 0; 0" dur="3s" repeatCount="indefinite" begin="0.4"
+      keytimes="0;0.2;0.7;1" keySplines="0.2 0.2 0.4 0.8;0.2 0.6 0.4 0.8;0.2 0.6 0.4 0.8" calcMode="spline"/>
+  </circle>
+
+<circle fill="#FFFFFF" cx="258.6" cy="183.7" r="5.5">
+	<animate attributeName="r" values="0; 5.5; 0; 0" dur="3s" repeatCount="indefinite" begin="0.5"
+      keytimes="0;0.2;0.7;1" keySplines="0.2 0.2 0.4 0.8;0.2 0.6 0.4 0.8;0.2 0.6 0.4 0.8" calcMode="spline"/>
+  </circle>
+
+
+<circle fill="#ffffff" cx="308.9" cy="90.2" r="5.5">
+<animate attributeName="r" values="0; 5.5; 0; 0" dur="3s" repeatCount="indefinite" begin="1.0"
+      keytimes="0;0.2;0.7;1" keySplines="0.2 0.2 0.4 0.8;0.2 0.6 0.4 0.8;0.2 0.6 0.4 0.8" calcMode="spline"/>
+  </circle>
+<circle fill="#FFFFFF
+	" cx="264.3" cy="45.2" r="5.5">
+<animate attributeName="r" values="0; 5.5; 0; 0" dur="3s" repeatCount="indefinite" begin="0.999"
+      keytimes="0;0.2;0.7;1" keySplines="0.2 0.2 0.4 0.8;0.2 0.6 0.4 0.8;0.2 0.6 0.4 0.8" calcMode="spline"/>
+  </circle>
+
+<circle fill="#FFFFFF" cx="202.7" cy="29" r="5.5">
+<animate attributeName="r" values="0; 5.5; 0; 0" dur="3s" repeatCount="indefinite" begin="0.99"
+      keytimes="0;0.2;0.7;1" keySplines="0.2 0.2 0.4 0.8;0.2 0.6 0.4 0.8;0.2 0.6 0.4 0.8" calcMode="spline"/>	
+  </circle>
+<circle fill="#FFFFFF" cx="142.2" cy="45.2" r="5.5">
+	<animate attributeName="r" values="0; 5.5; 0; 0" dur="3s" repeatCount="indefinite" begin="0.90"
+      keytimes="0;0.2;0.7;1" keySplines="0.2 0.2 0.4 0.8;0.2 0.6 0.4 0.8;0.2 0.6 0.4 0.8" calcMode="spline"/>
+  </circle>
+
+<circle fill="#FFFFFF" cx="97.4" cy="88.8" r="5.5">
+	<animate attributeName="r" values="0; 5.5; 0; 0" dur="3s" repeatCount="indefinite" begin="0.85"
+      keytimes="0;0.2;0.7;1" keySplines="0.2 0.2 0.4 0.8;0.2 0.6 0.4 0.8;0.2 0.6 0.4 0.8" calcMode="spline"/>
+  </circle>
+
+<circle fill="#FFFFFF" cx="80.9" cy="151.1" r="5.5">
+<animate attributeName="r" values="0; 5.5; 0; 0" dur="3s" repeatCount="indefinite" begin="0.80"
+      keytimes="0;0.2;0.7;1" keySplines="0.2 0.2 0.4 0.8;0.2 0.6 0.4 0.8;0.2 0.6 0.4 0.8" calcMode="spline"/>	
+  </circle>
+ <circle fill="#FFFFFF" cx="97.1" cy="211.9" r="5.5">
+	<animate attributeName="r" values="0; 5.5; 0; 0" dur="3s" repeatCount="indefinite" begin="0.75"
+      keytimes="0;0.2;0.7;1" keySplines="0.2 0.2 0.4 0.8;0.2 0.6 0.4 0.8;0.2 0.6 0.4 0.8" calcMode="spline"/>
+  </circle> 
+<circle fill="#FFFFFF" cx="142.2" cy="256.7" r="5.5">
+	<animate attributeName="r" values="0; 5.5; 0; 0" dur="3s" repeatCount="indefinite" begin="0.70"
+      keytimes="0;0.2;0.7;1" keySplines="0.2 0.2 0.4 0.8;0.2 0.6 0.4 0.8;0.2 0.6 0.4 0.8" calcMode="spline"/>
+  </circle>
+<circle fill="#FFFFFF" cx="202.7" cy="273.1" r="5.5">
+	<animate attributeName="r" values="0; 5.5; 0; 0" dur="3s" repeatCount="indefinite" begin="0.65"
+      keytimes="0;0.2;0.7;1" keySplines="0.2 0.2 0.4 0.8;0.2 0.6 0.4 0.8;0.2 0.6 0.4 0.8" calcMode="spline"/>
+  </circle>
+<circle fill="#FFFFFF" cx="264.3" cy="256.7" r="5.5">
+<animate attributeName="r" values="0; 5.5; 0; 0" dur="3s" repeatCount="indefinite" begin="0.60"
+      keytimes="0;0.2;0.7;1" keySplines="0.2 0.2 0.4 0.8;0.2 0.6 0.4 0.8;0.2 0.6 0.4 0.8" calcMode="spline"/>
+  </circle>
+<circle fill="#FFFFFF" cx="308.6" cy="212.3" r="5.5">
+	<animate attributeName="r" values="0; 5.5; 0; 0" dur="3s" repeatCount="indefinite" begin="0.55"
+      keytimes="0;0.2;0.7;1" keySplines="0.2 0.2 0.4 0.8;0.2 0.6 0.4 0.8;0.2 0.6 0.4 0.8" calcMode="spline"/>
+  </circle>
 <text transform="matrix(1 0 0 1 66.4702 360.3359)" fill="#EFC94C" font-family="'Omnes-Medium'" font-size="50">ConNextor</text>
 </svg>
