@@ -11,8 +11,29 @@ $tabs-offset:           20px;
 
 .profiles {
 //  > .container {
-//    background-color: white;
+//    background-color: $primary-color;
 //  }
+
+  .stay-tuned-container{
+    background-color: $primary-color;
+    height:600px;
+    width:100%;
+
+    .stay-tuned-photo{
+      height: $cover-photo-height;
+      background-position: center;
+      background-size: cover;
+      margin-top: 80px;
+      margin-left:35%;
+      margin-bottom:100px;
+    }
+
+    .stay-tuned-text{
+      color: white;
+      font-size: 36px;  
+      text-align:center;
+    }
+  }
 
   .header {
     .cover-photo {

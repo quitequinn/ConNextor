@@ -32,7 +32,8 @@ Rails.application.routes.draw do
   get 'profiles/edit_location/:id', to: 'profiles#edit_location'
   get 'profiles/new', to: 'profiles#new', as: 'profile_initialize'
   patch 'profiles/update_header/:id', to: 'profiles#update_header'
-
+  get '/stay_tuned', to: 'profiles#stay_tuned'
+  
   post 'invitation_code/validate', to: 'invitation_code#validate'
   
   resources :user_follows

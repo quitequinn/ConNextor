@@ -32,7 +32,7 @@ class SessionsController < ApplicationController
         # Identity is not associated with the current_user
         @identity.user = current_user
         @identity.save
-        redirect_to profile_path(current_user.profile), notice: 'Account was successfully linked'
+        redirect_to controller: :profiles, action: :stay_tuned, notice: 'Account was successfully linked'
       end
     else
       if @identity.user
@@ -54,7 +54,7 @@ class SessionsController < ApplicationController
           @user.profile.save
 
           respond_to do |format|
-            format.html { redirect_to controller: :profiles, action: :new, id: @user.profile_id }
+            format.html { redirect_to controller: :profiles, action: :stay_tuned }
             format.js
             format.json { render json: @user.errors, status: :unprocessable_entity }
           end

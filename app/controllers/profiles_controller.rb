@@ -37,6 +37,9 @@ class ProfilesController < ApplicationController
     end
   end
 
+  def stay_tuned
+  end
+
   # Not the usual 'new', more like initialize.
   def new
     @user = current_user
