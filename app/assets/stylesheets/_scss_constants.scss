@@ -49,10 +49,11 @@ $font-weight-subtitle:  600;
 $font-weight-banner:    600;
 
 // Elements on application.html.erb
-$navbar-height:         57px;
+$navbar-height:         100px;
 $navbar-default-bg:     white;
 $footer-height:         80px;
 $footer-padding:        ($footer-height - $font-size-text)/2;
+$max-width:             970px;
 
 // Layers
 $layer-default:         1;

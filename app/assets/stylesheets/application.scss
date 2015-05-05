@@ -191,19 +191,19 @@
 // images
 
 .logo-img {
-  width: 57px;
-  height: 54px;
+  width: 60px;
+  height: 60px;
 }
 
 .logo-img-background {
   background-image: image_url("logo.png");
   background-size: cover;
-  width: 57px;
-  height: 54px;
+  width: 60px;
+  height: 60px;
 }
 
-.facebook-image {background-image: image_url("icons/social-media/facebook-gray.png");}
-.facebook-image:hover {background-image: image_url("icons/social-media/facebook-blue.png")}
+.facebook-image {background-image: image_url("icons/social-media/social_facebook.png");}
+//.facebook-image:hover {background-image: image_url("icons/social-media/facebook-blue.png")}
 
 .twitter-image {background-image: image_url("icons/social-media/twitter-bird-gray.png");}
 .twitter-image:hover {background-image: image_url("icons/social-media/twitter-bird-blue.png");}
@@ -213,6 +213,18 @@
 
 .github-image {background-image: image_url("icons/social-media/github-gray.png");}
 .github-image:hover {background-image: image_url("icons/social-media/github-color.png");}
+
+.nav-right-icon-post {background-image:image_url("icons/navigation-icons/icon_post-a-project.png");}
+
+.nav-right-icon-search {background-image:image_url("icons/navigation-icons/icon_search.png");}
+.nav-right-icon-search:hover {background-image:image_url("icons/navigation-icons/icon_search_yellow.png");}
+
+.nav-right-icon-notice {background-image:image_url("icons/navigation-icons/icon_notice.png");}
+.nav-right-icon-notice:hover {background-image:image_url("icons/navigation-icons/icon_notice_yellow.png");}
+
+.nav-right-icon-message {background-image:image_url("icons/navigation-icons/icon_message.png");}
+.nav-right-icon-message:hover {background-image:image_url("icons/navigation-icons/icon_message_yellow.png");}
+
 
 
 //************************************************
@@ -236,6 +248,7 @@ body {
   //  background-color: #808080;
 }
 
+
 #content-wrap {
   min-height: 100%;
   height: auto !important;
@@ -243,12 +256,25 @@ body {
   margin: 0 auto (0-$footer-height);
 }
 
+<<<<<<< Updated upstream
 //.log-in {
 //  padding: 20px 0;
 //  .error-message {
 //    color: $warning-color;
 //  }
 //}
+=======
+.container {
+  max-width: $max-width !important;
+}
+
+.log-in {
+  padding: 20px 0;
+  .error-message {
+    color: $warning-color;
+  }
+}
+>>>>>>> Stashed changes
 
 //.sign-up {
 //  padding: 20px 0;
@@ -276,7 +302,7 @@ body {
   }
 
   .logo-img-navbar-container {
-    padding: 0 0 0 0 !important;
+   // padding: 0 0 0 0 !important;
   }
 
   .logo-txt {
@@ -327,4 +353,27 @@ body {
 .copyright-txt, .contact-us {
   font-size: $font-size-text;
   color: white;
+}
+
+
+
+
+//styling about the loading
+
+.path{
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  -webkit-animation: dash 5s linear infinite;
+  animation: dash 5s linear infinite;
+}
+
+@-webkit-keyframes dash {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes dash {
+  to {
+    stroke-dashoffset: 0;
+  }
 }
