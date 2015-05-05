@@ -1,21 +1,21 @@
 <div class="row section-container">
   <div class="section-header">
     <div class="big-header">
-      <p>You are finished!</p>
+      <p>Show people your LinkedIn?</p>
     </div>
   </div>
 
   <div class="col-sm-4 col-sm-push-8 side-description">
     <p class="title">Some tips</p>
-    <p class="text">Connect with some external social media sites to find your friends easier!</p>
+    <p class="text">Find your existing connections and showcase your past experience!</p>
   </div>
 
-  <div class="col-sm-8 col-sm-pull-4 section-form-container">
+  <div class="col-sm-8 col-sm-pull-2 section-form-container">
     <div class="text-center">
       <%= render 'authentication/oauth_linkedin' %>
     </div>
   </div>
 </div>
 <div class="end-section col-sm-12">
-  <%= link_to 'Finished', controller: 'profiles', action:'stay_tuned' %>
+  <%= link_to 'Skip', controller: 'profiles', action:'stay_tuned' %>
 </div>

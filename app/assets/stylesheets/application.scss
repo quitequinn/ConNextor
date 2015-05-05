@@ -205,6 +205,9 @@
 .facebook-image {background-image: image_url("icons/social-media/facebook-gray.png");}
 .facebook-image:hover {background-image: image_url("icons/social-media/facebook-blue.png")}
 
+.facebook-button {background-image: image_url("facebook_button.png")}
+.linkedin-button {background-image: image_url("linkedin_button.png")}
+
 .twitter-image {background-image: image_url("icons/social-media/twitter-bird-gray.png");}
 .twitter-image:hover {background-image: image_url("icons/social-media/twitter-bird-blue.png");}
 
@@ -262,6 +265,13 @@ body {
   .social-media-img {
     width: 30px;
     height: 30px;
+    margin: 10px;
+    background-size: cover;
+    display: inline-block;
+  }
+  .social-media-button {
+    width: 200px;
+    height: 40px;
     margin: 10px;
     background-size: cover;
     display: inline-block;
