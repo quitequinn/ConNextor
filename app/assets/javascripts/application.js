@@ -80,3 +80,20 @@ function logthatshit() {
   // implement name change, and escape too.
   console.log('I HVAE BEEN TOUCHED');
 }
+
+
+
+
+ var urlstr = location.href;
+  //alert((urlstr + '/').indexOf($(this).attr('href')));
+  var urlstatus=false;
+  $("#nav-left a").each(function () {
+    if ((urlstr + '/').indexOf($(this).attr('href')) > -1&&$(this).attr('href')!='') {
+      $(this).addClass('active'); 
+      urlstatus = trubk
+    } else {
+      $(this).removeClass('active');
+    }
+  });
+  if (!urlstatus) {$("#nav-left a").eq(0).addClass('active');
+}

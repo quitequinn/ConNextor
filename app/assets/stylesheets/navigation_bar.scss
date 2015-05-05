@@ -1,0 +1,68 @@
+// Place all the styles related to the navigation bar here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+@import "scss_constants";
+
+
+.logo{
+	padding:20px 0 20px 0;
+	float:left;
+	position:relative;
+	left:-20px;
+
+}
+
+.navigation{
+  background-color:white;
+  border: 1px solid $border-divider-color;
+}
+
+#nav-left{
+      font-family: "omnes-medium";
+      font-size: $font-size-medium;
+
+      a{
+          color:#000000;
+      }
+
+      a:hover,visited,active{
+           background-color: transparent;
+           color: $primary-color;
+      }
+
+     .active{
+        background:url("icons/navigation-icons/icons_click.png") no-repeat;
+        background-position: 50% 100%;
+     }
+	
+}
+
+	
+#nav-right{
+	height: $navbar-height;
+	font-family: "omnes-medium";
+      font-size: $font-size-medium;
+
+	li{
+	   positon:relative;
+	   top: -10px;
+	}
+
+     a{
+          color:#000000;
+      }
+
+     a:hover,visited,active{
+           background-color: transparent;
+           color: $primary-color;
+      }
+
+	}
+
+.nav-right-icon{
+  width: 40px;
+  height: 40px;
+  background-repeat: no-repeat;
+}
