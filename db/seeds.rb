@@ -140,7 +140,9 @@ seed_interest('Product Manager')
 InvitationCode.destroy_all
 
 seed_invite('WATERLOOWARRIORS')
-seed_invite('BEDFORDSCHMUCKS')
+seed_invite('WOMENINTECH')
+seed_invite('COLLISIONVIP')
+seed_invite('HACKTHENORTHPASS')
 
 InvitationRequest.destroy_all
 
