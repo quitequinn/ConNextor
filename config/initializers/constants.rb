@@ -61,3 +61,7 @@ module ASANA
   API_URL = 'https://app.asana.com/api/1.0'
 end
 
+module LINKEDIN
+  LINKEDIN_URL = 'https://app.asana.com/api/1.0'
+end
+

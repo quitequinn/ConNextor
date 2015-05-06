@@ -38,6 +38,8 @@ class ProfilesController < ApplicationController
   end
 
   def stay_tuned
+    sign_out
+    session_destroy
   end
 
   # Not the usual 'new', more like initialize.
